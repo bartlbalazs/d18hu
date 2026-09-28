@@ -37,6 +37,15 @@
       "fetchedAt": "2026-09-28T19:13:51.376Z"
     },
     {
+      "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_82710.jpg",
+      "file": "fortepan-82710-aee51820.jpg",
+      "sha256": "12932be84163864743ac830fb9fc03c187fc75abbc3637bddad5a371799c3f3c",
+      "width": 1600,
+      "height": 1180,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T20:28:36.668Z"
+    },
+    {
       "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_97493.jpg",
       "file": "fortepan-97493-74edded1.jpg",
       "sha256": "67fc8b417e352a3d6e861f6c18ba661c5c8ea0dcd36cbe4253ec2149bcfa7d7e",
@@ -44,6 +53,24 @@
       "height": 1357,
       "contentType": "image/jpeg",
       "fetchedAt": "2026-09-28T19:13:53.061Z"
+    },
+    {
+      "originalUrl": "https://m.blog.hu/mi/mierzsebetvarosunk/image/201309/m-n-o-p/peterdy4-1.jpg",
+      "file": "img-9137c2e9.jpg",
+      "sha256": "f79a4dc454cbdb8fc2d2a6481934d8571062e476593579d4f99f45a5b9886602",
+      "width": 500,
+      "height": 375,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T20:28:36.871Z"
+    },
+    {
+      "originalUrl": "assets/events/gazkeszulek-gyartas.png",
+      "file": "local-gazkeszulek-gyartas-eccdbdc7.png",
+      "sha256": "eccdbdc7cff08be3f57f81efa7251cfa4837dcf333258719614907c819a8f33d",
+      "width": 593,
+      "height": 468,
+      "contentType": "image/png",
+      "fetchedAt": "2026-09-28T20:38:02.661Z"
     }
   ]
 }

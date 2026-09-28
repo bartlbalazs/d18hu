@@ -35,13 +35,13 @@
 1901-apr-20-kozolt-datum-a-heted7-szerint-ezen:
   title: A közölt átadási nap
   titleNeedsReview: true
-1901-korul-a-jelenlegi-adatok-alapjan:
+1901-korul-a-haz-tervezoje-valoszinuleg:
   title: Mellinger Artúr, a valószínű tervező
   titleNeedsReview: true
 1901-1902-spitz-janos-ferenc-es:
   title: A Spitz szabócég társai
   titleNeedsReview: true
-1902-1903-a-cim-budapesti-cimtari:
+1902-1903-a-cim-felbukkan-egy:
   title: A cím feltűnik a címtárban
   titleNeedsReview: true
 1903-dec-17-a-wright-testverek-vegrehajtjak:
@@ -50,15 +50,24 @@
 1903-dec-27-maulner-adolf-es-tarsai:
   title: Karbidot hirdetnek a 18-as címről
   titleNeedsReview: true
+  image:
+    alt: "Korabeli újsághirdetés: Calcium-Carbid, Mautner Adolf és Társai gázkészülék-gyártási vállalata, Budapest, VII. ker., Dembinszky-utcza 18. sz."
+    caption: Mautner Adolf és Társai calcium-carbid-hirdetése az Eperjesi Lapokban, 1903.
+    credit: ""
+    license: ""
+    sourceUrl: https://epa.oszk.hu/05600/05623/00259/pdf/EPA05623_eperjesi_lapok_1903_52.pdf
+    sourceLabel: Eperjesi Lapok, 1903
+    depictsHouse: false
+    kind: document
   highlight:
     kind: transcription
     label: Korabeli hirdetés · Eperjesi Lapok, 1903
     text: Budapest, VII., Dembinszky-utca 18.
     verified: false
-1904-jul-1-jul-10-a-julius-10-i:
+1904-jul-1-jul-10-eltunik-tarcsai-viktor-a:
   title: Eltűnik egy repülőgép-tervező
   titleNeedsReview: true
-1905-spitz-janos-ferenc-es:
+1905-egy-korabeli-ingatlanforgalmi-kozles:
   title: Spitzék megveszik az István út 11.-et
   titleNeedsReview: true
 1905-1906-a-peterdy-utca-4:
@@ -70,13 +79,13 @@
 1909-1910-a-barczy-korszak-fovarosi:
   title: Új iskolák a Bárczy-korszakban
   titleNeedsReview: true
-1911-az-eredeti-haz-es:
+1911-a-haz-es-telekjegyzekbol:
   title: Spitzék, a ház tulajdonosai
   titleNeedsReview: true
 1912-spitz-janos-ferenc-a:
   title: Jelzálog a szabóipartestület házaira
   titleNeedsReview: true
-1913-a-kutatasi-kivonat-szerint:
+1913-egy-fennmaradt-adat-szerint:
   title: Spitz a takarékpénztár választmányában
   titleNeedsReview: true
 1914-jul-aug-az-elso-vilaghaboru-kitorese:
@@ -100,7 +109,7 @@
 1919-marc-21-kikialtjak-a-magyarorszagi-tanacskoztarsasagot:
   title: Kikiáltják a Tanácsköztársaságot
   titleNeedsReview: true
-1919-spitz-janos-ferenc-a:
+1919-egy-korabeli-sajtoadat-spitz:
   title: Spitz a nyersfilmgyártó cég igazgatóságában
   titleNeedsReview: true
 1919-aug-a-tanacskoztarsasag-bukasa-katonai:
@@ -109,7 +118,7 @@
 1920-jun-4-alairjak-a-trianoni-bekeszerzodest:
   title: A trianoni békeszerződés
   titleNeedsReview: true
-1923-a-strandfurdo-reszvenytarsasag-budapest:
+1923-fennmaradtak-a-strandfurdo-reszvenytarsasag:
   title: A Strandfürdő Rt. részvényei
   titleNeedsReview: true
 1924-a-kereskedelmi-es-ipari:
@@ -127,7 +136,7 @@
 1927-a-hangosfilm-megjelenese-the:
   title: Megszólal a hangosfilm
   titleNeedsReview: true
-1928-a-korabbi-kutatas-1928:
+1928-az-1928-as-cimtarbol:
   title: Spitz János Ferenc az 1928-as címtárban
   titleNeedsReview: true
 1929-drescher-lipot-cipeszmester-a:
@@ -178,12 +187,6 @@
 1941-magyarorszag-hadba-lep-a:
   title: Magyarország hadba lép
   titleNeedsReview: true
-1941-jun-22-nemetorszag-megtamadja-a-szovjetuniot:
-  title: Támadás a Szovjetunió ellen
-  titleNeedsReview: true
-1941-dec-pearl-harbor-utan-az:
-  title: Az Egyesült Államok belép a háborúba
-  titleNeedsReview: true
 1942-1943-telen-a-2-magyar-hadsereg:
   title: A doni katasztrófa
   titleNeedsReview: true
@@ -220,7 +223,7 @@
 1944-nov-letrejon-a-budapesti-nagy:
   title: Létrejön a nagy gettó
   titleNeedsReview: true
-1944-dec-24-1945-febr-13-budapest-ostroma-a-fovaros:
+1944-dec-24-1945-febr-13-budapest-ostroma-alatt-a:
   title: Budapest ostroma
   titleNeedsReview: true
 1944-dec-29-az-1945-januar-31:
@@ -232,7 +235,7 @@
 1945-jan-15-vagy-17-nehany-oraval-kesobb-ugyanebben-a-visszaemlekezesben-denes:
   title: Szovjet katonák a házban
   titleNeedsReview: true
-1945-jan-18-a-pesti-oldalert-vivott:
+1945-jan-18-lezarulnak-a-pesti-oldalert:
   title: Véget érnek a harcok a pesti oldalon
   titleNeedsReview: true
 1945-jan-31-a-szabadsag-ki-tud:
@@ -259,23 +262,11 @@
 1946-aug-1-bevezetik-a-forintot-a:
   title: Bevezetik a forintot
   titleNeedsReview: true
-1947-febr-10-alairjak-a-parizsi-bekeszerzodest:
-  title: A párizsi békeszerződés
-  titleNeedsReview: true
-1947-a-truman-doktrina-es:
-  title: A Truman-doktrína
-  titleNeedsReview: true
 1948-febr-16-kozlekedestorteneti-feldolgozas-szerint-az:
   title: Újra jár az 5-ös busz
   titleNeedsReview: true
 1948-a-kommunista-hatalomatvetel-donto:
   title: A kommunista hatalomátvétel
-  titleNeedsReview: true
-1948-kikialtjak-izrael-allamot-a:
-  title: Kikiáltják Izrael Államot
-  titleNeedsReview: true
-1948-dec-10-az-ensz-elfogadja-az:
-  title: Az Emberi Jogok Egyetemes Nyilatkozata
   titleNeedsReview: true
 1949-aug-20-az-uj-alkotmany-nyoman:
   title: Létrejön a Magyar Népköztársaság
@@ -304,12 +295,6 @@
 1956-okt-23-egy-gyermekkori-visszaemlekezes-teherautokon:
   title: Teherautók a Dembinszky-kereszteződésnél
   titleNeedsReview: true
-1956-nov-4-a-szovjet-hadsereg-nagy:
-  title: Szovjet támadás Budapest ellen
-  titleNeedsReview: true
-1956-nov-a-szuezi-valsag-es:
-  title: A szuezi válság
-  titleNeedsReview: true
 1956-dec-2-a-korabbi-busztorteneti-rekonstrukcio:
   title: Visszatér az 5-ös busz
   titleNeedsReview: true
@@ -331,14 +316,11 @@
     sourceLabel: Fortepan 18543
     depictsHouse: false
     kind: photo
-1960-jan-25-meghal-mellinger-artur-a:
+1960-jan-25-meghal-mellinger-artur-akit:
   title: Meghal Mellinger Artúr
   titleNeedsReview: true
 1961-felepul-a-berlini-fal:
   title: Felépül a berlini fal
-  titleNeedsReview: true
-1962-kubai-raketavalsag-a-hideghaboru:
-  title: A kubai rakétaválság
   titleNeedsReview: true
 1963-a-fortepan-148696-szamu:
   title: A Dembinszky 18 újra fényképen
@@ -358,7 +340,7 @@
 1968-jan-elindul-az-uj-gazdasagi:
   title: Az új gazdasági mechanizmus
   titleNeedsReview: true
-1968-maj-1-az-uvaterv-fortepan-felvetele:
+1968-maj-1-az-uvaterv-fortepan-felvetelen:
   title: Felvonulók a Nefelejcs utcai kereszteződésnél
   titleNeedsReview: true
   image:
@@ -370,9 +352,3 @@
     sourceLabel: Fortepan 97493
     depictsHouse: false
     kind: photo
-1968-maj-franciaorszagi-diaklazadasok-es-orszagos:
-  title: Franciaországi diáklázadások
-  titleNeedsReview: true
-1968-aug-21-a-varsoi-szerzodes-csapatai:
-  title: A prágai tavasz vége
-  titleNeedsReview: true
