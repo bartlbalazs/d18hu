@@ -38,6 +38,9 @@ if [[ ! -d node_modules || pnpm-lock.yaml -nt node_modules/.modules.yaml ]]; the
   pnpm install --frozen-lockfile
 fi
 
+# Astro allows one dev/preview server per project; replace one left running from an earlier start.
+pnpm exec astro "$mode" stop >/dev/null 2>&1 || true
+
 if [[ "$mode" == "preview" ]]; then
   pnpm build:draft
   exec corepack pnpm preview "$@"

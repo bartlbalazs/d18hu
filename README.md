@@ -27,7 +27,8 @@ scripts/start-local.sh --preview   # production-like: builds dist/ (draft) and s
 The script switches to the Node version in `.nvmrc` via nvm, runs the pinned pnpm through
 Corepack, and installs dependencies when they are missing or the lockfile changed. Extra
 arguments go to Astro, e.g. `scripts/start-local.sh --port 5000` or `--host` to open the site
-from a phone on the same network. Stop it with Ctrl+C.
+from a phone on the same network. Stop it with Ctrl+C. A server still running from an earlier
+start is stopped first, since Astro allows only one per project.
 
 Manual equivalent:
 
