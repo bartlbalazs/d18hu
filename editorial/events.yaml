@@ -142,6 +142,15 @@
 1929-drescher-lipot-cipeszmester-a:
   title: Hócipők a III/5-ben
   titleNeedsReview: true
+  image:
+    alt: "Korabeli újsághirdetés: Drescher Lipót cipészmester, készít divat női különleges hócipőket mindenféle szinben. Budapest, VII. ker. Dembinszky-u. 18. III. 5."
+    caption: Drescher Lipót cipészmester hirdetése az Új Budapestben, 1929.
+    credit: ""
+    license: ""
+    sourceUrl: https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1929/?pg=7
+    sourceLabel: Új Budapest, 1929
+    depictsHouse: false
+    kind: document
 1929-okt-a-new-york-i:
   title: A New York-i tőzsdei összeomlás
   titleNeedsReview: true
@@ -163,14 +172,8 @@
 1933-jan-30-hitler-kancellar-lesz-nemetorszagban:
   title: Hitler kancellár lesz
   titleNeedsReview: true
-1936-berlini-olimpia-a-naci:
-  title: A berlini olimpia
-  titleNeedsReview: true
 1938-maj-az-elso-magyar-zsidotorveny:
   title: Az első zsidótörvény
-  titleNeedsReview: true
-1938-szept-muncheni-egyezmeny-a-nagyhatalmak:
-  title: A müncheni egyezmény
   titleNeedsReview: true
 1938-nov-az-elso-becsi-dontes:
   title: Az első bécsi döntés
@@ -252,9 +255,6 @@
   titleNeedsReview: true
 1945-aug-hirosima-es-nagaszaki-atomtamadasa:
   title: Hirosima és Nagaszaki
-  titleNeedsReview: true
-1945-okt-24-hatalyba-lep-az-ensz:
-  title: Megalakul az ENSZ
   titleNeedsReview: true
 1946-febr-1-kikialtjak-a-koztarsasagot-magyarorszagon:
   title: Kikiáltják a köztársaságot

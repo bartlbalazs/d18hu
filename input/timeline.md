@@ -10,7 +10,7 @@ Budapest születésétől a hatvanas évek végéig a ház története a körny�
 
 | Dátum | Sáv | Esemény és jelentőség | Bizonyosság | Külső forrás | Kép URL | Cikkötlet |
 |---|---|---|---|---|---|---|
-| 1873. nov. 17. | Magyarország | Pest, Buda és Óbuda egyesül: létrejön Budapest, amelynek később gyorsan beépül a városligeti pereme. | — | [Budapest története](https://archiv.budapest.hu/Lapok/Gy%C5%91ztest-hirdettek-a-Budapest-egyes%C3%ADt%C3%A9se-alkalm%C3%A1b%C3%B3l-rendezett-v%C3%A1rosismereti-versenyen.aspx) | — | A ház előtti város |
+| 1873. nov. 17. | Magyarország | Pest, Buda és Óbuda egyesül: létrejön Budapest, amelynek később gyorsan beépül a városligeti pereme. | — | [Budapest Főváros Levéltára: 150 éves Budapest](https://bparchiv.hu/150-eves-budapest/) | — | A ház előtti város |
 | 1889 | Világ | Megnyílik a párizsi világkiállítás; az Eiffel-torony az ipari és városi modernitás jelképe lesz. | — | — | — | — |
 | 1889 | Környék | A korábbi dűlőútból kialakított utca Dembinszky Henrik, az 1848–49-es magyar szabadságharc lengyel tábornoka nevét kapja. A névadás éve a helytörténeti adat szerint 1889. | Valószínű | [Erzsébetvárosi helytörténet](https://mierzsebetvarosunk.blog.hu/tags/dembinszky_utca) | — | Ki volt Dembinszky? |
 | 1896 | Magyarország | Millenniumi ünnepségek és kiállítás a Városligetben: a leendő ház közelében látványosan formálódik az új főváros. A korabeli felvételen a Városligeti-tó és a kiállítás léggömbje látható. | — | [Fortepan 82710](https://fortepan.hu/hu/photos/?id=82710) | https://fortepan.download/file/fortepan-eu/1600/fortepan_82710.jpg | A ház előtti város |
@@ -53,14 +53,12 @@ Budapest születésétől a hatvanas évek végéig a ház története a körny�
 | 1925. ősz | D18 | A *Magyar Pénzügy* a Strandfürdő Rt. október 5-re kitűzött alaptőke-emelési közgyűlésénél a Dembinszky utca 18. címet közli. A kerületszám a digitalizált szövegben ellentmondásos; nem állítható, hogy fürdő működött a házban vagy hogy ez volt a cég bejegyzett székhelye. | Valószínű | [Magyar Pénzügy, 1925/79](https://epa.hu/05700/05758/02232/pdf/EPA05758_magyar_penzugy_1925_079.pdf) | — | Strandfürdő a bérházban? |
 | 1927 | Világ | A hangosfilm megjelenése (*The Jazz Singer*) új korszakot indít a mozikban; érdekes ellenpont Spitz 1919-es nyersfilmipari érdekeltségéhez. | — | — | — | A szabó és a filmipar |
 | 1928 | D18 | Az 1928-as címtárból fennmaradt adat a 18. számot **33401** helyrajzi számmal és Spitz János Ferenc nevével kapcsolja össze. Ez a tulajdonosi folytonosság egyik fontos nyoma; az eredeti szkennelt címtári sor nem áll rendelkezésre. | Valószínű | — | — | Spitz háza |
-| 1929 | D18 | Drescher Lipót cipészmester a Dembinszky 18., **III/5** címről különleges, többféle színű női hócipőket hirdet. A cím üzleti elérhetőség; a teljes gyártás helyét nem bizonyítja. | Igazolt | [Új Budapest, eredeti hirdetés](https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1929/?pg=7) | — | Hócipők a III/5-ben |
+| 1929 | D18 | Drescher Lipót cipészmester a Dembinszky 18., **III/5** címről különleges, többféle színű női hócipőket hirdet. A cím üzleti elérhetőség; a teljes gyártás helyét nem bizonyítja. | Igazolt | [Új Budapest, eredeti hirdetés](https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1929/?pg=7) | assets/events/hocipo.png | Hócipők a III/5-ben |
 | 1929. okt. | Világ | A New York-i tőzsdei összeomlás a világgazdasági válság jelképes kezdőpontja. | — | — | — | — |
 | 1931. febr. 15. | D18 • személy | Az MTK sporttörténeti névtára szerint ezen a napon meghal Spitz János Ferenc. A névazonosság alapján valószínű, hogy ő a háztulajdonos; a tulajdon átszállásának pontos módját nem ismerjük. | Valószínű | [MTK Baráti Kör névtára](https://mtkcsalad.hu/quot-s-quot-kezdobetuvel/) | — | Mi lett Spitz után? |
 | 1931 | Környék | Kinszki Imre a Bethlen Gábor utcát fényképezi a Dembinszky utca sarka felé. A környékről készült kép alapján a 18-as épületet nem lehet biztosan azonosítani. | Igazolt | [Hungaricana / Fortepan 157067](https://gallery.hungaricana.hu/en/Fortepan/1524355/) | https://fortepan.download/file/fortepan-eu/1600/fortepan_157067.jpg | Utca a két háború között |
 | 1933. jan. 30. | Világ | Hitler kancellár lesz Németországban; megkezdődik a náci diktatúra kiépülése. | — | — | — | — |
-| 1936 | Világ | Berlini olimpia: a náci rendszer a nemzetközi sporteseményt propagandára használja. | — | — | — | — |
 | 1938. máj. | Magyarország | Az első magyar zsidótörvény gazdasági és szakmai kvótákat vezet be. A házhoz korábban kötődő emberek későbbi sorsáról ez önmagában nem árulkodik. | — | [USHMM](https://encyclopedia.ushmm.org/content/en/timeline-event/holocaust/1933-1938/anti-jewish-laws-in-hungary) | — | A ház a zsidótörvények korában |
-| 1938. szept. | Világ | Müncheni egyezmény: a nagyhatalmak hozzájárulnak Csehszlovákia feldarabolásához. | — | — | — | — |
 | 1938. nov. | Magyarország | Az első bécsi döntés módosítja Magyarország határait; a ház lakóinak személyes érintettsége ismeretlen. | — | — | — | — |
 
 ## Világháború, üldözés és Budapest ostroma, 1939–1945
@@ -93,7 +91,6 @@ Budapest születésétől a hatvanas évek végéig a ház története a körny�
 | 1945. máj. | Világ | Véget ér a második világháború Európában. | — | — | — | — |
 | 1945 után, pontos év nélkül | D18 • személy | Dénes Mari szerint a korábban a házban élő **Weisz Artúr és felesége** túlélik az üldöztetést, majd visszatérnek Párizsba, ahol bőrdíszműves műhelyük működik. Weisz Artúr és Weisz Károly rokonsága nem igazolt. | Igazolt | [Dénes Mari visszaemlékezése](https://www.csillagoshazak.hu/hazak/VII/dembinszky18) | — | Párizsból a Dembinszky utcába |
 | 1945. aug. | Világ | Hirosima és Nagaszaki atomtámadása után Japán kapitulál; véget ér a világháború. | — | — | — | — |
-| 1945. okt. 24. | Világ | Hatályba lép az ENSZ Alapokmánya, megalakul az Egyesült Nemzetek Szervezete. | — | [ENSZ története](https://www.un.org/en/about-us/history-of-the-un) | — | — |
 
 ## Újjáépítés, államszocializmus, forradalom és fényképek, 1946–1968
 

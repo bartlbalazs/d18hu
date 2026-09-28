@@ -71,6 +71,15 @@
       "height": 468,
       "contentType": "image/png",
       "fetchedAt": "2026-09-28T20:38:02.661Z"
+    },
+    {
+      "originalUrl": "assets/events/hocipo.png",
+      "file": "local-hocipo-a981ce82.png",
+      "sha256": "a981ce823558789182aef22724f47294a6e4940663b1dc65eede691f657fa950",
+      "width": 794,
+      "height": 158,
+      "contentType": "image/png",
+      "fetchedAt": "2026-09-28T20:58:01.674Z"
     }
   ]
 }
