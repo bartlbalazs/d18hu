@@ -1,0 +1,67 @@
+---
+import { getImage } from 'astro:assets';
+import facade from '../../assets/facade.png';
+import EraOpener from '../components/EraOpener.astro';
+import Hero from '../components/Hero.astro';
+import Legend from '../components/Legend.astro';
+import TimelineEvent from '../components/TimelineEvent.astro';
+import Base from '../layouts/Base.astro';
+import { archiveImageMetadata, fullSizeImage } from '../lib/images/archive-images.ts';
+import { breadcrumbNode, buildingNode, imageNode, websiteNode } from '../lib/seo/jsonld.ts';
+import { loadSiteData } from '../lib/site-data.ts';
+
+const { eras, events, site } = loadSiteData();
+const siteUrl = Astro.site!;
+const title = 'Dembinszky utca 18. – egy ház története, 1873–1968';
+const description =
+  'Egy erzsébetvárosi bérház, lakói és a körülötte változó Budapest 1873-tól 1968-ig: 108 esemény forrásokkal és archív fényképekkel.';
+
+const facadeImage = await getImage({ src: facade, width: 784, format: 'jpg' });
+const imageNodes = await Promise.all(
+  events
+    .filter((event) => event.image)
+    .map(async (event) => {
+      const full = await fullSizeImage(archiveImageMetadata(event.image!.file));
+      return imageNode(siteUrl, {
+        contentUrl: full.src,
+        caption: event.image!.caption,
+        credit: event.image!.credit,
+        sourceUrl: event.image!.sourceUrl,
+        eventId: event.id,
+      });
+    }),
+);
+const jsonLd = [
+  websiteNode(siteUrl, site.building.name),
+  breadcrumbNode(siteUrl, [{ name: site.building.name, path: '/' }]),
+  buildingNode(siteUrl, site.building, new URL(facadeImage.src, siteUrl).href, events),
+  ...imageNodes,
+];
+---
+
+<Base title={title} description={description} path="/" jsonLd={jsonLd}>
+  <Hero hero={site.hero} />
+  <Legend />
+  {
+    eras.map((era) => (
+      <>
+        <EraOpener era={era} total={eras.length} />
+        <section class="container era-events" id={`esemenyek-${era.id}`} aria-labelledby={`esemenyek-cim-${era.id}`}>
+          <p class="kicker">
+            Kronológia · {era.events.length} esemény
+          </p>
+          <h3 id={`esemenyek-cim-${era.id}`}>{era.eventsHeading}</h3>
+          <ol class="timeline">
+            {era.events.map((event) => (
+              <TimelineEvent event={event} />
+            ))}
+          </ol>
+        </section>
+      </>
+    ))
+  }
+</Base>
+
+<script>
+  import '../scripts/lightbox.ts';
+</script>

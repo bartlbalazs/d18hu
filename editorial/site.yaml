@@ -1,0 +1,52 @@
+# Site-level editorial data (see specs/001-d18-history-timeline/data-model.md, SiteConfig).
+# Empty strings are "not yet supplied": draft builds list them, release builds refuse to run.
+# Never fill Impresszum fields with invented names or addresses.
+
+building:
+  name: Dembinszky utca 18.
+  streetAddress: Dembinszky utca 18.
+  postalCode: ""
+  addressLocality: Budapest
+  addressRegion: VII. kerület (Erzsébetváros)
+  addressCountry: HU
+  geo:
+    latitude: null
+    longitude: null
+
+hero:
+  eyebrow: Egy ház története Budapest történetében
+  title: Dembinszky
+  titleAccent: utca 18.
+  subtitle: Egy erzsébetvárosi bérház, az emberei és a körülötte változó világ.
+  arcNote: 1873-tól 1968-ig · A korszakok között görgetve követhető, hogyan jelenik meg egyetlen cím a város történetében.
+  photo:
+    alt: A Dembinszky utca 18. homlokzata ma, dúsan faragott, növényi díszítésű ablakkeretekkel
+    caption: A ház mai homlokzata
+    credit: ""
+
+eras:
+  "1873-1913":
+    backgroundYear: "1873"
+    intro: A pesti peremvidékből utca lesz; az új városrészben megjelenik a ház címe, tulajdonosa és első ismert történetei.
+    eventsHeading: A ház előtti várostól a lakókig
+  "1914-1938":
+    backgroundYear: "1914"
+    intro: Világháború és forradalmak után címtárak, mesterségek és egy harmadik emeleti cipészműhely címe rajzolja ki a ház életét.
+    eventsHeading: Nevek egy házszám mögött
+  "1939-1945":
+    backgroundYear: "1944"
+    intro: A történelmi események közvetlenül belépnek a házba. Hivatalos lista, keresőhirdetés és visszaemlékezés őriz személyes nyomokat.
+    eventsHeading: A csillagos ház és a pince
+  "1946-1968":
+    backgroundYear: "1963"
+    intro: A ház belső történetéről kevesebb a biztos adat. Közben változik az utca közlekedése, és egy 1963-as fényképen ismét láthatóvá válik az épület.
+    eventsHeading: A fényképen felbukkanó ház
+
+impresszum:
+  operator: ""
+  author: ""
+  contactEmail: ""
+  copyrightNotice: ""
+
+# Published articles for /irasok/: { slug, title, date: YYYY-MM-DD, summary }
+articles: []

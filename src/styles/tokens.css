@@ -1,0 +1,99 @@
+/* Muted design colours derived from the facade photo (not paint reconstructions). */
+:root {
+  --d18-paper: #f5f1e8;
+  --d18-paper-alt: #eee6d9;
+  --d18-paper-deep: #e7ddcc;
+  --d18-rule: #d2c3b1;
+  --d18-sand: #a88968;
+  --d18-walnut: #594535;
+  --d18-ink: #292521;
+  --d18-muted: #675d53;
+  --d18-slate: #5b6260;
+
+  --era-1: #eee6d9;
+  --era-2: #e5dbc9;
+  --era-3: #443b33;
+  --era-4: #d7d4c9;
+  --era-3-ink: #f5f1e8;
+  --era-3-muted: #d9cfc2;
+  /* Muted text on the darker light-toned opener surfaces (keeps WCAG AA). */
+  --era-muted: #51483f;
+
+  --house-row: rgb(168 137 104 / 0.11);
+
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-text: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --reading-width: 1060px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --date-col: 145px;
+  --axis-col: 38px;
+  --col-gap: 17px;
+}
+
+/* Each face: a Hungarian-text subset of Fontsource "latin" + a tiny "hu" supplement (Ő ő Ű ű);
+   see scripts/subset-fonts.sh. Only these weights exist: display 500 (+italic), text 400/600. */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20AC;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-hu-500-normal.woff2') format('woff2');
+  unicode-range: U+0150-0151, U+0170-0171;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-latin-500-italic.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20AC;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/cormorant-garamond-hu-500-italic.woff2') format('woff2');
+  unicode-range: U+0150-0151, U+0170-0171;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/source-sans-3-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20AC;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/source-sans-3-hu-400-normal.woff2') format('woff2');
+  unicode-range: U+0150-0151, U+0170-0171;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/source-sans-3-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20AC;
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/source-sans-3-hu-600-normal.woff2') format('woff2');
+  unicode-range: U+0150-0151, U+0170-0171;
+}

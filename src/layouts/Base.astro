@@ -1,0 +1,48 @@
+---
+import displayFont from '../fonts/cormorant-garamond-latin-500-normal.woff2?url';
+import textFont from '../fonts/source-sans-3-latin-400-normal.woff2?url';
+import SeoHead from '../components/SeoHead.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { loadSiteData } from '../lib/site-data.ts';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/timeline.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  jsonLd: Record<string, unknown>[];
+}
+
+const { title, description, path, jsonLd } = Astro.props;
+const { isDraft, missingItems, eras } = loadSiteData();
+---
+
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={textFont} as="font" type="font/woff2" crossorigin />
+    <SeoHead title={title} description={description} path={path} isDraft={isDraft} jsonLd={jsonLd} />
+  </head>
+  <body>
+    <a class="skip-link" href="#tartalom">Ugrás a tartalomra</a>
+    {
+      isDraft && (
+        <p class="draft-banner" role="note">
+          Piszkozat – nem publikus előnézet.
+          {missingItems.length > 0 && ` Hiányzó szerkesztői adatok: ${missingItems.length}.`}
+        </p>
+      )
+    }
+    <SiteHeader eras={eras} currentPath={path} />
+    <main id="tartalom">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

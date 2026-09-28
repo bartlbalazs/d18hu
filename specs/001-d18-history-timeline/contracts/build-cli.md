@@ -8,12 +8,13 @@ Exit code 0 = success; non-zero = failure with a human-readable report on stderr
 | `pnpm install --frozen-lockfile` | yes | Install pinned dependencies (7-day release age enforced) | Lockfile out of date |
 | `pnpm images:fetch` | yes | Download new/changed `Kép URL` images into `src/assets/archive/`, update `manifest.json`, report unreferenced files | Any `ImageFetchError` (lists event id + URL) |
 | `pnpm images:check` | yes | Verify every original image URL still responds with an image | Never fails the build pipeline; exits 1 only to signal unreachable URLs when run manually |
+| `pnpm check` | no | Astro/TypeScript type check | Type errors |
 | `pnpm dev` | no | Local dev server, draft mode | Structural errors |
 | `pnpm build:draft` | no | Static build to `dist/`, draft banner + `noindex`, prints missing-item report | Structural errors |
 | `pnpm build:release` | no | Static build to `dist/`, indexable | Structural errors **or** any missing editorial item **or** `SITE_URL` unset |
 | `pnpm test` | no | Unit tests (parser, ids, dates, renderer, audit) | Test failure |
-| `pnpm test:site` | no | Assertions over `dist/` (counts, no remote images, no internal PDFs), html-validate, internal link check | Any violation |
-| `pnpm lighthouse` | no | Lighthouse CI against `dist/` (mobile) with constitution budgets | Budget not met |
+| `pnpm test:site` | no | Run after a build. Assertions over `dist/` (counts, no remote images, no internal PDFs), html-validate, internal link and fragment check | Any violation |
+| `pnpm lighthouse` | no | Lighthouse CI against `dist/` (mobile) with constitution budgets; reports stay in `.lighthouseci/` (never uploaded) | Budget not met |
 | `pnpm fonts:subset` | no¹ | Regenerate `src/fonts/*.woff2` from the pinned Fontsource packages | Tool error |
 
 ¹ `uvx` downloads the pinned fonttools version the first time.
@@ -23,7 +24,8 @@ Exit code 0 = success; non-zero = failure with a human-readable report on stderr
 | Variable | Values | Default |
 |---|---|---|
 | `D18_BUILD_MODE` | `draft`, `release` | `draft` (set by the `build:*` scripts) |
-| `SITE_URL` | absolute `https://` origin + optional base path | `siteUrl` from `editorial/site.yaml`; release fails if both are empty |
+| `SITE_URL` | absolute `https://` origin + optional base path | none; draft builds use a placeholder origin, and release lists it as missing |
+| `CHROME_PATH` | path to a Chrome/Chromium binary | needed only by `pnpm lighthouse` |
 
 ## Missing-item report format
 

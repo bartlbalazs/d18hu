@@ -1,0 +1,54 @@
+---
+import { CATEGORY_DISPLAY, CONFIDENCE_DISPLAY } from '../lib/icons.ts';
+
+const categoryExplanations = {
+  house: 'Maga az épület és a címe. A „Személy” jelölésű sorok a házhoz kötődő emberek máshol zajló történetei.',
+  area: 'A ház közelében, de nem a házban történt esemény. Nem bizonyít semmit a 18-as ház lakóiról vagy állapotáról.',
+  hungary: 'Magyarországi történelmi háttér.',
+  world: 'Nemzetközi történelmi háttér.',
+} as const;
+---
+
+<section class="container legend rule-top" aria-labelledby="jelmagyarazat">
+  <h2 class="legend__title" id="jelmagyarazat">Jelmagyarázat</h2>
+  <div class="legend__group">
+    <h3>Eseménytípus – nagy ikon az idővonalon</h3>
+    <ul class="legend__list">
+      {
+        Object.entries(CATEGORY_DISPLAY).map(([category, display]) => (
+          <li class="legend__item">
+            <span class={`legend__icon legend__icon--${category}`} set:html={display.icon} />
+            <span>
+              <strong>{display.label}</strong>
+              {categoryExplanations[category as keyof typeof categoryExplanations]}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="legend__group">
+    <h3>Bizonyosság – kis ikon és szó az esemény fölött</h3>
+    <ul class="legend__list">
+      {
+        Object.values(CONFIDENCE_DISPLAY).map((display) => (
+          <li class="legend__item">
+            <span class="legend__icon legend__icon--confidence" set:html={display.icon} />
+            <span>
+              <strong>{display.label}</strong>
+              {display.explanation}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="legend__note">
+      A bizonyosság mindig az adott állításra vonatkozik. Visszaemlékezésnél az „igazolt” azt jelenti, hogy a
+      visszaemlékezés létezik, nem azt, hogy minden részlete – például a pontos nap – függetlenül bizonyított.
+      Történelmi háttéreseménynél nincs bizonyossági jelölés.
+    </p>
+    <p class="legend__note">
+      Az idővonal elbeszélő sorrendű: az események közötti távolság nem arányos az eltelt idővel.
+    </p>
+  </div>
+</section>

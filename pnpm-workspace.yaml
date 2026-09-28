@@ -1,0 +1,5 @@
+# Supply-chain gate: only install versions published at least 7 days ago (in minutes).
+minimumReleaseAge: 10080
+
+allowBuilds:
+  esbuild: true

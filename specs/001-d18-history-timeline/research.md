@@ -70,8 +70,12 @@ newest release was younger than 7 days, the newest *eligible* release is chosen.
   loader with zod schemas (zod ships with Astro):
   - `editorial/events.yaml`: per-event title, image alt/caption/credit/licence, and an optional
     document highlight.
-  - `editorial/site.yaml`: era intros and sub-headings, hero/facade credit, Impresszum,
-    building address/geo, site URL.
+  - `editorial/site.yaml`: hero texts, era intros, sub-headings and decorative years,
+    hero/facade credit, Impresszum, building address/geo, articles. The site URL comes from
+    the `SITE_URL` environment variable only.
+  - Both files are read with the `yaml` package (2.9.1) and validated with zod from
+    `astro/zod`, outside Astro's content collections, so plain Node scripts and tests use the
+    same loader.
 - **Rationale**: YAML is the easiest structured format for a non-developer to edit (the
   constitution says content SHOULD be editable by non-developers). No extra dependency is
   needed.
@@ -90,7 +94,8 @@ newest release was younger than 7 days, the newest *eligible* release is chosen.
       git.
   - **`pnpm images:check`**: HEAD/GET check of all original URLs, report only, run on demand.
   - **At build time**: Astro `getImage()` makes responsive AVIF/WebP previews (480/800/1200
-    px) and one large WebP (long edge ≤ 2400 px) for the lightbox. Everything is served
+    px) and one large WebP for the lightbox (long edge ≤ 2400 px; the current Fortepan files are
+    1600 px, and images are never upscaled). Everything is served
     locally.
 - **Rationale**: Regular builds run offline. The dedupe and naming rules follow FR-022, and
   broken URLs are caught at fetch time with the event id. sharp is already required by Astro,
@@ -102,17 +107,19 @@ newest release was younger than 7 days, the newest *eligible* release is chosen.
 ## R7. Image viewer
 
 - **Decision**: PhotoSwipe **5.4.4** (2024-05-24, MIT).
-  - Only the lightbox module (4.5 KB gz) is loaded, and only on pages with images.
+  - Only the lightbox module (about 5 KB gz) is loaded, and only on pages with images.
   - The core (16.4 KB gz) is loaded on first activation via `pswpModule: () =>
     import('photoswipe')`.
-  - The CSS is 2.4 KB gz.
+  - The CSS (2.4 KB gz) is imported as a string by the lazily loaded core and injected on
+    first use, so it is not part of the page's inline styles.
   - The markup baseline is `<a href="full.webp" data-pswp-width data-pswp-height><img …></a>`.
 - **Rationale**: It provides accessible pinch-zoom, Escape to close, focus return and no
   prev/next for a single image, all of which FR-024 requires. Writing an equivalent viewer
   (touch zoom, pan, inertia, focus trap) is significant, risky work.
-- **Constitution impact**: total JS ≈ 20.9 KB gz site-wide, against a 20 KB cap. It is also a
+- **Constitution impact**: total JS ≈ 23 KB gz site-wide (measured: core + CSS 18.2 KB, lightbox
+  5.2 KB), against a 20 KB cap. It is also a
   "UI library". Both are justified in the plan's Complexity Tracking. The eagerly loaded JS is
-  4.5 KB.
+  5.2 KB.
 - **Alternatives considered**: native `<dialog>` plus browser zoom (poor pinch-zoom inside a
   fixed overlay on iOS; the document scans need real zoom); GLightbox (larger, less
   maintained).
@@ -137,9 +144,13 @@ newest release was younger than 7 days, the newest *eligible* release is chosen.
   - Create a tiny `hu` supplement (Ő ő Ű ű) from the `latin-ext` file, once, with fonttools
     **4.65.0** + brotli **1.2.0** via `uvx`. The output is committed to `src/fonts/`.
   - Each face gets two `@font-face` rules with `unicode-range`.
-  - **Styles**: Cormorant Garamond 500, 500 italic, 600; Source Sans 3 400, 600.
-- **Size**: about 5 × latin (16–24 KB) + 5 × hu (~2 KB) ≈ 115 KB, within the 150 KB cap. The
-  full `latin-ext` files would have come to about 227 KB.
+  - **Styles**: Cormorant Garamond 500 and 500 italic; Source Sans 3 400 and 600. Headings use
+    500; there is no 600 display weight, to save one file.
+  - **Tighter subset (implementation)**: the `latin` files are also cut down to basic Latin,
+    Latin-1, general punctuation and €, with only the kern/liga/lnum/pnum/tnum features.
+- **Size (measured)**: 62 KB in total, within the 150 KB cap. The Fontsource `latin` files
+  as-is came to 108 KB, and the full `latin-ext` files would have been about 227 KB. Fonts
+  were measured as the biggest factor in mobile LCP: 2.26 s with them, 1.4 s without.
 - **Alternatives considered**: variable fonts (larger per file); the full latin-ext files
   (over budget); a Google Fonts CDN (violates self-hosting and no-CDN rules).
 
@@ -155,7 +166,9 @@ newest release was younger than 7 days, the newest *eligible* release is chosen.
   - **Every page**: `WebSite`, `BreadcrumbList`.
   - **Timeline page**: `ApartmentComplex` (name, address, optional geo from `site.yaml`) with
     an `ItemList` of `Event` for the **house category** events. Their `startDate` is the
-    derivable ISO partial date (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`), omitted when not derivable.
+    derivable ISO partial date (`YYYY`, `YYYY-MM` or `YYYY-MM-DD`). Events without a
+    derivable date are left out. Event nodes carry name, dates, place and URL; the descriptions
+    stay on the page only, to keep the HTML small.
   - **Image events**: `ImageObject` with creator and licence.
   - **Pages under `/irasok/`**: `Article`, once articles exist.
 - `sitemap.xml` and `robots.txt` are generated by Astro endpoints (3 pages, so no sitemap

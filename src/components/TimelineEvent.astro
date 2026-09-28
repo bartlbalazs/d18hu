@@ -1,0 +1,88 @@
+---
+import type { TimelineEvent } from '../lib/editorial/assemble.ts';
+import { CATEGORY_DISPLAY, CONFIDENCE_DISPLAY, icons } from '../lib/icons.ts';
+import { archiveImageMetadata } from '../lib/images/archive-images.ts';
+import EvidenceFigure from './EvidenceFigure.astro';
+
+interface Props {
+  event: TimelineEvent;
+}
+
+const { event } = Astro.props;
+const category = CATEGORY_DISPLAY[event.category];
+const confidence = event.confidence ? CONFIDENCE_DISPLAY[event.confidence] : undefined;
+const titleId = `${event.id}-cim`;
+---
+
+<li
+  class={`event event--${event.category}`}
+  id={event.id}
+  data-event-id={event.id}
+  data-era={event.era}
+  data-category={event.category}
+  data-confidence={event.confidence ?? 'none'}
+  data-variant={event.variant}
+>
+  <p class="event__date">
+    {
+      event.sortStart ? (
+        <time datetime={event.sortStart} set:html={event.dateLabelHtml} />
+      ) : (
+        <span set:html={event.dateLabelHtml} />
+      )
+    }
+  </p>
+  <span class="event__node" set:html={category.icon} />
+  <article class="event__body" aria-labelledby={event.title ? titleId : undefined}>
+    <p class="event__meta kicker">
+      <span class="event__category">{category.label}</span>
+      {event.personSubtype && <span class="event__subtype">Személy</span>}
+      {
+        confidence && (
+          <span class="confidence">
+            <Fragment set:html={confidence.icon} />
+            {confidence.label}
+          </span>
+        )
+      }
+    </p>
+    {event.title && <h4 class="event__title" id={titleId}>{event.title}</h4>}
+    <p class="event__text" set:html={event.descriptionHtml} />
+    {
+      event.highlight && (
+        <blockquote class="document-highlight">
+          <p class="kicker">{event.highlight.label}</p>
+          <p class="document-highlight__text">{event.highlight.text}</p>
+          <footer>{event.highlight.kind === 'transcription' ? 'Pontos átirat' : 'Szó szerinti kivonat'}</footer>
+        </blockquote>
+      )
+    }
+    {
+      event.image && (
+        <EvidenceFigure
+          image={archiveImageMetadata(event.image.file)}
+          alt={event.image.alt}
+          caption={event.image.caption}
+          credit={event.image.credit}
+          source={event.image.sourceUrl ? { url: event.image.sourceUrl, label: event.image.sourceLabel ?? 'Archív forrás' } : undefined}
+          kind={event.image.kind}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 1060px) 736px, (min-width: 760px) 70vw, 90vw"
+        />
+      )
+    }
+    {
+      event.sources.length > 0 && (
+        <p class="event__sources">
+          <span class="visually-hidden">Forrás:</span>
+          {event.sources.map((source) => (
+            <a href={source.url} rel="noopener noreferrer">
+              {source.label}
+              <Fragment set:html={icons.externalLink} />
+            </a>
+          ))}
+        </p>
+      )
+    }
+  </article>
+</li>

@@ -1,0 +1,35 @@
+---
+import facade from '../../assets/facade.png';
+import type { SiteEditorial } from '../lib/editorial/schema.ts';
+import EvidenceFigure from './EvidenceFigure.astro';
+
+interface Props {
+  hero: SiteEditorial['hero'];
+}
+
+const { hero } = Astro.props;
+---
+
+<section class="container hero" aria-labelledby="hero-title">
+  <div>
+    <p class="kicker">{hero.eyebrow}</p>
+    <h1 id="hero-title">{hero.title} <em>{hero.titleAccent}</em></h1>
+    <p class="hero__subtitle">{hero.subtitle}</p>
+    <p class="hero__arc">{hero.arcNote}</p>
+  </div>
+  <EvidenceFigure
+    class="hero__figure"
+    image={facade}
+    alt={hero.photo.alt}
+    caption={hero.photo.caption}
+    credit={hero.photo.credit}
+    widths={[400, 600, 784]}
+    sizes="(min-width: 1060px) 500px, (min-width: 760px) 46vw, 100vw"
+    eager
+    quality={40}
+  />
+</section>
+<div class="container hero-band kicker">
+  <span>Idővonal · 1873–1968</span>
+  <span>Négy korszak, egy cím</span>
+</div>

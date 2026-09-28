@@ -61,8 +61,8 @@ pnpm build:draft && pnpm test:site
 ## Scenario 4 — Navigation without JavaScript (US2, SC-002)
 
 1. Run `pnpm preview` and open the site with JavaScript disabled.
-2. At 320 px width, open the `<details>` menu. All 4 eras, Írások and Impresszum should be
-   listed.
+2. At 320 px width, check the header: all 4 eras, Írások and Impresszum should be visible
+   (the navigation wraps into two rows; nothing is collapsed or hidden).
 3. Tab through the menu with the keyboard. Each link should show a visible focus ring and jump
    to its era opener. "Tovább az eseményekhez" should jump to that era's first event.
 4. Scroll down. The header should scroll away and never overlay the content.
@@ -85,7 +85,7 @@ outline. The "Dénes Mari" event shows its date label with "vagy".
 ## Scenario 7 — Responsive layout and performance (SC-005, SC-006)
 
 ```sh
-pnpm lighthouse
+CHROME_PATH=/path/to/chrome pnpm lighthouse   # reports stay local in .lighthouseci/
 ```
 
 - **Lighthouse (mobile):** Performance ≥ 95, Accessibility ≥ 95, Best Practices ≥ 95 and

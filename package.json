@@ -1,0 +1,45 @@
+{
+  "name": "d18-history-timeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.27.1",
+  "engines": {
+    "node": ">=22.18.0 <23"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build:draft": "D18_BUILD_MODE=draft astro build",
+    "build:release": "D18_BUILD_MODE=release astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run --project unit",
+    "test:site": "vitest run --project site && html-validate \"dist/**/*.html\" && linkinator dist/index.html --recurse --check-fragments --skip \"^https://\"",
+    "lighthouse": "lhci autorun",
+    "images:fetch": "node scripts/fetch-images.ts",
+    "images:check": "node scripts/check-image-urls.ts",
+    "fonts:subset": "bash scripts/subset-fonts.sh"
+  },
+  "dependencies": {
+    "astro": "7.3.3",
+    "lucide-static": "1.47.0",
+    "photoswipe": "5.4.4",
+    "remark-gfm": "4.0.1",
+    "remark-parse": "11.0.0",
+    "sharp": "0.35.4",
+    "unified": "11.0.5",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@fontsource/cormorant-garamond": "5.3.0",
+    "@fontsource/source-sans-3": "5.3.0",
+    "@lhci/cli": "0.15.1",
+    "@types/mdast": "4.0.4",
+    "@types/node": "22.19.1",
+    "html-validate": "11.16.0",
+    "linkinator": "8.1.0",
+    "typescript": "6.0.3",
+    "vitest": "5.0.1"
+  }
+}

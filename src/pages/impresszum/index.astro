@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import { isMissingValue } from '../../lib/editorial/audit.ts';
+import { breadcrumbNode, websiteNode } from '../../lib/seo/jsonld.ts';
+import { loadSiteData } from '../../lib/site-data.ts';
+
+const { site } = loadSiteData();
+const siteUrl = Astro.site!;
+const { impresszum } = site;
+const rows = [
+  { label: 'Üzemeltető', value: impresszum.operator },
+  { label: 'Szerző', value: impresszum.author },
+  { label: 'Kapcsolat', value: impresszum.contactEmail, isEmail: true },
+  { label: 'Szerzői jog', value: impresszum.copyrightNotice },
+];
+const complete = rows.every((row) => !isMissingValue(row.value));
+const jsonLd = [
+  websiteNode(siteUrl, site.building.name),
+  breadcrumbNode(siteUrl, [
+    { name: site.building.name, path: '/' },
+    { name: 'Impresszum', path: '/impresszum/' },
+  ]),
+];
+---
+
+<Base
+  title="Impresszum – Dembinszky utca 18."
+  description="A Dembinszky utca 18. helytörténeti oldal üzemeltetői, szerzői és kapcsolati adatai, valamint a képek és források felhasználási feltételei."
+  path="/impresszum/"
+  jsonLd={jsonLd}
+>
+  <div class="container page">
+    <p class="kicker">Dembinszky utca 18.</p>
+    <h1>Impresszum</h1>
+    {
+      complete ? (
+        <dl>
+          {rows.map((row) => (
+            <>
+              <dt>{row.label}</dt>
+              <dd>{row.isEmail ? <a href={`mailto:${row.value}`}>{row.value}</a> : row.value}</dd>
+            </>
+          ))}
+        </dl>
+      ) : (
+        <p class="notice">Az impresszum adatai feltöltés alatt állnak.</p>
+      )
+    }
+    <p>
+      A történeti képek forrását és alkotóját az egyes képek alatt tüntetjük fel. A képek felhasználási feltételeit az
+      adott archívum adatlapja tartalmazza.
+    </p>
+  </div>
+</Base>

@@ -90,6 +90,7 @@ enforced by the audit (below).
 ```yaml
 1903-dec-27-maulner-adolf-es-tarsai:
   title: Karbidot hirdetnek a 18-as címről
+  titleNeedsReview: true           # set on AI drafts; delete after review (else a missing item)
   highlight:
     kind: transcription            # transcription | excerpt
     label: Korabeli hirdetés · Eperjesi Lapok, 1903
@@ -103,6 +104,7 @@ enforced by the audit (below).
     credit: Fortepan / <donor>
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=148696
+    sourceLabel: Fortepan 148696
     depictsHouse: true
     kind: photo                    # photo | document  (document → uncropped)
 ```
@@ -116,7 +118,6 @@ enforced by the audit (below).
 ## SiteConfig (`editorial/site.yaml`)
 
 ```yaml
-siteUrl: https://dembinszky18.hu        # release: required (or SITE_URL env)
 building:
   name: Dembinszky utca 18.
   streetAddress: Dembinszky utca 18.
@@ -125,10 +126,14 @@ building:
   addressRegion: VII. kerület (Erzsébetváros)
   geo: { latitude: null, longitude: null }   # optional
 hero:
+  eyebrow: Egy ház története Budapest történetében
+  title: Dembinszky
+  titleAccent: utca 18.
   subtitle: Egy erzsébetvárosi bérház, az emberei és a körülötte változó világ.
+  arcNote: 1873-tól 1968-ig · …
   photo: { alt: …, caption: "A ház mai homlokzata", credit: "" }   # credit: release-required
 eras:
-  1873-1913: { intro: …, eventsHeading: A ház előtti várostól a lakókig }
+  1873-1913: { intro: …, eventsHeading: A ház előtti várostól a lakókig, backgroundYear: "1873" }
   # … one entry per era
 impresszum:                             # all release-required, never invented
   operator: ""
@@ -143,13 +148,13 @@ articles: []                            # published /irasok/ entries: {slug, tit
 `audit(events, site) → MissingItem[]`, where `MissingItem = { scope, id?, field, message }`.
 A missing item is any of the following:
 
-- an event without `title`
+- an event without `title`, or with `titleNeedsReview: true`
 - an image event without `alt`, `caption`, `credit` or `license`
 - a missing hero photo `alt`, `caption` or `credit`
 - an era without `intro` or `eventsHeading`
 - an empty `impresszum.*` field
 - an empty `building.postalCode`
-- no `siteUrl` (release)
+- no `SITE_URL` environment variable
 
 Empty strings count as missing, and so do placeholder values (`TODO`, `TBD`, `…`,
 `example.com` / `example.org` addresses).

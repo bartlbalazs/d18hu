@@ -1,0 +1,45 @@
+---
+import type { Era } from '../lib/site-data.ts';
+
+interface Props {
+  eras: Era[];
+  currentPath: string;
+}
+
+const { eras, currentPath } = Astro.props;
+const pages = [
+  { href: '/irasok/', label: 'Írások' },
+  { href: '/impresszum/', label: 'Impresszum' },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label="Dembinszky utca 18. – kezdőlap">
+      <span class="brand__mark">D18</span>
+      <span class="brand__name">Dembinszky utca 18.</span>
+    </a>
+    <nav aria-label="Fő navigáció">
+      <ul class="site-nav">
+        {
+          eras.map((era) => (
+            <li>
+              <a href={`/#korszak-${era.id}`} aria-label={`${era.id.replace('-', '–')}: ${era.title}`}>
+                {era.id.replace('-', '–')}
+              </a>
+            </li>
+          ))
+        }
+        {
+          pages.map((page, index) => (
+            <li class={index === 0 ? 'site-nav__pages' : undefined}>
+              <a href={page.href} aria-current={currentPath === page.href ? 'page' : undefined}>
+                {page.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

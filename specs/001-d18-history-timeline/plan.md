@@ -29,12 +29,12 @@ Build a static, Hungarian-language, single-page narrative timeline of Dembinszky
 
 **Primary Dependencies** (exact versions, all ≥ 7 days old; see [research.md](research.md)):
 - **Build tools**: astro 7.3.3, sharp 0.35.4, pnpm 11.27.1
-- **Parsing**: unified 11.0.5, remark-parse 11.0.0, remark-gfm 4.0.1
+- **Parsing**: unified 11.0.5, remark-parse 11.0.0, remark-gfm 4.0.1, yaml 2.9.1 (editorial files)
 - **Front-end assets**: photoswipe 5.4.4, lucide-static 1.47.0
 - **Dev only**:
   - Fonts: @fontsource/cormorant-garamond 5.3.0, @fontsource/source-sans-3 5.3.0
   - Tests and checks: vitest 5.0.1, html-validate 11.16.0, linkinator 8.1.0, @lhci/cli 0.15.1
-  - Types: @astrojs/check 0.9.10
+  - Types: @astrojs/check 0.9.10, @types/mdast 4.0.4, @types/node 22.19.1
   - Fonts via uvx: fonttools 4.65.0, brotli 1.2.0
 
 **Storage**: Files only.
@@ -62,7 +62,7 @@ of the evergreen browsers plus the iOS and Android defaults.
 
 **Constraints**:
 - No framework and no hydration.
-- Fonts ≤ 150 KB (estimated at about 115 KB).
+- Fonts ≤ 150 KB (measured: 62 KB).
 - Must work without JavaScript.
 - Offline builds.
 - Header in normal flow.
@@ -80,11 +80,11 @@ of the evergreen browsers plus the iOS and Android defaults.
 | Principle / Gate | Pre-research | Post-design | Evidence |
 |---|---|---|---|
 | I. Static HTML First | ✅ | ✅ | Astro static output. All content is in the HTML, semantic landmarks and heading levels are defined ([site-output](contracts/site-output.md)), and the build step outputs plain files |
-| II. Performance Budget | ✅ | ✅ (to verify) | The hero is served as AVIF/WebP with `fetchpriority=high`. Other images are responsive and lazy, fonts come to about 115 KB, eager JS is 4.5 KB and HTML is about 15 KB gz. Enforced by `pnpm lighthouse` |
-| III. Mobile-First Responsive | ✅ | ✅ | Mobile-first CSS with grid/flex/`clamp()`, a `<details>` menu, touch targets ≥ 44 px and body text ≥ 16 px. Checked at 320/360/768/1280 px |
+| II. Performance Budget | ✅ | ✅ (measured) | The hero is served as AVIF/WebP with `fetchpriority=high`. Other images are responsive and lazy; fonts 62 KB, eager JS 5.2 KB, HTML (with inline CSS) 34 KB gz. Measured 2026-09-28 (Lighthouse mobile): LCP 1.8–1.9 s, CLS 0, TBT 0 ms, 137 KB total; all categories ≥ 99. Enforced by `pnpm lighthouse` |
+| III. Mobile-First Responsive | ✅ | ✅ | Mobile-first CSS with grid/flex/`clamp()`, a header navigation that wraps instead of collapsing (no JS, nothing hidden), touch targets ≥ 44 px and body text ≥ 16 px. Checked at 320/360/768/1280 px |
 | IV. Minimalism: frameworks, trackers, CDNs | ✅ | ✅ | No JS or CSS frameworks, no trackers, no CDNs. Icons are inlined at build time |
-| IV. Minimalism: fonts | ✅ | ✅ | Two families (allowed since v1.1.0), subset for Hungarian, WOFF2, `swap`, about 115 KB (≤ 150) |
-| IV. Minimalism: JS ≤ 20 KB, no UI libraries | ⚠️ | ⚠️ justified | PhotoSwipe totals about 20.9 KB gz and is a UI library. See Complexity Tracking |
+| IV. Minimalism: fonts | ✅ | ✅ | Two families (allowed since v1.1.0), subset for Hungarian, WOFF2, `swap`, 62 KB (≤ 150) |
+| IV. Minimalism: JS ≤ 20 KB, no UI libraries | ⚠️ | ⚠️ justified | PhotoSwipe totals about 23 KB gz (5.2 KB eager) and is a UI library. See Complexity Tracking |
 | V. Metadata & Discoverability | ✅ | ✅ | `SeoHead`: title, description, canonical, OG/Twitter, JSON-LD (WebSite, BreadcrumbList, ApartmentComplex, Event, ImageObject), sitemap, robots, manifest |
 | Tech constraints: pinning, lockfile, 7-day gate | ✅ | ✅ | Exact versions, `pnpm-lock.yaml`, `minimumReleaseAge: 10080`, Dependabot `cooldown: { default-days: 7 }`, uvx tools pinned |
 | Quality gates 1–5 | ✅ | ✅ | `test:site` (HTML validation, metadata, links), `lighthouse`, manual viewport check, and this table |
@@ -117,7 +117,7 @@ input/timeline.md                  # research source (read-only)
 assets/facade.png                  # hero photo (owner-supplied)
 editorial/
 ├── events.yaml                    # titles, image captions/credits, document highlights
-└── site.yaml                      # hero, era intros, building, impresszum, articles, siteUrl
+└── site.yaml                      # hero, era intros, building, impresszum, articles
 scripts/
 ├── fetch-images.ts                # pnpm images:fetch
 ├── check-image-urls.ts            # pnpm images:check
@@ -130,20 +130,21 @@ src/
 │   ├── timeline/inline-html.ts    # whitelisting inline renderer
 │   ├── editorial/audit.ts         # MissingItem[] + structural checks (pure)
 │   ├── build-mode.ts              # D18_BUILD_MODE, SITE_URL resolution
+│   ├── site-data.ts               # loads + validates all content once per build (pages use it)
+│   ├── icons.ts                   # Lucide SVGs, category/certainty labels
+│   ├── images/                    # manifest types, Astro image helpers
 │   └── seo/jsonld.ts              # JSON-LD builders
-├── content.config.ts              # timeline loader + editorial file() collections (zod)
 ├── assets/archive/                # committed images + manifest.json
 ├── fonts/                         # subset WOFF2 (committed)
 ├── components/
-│   ├── SeoHead.astro  SiteHeader.astro  SiteFooter.astro  DraftBanner.astro
+│   ├── SeoHead.astro  SiteHeader.astro  SiteFooter.astro
 │   ├── Hero.astro  Legend.astro  EraOpener.astro  Timeline.astro  TimelineEvent.astro
-│   └── EventTypeIcon.astro  ConfidenceMark.astro  EvidenceFigure.astro
-│       DocumentHighlight.astro  SourceLinks.astro
+│   └── EvidenceFigure.astro       # icons, certainty, sources, highlight live in TimelineEvent
 ├── layouts/Base.astro
 ├── pages/
 │   ├── index.astro  irasok/index.astro  impresszum/index.astro
-│   ├── sitemap.xml.ts  robots.txt.ts  site.webmanifest.ts
-├── scripts/lightbox.ts            # PhotoSwipe init (only JS)
+│   ├── sitemap.xml.ts  robots.txt.ts  site.webmanifest.ts  icon PNG endpoints
+├── scripts/lightbox.ts            # PhotoSwipe init (only JS); photoswipe-core.ts lazy chunk
 └── styles/ tokens.css  base.css  timeline.css
 public/                            # favicons
 tests/
@@ -156,7 +157,7 @@ tsconfig.json  .htmlvalidate.json  lighthouserc.json
 
 **Structure Decision**: a single Astro project at the repository root.
 - **Pure logic** (parsing, ids, dates, audit) lives in `src/lib/` without Astro imports, so
-  Vitest can test it directly and `content.config.ts` and the scripts can reuse it.
+  Vitest can test it directly, and the pages (`src/lib/site-data.ts`) and scripts can reuse it.
 - **Owner-editable data** lives in `input/` and `editorial/`, away from code.
 - **Root README.md** is updated during implementation with setup, commands and the editorial
   workflow.
@@ -185,4 +186,4 @@ tsconfig.json  .htmlvalidate.json  lighthouserc.json
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
 | PhotoSwipe, a UI library (Principle IV) | FR-024 requires an accessible, zoomable viewer: pinch-zoom, pan, Escape, focus return, no prev/next for a single image. The document scans need real zoom to be legible | A hand-written `<dialog>` viewer can't reliably pinch-zoom inside a fixed overlay on iOS Safari, and would need a custom focus trap and gesture code, which is more code and risk than a small, dependency-free, MIT library |
-| JS about 20.9 KB gz site-wide, against a 20 KB cap (Principle IV) | The PhotoSwipe core (16.4 KB) plus the lightbox (4.5 KB) | Only 4.5 KB loads with the page, and the core loads on the first image activation. Content never depends on JS. Staying under 20 KB would mean dropping zoom, which the spec rejects |
+| JS about 23 KB gz site-wide, against a 20 KB cap (Principle IV) | The PhotoSwipe core with its CSS (18.2 KB) plus the lightbox (5.2 KB, measured) | Only 5.2 KB loads with the page, and the core loads on the first image activation. Content never depends on JS. Staying under 20 KB would mean dropping zoom, which the spec rejects |

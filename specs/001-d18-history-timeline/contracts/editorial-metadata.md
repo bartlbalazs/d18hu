@@ -19,8 +19,8 @@ SiteConfig, EditorialAudit). This contract fixes the author-facing rules.
 
 ## `editorial/site.yaml`
 
-- Holds hero, era intros and headings, building address, Impresszum, article list and
-  site URL.
+- Holds hero, era intros and headings, building address, Impresszum and the article list. The
+  site URL is not stored here; set the `SITE_URL` environment variable for release builds.
 - Empty strings mean "not yet supplied" and show up in the missing-item report. Placeholders
   such as "TODO" or example e-mail addresses are rejected by the audit as missing.
 

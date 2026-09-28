@@ -18,8 +18,9 @@ Trailing slashes are always used. Internal links are relative to `SITE_URL`'s ba
 
 - `<html lang="hu">`; one `<h1>` (hero title); `h2` = era opener, `h3` = era event-list heading,
   `h4` = event title; `header` › `nav`, `main`, `footer`.
-- Header is in normal flow (no `position: fixed/sticky`). Mobile menu is `<details>`/`<summary>`
-  containing all era links, Írások and Impresszum.
+- Header is in normal flow (no `position: fixed/sticky`). The navigation lists all four era links,
+  Írások and Impresszum at every width; on narrow screens it wraps into a 3-column grid instead of
+  collapsing, so it needs no JS and hides nothing.
 - Head: unique `<title>` (≤ 60 chars), `meta description` (50–160), `link rel=canonical`,
   Open Graph (`og:title`, `og:description`, `og:image` 1200×630, `og:url`, `og:type`,
   `og:locale=hu_HU`), `twitter:card=summary_large_image`, JSON-LD (see research R10).
@@ -42,13 +43,13 @@ Trailing slashes are always used. Internal links are relative to `SITE_URL`'s ba
     <h4 class="event__title">…</h4>
     <div class="event__text">…verbatim description…</div>
     <figure class="evidence evidence--photo">                <!-- only with Kép URL -->
-      <a href="/_astro/…-2400.webp" data-pswp-width="2400" data-pswp-height="1600">
+      <a href="/_astro/….webp" data-pswp-width="1600" data-pswp-height="1061">  <!-- local, ≤ 2400 px -->
         <picture>…</picture><!-- img with alt, width, height, loading=lazy -->
       </a>
       <figcaption>caption · credit · <a href="archive record">Fortepan 148696</a></figcaption>
     </figure>
     <blockquote class="document-highlight">…</blockquote>   <!-- only verified highlight -->
-    <p class="event__sources"><a href="…" rel="noopener noreferrer" target="_blank">Label</a></p>
+    <p class="event__sources"><a href="…" rel="noopener noreferrer">Label ↗</a></p>
   </article>
 </li>
 ```
@@ -63,5 +64,6 @@ Trailing slashes are always used. Internal links are relative to `SITE_URL`'s ba
 ## JavaScript contract
 
 - Without JS: everything readable; image links open the full-size local file.
-- With JS: one module (PhotoSwipe lightbox, ~4.5 KB gz) initialises on `a[data-pswp-width]`;
-  the core loads on first activation. Nothing else runs.
+- With JS: one module (PhotoSwipe lightbox, about 5 KB gz) initialises on `a[data-pswp-width]`;
+  the core and its CSS load on first activation. Nothing else runs.
+- External links open in the same tab and carry `rel="noopener noreferrer"`.

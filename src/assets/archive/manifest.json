@@ -1,0 +1,49 @@
+{
+  "images": [
+    {
+      "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_148696.jpg",
+      "file": "fortepan-148696-83902bf4.jpg",
+      "sha256": "9516074b45999ef2374dbf0363f25bda32965b0c0591bfb719ead60c19ef3066",
+      "width": 1600,
+      "height": 1061,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T19:13:52.638Z"
+    },
+    {
+      "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_157067.jpg",
+      "file": "fortepan-157067-39959f52.jpg",
+      "sha256": "3dbaab8c928ad1b41ee4657db507cef21b42ca114b464fcb8ac45580502d6242",
+      "width": 1074,
+      "height": 1600,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T19:13:51.836Z"
+    },
+    {
+      "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_18543.jpg",
+      "file": "fortepan-18543-9d5d1cec.jpg",
+      "sha256": "bc0add28dde8c79e07576d753568310aa3b7d374ef73fc7dac32897edb260aa0",
+      "width": 1600,
+      "height": 1037,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T19:13:52.254Z"
+    },
+    {
+      "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_82508.jpg",
+      "file": "fortepan-82508-f042addb.jpg",
+      "sha256": "aa5a19e35e62fb626c094f64a3c8b2e4835e1ebcec76c584a9ac2de5e93dce82",
+      "width": 1600,
+      "height": 1033,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T19:13:51.376Z"
+    },
+    {
+      "originalUrl": "https://fortepan.download/file/fortepan-eu/1600/fortepan_97493.jpg",
+      "file": "fortepan-97493-74edded1.jpg",
+      "sha256": "67fc8b417e352a3d6e861f6c18ba661c5c8ea0dcd36cbe4253ec2149bcfa7d7e",
+      "width": 1600,
+      "height": 1357,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-28T19:13:53.061Z"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import facade from '../../assets/facade.png';
+import { icons } from '../lib/icons.ts';
+import type { Era } from '../lib/site-data.ts';
+
+interface Props {
+  era: Era;
+  total: number;
+}
+
+const { era, total } = Astro.props;
+const ORDINALS = ['Első', 'Második', 'Harmadik', 'Negyedik'];
+const [startYear, endYear] = era.id.split('-');
+---
+
+<section class={`era-opener era-opener--${era.number}`} id={`korszak-${era.id}`} aria-labelledby={`era-cim-${era.id}`}>
+  {
+    era.number === 1 && (
+      <Image class="era-opener__ornament" src={facade} alt="" width={420} quality={30} format="avif" loading="lazy" decoding="async" />
+    )
+  }
+  <span class="era-opener__year" aria-hidden="true">{era.backgroundYear ?? startYear}</span>
+  <div class="container era-opener__inner">
+    <p class="era-opener__top kicker">
+      <span>{ORDINALS[era.number - 1]} fejezet</span>
+      <span aria-hidden="true">Dembinszky utca 18.</span>
+    </p>
+    <div class="era-opener__main">
+      <p class="era-opener__range">{startYear} – {endYear}</p>
+      <h2 id={`era-cim-${era.id}`}>{era.title}</h2>
+      <p class="era-opener__intro">{era.intro}</p>
+    </div>
+    <p class="era-opener__bottom kicker">
+      <span>{String(era.number).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
+      <a class="era-opener__next" href={`#esemenyek-${era.id}`}>
+        Tovább az eseményekhez <Fragment set:html={icons.arrowDown} />
+      </a>
+    </p>
+  </div>
+</section>
