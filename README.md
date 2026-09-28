@@ -57,18 +57,98 @@ pnpm dev                 # http://localhost:4321, draft mode
 
 Regular builds never touch the network: archive images and fonts are committed.
 
-## Where the content lives
+## Editing the content
 
-| File | Who edits it | What it holds |
-|---|---|---|
-| `input/timeline.md` | Historian | The research timeline: four era tables, one row per event. The build reads it and never changes it. Descriptions and dates are published word for word. |
-| `editorial/events.yaml` | Owner | Per-event title, image caption/alt/credit/licence and verified document highlights, keyed by event id |
-| `editorial/site.yaml` | Owner | Opening texts, era intros, building address, Impresszum, published articles |
-| `assets/facade.png` | Owner | Present-day facade photo used at the top of the page |
+All content lives in four places. You never need to touch the code to change what the site says.
 
-Event ids are derived from each row's date and first four words (e.g.
-`1903-dec-27-maulner-adolf-es-tarsai`), so adding or reordering rows never breaks them. If you
-edit a row's date or opening words, the build stops and lists the editorial entries to re-key.
+| File | What it holds |
+|---|---|
+| `input/timeline.md` | The research timeline: four era tables, one row per event. Dates and descriptions are published word for word. |
+| `editorial/events.yaml` | Per-event extras, keyed by event id: title, image caption/alt/credit/licence, document highlight |
+| `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum, article list |
+| `assets/facade.png` | Present-day facade photo at the top of the page |
+
+Workflow: run `scripts/start-local.sh`, edit a file, reload the browser (restart the script if a
+change does not show up). Before committing, run `pnpm build:draft && pnpm test:site`: the build
+stops with a clear message if something is malformed, and prints the list of missing items.
+
+### Add or change an event
+
+1. Add a row to the right era table in `input/timeline.md`, in date order. Every row needs all
+   seven columns; write `—` for an empty cell:
+
+   ```markdown
+   | 1912. máj. 3. | D18 | Mi történt, és miért fontos. | Valószínű | [Forrás neve](https://…) | — | Cikkötlet |
+   ```
+
+   - **Sáv** (lane): `D18`, `D18 • személy`, `Környék`, `Magyarország` or `Világ`
+   - **Bizonyosság** (certainty): `Igazolt`, `Valószínű`, `Feltételezés`, or `—` for background events
+   - Descriptions may use `**bold**`, `*italic*` and `[links](https://…)`
+   - Rows under "Amit egyelőre **nem** viszünk fel házeseményként" are never published
+2. Run `pnpm build:draft`. The new event appears in the missing-items list with its id (the date
+   plus the first four words, e.g. `1912-maj-3-mi-tortent-es-miert`).
+3. Give it a title in `editorial/events.yaml` under that id:
+
+   ```yaml
+   1912-maj-3-mi-tortent-es-miert:
+     title: Rövid, beszédes cím
+   ```
+
+Changing a row's date or first four words changes its id: the build then stops and names the
+`events.yaml` entry to rename. Editing the rest of the description is safe.
+
+### Add an image to an event
+
+1. Put the direct image-file URL (not the archive page) in the row's **Kép URL** column.
+2. Run `pnpm images:fetch` (downloads it into `src/assets/archive/`; commit the result).
+3. Describe it in `editorial/events.yaml`:
+
+   ```yaml
+   1912-maj-3-mi-tortent-es-miert:
+     title: Rövid, beszédes cím
+     image:
+       alt: What the picture shows, for screen readers
+       caption: The caption shown under the image
+       credit: Fortepan / donor name
+       license: CC BY-SA 3.0
+       sourceUrl: https://fortepan.hu/hu/photos/?id=…
+       sourceLabel: Fortepan …
+       depictsHouse: false   # true only if it provably shows no. 18
+       kind: photo           # or: document
+   ```
+
+### Add a document highlight
+
+A short quoted line from a source, shown as a card under the event. It stays hidden until you
+have checked it against the original and set `verified: true`:
+
+```yaml
+  highlight:
+    kind: transcription   # or: excerpt
+    label: Korabeli hirdetés · Eperjesi Lapok, 1903
+    text: Budapest, VII., Dembinszky-utca 18.
+    verified: true
+```
+
+### Site texts
+
+`editorial/site.yaml` holds the opening section (`hero`), the text on each era opener (`eras`:
+`intro`, `eventsHeading`, and `backgroundYear`, the large number in the background), the address
+used for search engines (`building`) and the Impresszum. Empty strings count as missing; never
+fill the Impresszum with placeholder data. To replace the facade photo, overwrite
+`assets/facade.png` and update `hero.photo` (alt, caption, credit).
+
+### Articles
+
+`articles` in `editorial/site.yaml` fills the list on `/irasok/` (`slug`, `title`,
+`date: YYYY-MM-DD`, `summary`). The article pages themselves are not built yet, so an entry
+there links to a page that does not exist (`pnpm test:site` reports it). Leave the list empty
+until article pages are added.
+
+### Layout and design
+
+The look is code, not content: components in `src/components/`, styles in `src/styles/`
+(colours and fonts in `tokens.css`).
 
 ### Before the first release
 
