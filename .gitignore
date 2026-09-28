@@ -1,0 +1,8 @@
+# Local Claude Code settings / credentials (keep shared .claude/skills committed)
+.claude/settings.local.json
+.claude/*.local.*
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
