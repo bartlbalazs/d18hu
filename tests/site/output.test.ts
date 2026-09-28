@@ -20,6 +20,13 @@ describe('built timeline page', () => {
     expect(count(html, /class="confidence"/g)).toBe(events.filter((event) => event.confidence).length);
   });
 
+  it('links each source page at most once per event', () => {
+    for (const [event] of html.matchAll(/<li class="event[\s\S]*?<\/li>/g)) {
+      const links = [...event.matchAll(/href="(https:\/\/[^"]+)"/g)].map((match) => match[1]);
+      expect(links).toEqual([...new Set(links)]);
+    }
+  });
+
   it('has four era openers and working anchor targets for every era link', () => {
     expect(count(html, /class="era-opener era-opener--\d"/g)).toBe(4);
     for (const era of ['1873-1913', '1914-1938', '1939-1945', '1946-1968']) {

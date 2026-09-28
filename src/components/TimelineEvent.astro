@@ -12,6 +12,11 @@ const { event } = Astro.props;
 const category = CATEGORY_DISPLAY[event.category];
 const confidence = event.confidence ? CONFIDENCE_DISPLAY[event.confidence] : undefined;
 const titleId = `${event.id}-cim`;
+// The image's archive link is left out when the event already links to the same page.
+const imageSource =
+  event.image?.sourceUrl && !event.sources.some((source) => source.url === event.image?.sourceUrl)
+    ? { url: event.image.sourceUrl, label: event.image.sourceLabel ?? 'Archív forrás' }
+    : undefined;
 ---
 
 <li
@@ -64,7 +69,7 @@ const titleId = `${event.id}-cim`;
           alt={event.image.alt}
           caption={event.image.caption}
           credit={event.image.credit}
-          source={event.image.sourceUrl ? { url: event.image.sourceUrl, label: event.image.sourceLabel ?? 'Archív forrás' } : undefined}
+          source={imageSource}
           kind={event.image.kind}
           widths={[480, 800, 1200]}
           sizes="(min-width: 1060px) 736px, (min-width: 760px) 70vw, 90vw"
