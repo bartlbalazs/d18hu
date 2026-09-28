@@ -164,6 +164,7 @@
 }
 
 .legend__icon--area {
+  background: var(--area-node);
   color: var(--d18-walnut);
 }
 
@@ -392,7 +393,12 @@
   color: var(--d18-paper);
 }
 
+.event--area {
+  background: var(--area-row);
+}
+
 .event--area .event__node {
+  background: var(--area-node);
   color: var(--d18-walnut);
 }
 

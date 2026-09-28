@@ -20,6 +20,9 @@
   --era-muted: #51483f;
 
   --house-row: rgb(168 137 104 / 0.11);
+  /* Lighter, cooler tint than the house rows so neighbourhood events read as a separate lane. */
+  --area-row: rgb(91 98 96 / 0.045);
+  --area-node: #e4e3dc;
 
   --font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --font-text: 'Source Sans 3', 'Segoe UI', system-ui, -apple-system, sans-serif;
