@@ -112,6 +112,12 @@
 1919-egy-korabeli-sajtoadat-spitz:
   title: Spitz a nyersfilmgyártó cég igazgatóságában
   titleNeedsReview: true
+1919-kiss-janos-a-dembinszky:
+  title: Kiss János és egy 1919-es büntetőügy
+  titleNeedsReview: true
+1919-nagy-gyorgy-a-nagyszoloson:
+  title: "Még egy izgatási ügy: Nagy György"
+  titleNeedsReview: true
 1919-aug-a-tanacskoztarsasag-bukasa-katonai:
   title: Bukik a Tanácsköztársaság
   titleNeedsReview: true
@@ -139,6 +145,9 @@
 1928-az-1928-as-cimtarbol:
   title: Spitz János Ferenc az 1928-as címtárban
   titleNeedsReview: true
+1928-febr-28-reggel-hetkor-elindul-a:
+  title: Elindul a piros 12-es busz
+  titleNeedsReview: true
 1929-drescher-lipot-cipeszmester-a:
   title: Hócipők a III/5-ben
   titleNeedsReview: true
@@ -151,8 +160,17 @@
     sourceLabel: Új Budapest, 1929
     depictsHouse: false
     kind: document
+1929-jun-delutanonkent-az-allatkert-es:
+  title: A 12-es busz a Városligetig jár
+  titleNeedsReview: true
+1929-jul-a-varosligeti-hosszabbitas-csak:
+  title: Véget ér a városligeti kitérő
+  titleNeedsReview: true
 1929-okt-a-new-york-i:
   title: A New York-i tőzsdei összeomlás
+  titleNeedsReview: true
+1929-nov-15-a-12-es-es:
+  title: Összekötik a 12-es és az 5-ös buszt
   titleNeedsReview: true
 1931-febr-15-az-mtk-sporttorteneti-nevtara:
   title: Meghal Spitz János Ferenc
