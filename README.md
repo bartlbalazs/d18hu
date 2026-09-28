@@ -20,6 +20,18 @@ without JavaScript; the only script is an optional zoomable image viewer
 ## Quick start
 
 ```sh
+scripts/start-local.sh             # dev server with live reload: http://localhost:4321
+scripts/start-local.sh --preview   # production-like: builds dist/ (draft) and serves it
+```
+
+The script switches to the Node version in `.nvmrc` via nvm, runs the pinned pnpm through
+Corepack, and installs dependencies when they are missing or the lockfile changed. Extra
+arguments go to Astro, e.g. `scripts/start-local.sh --port 5000` or `--host` to open the site
+from a phone on the same network. Stop it with Ctrl+C.
+
+Manual equivalent:
+
+```sh
 nvm use
 corepack enable
 pnpm install --frozen-lockfile
