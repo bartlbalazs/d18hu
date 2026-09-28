@@ -82,7 +82,7 @@ describe('every page', () => {
         expect(html).toContain(tag);
       }
       expect(html).toContain('href="/impresszum/"');
-      expect(html).not.toMatch(/position:\s*(sticky|fixed)/);
+      expect(html).toMatch(/\.site-header\{[^}]*position:sticky/);
     });
   }
 

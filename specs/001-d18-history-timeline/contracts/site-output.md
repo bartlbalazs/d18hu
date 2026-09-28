@@ -18,9 +18,10 @@ Trailing slashes are always used. Internal links are relative to `SITE_URL`'s ba
 
 - `<html lang="hu">`; one `<h1>` (hero title); `h2` = era opener, `h3` = era event-list heading,
   `h4` = event title; `header` › `nav`, `main`, `footer`.
-- Header is in normal flow (no `position: fixed/sticky`). The navigation lists all four era links,
-  Írások and Impresszum at every width; on narrow screens it wraps into a 3-column grid instead of
-  collapsing, so it needs no JS and hides nothing.
+- Header is sticky (`position: sticky; top: 0`); anchor targets are offset by its height
+  (`--header-height`). The navigation lists all four era links, Írások and Impresszum at every
+  width; below 900 px it is one horizontally scrollable row instead of collapsing, so it needs no
+  JS and hides nothing.
 - Head: unique `<title>` (≤ 60 chars), `meta description` (50–160), `link rel=canonical`,
   Open Graph (`og:title`, `og:description`, `og:image` 1200×630, `og:url`, `og:type`,
   `og:locale=hu_HU`), `twitter:card=summary_large_image`, JSON-LD (see research R10).

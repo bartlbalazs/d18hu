@@ -81,7 +81,7 @@ of the evergreen browsers plus the iOS and Android defaults.
 |---|---|---|---|
 | I. Static HTML First | ✅ | ✅ | Astro static output. All content is in the HTML, semantic landmarks and heading levels are defined ([site-output](contracts/site-output.md)), and the build step outputs plain files |
 | II. Performance Budget | ✅ | ✅ (measured) | The hero is served as AVIF/WebP with `fetchpriority=high`. Other images are responsive and lazy; fonts 62 KB, eager JS 5.2 KB, HTML (with inline CSS) 34 KB gz. Measured 2026-09-28 (Lighthouse mobile): LCP 1.8–1.9 s, CLS 0, TBT 0 ms, 137 KB total; all categories ≥ 99. Enforced by `pnpm lighthouse` |
-| III. Mobile-First Responsive | ✅ | ✅ | Mobile-first CSS with grid/flex/`clamp()`, a header navigation that wraps instead of collapsing (no JS, nothing hidden), touch targets ≥ 44 px and body text ≥ 16 px. Checked at 320/360/768/1280 px |
+| III. Mobile-First Responsive | ✅ | ✅ | Mobile-first CSS with grid/flex/`clamp()`, a sticky header whose navigation is a horizontally scrollable row on narrow screens instead of collapsing (no JS, nothing hidden), touch targets ≥ 44 px and body text ≥ 16 px. Checked at 320/360/768/1280 px |
 | IV. Minimalism: frameworks, trackers, CDNs | ✅ | ✅ | No JS or CSS frameworks, no trackers, no CDNs. Icons are inlined at build time |
 | IV. Minimalism: fonts | ✅ | ✅ | Two families (allowed since v1.1.0), subset for Hungarian, WOFF2, `swap`, 62 KB (≤ 150) |
 | IV. Minimalism: JS ≤ 20 KB, no UI libraries | ⚠️ | ⚠️ justified | PhotoSwipe totals about 23 KB gz (5.2 KB eager) and is a UI library. See Complexity Tracking |

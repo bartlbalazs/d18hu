@@ -92,8 +92,8 @@ navigation on a 320 px wide screen and on desktop, using keyboard only and with 
    four era links plus "Írások" and "Impresszum" are available; none are hidden.
 3. **Given** keyboard-only use with JavaScript disabled, **When** the visitor tabs through the
    navigation, **Then** every link is reachable, visibly focused and working.
-4. **Given** the visitor scrolls down, **When** the header leaves the viewport, **Then** it
-   scrolls away with the page (it never sticks or overlays the timeline).
+4. **Given** the visitor scrolls down, **When** the page moves, **Then** the header stays
+   at the top of the screen (sticky), and era links land below it, not hidden under it.
 5. **Given** an era opener, **When** the visitor activates its "Tovább az eseményekhez" link,
    **Then** the view moves to that era's first event.
 
@@ -243,7 +243,8 @@ required metadata is present and valid.
 - **FR-001**: The home page MUST present, in order: header, opening section, and four era
   openers each followed by that era's events, plus a legend and a footer.
 - **FR-002**: The header MUST contain the house name / home link ("D18"), links to the four
-  eras, "Írások" and "Impresszum", and MUST scroll with the page (never fixed or sticky).
+  eras, "Írások" and "Impresszum", and MUST stay at the top while scrolling (sticky). On
+  narrow screens the links form one horizontally scrollable row so the header stays short.
 - **FR-003**: On narrow screens the navigation MAY collapse, but MUST keep all links reachable
   by touch and keyboard and MUST work without JavaScript. No link may be hidden only by
   styling.

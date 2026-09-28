@@ -62,7 +62,7 @@ pnpm build:draft && pnpm test:site
 
 1. Run `pnpm preview` and open the site with JavaScript disabled.
 2. At 320 px width, check the header: all 4 eras, Írások and Impresszum should be visible
-   (the navigation wraps into two rows; nothing is collapsed or hidden).
+   (the navigation is one row you can swipe sideways; nothing is collapsed or hidden). While scrolling, the header stays at the top.
 3. Tab through the menu with the keyboard. Each link should show a visible focus ring and jump
    to its era opener. "Tovább az eseményekhez" should jump to that era's first event.
 4. Scroll down. The header should scroll away and never overlay the content.

@@ -32,6 +32,14 @@
   --date-col: 145px;
   --axis-col: 38px;
   --col-gap: 17px;
+  /* Height of the sticky header, used to offset anchor targets (see .site-header in base.css). */
+  --header-height: 113px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-height: 61px;
+  }
 }
 
 /* Each face: a Hungarian-text subset of Fontsource "latin" + a tiny "hu" supplement (Ő ő Ű ű);
