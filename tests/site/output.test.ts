@@ -1,6 +1,7 @@
 // Assertions over the built site in dist/ (run after a build: pnpm build:draft && pnpm test:site).
 import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { parseTimeline } from '../../src/lib/timeline/parse.ts';
 
 const read = (path: string) => readFileSync(`dist/${path}`, 'utf8');
 const count = (html: string, pattern: RegExp) => (html.match(pattern) ?? []).length;
@@ -8,14 +9,15 @@ const count = (html: string, pattern: RegExp) => (html.match(pattern) ?? []).len
 describe('built timeline page', () => {
   const html = read('index.html');
 
-  it('contains every event exactly once with the documented distribution', () => {
-    expect(count(html, /data-event-id="/g)).toBe(108);
-    expect(count(html, /data-category="house"/g)).toBe(33);
-    expect(count(html, /data-category="area"/g)).toBe(14);
-    expect(count(html, /data-category="hungary"/g)).toBe(28);
-    expect(count(html, /data-category="world"/g)).toBe(33);
-    expect(count(html, /data-confidence="none"/g)).toBe(61);
-    expect(count(html, /class="confidence"/g)).toBe(47);
+  it('contains every event of input/timeline.md exactly once, in source order', () => {
+    const { events } = parseTimeline(readFileSync('input/timeline.md', 'utf8'));
+    const renderedIds = [...html.matchAll(/data-event-id="([^"]+)"/g)].map((match) => match[1]);
+    expect(renderedIds).toEqual(events.map((event) => event.id));
+    for (const category of ['house', 'area', 'hungary', 'world']) {
+      const expected = events.filter((event) => event.category === category).length;
+      expect(count(html, new RegExp(`data-category="${category}"`, 'g'))).toBe(expected);
+    }
+    expect(count(html, /class="confidence"/g)).toBe(events.filter((event) => event.confidence).length);
   });
 
   it('has four era openers and working anchor targets for every era link', () => {
@@ -28,8 +30,10 @@ describe('built timeline page', () => {
   });
 
   it('shows figures with visible captions and only local image files', () => {
-    expect(count(html, /<figure class="evidence/g)).toBe(6);
-    expect(count(html, /<figcaption>/g)).toBe(6);
+    const { events } = parseTimeline(readFileSync('input/timeline.md', 'utf8'));
+    const figures = events.filter((event) => event.originalImageUrl).length + 1; // + facade photo
+    expect(count(html, /<figure class="evidence/g)).toBe(figures);
+    expect(count(html, /<figcaption>/g)).toBe(figures);
     expect(html).not.toMatch(/<(img|source)[^>]+(src|srcset)="https?:/);
     expect(html).not.toMatch(/data-pswp-width[^>]*href="https?:/);
     for (const match of html.matchAll(/href="([^"]+)"\s+data-pswp-width/g)) {

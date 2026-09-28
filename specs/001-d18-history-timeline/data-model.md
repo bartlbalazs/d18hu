@@ -41,7 +41,7 @@ editorial/site.yaml ──▶ SiteConfig (eras, hero, impresszum, building)
 | `descriptionText` | string | Plain text (for meta and alt fallbacks in reports only) |
 | `confidence` | `'verified' \| 'probable' \| 'hypothesis' \| null` | `Igazolt`/`Valószínű`/`Feltételezés`/`—`; other → build error |
 | `sources` | `{label, url}[]` | Links in `Külső forrás`. `—` → `[]`. Non-separator leftover text → build error. URL must be `https:` |
-| `originalImageUrl` | string \| undefined | `Kép URL` cell; `—` → undefined. Must be `https:` |
+| `originalImageUrl` | string \| undefined | `Kép URL` cell; `—` → undefined. `https:` URL or a local path under `assets/` |
 | `image` | `ArchiveImage & EventImageEditorial` \| undefined | Present iff `originalImageUrl`; manifest entry missing → build error |
 | `highlight` | `DocumentHighlight` \| undefined | From editorial |
 | `articleIdea` | string \| undefined | `Cikkötlet` cell. Never rendered or linked (FR-019) |
@@ -78,7 +78,7 @@ display always uses `dateLabel`; `sortStart` only feeds `<time datetime>` and JS
 | `contentType` | string | `image/jpeg` \| `image/png` \| `image/webp` |
 | `fetchedAt` | ISO datetime | — |
 
-Lifecycle: `new Kép URL` → *fetch* (validate: HTTP 200, `image/*`, sharp decodes) → *stored
+Lifecycle: `new Kép URL` → *fetch*, or *copy* for a local `assets/` path (validate: HTTP 200, `image/*`, sharp decodes) → *stored
 + manifest entry* → used by builds offline. A `Kép URL` removed from the source makes its
 entry *unreferenced*, which `images:fetch` reports.
 

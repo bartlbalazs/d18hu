@@ -6,7 +6,7 @@ Exit code 0 = success; non-zero = failure with a human-readable report on stderr
 | Command | Network | Purpose | Fails when |
 |---|---|---|---|
 | `pnpm install --frozen-lockfile` | yes | Install pinned dependencies (7-day release age enforced) | Lockfile out of date |
-| `pnpm images:fetch` | yes | Download new/changed `Kép URL` images into `src/assets/archive/`, update `manifest.json`, report unreferenced files | Any `ImageFetchError` (lists event id + URL) |
+| `pnpm images:fetch` | yes | Download new/changed `Kép URL` images (copy local `assets/` ones, re-copying when they change) into `src/assets/archive/`, update `manifest.json`, report unreferenced files | Any `ImageFetchError` (lists event id + URL) |
 | `pnpm images:check` | yes | Verify every original image URL still responds with an image | Never fails the build pipeline; exits 1 only to signal unreachable URLs when run manually |
 | `pnpm check` | no | Astro/TypeScript type check | Type errors |
 | `pnpm dev` | no | Local dev server, draft mode | Structural errors |

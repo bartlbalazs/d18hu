@@ -28,8 +28,9 @@ export const EXPECTED_COLUMNS = [
   'Cikkötlet',
 ] as const;
 
-const NON_EVENT_SECTION = 'Amit egyelőre nem viszünk fel házeseményként';
 const EMPTY = '—';
+/** A Kép URL may also name an image file committed under assets/, e.g. assets/events/1903.jpg. */
+export const LOCAL_IMAGE_PATH = /^assets\/(?:[\w-][\w.-]*\/)*[\w-][\w.-]*\.(?:jpe?g|png|webp)$/i;
 
 const CATEGORY_BY_LANE: Record<SourceLane, Category> = {
   D18: 'house',
@@ -82,8 +83,9 @@ export function parseTimeline(markdown: string): ParsedTimeline {
 
   for (const node of tree.children) {
     if (node.type === 'heading' && node.depth === 2) {
+      // Sections after the last era (open questions, notes) are never published.
+      if (eras.length === ERA_IDS.length) break;
       const headingText = toPlainText(node.children).trim();
-      if (headingText === NON_EVENT_SECTION) break;
       closeEra();
       currentEra = { ...parseEraHeading(headingText, eras.length), hasTable: false };
       eras.push({ id: currentEra.id, number: currentEra.number, title: currentEra.title });
@@ -220,6 +222,7 @@ function parseImageUrl(cell: TableCell): string | undefined {
   if (links.length > 1 || url !== text) {
     throw new TimelineParseError(`Kép URL must be a single image URL, got "${text}"`);
   }
+  if (LOCAL_IMAGE_PATH.test(url)) return url;
   assertHttpsUrl(url);
   return url;
 }

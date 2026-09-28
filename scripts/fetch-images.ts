@@ -1,4 +1,5 @@
 // Downloads new or changed "Kép URL" images into the repository (run: pnpm images:fetch).
+// A Kép URL can also be a local file under assets/; it is copied, and re-copied when it changes.
 // Regular builds never touch the network; they only read the committed files and manifest.
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -9,7 +10,7 @@ import {
   readManifest,
   type ArchiveImage,
 } from '../src/lib/images/manifest.ts';
-import { parseTimeline } from '../src/lib/timeline/parse.ts';
+import { LOCAL_IMAGE_PATH, parseTimeline } from '../src/lib/timeline/parse.ts';
 import { TIMELINE_PATH } from '../src/lib/site-data.ts';
 
 const EXTENSION_BY_FORMAT: Record<string, { ext: string; contentType: string }> = {
@@ -29,15 +30,31 @@ function sha256(data: Buffer | string): string {
   return createHash('sha256').update(data).digest('hex');
 }
 
-/** e.g. https://…/fortepan_82508.jpg → fortepan-82508-<hash8>.jpg */
-function fileNameFor(url: string, ext: string): string {
-  const urlHash = sha256(url).slice(0, 8);
-  const archiveMatch = /\/([a-z]+)_(\d+)\.[a-z]+$/i.exec(new URL(url).pathname);
-  const stem = archiveMatch ? `${archiveMatch[1].toLowerCase()}-${archiveMatch[2]}` : 'img';
-  return `${stem}-${urlHash}.${ext}`;
+function isLocalImage(source: string): boolean {
+  return LOCAL_IMAGE_PATH.test(source);
 }
 
-async function download(eventId: string, url: string): Promise<{ bytes: Buffer; format: string; width: number; height: number }> {
+/** e.g. https://…/fortepan_82508.jpg → fortepan-82508-<hash8>.jpg, assets/events/Kapu.jpg → local-kapu-<hash8>.jpg */
+function fileNameFor(source: string, contentHash: string, ext: string): string {
+  if (isLocalImage(source)) {
+    const baseName = source.split('/').pop()!.replace(/\.[^.]+$/, '');
+    const stem = baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'img';
+    return `local-${stem}-${contentHash.slice(0, 8)}.${ext}`;
+  }
+  const archiveMatch = /\/([a-z]+)_(\d+)\.[a-z]+$/i.exec(new URL(source).pathname);
+  const stem = archiveMatch ? `${archiveMatch[1].toLowerCase()}-${archiveMatch[2]}` : 'img';
+  return `${stem}-${sha256(source).slice(0, 8)}.${ext}`;
+}
+
+type LoadedImage = { bytes: Buffer; format: string; width: number; height: number };
+
+async function loadImage(eventId: string, source: string): Promise<LoadedImage> {
+  if (!isLocalImage(source)) return decode(eventId, source, await download(eventId, source));
+  if (!existsSync(source)) throw new ImageFetchError(eventId, source, 'file not found');
+  return decode(eventId, source, readFileSync(source));
+}
+
+async function download(eventId: string, url: string): Promise<Buffer> {
   let response: Response;
   try {
     response = await fetch(url, { redirect: 'follow' });
@@ -49,7 +66,10 @@ async function download(eventId: string, url: string): Promise<{ bytes: Buffer; 
   if (!contentType.startsWith('image/')) {
     throw new ImageFetchError(eventId, url, `not an image (content-type "${contentType}")`);
   }
-  const bytes = Buffer.from(await response.arrayBuffer());
+  return Buffer.from(await response.arrayBuffer());
+}
+
+async function decode(eventId: string, url: string, bytes: Buffer): Promise<LoadedImage> {
   const metadata = await sharp(bytes)
     .metadata()
     .catch((error: Error) => {
@@ -79,13 +99,14 @@ async function main(): Promise<void> {
   let added = 0;
   for (const [url, eventId] of wanted) {
     const existing = byUrl.get(url);
-    if (existing && existsSync(`${ARCHIVE_DIR}/${existing.file}`)) continue;
+    const unchangedLocal = !isLocalImage(url) || (existsSync(url) && existing?.sha256 === sha256(readFileSync(url)));
+    if (existing && existsSync(`${ARCHIVE_DIR}/${existing.file}`) && unchangedLocal) continue;
     try {
-      const image = await download(eventId, url);
+      const image = await loadImage(eventId, url);
       const contentHash = sha256(image.bytes);
       const { ext, contentType } = EXTENSION_BY_FORMAT[image.format];
       const sameContent = byContentHash.get(contentHash);
-      const file = sameContent?.file ?? fileNameFor(url, ext);
+      const file = sameContent?.file ?? fileNameFor(url, contentHash, ext);
       if (!sameContent) writeFileSync(`${ARCHIVE_DIR}/${file}`, image.bytes);
       const entry: ArchiveImage = {
         originalUrl: url,
@@ -99,7 +120,7 @@ async function main(): Promise<void> {
       byUrl.set(url, entry);
       byContentHash.set(contentHash, entry);
       added += 1;
-      console.log(`fetched  ${eventId}  → ${file} (${image.width}×${image.height})`);
+      console.log(`${isLocalImage(url) ? 'copied ' : 'fetched'}  ${eventId}  → ${file} (${image.width}×${image.height})`);
     } catch (error) {
       if (error instanceof ImageFetchError) failures.push(error);
       else throw error;

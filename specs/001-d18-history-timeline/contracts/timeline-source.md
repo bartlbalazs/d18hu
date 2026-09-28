@@ -14,8 +14,9 @@ contract states what the parser accepts; anything else fails the build with
 3. Each era section contains exactly one GFM table with this header, in this order:
    `| Dátum | Sáv | Esemény és jelentőség | Bizonyosság | Külső forrás | Kép URL | Cikkötlet |`
    and a separator row with **7** cells.
-4. Parsing stops at the heading `## Amit egyelőre **nem** viszünk fel házeseményként`
-   (matched on plain text). Nothing from that section or later is published.
+4. Parsing stops at the first level-2 heading after the fourth era (e.g.
+   `## Nyitott kérdések és vitatott állítások`), whatever its text. Nothing from that section
+   or later is published.
 
 ## Cells
 
@@ -26,7 +27,7 @@ contract states what the parser accepts; anything else fails the build with
 | Esemény és jelentőség | Text with inline bold, italic, code, links | — (not allowed) |
 | Bizonyosság | `Igazolt`, `Valószínű`, `Feltételezés`, `—` | no certainty mark |
 | Külső forrás | One or more Markdown links `[label](https://…)`, separated by `;` `,` `/` or spaces | no source link |
-| Kép URL | One direct `https://` image file URL (not a collection landing page) | no image |
+| Kép URL | One direct `https://` image file URL (not a collection landing page), or a repository path to a JPEG/PNG/WebP under `assets/` (e.g. `assets/events/kapu.jpg`) | no image |
 | Cikkötlet | Any text (editorial only, never published) | none |
 
 `—` is U+2014 EM DASH. An empty cell is treated like `—` only in optional columns.

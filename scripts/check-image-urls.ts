@@ -1,8 +1,9 @@
 // Reports whether the original archive image URLs still respond (run: pnpm images:check).
 // Report only: builds use the committed copies and never depend on this check.
 import { readManifest } from '../src/lib/images/manifest.ts';
+import { LOCAL_IMAGE_PATH } from '../src/lib/timeline/parse.ts';
 
-const { images } = readManifest();
+const images = readManifest().images.filter((image) => !LOCAL_IMAGE_PATH.test(image.originalUrl));
 let unreachable = 0;
 
 for (const image of images) {

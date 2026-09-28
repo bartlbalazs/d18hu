@@ -208,8 +208,8 @@ required metadata is present and valid.
 - **Orphaned editorial data**: if a timeline row's date label or opening words are edited, its
   id changes; any editorial entry (title, caption, credit) whose id no longer matches an event
   MUST stop the build with a list of the orphaned ids, so nothing detaches silently.
-- **Non-event section**: "Amit egyelőre nem viszünk fel házeseményként" is a table but is
-  not an era and MUST NOT appear as events.
+- **Non-event section**: any section after the fourth era (currently "Nyitott kérdések és
+  vitatott állítások") is not an era and MUST NOT appear as events.
 - **Approximate and multi-valued dates**: labels like "1901 körül", "1904. júl. 1. / júl. 10.",
   "1944. dec. 24. – 1945. febr. 13.", "1945 után, pontos év nélkül" are displayed verbatim and
   never shown as invented exact dates. Order is the source order, not a computed sort.

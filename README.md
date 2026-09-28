@@ -51,7 +51,7 @@ pnpm dev                 # http://localhost:4321, draft mode
 | `pnpm test:site` | Run after a build: checks the output (event counts, local images, metadata), validates the HTML and checks internal links |
 | `pnpm check` | Type check |
 | `pnpm lighthouse` | Lighthouse mobile audit against the constitution's budgets (reports stay local in `.lighthouseci/`) |
-| `pnpm images:fetch` | Downloads new or changed `Kép URL` images into `src/assets/archive/` (commit the result) |
+| `pnpm images:fetch` | Downloads new or changed `Kép URL` images (or copies local ones from `assets/`) into `src/assets/archive/` (commit the result) |
 | `pnpm images:check` | Reports whether the original archive image URLs still respond |
 | `pnpm fonts:subset` | Regenerates the subset web fonts in `src/fonts/` (commit the result) |
 
@@ -69,8 +69,9 @@ All content lives in four places. You never need to touch the code to change wha
 | `assets/facade.png` | Present-day facade photo at the top of the page |
 
 Workflow: run `scripts/start-local.sh`, edit a file, reload the browser (restart the script if a
-change does not show up). Before committing, run `pnpm build:draft && pnpm test:site`: the build
-stops with a clear message if something is malformed, and prints the list of missing items.
+change does not show up). To rebuild the static site in `dist/`, run `pnpm build:draft`, then
+`pnpm test:site` to check it; `scripts/start-local.sh --preview` does the build and serves it.
+The build stops with a clear message if something is malformed, and prints the missing items.
 
 ### Add or change an event
 
@@ -84,7 +85,7 @@ stops with a clear message if something is malformed, and prints the list of mis
    - **Sáv** (lane): `D18`, `D18 • személy`, `Környék`, `Magyarország` or `Világ`
    - **Bizonyosság** (certainty): `Igazolt`, `Valószínű`, `Feltételezés`, or `—` for background events
    - Descriptions may use `**bold**`, `*italic*` and `[links](https://…)`
-   - Rows under "Amit egyelőre **nem** viszünk fel házeseményként" are never published
+   - Everything after the fourth era (e.g. "Nyitott kérdések…") is never published
 2. Run `pnpm build:draft`. The new event appears in the missing-items list with its id (the date
    plus the first four words, e.g. `1912-maj-3-mi-tortent-es-miert`).
 3. Give it a title in `editorial/events.yaml` under that id:
@@ -99,8 +100,12 @@ Changing a row's date or first four words changes its id: the build then stops a
 
 ### Add an image to an event
 
-1. Put the direct image-file URL (not the archive page) in the row's **Kép URL** column.
-2. Run `pnpm images:fetch` (downloads it into `src/assets/archive/`; commit the result).
+1. In the row's **Kép URL** column, put either
+   - the direct image-file URL (not the archive page), or
+   - a local file (JPEG, PNG or WebP) you copied into `assets/`, e.g. `assets/events/kapu-1903.jpg`
+     (path from the repository root; use a name without spaces).
+2. Run `pnpm images:fetch`. It downloads or copies the image into `src/assets/archive/`; commit
+   the result (and the file in `assets/`). Run it again after replacing a local file.
 3. Describe it in `editorial/events.yaml`:
 
    ```yaml
@@ -111,7 +116,7 @@ Changing a row's date or first four words changes its id: the build then stops a
        caption: The caption shown under the image
        credit: Fortepan / donor name
        license: CC BY-SA 3.0
-       sourceUrl: https://fortepan.hu/hu/photos/?id=…
+       sourceUrl: https://fortepan.hu/hu/photos/?id=…   # optional for your own photos
        sourceLabel: Fortepan …
        depictsHouse: false   # true only if it provably shows no. 18
        kind: photo           # or: document
