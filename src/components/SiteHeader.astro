@@ -21,26 +21,33 @@ const pages = [
       <span class="brand__name">Dembinszky utca 18.</span>
     </a>
     <nav aria-label="Fő navigáció">
-      <ul class="site-nav">
-        {
-          eras.map((era) => (
-            <li>
-              <a href={`/#korszak-${era.id}`} aria-label={`${era.id.replace('-', '–')}: ${era.title}`}>
-                {era.id.replace('-', '–')}
-              </a>
-            </li>
-          ))
-        }
-        {
-          pages.map((page, index) => (
-            <li class={index === 0 ? 'site-nav__pages' : undefined}>
-              <a href={page.href} aria-current={currentPath === page.href ? 'page' : undefined}>
-                {page.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <button class="menu-button" type="button" popovertarget="fomenu">Menü</button>
+      <div class="site-menu" id="fomenu" popover>
+        <p class="site-menu__heading" id="menu-korszakok">Korszakok</p>
+        <ul class="site-nav" aria-labelledby="menu-korszakok">
+          {
+            eras.map((era) => (
+              <li>
+                <a href={`/#korszak-${era.id}`} aria-label={`${era.id.replace('-', '–')}: ${era.title}`}>
+                  {era.id.replace('-', '–')}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="site-menu__heading" id="menu-oldalak">Oldalak</p>
+        <ul class="site-nav site-nav--pages" aria-labelledby="menu-oldalak">
+          {
+            pages.map((page) => (
+              <li>
+                <a href={page.href} aria-current={currentPath === page.href ? 'page' : undefined}>
+                  {page.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </nav>
   </div>
 </header>

@@ -10,7 +10,7 @@ The site is plain HTML generated at build time with [Astro](https://astro.build/
 without JavaScript; the only script is an optional zoomable image viewer
 ([PhotoSwipe](https://photoswipe.com/)). It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
-`specs/002-epitok-nevado-pages/` and `specs/003-firebase-publishing/`. It is hosted on
+`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/` and `specs/004-mobile-navigation/`. It is hosted on
 [Firebase Hosting](https://firebase.google.com/docs/hosting) at <https://www.dembinszky18.hu/>.
 
 ## Requirements
@@ -163,6 +163,12 @@ record excerpts, numbered sources). Their first versions were transcribed from t
 The look is code, not content: components in `src/components/`, styles in `src/styles/`
 (colours and fonts in `tokens.css`).
 
+The top menu (`src/components/SiteHeader.astro`) is one row from 900 px wide. On narrower
+screens the header shows a **Menü** button that opens the same links as a panel, grouped as
+"Korszakok" and "Oldalak". It is a native HTML popover, so it works without JavaScript.
+`src/scripts/site-menu.ts` closes the panel after a link is chosen and, on the home page,
+marks the era being read with a dot. The era is picked by `src/lib/nav/current-era.ts`.
+
 ### Publishing
 
 `pnpm build:release` builds the site for `https://www.dembinszky18.hu/`; set `SITE_URL` to build
@@ -189,12 +195,12 @@ The Firebase CLI is a pinned devDependency, so always run it as `pnpm exec fireb
    `dembinszky18.hu` with "Redirect to www.dembinszky18.hu". Enter the DNS records it shows at
    the registrar and wait for "Connected" (the certificate can take up to 24 hours).
 
-DNS records at the registrar:
+DNS records at the registrar (Forpsi; the MX, SRV, SPF and DMARC records for e-mail stay as they are):
 
 | Host | Type | Value |
 |---|---|---|
-| `dembinszky18.hu` | TXT | TODO: copy from the Firebase console |
-| `dembinszky18.hu` | A | TODO: copy from the Firebase console |
+| `dembinszky18.hu` | A | `199.36.158.100` (replaces Forpsi's parking address `81.2.196.19`) |
+| `dembinszky18.hu` | TXT | `hosting-site=dembinszky18` |
 | `www.dembinszky18.hu` | TXT / CNAME | TODO: copy from the Firebase console |
 
 #### Routine publishing

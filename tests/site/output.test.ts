@@ -180,3 +180,27 @@ describe('404 page', () => {
     expect(read('sitemap.xml')).not.toContain('404');
   });
 });
+
+describe('site menu', () => {
+  for (const page of [...PAGES, '404.html']) {
+    it(`${page} has the Menü popover with the eras and pages in two labelled groups`, () => {
+      const html = read(page);
+      expect(count(html, /<button[^>]*popovertarget="fomenu"[^>]*>Menü<\/button>/g)).toBe(1);
+      expect(html).toMatch(/<div[^>]*id="fomenu"[^>]*popover/);
+      expect(html).toMatch(/id="menu-korszakok"[^>]*>Korszakok</);
+      expect(html).toMatch(/id="menu-oldalak"[^>]*>Oldalak</);
+      expect(html).toContain('aria-labelledby="menu-korszakok"');
+      expect(html).toContain('aria-labelledby="menu-oldalak"');
+      const menu = /<div[^>]*id="fomenu"[^>]*>([\s\S]*?)<\/div>/.exec(html)?.[1] ?? '';
+      const links = [...menu.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+      expect(links).toHaveLength(7);
+      expect(links.slice(0, 4).every((href) => href.startsWith('/#korszak-'))).toBe(true);
+      expect(links.slice(4)).toEqual(['/epitok/', '/nevado/', '/impresszum/']);
+      expect(html).not.toContain('aria-current="location"');
+    });
+  }
+
+  it('marks the current page in the menu', () => {
+    expect(read('nevado/index.html')).toMatch(/<a href="\/nevado\/" aria-current="page"/);
+  });
+});
