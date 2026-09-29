@@ -10,9 +10,11 @@ interface Props {
   isDraft: boolean;
   jsonLd: Record<string, unknown>[];
   ogType?: 'website' | 'article';
+  /** For pages that must never be indexed, such as the 404 page; they get no canonical URL either. */
+  noindex?: boolean;
 }
 
-const { title, description, path, isDraft, jsonLd, ogType = 'website' } = Astro.props;
+const { title, description, path, isDraft, jsonLd, ogType = 'website', noindex = false } = Astro.props;
 const site = Astro.site!;
 const canonical = absoluteUrl(path, site);
 const ogImage = await getImage({ src: facade, width: 1200, height: 630, fit: 'cover', position: 'top', format: 'jpg', quality: 80 });
@@ -22,15 +24,15 @@ const ogImageAlt = 'A Dembinszky utca 18. homlokzata ma';
 
 <title>{title}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
-{isDraft && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <link rel="canonical" href={canonical} />}
+{(isDraft || noindex) && <meta name="robots" content="noindex, nofollow" />}
 
 <meta property="og:type" content={ogType} />
 <meta property="og:locale" content="hu_HU" />
 <meta property="og:site_name" content="Dembinszky utca 18." />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:url" content={canonical} />
+{!noindex && <meta property="og:url" content={canonical} />}
 <meta property="og:image" content={ogImageUrl} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />

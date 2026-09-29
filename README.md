@@ -9,8 +9,9 @@ two story pages, `/epitok/` (the builders) and `/nevado/` (the street's namesake
 The site is plain HTML generated at build time with [Astro](https://astro.build/). It works
 without JavaScript; the only script is an optional zoomable image viewer
 ([PhotoSwipe](https://photoswipe.com/)). It was specified and built with
-[GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/` and
-`specs/002-epitok-nevado-pages/`.
+[GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
+`specs/002-epitok-nevado-pages/` and `specs/003-firebase-publishing/`. It is hosted on
+[Firebase Hosting](https://firebase.google.com/docs/hosting) at <https://www.dembinszky18.hu/>.
 
 ## Requirements
 
@@ -53,6 +54,8 @@ pnpm dev                 # http://localhost:4321, draft mode
 | `pnpm test:site` | Run after a build: checks the output (event counts, local images, metadata), validates the HTML and checks internal links |
 | `pnpm check` | Type check |
 | `pnpm lighthouse` | Lighthouse mobile audit against the constitution's budgets (reports stay local in `.lighthouseci/`) |
+| `pnpm site:publish` | Checks everything, builds the release and deploys it to Firebase Hosting (see [Publishing](#publishing)) |
+| `pnpm verify:live` | Link check and Lighthouse audit against the live site |
 | `pnpm images:fetch` | Downloads new or changed `Kép URL` images (or copies local ones from `assets/`) into `src/assets/archive/` (commit the result) |
 | `pnpm images:check` | Reports whether the original archive image URLs still respond |
 | `pnpm fonts:subset` | Regenerates the subset web fonts in `src/fonts/` (commit the result) |
@@ -170,6 +173,46 @@ reviewed and their alt text, caption, credit and licence are filled in.
 Document highlights (the 1903 Maulner advertisement, the 1904 Tarcsai clipping) stay hidden
 until their transcription is checked against the original and set to `verified: true`.
 
+The site is hosted on Firebase Hosting, in the project named in `.firebaserc` and owned by the
+personal account **bartlbalazs@gmail.com** (never the work account). `firebase.json` holds the
+hosting settings: trailing-slash redirects, the `404.html` page, caching and security headers.
+The Firebase CLI is a pinned devDependency, so always run it as `pnpm exec firebase`.
+
+#### One-time setup
+
+1. At <https://console.firebase.google.com/>, signed in as bartlbalazs@gmail.com, create the
+   project `dembinszky18` (Google Analytics is not needed). If that ID is taken, use
+   `dembinszky18-hu` and put it in `.firebaserc`.
+2. `pnpm exec firebase login`, choosing bartlbalazs@gmail.com.
+3. `pnpm site:publish`. The site is now at `https://<project-id>.web.app/`.
+4. In the console, go to Hosting → Add custom domain. Add `www.dembinszky18.hu`, then
+   `dembinszky18.hu` with "Redirect to www.dembinszky18.hu". Enter the DNS records it shows at
+   the registrar and wait for "Connected" (the certificate can take up to 24 hours).
+
+DNS records at the registrar:
+
+| Host | Type | Value |
+|---|---|---|
+| `dembinszky18.hu` | TXT | TODO: copy from the Firebase console |
+| `dembinszky18.hu` | A | TODO: copy from the Firebase console |
+| `www.dembinszky18.hu` | TXT / CNAME | TODO: copy from the Firebase console |
+
+#### Routine publishing
+
+```sh
+pnpm site:publish   # commit first: refuses uncommitted changes
+pnpm verify:live    # afterwards: live link check and Lighthouse
+```
+
+`site:publish` runs `check`, `test`, `build:release` and `test:site`, refuses draft output, and
+deploys only when all of them pass and the CLI is logged in as bartlbalazs@gmail.com. Each
+release is labelled with its commit.
+
+#### Rollback
+
+In the console, go to Hosting → Release history, open the previous release's ⋮ menu and
+choose **Roll back**. It takes about a minute.
+
 ## Project layout
 
 ```text
@@ -177,16 +220,18 @@ input/timeline.md        research source (read-only for the build)
 input/epitok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
 editorial/               owner-maintained YAML (titles, captions, credits, site texts)
 assets/facade4.png       hero photo
-scripts/                 image download/check and font subsetting
+scripts/                 image download/check, font subsetting, local start, publishing
 src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers
 src/components/          Astro components (header, hero, legend, era opener, event, figure)
-src/pages/               /, /epitok/, /nevado/, /impresszum/, sitemap, robots, manifest, icons
+src/pages/               /, /epitok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
 src/assets/pages/        story page images (committed)
 src/fonts/               subset WOFF2 fonts + licences (committed)
 tests/unit/, tests/site/ Vitest suites
 specs/                   Spec Kit feature spec, plan, research, data model, contracts
 .specify/, .claude/      Spec Kit configuration and commands
+firebase.json, .firebaserc  Firebase Hosting settings and project
+lighthouserc*.json       Lighthouse budgets for the local build and the live site
 ```
 
 ## Principles and supply chain

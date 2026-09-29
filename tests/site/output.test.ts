@@ -167,3 +167,16 @@ describe('impresszum page', () => {
     expect(website?.publisher).toEqual({ '@id': publisher?.['@id'] });
   });
 });
+
+describe('404 page', () => {
+  const html = read('404.html');
+
+  it('is a Hungarian not-found page that links home and stays out of search', () => {
+    expect(count(html, /<h1[\s>]/g)).toBe(1);
+    expect(html).toMatch(/<h1[^>]*>Az oldal nem található<\/h1>/);
+    expect(html).toContain('href="/"');
+    expect(html).toContain('name="robots" content="noindex');
+    expect(html).not.toContain('rel="canonical"');
+    expect(read('sitemap.xml')).not.toContain('404');
+  });
+});

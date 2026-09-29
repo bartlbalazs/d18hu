@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { websiteNode } from '../lib/seo/jsonld.ts';
+import { loadSiteData } from '../lib/site-data.ts';
+
+const { site } = loadSiteData();
+const siteUrl = Astro.site!;
+---
+
+<Base
+  title="Az oldal nem található – Dembinszky utca 18."
+  description="A keresett oldal nem létezik vagy elköltözött. A Dembinszky utca 18. ház története a kezdőlapon olvasható."
+  path="/404.html"
+  jsonLd={[websiteNode(siteUrl, site)]}
+  noindex
+>
+  <div class="container page">
+    <p class="kicker">Dembinszky utca 18.</p>
+    <h1>Az oldal nem található</h1>
+    <p>A keresett cím nem létezik, vagy az oldal időközben elköltözött.</p>
+    <p><a href="/">Vissza a kezdőlapra</a></p>
+  </div>
+</Base>

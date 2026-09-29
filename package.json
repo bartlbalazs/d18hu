@@ -16,6 +16,8 @@
     "test": "vitest run --project unit",
     "test:site": "vitest run --project site && html-validate \"dist/**/*.html\" && linkinator dist/index.html --recurse --check-fragments --skip \"^https://\"",
     "lighthouse": "lhci autorun",
+    "site:publish": "bash scripts/publish.sh",
+    "verify:live": "linkinator https://www.dembinszky18.hu/ --recurse --check-fragments --skip \"^(?!https://www\\\\.dembinszky18\\\\.hu/)\" && lhci autorun --config=lighthouserc.live.json",
     "images:fetch": "node scripts/fetch-images.ts",
     "images:check": "node scripts/check-image-urls.ts",
     "fonts:subset": "bash scripts/subset-fonts.sh"
@@ -37,6 +39,7 @@
     "@lhci/cli": "0.15.1",
     "@types/mdast": "4.0.4",
     "@types/node": "22.19.1",
+    "firebase-tools": "15.30.2",
     "html-validate": "11.16.0",
     "linkinator": "8.1.0",
     "typescript": "6.0.3",

@@ -3,3 +3,6 @@ minimumReleaseAge: 10080
 
 allowBuilds:
   esbuild: true
+  # firebase-tools dependencies; hosting deploys don't need their install scripts.
+  protobufjs: false
+  re2: false
