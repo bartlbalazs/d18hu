@@ -49,8 +49,12 @@ ranking signal.
 
 - No JavaScript frameworks, CSS frameworks, or UI component libraries.
 - JavaScript is optional progressive enhancement only, vanilla, and ≤ 20 KB compressed site-wide.
-- No third-party trackers, ad scripts, social embeds, or external CDNs at runtime. Analytics,
-  if ever added, MUST be privacy-friendly, cookieless and ≤ 5 KB.
+- No third-party trackers, ad scripts, social embeds, or external CDNs at runtime, with one
+  exception: a single analytics service MAY be used if it loads, sets cookies or sends data only
+  after the visitor's explicit consent, refusing is as easy as accepting, and it never delays the
+  first view. Without consent the site MUST make no third-party requests. The consent notice and
+  its script count towards the 20 KB JavaScript budget; the service's own script, loaded only
+  after consent, does not, but pages MUST still meet Principle II after consent.
 - At most two self-hosted web-font families (e.g., one display serif and one text sans), in
   WOFF2 with `font-display: swap`, subset to the characters the site's language needs, loading
   only the weights and styles actually used; total font payload ≤ 150 KB compressed.
@@ -111,4 +115,4 @@ A change MUST NOT be merged unless:
   for adding a principle or materially expanding guidance, PATCH for clarifications.
 - Every plan and code review MUST verify compliance; unjustified complexity is rejected.
 
-**Version**: 1.1.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-28
+**Version**: 1.2.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-09-29
