@@ -64,6 +64,24 @@
       "fetchedAt": "2026-09-28T20:28:36.871Z"
     },
     {
+      "originalUrl": "assets/events/budapest_1873.jpg",
+      "file": "local-budapest-1873-b55fa53a.jpg",
+      "sha256": "b55fa53ab3f7ec68deaeb2455490c3fef7365c7962f22b1c7c229a23f605a6d1",
+      "width": 1899,
+      "height": 1390,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-29T13:01:53.802Z"
+    },
+    {
+      "originalUrl": "assets/events/budapest_1903.jpg",
+      "file": "local-budapest-1903-3a775da3.jpg",
+      "sha256": "3a775da3fee31378eed6e0dacabf87a35bbd98ba1f7cc680df4468359b116d12",
+      "width": 2719,
+      "height": 3141,
+      "contentType": "image/jpeg",
+      "fetchedAt": "2026-09-29T13:01:53.809Z"
+    },
+    {
       "originalUrl": "assets/events/gazkeszulek-gyartas.png",
       "file": "local-gazkeszulek-gyartas-eccdbdc7.png",
       "sha256": "eccdbdc7cff08be3f57f81efa7251cfa4837dcf333258719614907c819a8f33d",
@@ -80,6 +98,24 @@
       "height": 158,
       "contentType": "image/png",
       "fetchedAt": "2026-09-28T20:58:01.674Z"
+    },
+    {
+      "originalUrl": "assets/events/ket_tanar.png",
+      "file": "local-ket-tanar-1eb06fa3.png",
+      "sha256": "1eb06fa354f6757521fbe11e631d1175915858cddb29c4ff8244dcc5d85e2c80",
+      "width": 1012,
+      "height": 1791,
+      "contentType": "image/png",
+      "fetchedAt": "2026-09-29T13:01:53.812Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz_1916.png",
+      "file": "local-spitz-1916-17255202.png",
+      "sha256": "1725520277c6c184ee36f97beb18fad3804b598572c50a88b99521acb74b19d2",
+      "width": 399,
+      "height": 936,
+      "contentType": "image/png",
+      "fetchedAt": "2026-09-29T13:01:53.814Z"
     }
   ]
 }

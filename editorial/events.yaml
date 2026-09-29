@@ -5,6 +5,13 @@
 1873-nov-17-pest-buda-es-obuda:
   title: Megszületik Budapest
   titleNeedsReview: true
+  image:
+    alt: "Korabeli térkép: Budapest és környékének beépített területe 1873-ban, a beépült városrészek rózsaszínnel, a környező települések kékkel jelölve"
+    caption: Budapest és környékének beépített területe 1873-ban. A leendő Dembinszky utca környéke ekkor még a beépített városon kívül esik.
+    credit: Cartography Associates, David Rumsey Collection
+    license: ""
+    depictsHouse: false
+    kind: document
 1889-megnyilik-a-parizsi-vilagkiallitas:
   title: Megnyílik a párizsi világkiállítás
   titleNeedsReview: true
@@ -35,6 +42,13 @@
 1901-apr-20-kozolt-datum-a-heted7-szerint-ezen:
   title: A közölt átadási nap
   titleNeedsReview: true
+  image:
+    alt: "Korabeli színes várostérkép: Budapest székes főváros térképe, rajzolta Homolka József, 1903"
+    caption: Homolka József Budapest-térképe, 1903. Az Erzsébetváros utcahálózata néhány évvel a ház közölt átadása után.
+    credit: Homolka József, Eggenberger-féle könyvkereskedés, 1903
+    license: ""
+    depictsHouse: false
+    kind: document
 1901-korul-a-haz-tervezoje-valoszinuleg:
   title: Mellinger Artúr, a valószínű tervező
   titleNeedsReview: true
@@ -67,6 +81,20 @@
 1904-jul-1-jul-10-eltunik-tarcsai-viktor-a:
   title: Eltűnik egy repülőgép-tervező
   titleNeedsReview: true
+  image:
+    alt: "Korabeli újságcikk „Két tanár eltünése” címmel, amely Tarcsai Viktor eltűnéséről és a Dembinszky-utca 18. alatti lakásról ír"
+    caption: A „Két tanár eltünése” című hír a Budapesti Naplóban, 1904. július 10.
+    credit: ""
+    license: ""
+    sourceUrl: https://www.epa.hu/04300/04337/01963/pdf/EPA04337_budapesti_naplo_1904_190.pdf
+    sourceLabel: Budapesti Napló, 1904
+    depictsHouse: false
+    kind: document
+  highlight:
+    kind: transcription
+    label: Korabeli hír · Budapesti Napló, 1904
+    text: Felesége — akit a tanár Dembinszky-utca 18. szám alatti lakásán minden segitség nélkül hagyott — nem hiszi, hogy rosszakaratulag hagyta volna el, inkább attól fél, hogy férje valamely szerencsétlenség áldozata lett.
+    verified: false
 1905-egy-korabeli-ingatlanforgalmi-kozles:
   title: Spitzék megveszik az István út 11.-et
   titleNeedsReview: true
@@ -94,6 +122,13 @@
 1916-az-1916-os-hazjegyzek:
   title: Az 1916-os házjegyzék
   titleNeedsReview: true
+  image:
+    alt: "Korabeli házjegyzék Dembinski-utcza oldala: 17 Kalix Ödön és neje, 18 Spitz Ján. Fer. s neje 4261/d"
+    caption: A Dembinszky utca házainak tulajdonosai az 1916-os házjegyzékben. A 18. számnál Spitz János Ferenc és felesége, 4261/d helyrajzi számmal.
+    credit: ""
+    license: ""
+    depictsHouse: false
+    kind: document
 1917-orosz-forradalmak-megszunik-a:
   title: Orosz forradalmak
   titleNeedsReview: true
