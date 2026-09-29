@@ -27,7 +27,7 @@ const imageNodes = await Promise.all(
         caption: event.image!.caption,
         credit: event.image!.credit,
         sourceUrl: event.image!.sourceUrl,
-        eventId: event.id,
+        path: `/#${event.id}`,
       });
     }),
 );

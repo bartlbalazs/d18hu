@@ -1,0 +1,135 @@
+/* Long-form story pages (Építők, Névadó). Each page adds its own accents on top of these. */
+.story {
+  padding-block: 3rem 2rem;
+  max-width: 44rem;
+}
+
+.story h1 {
+  font-size: clamp(2.4rem, 8vw, 4rem);
+  margin-block: 0.5rem 1.25rem;
+}
+
+.story h1,
+.story h2,
+.story h3 {
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.story__lead {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.3rem, 3.6vw, 1.6rem);
+  line-height: 1.35;
+  color: var(--d18-walnut);
+}
+
+.story .story__opening {
+  margin-block: 2rem 2.5rem;
+}
+
+.story .story__opening--portrait {
+  max-width: 26rem;
+}
+
+.story p + p,
+.story p + ul,
+.story ul + p {
+  margin-top: 1rem;
+}
+
+.story h2 {
+  font-size: clamp(1.8rem, 5.5vw, 2.4rem);
+  margin-block: 3rem 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--d18-rule);
+}
+
+.story h3 {
+  font-size: clamp(1.4rem, 4vw, 1.75rem);
+  margin-block: 2rem 0.75rem;
+}
+
+/* A sentence from the text set apart as a visual accent. */
+.story-highlight {
+  margin: 2rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 3px solid var(--d18-sand);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.35rem, 4vw, 1.7rem);
+  line-height: 1.3;
+  color: var(--d18-walnut);
+}
+
+.ledger {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1rem;
+  list-style: none;
+  border: 1px solid var(--d18-rule);
+  background: var(--d18-paper-alt);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-variant-numeric: lining-nums;
+}
+
+.ledger li {
+  display: flex;
+  gap: 0.75rem;
+  padding-block: 0.2rem;
+  color: var(--d18-muted);
+}
+
+.ledger__number {
+  min-width: 2.2rem;
+}
+
+.ledger__subject {
+  color: var(--d18-ink);
+  font-weight: 500;
+  border-top: 1px dashed var(--d18-rule);
+}
+
+.story__closing {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.6vw, 1.55rem);
+  line-height: 1.35;
+}
+
+.story sup {
+  line-height: 0;
+  font-size: 0.72em;
+}
+
+.story sup a {
+  display: inline-block;
+  padding-inline: 0.1em;
+  text-decoration: none;
+}
+
+.sources {
+  margin-top: 3.5rem;
+  font-size: 0.95rem;
+  color: var(--d18-muted);
+}
+
+.sources ol,
+.sources ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.sources li + li {
+  margin-top: 0.6rem;
+}
+
+.sources li {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
+.sources li:target {
+  background: var(--d18-paper-alt);
+  outline: 2px solid var(--d18-sand);
+  outline-offset: 4px;
+}

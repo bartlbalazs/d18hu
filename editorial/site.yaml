@@ -47,6 +47,3 @@ impresszum:
   author: ""
   contactEmail: ""
   copyrightNotice: ""
-
-# Published articles for /irasok/: { slug, title, date: YYYY-MM-DD, summary }
-articles: []

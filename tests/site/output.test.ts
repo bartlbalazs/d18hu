@@ -1,10 +1,19 @@
 // Assertions over the built site in dist/ (run after a build: pnpm build:draft && pnpm test:site).
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { parseTimeline } from '../../src/lib/timeline/parse.ts';
 
 const read = (path: string) => readFileSync(`dist/${path}`, 'utf8');
 const count = (html: string, pattern: RegExp) => (html.match(pattern) ?? []).length;
+const jsonLdTypes = (html: string) => {
+  const block = /<script type="application\/ld\+json">(.*?)<\/script>/s.exec(html)?.[1] ?? '{"@graph":[]}';
+  return JSON.parse(block)['@graph'].map((node: { '@type': string }) => node['@type']);
+};
+const navLinks = (html: string, label: string) => {
+  const nav = new RegExp(`<nav aria-label="${label}">([\\s\\S]*?)</nav>`).exec(html)?.[1] ?? '';
+  return [...nav.matchAll(/href="([^"#]+)"/g)].map((match) => match[1]);
+};
+const PAGES = ['index.html', 'epitok/index.html', 'nevado/index.html', 'impresszum/index.html'];
 
 describe('built timeline page', () => {
   const html = read('index.html');
@@ -74,7 +83,7 @@ describe('built timeline page', () => {
 });
 
 describe('every page', () => {
-  for (const page of ['index.html', 'irasok/index.html', 'impresszum/index.html']) {
+  for (const page of PAGES) {
     it(`${page} carries the required metadata`, () => {
       const html = read(page);
       expect(html).toContain('<html lang="hu">');
@@ -91,11 +100,57 @@ describe('every page', () => {
       expect(html).toContain('href="/impresszum/"');
       expect(html).toMatch(/\.site-header\{[^}]*position:sticky/);
     });
+
+    it(`${page} lists the pages in the menu as Építők, Névadó, Impresszum`, () => {
+      const html = read(page);
+      const expected = ['/epitok/', '/nevado/', '/impresszum/'];
+      expect(navLinks(html, 'Fő navigáció').filter((href) => href !== '/')).toEqual(expected);
+      expect(navLinks(html, 'Lábléc')).toEqual(expected);
+    });
   }
+
+  it('no longer publishes or links the Írások page', () => {
+    expect(existsSync('dist/irasok')).toBe(false);
+    const htmlFiles = readdirSync('dist', { recursive: true, encoding: 'utf8' }).filter((file) => file.endsWith('.html'));
+    for (const file of htmlFiles) expect(read(file)).not.toContain('href="/irasok/"');
+    const sitemap = read('sitemap.xml');
+    expect(sitemap).toMatch(/\/epitok\/<\/loc>/);
+    expect(sitemap).toMatch(/\/nevado\/<\/loc>/);
+    expect(sitemap).not.toContain('/irasok/');
+  });
 
   it('publishes sitemap, robots and manifest', () => {
     expect(read('sitemap.xml')).toContain('<loc>');
     expect(read('robots.txt')).toMatch(/User-agent/);
     expect(JSON.parse(read('site.webmanifest')).icons).toHaveLength(2);
+  });
+});
+
+describe('story pages', () => {
+  for (const page of ['epitok/index.html', 'nevado/index.html']) {
+    it(`${page} is an article with one eager opening figure and clean source links`, () => {
+      const html = read(page);
+      expect(html).toContain('<meta property="og:type" content="article"');
+      expect(jsonLdTypes(html)).toEqual(expect.arrayContaining(['WebSite', 'BreadcrumbList', 'Article', 'ImageObject']));
+      expect(count(html, /<figure class="evidence/g)).toBe(1);
+      expect(html).toMatch(/<figure class="evidence[\s\S]*?loading="eager"/);
+      expect(html).not.toContain('utm_');
+    });
+  }
+
+  it('Építők ends with a list of each cited source once', () => {
+    const sources = /<section class="sources"[\s\S]*?<\/section>/.exec(read('epitok/index.html'))?.[0] ?? '';
+    const links = [...sources.matchAll(/href="(https:[^"]+)"/g)].map((match) => match[1]);
+    expect(links).toHaveLength(3);
+    expect(new Set(links).size).toBe(3);
+  });
+
+  it('Névadó links every source marker to one of its 13 numbered sources', () => {
+    const html = read('nevado/index.html');
+    const ids = [...html.matchAll(/id="forras-(\d+)"/g)].map((match) => Number(match[1]));
+    expect(ids).toEqual(Array.from({ length: 13 }, (_, index) => index + 1));
+    const markers = [...html.matchAll(/href="#forras-(\d+)"/g)].map((match) => Number(match[1]));
+    expect(new Set(markers)).toEqual(new Set(ids));
+    expect(html).not.toContain('Javasolt nyitókép');
   });
 });

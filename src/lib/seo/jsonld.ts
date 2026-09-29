@@ -63,7 +63,7 @@ export function buildingNode(
 
 export function imageNode(
   site: URL,
-  image: { contentUrl: string; caption: string; credit: string; sourceUrl?: string; eventId: string },
+  image: { contentUrl: string; caption: string; credit: string; sourceUrl?: string; path: string },
 ): JsonLd {
   return {
     '@type': 'ImageObject',
@@ -71,7 +71,23 @@ export function imageNode(
     caption: image.caption,
     ...(image.credit ? { creditText: image.credit } : {}),
     ...(image.sourceUrl ? { acquireLicensePage: image.sourceUrl } : {}),
-    url: absoluteUrl(`/#${image.eventId}`, site),
+    url: absoluteUrl(image.path, site),
+  };
+}
+
+export function articleNode(
+  site: URL,
+  article: { headline: string; description: string; path: string; imageUrl: string },
+): JsonLd {
+  return {
+    '@type': 'Article',
+    '@id': absoluteUrl(`${article.path}#article`, site),
+    headline: article.headline,
+    description: article.description,
+    image: article.imageUrl,
+    inLanguage: 'hu',
+    mainEntityOfPage: absoluteUrl(article.path, site),
+    isPartOf: { '@id': absoluteUrl('/#website', site) },
   };
 }
 

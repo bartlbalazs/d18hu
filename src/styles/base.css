@@ -275,7 +275,7 @@ a:hover {
   min-height: 44px;
 }
 
-/* Simple text pages (Írások, Impresszum) */
+/* Simple text pages (Impresszum) */
 .page {
   padding-block: 3rem 1rem;
   max-width: 44rem;
@@ -309,18 +309,4 @@ a:hover {
   border-left: 3px solid var(--d18-sand);
   padding: 0.75rem 1rem;
   background: var(--d18-paper-alt);
-}
-
-.article-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.article-list li + li {
-  margin-top: 1.5rem;
-}
-
-.article-list h2 {
-  font-size: 1.8rem;
 }

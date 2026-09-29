@@ -14,9 +14,10 @@ interface Props {
   description: string;
   path: string;
   jsonLd: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
 }
 
-const { title, description, path, jsonLd } = Astro.props;
+const { title, description, path, jsonLd, ogType } = Astro.props;
 const { isDraft, missingItems, eras } = loadSiteData();
 ---
 
@@ -27,7 +28,7 @@ const { isDraft, missingItems, eras } = loadSiteData();
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={textFont} as="font" type="font/woff2" crossorigin />
-    <SeoHead title={title} description={description} path={path} isDraft={isDraft} jsonLd={jsonLd} />
+    <SeoHead title={title} description={description} path={path} isDraft={isDraft} jsonLd={jsonLd} ogType={ogType} />
   </head>
   <body>
     <a class="skip-link" href="#tartalom">Ugrás a tartalomra</a>

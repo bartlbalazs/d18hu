@@ -3,12 +3,14 @@
 A static, Hungarian-language website telling the history of the condominium building at
 Dembinszky utca 18., Budapest, from 1873 to 1968. It is one long narrative timeline: an opening
 section, a legend, four full-height era openers and every event from the research file, plus
-`/irasok/` (articles) and `/impresszum/` (legal notice).
+two story pages, `/epitok/` (the builders) and `/nevado/` (the street's namesake), and
+`/impresszum/` (legal notice).
 
 The site is plain HTML generated at build time with [Astro](https://astro.build/). It works
 without JavaScript; the only script is an optional zoomable image viewer
 ([PhotoSwipe](https://photoswipe.com/)). It was specified and built with
-[GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`.
+[GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/` and
+`specs/002-epitok-nevado-pages/`.
 
 ## Requirements
 
@@ -59,13 +61,14 @@ Regular builds never touch the network: archive images and fonts are committed.
 
 ## Editing the content
 
-All content lives in four places. You never need to touch the code to change what the site says.
+The timeline content lives in four places, and you never need to touch the code to change it.
+The two story pages are the exception (see [Story pages](#story-pages)).
 
 | File | What it holds |
 |---|---|
 | `input/timeline.md` | The research timeline: four era tables, one row per event. Dates and descriptions are published word for word. |
 | `editorial/events.yaml` | Per-event extras, keyed by event id: title, image caption/alt/credit/licence, document highlight |
-| `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum, article list |
+| `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum |
 | `assets/facade.png` | Present-day facade photo at the top of the page |
 
 Workflow: run `scripts/start-local.sh`, edit a file, reload the browser (restart the script if a
@@ -143,12 +146,13 @@ used for search engines (`building`) and the Impresszum. Empty strings count as 
 fill the Impresszum with placeholder data. To replace the facade photo, overwrite
 `assets/facade.png` and update `hero.photo` (alt, caption, credit).
 
-### Articles
+### Story pages
 
-`articles` in `editorial/site.yaml` fills the list on `/irasok/` (`slug`, `title`,
-`date: YYYY-MM-DD`, `summary`). The article pages themselves are not built yet, so an entry
-there links to a page that does not exist (`pnpm test:site` reports it). Leave the list empty
-until article pages are added.
+`/epitok/` and `/nevado/` are written by hand in `src/pages/epitok/index.astro` and
+`src/pages/nevado/index.astro`, so each can have its own layout (opening image, pull quotes,
+record excerpts, numbered sources). Their first versions were transcribed from the drafts in
+`input/epitok.md` and `input/nevado.md`; the build never reads those drafts, so edit the
+`.astro` files to change a story page. The Névadó portrait is committed in `src/assets/pages/`.
 
 ### Layout and design
 
@@ -173,13 +177,15 @@ Run `pnpm build:draft` to see the current list. At the time of writing it contai
 
 ```text
 input/timeline.md        research source (read-only for the build)
+input/epitok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
 editorial/               owner-maintained YAML (titles, captions, credits, site texts)
 assets/facade.png        hero photo
 scripts/                 image download/check and font subsetting
 src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers
 src/components/          Astro components (header, hero, legend, era opener, event, figure)
-src/pages/               /, /irasok/, /impresszum/, sitemap, robots, manifest, icons
+src/pages/               /, /epitok/, /nevado/, /impresszum/, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
+src/assets/pages/        story page images (committed)
 src/fonts/               subset WOFF2 fonts + licences (committed)
 tests/unit/, tests/site/ Vitest suites
 specs/                   Spec Kit feature spec, plan, research, data model, contracts

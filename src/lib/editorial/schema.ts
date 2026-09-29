@@ -38,13 +38,6 @@ const eraEditorialSchema = z.strictObject({
   backgroundYear: z.string().regex(/^\d{4}$/).optional(),
 });
 
-export const articleSchema = z.strictObject({
-  slug: z.string().regex(/^[a-z0-9-]+$/),
-  title: z.string(),
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  summary: z.string(),
-});
-
 export const siteEditorialSchema = z.strictObject({
   building: z.strictObject({
     name: z.string(),
@@ -81,7 +74,6 @@ export const siteEditorialSchema = z.strictObject({
     contactEmail: z.string().default(''),
     copyrightNotice: z.string().default(''),
   }),
-  articles: z.array(articleSchema).default([]),
 });
 
 export type EventImageEditorial = z.infer<typeof eventImageEditorialSchema>;
@@ -89,4 +81,3 @@ export type DocumentHighlight = z.infer<typeof documentHighlightSchema>;
 export type EventEditorial = z.infer<typeof eventEditorialSchema>;
 export type EventsEditorial = z.infer<typeof eventsEditorialSchema>;
 export type SiteEditorial = z.infer<typeof siteEditorialSchema>;
-export type Article = z.infer<typeof articleSchema>;
