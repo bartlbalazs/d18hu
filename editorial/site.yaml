@@ -55,4 +55,4 @@ impresszum:
 # appears in every published page. Set it only to the owner's own property ID; leave it empty to
 # build without analytics. Draft builds never include analytics.
 analytics:
-  measurementId: ''
+  measurementId: 'G-EX52JK1PSJ'
