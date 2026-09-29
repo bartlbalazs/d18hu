@@ -138,13 +138,6 @@ describe('story pages', () => {
     });
   }
 
-  it('Építők ends with a list of each cited source once', () => {
-    const sources = /<section class="sources"[\s\S]*?<\/section>/.exec(read('epitok/index.html'))?.[0] ?? '';
-    const links = [...sources.matchAll(/href="(https:[^"]+)"/g)].map((match) => match[1]);
-    expect(links).toHaveLength(3);
-    expect(new Set(links).size).toBe(3);
-  });
-
   it('Névadó links every source marker to one of its 13 numbered sources', () => {
     const html = read('nevado/index.html');
     const ids = [...html.matchAll(/id="forras-(\d+)"/g)].map((match) => Number(match[1]));

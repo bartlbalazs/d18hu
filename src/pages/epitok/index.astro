@@ -1,5 +1,5 @@
 ---
-import facade from '../../../assets/facade4.png';
+import facadeDetail from '../../../assets/facade5.png';
 import EvidenceFigure from '../../components/EvidenceFigure.astro';
 import Base from '../../layouts/Base.astro';
 import { fullSizeImage } from '../../lib/images/archive-images.ts';
@@ -13,7 +13,9 @@ const path = '/epitok/';
 const title = 'Építők – Dembinszky utca 18.';
 const description =
   'Ki építtette és ki tervezte a Dembinszky utca 18.-at? Spitz János Ferenc, Mellinger Artúr és egy vitatott Hübner–Kalix-attribúció nyomában.';
-const openingImage = await fullSizeImage(facade);
+const openingImageAlt =
+  'A Dembinszky utca 18. homlokzatának részlete alulról: az ablakok körüli faragott, indás díszítésből női arcok néznek ki';
+const openingImage = await fullSizeImage(facadeDetail);
 const jsonLd = [
   websiteNode(siteUrl, site.building.name),
   breadcrumbNode(siteUrl, [
@@ -39,13 +41,13 @@ const jsonLd = [
     </p>
 
     <EvidenceFigure
-      class="story__opening story__opening--portrait"
-      image={facade}
-      alt={site.hero.photo.alt}
+      class="story__opening"
+      image={facadeDetail}
+      alt={openingImageAlt}
       caption={site.hero.photo.caption}
       credit={site.hero.photo.credit}
       widths={[400, 600, 784]}
-      sizes="(min-width: 480px) 416px, 100vw"
+      sizes="(min-width: 760px) 704px, 100vw"
       eager
       quality={40}
     />
@@ -267,29 +269,6 @@ const jsonLd = [
     <p>Az egyik egy MTK-tornászból, udvari szabócég partneréből, ingatlanbefektetőből és pénzügyi szervezőből lett nagyvárosi vállalkozóé, aki pályája egy pontján már a magyar nyersfilmgyártás korai kísérletének igazgatóságában ült. A másik egy olyan építészé, aki még diploma előtt házat tervezett, később majmokat, sasokat és szarvasokat tett saját bérpalotájára, majd pályája végén már neonfényes kávéházak modern Budapestjét rajzolta.</p>
 
     <p class="story__closing">Valahol e két történet metszéspontjában áll a Dembinszky utca 18.</p>
-
-
-    <section class="sources" aria-labelledby="forrasok">
-      <h2 id="forrasok">Források</h2>
-      <ul>
-        <li>
-          <a href="https://www.bp16.hu/sites/default/files/hir/2024/dokumentum/Vegleges-2421.pdf" rel="noopener noreferrer">
-            A XVI. kerület helytörténeti kiadványa (bp16.hu)
-          </a>
-          — a Continental Nyersfilm- és Fotóipar Rt. sashalmi gyára.
-        </li>
-        <li>
-          <a href="https://filmarchiv.hu/files/document/document/763/Filmhiradok%201900-1930.pdf" rel="noopener noreferrer">
-            Magyar Nemzeti Filmarchívum: Filmhíradók 1900–1930
-          </a>
-          — a Concordia Film 1922. áprilisi híradója „Continental anyagon”.
-        </li>
-        <li>
-          <a href="https://kultura.hu/junius-14-en-tortent-3/" rel="noopener noreferrer">Kultura.hu: Június 14-én történt</a>
-          — Rott Andor pályája.
-        </li>
-      </ul>
-    </section>
   </article>
 </Base>
 
