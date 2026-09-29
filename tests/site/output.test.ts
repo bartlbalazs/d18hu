@@ -5,10 +5,11 @@ import { parseTimeline } from '../../src/lib/timeline/parse.ts';
 
 const read = (path: string) => readFileSync(`dist/${path}`, 'utf8');
 const count = (html: string, pattern: RegExp) => (html.match(pattern) ?? []).length;
-const jsonLdTypes = (html: string) => {
+const jsonLdGraph = (html: string): Record<string, unknown>[] => {
   const block = /<script type="application\/ld\+json">(.*?)<\/script>/s.exec(html)?.[1] ?? '{"@graph":[]}';
-  return JSON.parse(block)['@graph'].map((node: { '@type': string }) => node['@type']);
+  return JSON.parse(block)['@graph'];
 };
+const jsonLdTypes = (html: string) => jsonLdGraph(html).map((node) => node['@type']);
 const navLinks = (html: string, label: string) => {
   const nav = new RegExp(`<nav aria-label="${label}">([\\s\\S]*?)</nav>`).exec(html)?.[1] ?? '';
   return [...nav.matchAll(/href="([^"#]+)"/g)].map((match) => match[1]);
@@ -145,5 +146,24 @@ describe('story pages', () => {
     const markers = [...html.matchAll(/href="#forras-(\d+)"/g)].map((match) => Number(match[1]));
     expect(new Set(markers)).toEqual(new Set(ids));
     expect(html).not.toContain('Javasolt nyitókép');
+  });
+});
+
+describe('impresszum page', () => {
+  const html = read('impresszum/index.html');
+
+  it('shows the operator, contact and copyright, and invites corrections', () => {
+    expect(html).not.toContain('feltöltés alatt');
+    expect(html).toContain('Bartl Balázs');
+    expect(html).toContain('szabadon idézhetők');
+    expect(count(html, /href="mailto:bartlbalazs@gmail\.com"/g)).toBe(2);
+    expect(html).toContain('Ha hibát talál');
+  });
+
+  it('describes the operator as the site publisher', () => {
+    const publisher = jsonLdGraph(html).find((node) => node['@type'] === 'Person');
+    expect(publisher).toMatchObject({ name: 'Bartl Balázs', email: 'mailto:bartlbalazs@gmail.com' });
+    const website = jsonLdGraph(read('index.html')).find((node) => node['@type'] === 'WebSite');
+    expect(website?.publisher).toEqual({ '@id': publisher?.['@id'] });
   });
 });

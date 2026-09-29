@@ -17,7 +17,7 @@ const openingImageAlt =
   'A Dembinszky utca 18. homlokzatának részlete alulról: az ablakok körüli faragott, indás díszítésből női arcok néznek ki';
 const openingImage = await fullSizeImage(facadeDetail);
 const jsonLd = [
-  websiteNode(siteUrl, site.building.name),
+  websiteNode(siteUrl, site),
   breadcrumbNode(siteUrl, [
     { name: site.building.name, path: '/' },
     { name: 'Építők', path },

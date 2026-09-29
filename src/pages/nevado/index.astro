@@ -22,7 +22,7 @@ const portraitSource = {
 };
 const openingImage = await fullSizeImage(portrait);
 const jsonLd = [
-  websiteNode(siteUrl, site.building.name),
+  websiteNode(siteUrl, site),
   breadcrumbNode(siteUrl, [
     { name: site.building.name, path: '/' },
     { name: 'Névadó', path },

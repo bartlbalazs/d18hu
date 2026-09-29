@@ -1,4 +1,5 @@
 import type { TimelineEvent } from '../editorial/assemble.ts';
+import { isMissingValue } from '../editorial/audit.ts';
 import type { SiteEditorial } from '../editorial/schema.ts';
 
 type JsonLd = Record<string, unknown>;
@@ -7,8 +8,28 @@ export function absoluteUrl(path: string, site: URL): string {
   return new URL(path, site).href;
 }
 
-export function websiteNode(site: URL, name: string): JsonLd {
-  return { '@type': 'WebSite', '@id': absoluteUrl('/#website', site), url: site.href, name, inLanguage: 'hu' };
+const PUBLISHER_ID = '/impresszum/#publisher';
+
+/** Names the Impresszum operator as publisher once the operator is filled in. */
+export function websiteNode(site: URL, editorial: SiteEditorial): JsonLd {
+  return {
+    '@type': 'WebSite',
+    '@id': absoluteUrl('/#website', site),
+    url: site.href,
+    name: editorial.building.name,
+    inLanguage: 'hu',
+    ...(isMissingValue(editorial.impresszum.operator) ? {} : { publisher: { '@id': absoluteUrl(PUBLISHER_ID, site) } }),
+  };
+}
+
+export function publisherNode(site: URL, impresszum: SiteEditorial['impresszum']): JsonLd {
+  return {
+    '@type': 'Person',
+    '@id': absoluteUrl(PUBLISHER_ID, site),
+    name: impresszum.operator,
+    email: `mailto:${impresszum.contactEmail}`,
+    url: absoluteUrl('/impresszum/', site),
+  };
 }
 
 export function breadcrumbNode(site: URL, trail: { name: string; path: string }[]): JsonLd {

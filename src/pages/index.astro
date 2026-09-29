@@ -32,7 +32,7 @@ const imageNodes = await Promise.all(
     }),
 );
 const jsonLd = [
-  websiteNode(siteUrl, site.building.name),
+  websiteNode(siteUrl, site),
   breadcrumbNode(siteUrl, [{ name: site.building.name, path: '/' }]),
   buildingNode(siteUrl, site.building, new URL(facadeImage.src, siteUrl).href, events),
   ...imageNodes,

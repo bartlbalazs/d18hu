@@ -169,9 +169,7 @@ Run `pnpm build:draft` to see the current list. At the time of writing it contai
    name) and fill `credit` and `license`; add the facade photo credit in `editorial/site.yaml`.
 3. **Document highlight**: check the 1903 Maulner advertisement transcription against the
    original, then set `verified: true` (unverified highlights are never shown).
-4. **Impresszum**: operator, author, contact e-mail and copyright notice (real data only).
-5. **Building postal code** (and optionally geo coordinates) in `editorial/site.yaml`.
-6. **Final address**: build with `SITE_URL=https://… pnpm build:release`.
+4. **Final address**: build with `SITE_URL=https://… pnpm build:release`.
 
 ## Project layout
 

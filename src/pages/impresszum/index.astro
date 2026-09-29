@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { isMissingValue } from '../../lib/editorial/audit.ts';
-import { breadcrumbNode, websiteNode } from '../../lib/seo/jsonld.ts';
+import { breadcrumbNode, publisherNode, websiteNode } from '../../lib/seo/jsonld.ts';
 import { loadSiteData } from '../../lib/site-data.ts';
 
 const { site } = loadSiteData();
@@ -15,11 +15,12 @@ const rows = [
 ];
 const complete = rows.every((row) => !isMissingValue(row.value));
 const jsonLd = [
-  websiteNode(siteUrl, site.building.name),
+  websiteNode(siteUrl, site),
   breadcrumbNode(siteUrl, [
     { name: site.building.name, path: '/' },
     { name: 'Impresszum', path: '/impresszum/' },
   ]),
+  ...(complete ? [publisherNode(siteUrl, impresszum)] : []),
 ];
 ---
 
@@ -44,6 +45,14 @@ const jsonLd = [
         </dl>
       ) : (
         <p class="notice">Az impresszum adatai feltöltés alatt állnak.</p>
+      )
+    }
+    {
+      complete && (
+        <p>
+          Ha hibát talál, vagy emléke, fényképe, dokumentuma van a házról és lakóiról, kérjük, írjon a{' '}
+          <a href={`mailto:${impresszum.contactEmail}`}>{impresszum.contactEmail}</a> címre.
+        </p>
       )
     }
     <p>
