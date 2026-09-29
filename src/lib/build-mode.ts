@@ -8,15 +8,11 @@ export function getBuildMode(env: Record<string, string | undefined> = process.e
   return mode;
 }
 
-/** Placeholder origin used only for draft builds when no site URL is configured. */
-export const DRAFT_FALLBACK_SITE_URL = 'https://draft.invalid';
+/** The published address; SITE_URL overrides it, e.g. for a staging copy. */
+export const DEFAULT_SITE_URL = 'https://www.dembinszky18.hu/';
 
 export function resolveSiteUrl(env: Record<string, string | undefined> = process.env): string {
   const configured = env.SITE_URL?.trim();
   if (configured) return configured.endsWith('/') ? configured : `${configured}/`;
-  return `${DRAFT_FALLBACK_SITE_URL}/`;
-}
-
-export function isSiteUrlConfigured(siteUrl: string): boolean {
-  return !siteUrl.startsWith(DRAFT_FALLBACK_SITE_URL);
+  return DEFAULT_SITE_URL;
 }

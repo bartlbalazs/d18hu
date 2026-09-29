@@ -27,6 +27,7 @@ const jsonLd = [
     contentUrl: openingImage.src,
     caption: site.hero.photo.caption,
     credit: site.hero.photo.credit,
+    sourceUrl: site.hero.photo.source?.url,
     path,
   }),
 ];
@@ -46,6 +47,7 @@ const jsonLd = [
       alt={openingImageAlt}
       caption={site.hero.photo.caption}
       credit={site.hero.photo.credit}
+      source={site.hero.photo.source}
       widths={[400, 600, 784]}
       sizes="(min-width: 760px) 704px, 100vw"
       eager

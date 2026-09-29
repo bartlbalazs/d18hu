@@ -22,7 +22,10 @@ hero:
   photo:
     alt: A Dembinszky utca 18. homlokzata ma, dúsan faragott, növényi díszítésű ablakkeretekkel
     caption: A ház mai homlokzata
-    credit: ""
+    credit: "Fotó: Globetrotter19, CC BY-SA 3.0, kivágás"
+    source:
+      label: Wikimedia Commons
+      url: https://commons.wikimedia.org/wiki/Category:Dembinszky_utca_18_(Budapest)
 
 eras:
   "1873-1913":

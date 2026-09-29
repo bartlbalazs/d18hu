@@ -60,6 +60,7 @@ export const siteEditorialSchema = z.strictObject({
       alt: z.string().default(''),
       caption: z.string().default(''),
       credit: z.string().default(''),
+      source: z.strictObject({ label: z.string(), url: httpsUrl }).optional(),
     }),
   }),
   eras: z.strictObject(

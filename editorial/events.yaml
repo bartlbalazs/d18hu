@@ -4,71 +4,67 @@
 # - A highlight is only shown when "verified: true": check the transcription against the original first.
 1873-nov-17-pest-buda-es-obuda:
   title: Megszületik Budapest
-  titleNeedsReview: true
   image:
     alt: "Korabeli térkép: Budapest és környékének beépített területe 1873-ban, a beépült városrészek rózsaszínnel, a környező települések kékkel jelölve"
     caption: Budapest és környékének beépített területe 1873-ban. A leendő Dembinszky utca környéke ekkor még a beépített városon kívül esik.
     credit: Cartography Associates, David Rumsey Collection
-    license: ""
+    license: CC BY-NC-SA 3.0
     depictsHouse: false
     kind: document
 1889-megnyilik-a-parizsi-vilagkiallitas:
   title: Megnyílik a párizsi világkiállítás
-  titleNeedsReview: true
 1889-a-korabbi-duloutbol-kialakitott:
   title: Nevet kap a Dembinszky utca
-  titleNeedsReview: true
 1896-millenniumi-unnepsegek-es-kiallitas:
   title: Millenniumi ünnepségek a Városligetben
-  titleNeedsReview: true
+  image:
+    alt: "A Városligeti-tó a millenniumi kiállítás idején: a vízen csónakok, a túlparton fák, pavilonok és egy nagy, gömb alakú léggömb"
+    caption: A Városligeti-tó a millenniumi kiállítás léggömbjével, 1896. Klösz György felvétele.
+    credit: Fortepan / Budapest Főváros Levéltára, Klösz György, HU.BFL.XV.19.d.1.09.036
+    license: CC BY-SA 3.0
+    sourceUrl: https://fortepan.hu/hu/photos/?id=82710
+    sourceLabel: Fortepan 82710
+    depictsHouse: false
+    kind: photo
 1896-1898-korul-a-kesobb-csikagokent-emlegetett:
   title: Beépül a „Csikágó”
-  titleNeedsReview: true
 1899-egy-helytorteneti-feldolgozas-szerint:
   title: Márkus Géza meg nem valósult terve
-  titleNeedsReview: true
 1900-korul-klosz-gyorgy-felvetelen-a:
   title: Klösz György felvétele az utcatorkolatról
-  titleNeedsReview: true
   image:
     alt: Korabeli utcakép a Rottenbiller utca és a Dembinszky utca torkolatáról
     caption: "Klösz György felvétele a Rottenbiller utca és a Dembinszky utca torkolatáról, 1900 körül. Korrajz: nem bizonyítottan a 18-as házat mutatja."
     credit: Fortepan / Budapest Főváros Levéltára, Klösz György, HU.BFL.XV.19.d.1.07.184
-    license: ""
+    license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=82508
     sourceLabel: Fortepan 82508
     depictsHouse: false
     kind: photo
 1901-apr-20-kozolt-datum-a-heted7-szerint-ezen:
   title: A közölt átadási nap
-  titleNeedsReview: true
   image:
     alt: "Korabeli színes várostérkép: Budapest székes főváros térképe, rajzolta Homolka József, 1903"
     caption: Homolka József Budapest-térképe, 1903. Az Erzsébetváros utcahálózata néhány évvel a ház közölt átadása után.
     credit: Homolka József, Eggenberger-féle könyvkereskedés, 1903
-    license: ""
+    license: közkincs
     depictsHouse: false
     kind: document
 1901-korul-a-haz-tervezoje-valoszinuleg:
   title: Mellinger Artúr, a valószínű tervező
-  titleNeedsReview: true
 1901-1902-spitz-janos-ferenc-es:
   title: A Spitz szabócég társai
-  titleNeedsReview: true
 1902-1903-a-cim-felbukkan-egy:
   title: A cím feltűnik a címtárban
-  titleNeedsReview: true
 1903-dec-17-a-wright-testverek-vegrehajtjak:
   title: A Wright testvérek első repülése
-  titleNeedsReview: true
 1903-dec-27-maulner-adolf-es-tarsai:
   title: Karbidot hirdetnek a 18-as címről
-  titleNeedsReview: true
   image:
     alt: "Korabeli újsághirdetés: Calcium-Carbid, Mautner Adolf és Társai gázkészülék-gyártási vállalata, Budapest, VII. ker., Dembinszky-utcza 18. sz."
     caption: Mautner Adolf és Társai calcium-carbid-hirdetése az Eperjesi Lapokban, 1903.
-    credit: ""
-    license: ""
+    credit: Eperjesi Lapok, 1903. dec. 27.
+    license: közkincs
     sourceUrl: https://epa.oszk.hu/05600/05623/00259/pdf/EPA05623_eperjesi_lapok_1903_52.pdf
     sourceLabel: Eperjesi Lapok, 1903
     depictsHouse: false
@@ -80,12 +76,11 @@
     verified: false
 1904-jul-1-jul-10-eltunik-tarcsai-viktor-a:
   title: Eltűnik egy repülőgép-tervező
-  titleNeedsReview: true
   image:
     alt: "Korabeli újságcikk „Két tanár eltünése” címmel, amely Tarcsai Viktor eltűnéséről és a Dembinszky-utca 18. alatti lakásról ír"
     caption: A „Két tanár eltünése” című hír a Budapesti Naplóban, 1904. július 10.
-    credit: ""
-    license: ""
+    credit: Budapesti Napló, 1904, 190. szám
+    license: közkincs
     sourceUrl: https://www.epa.hu/04300/04337/01963/pdf/EPA04337_budapesti_naplo_1904_190.pdf
     sourceLabel: Budapesti Napló, 1904
     depictsHouse: false
@@ -97,310 +92,233 @@
     verified: false
 1905-egy-korabeli-ingatlanforgalmi-kozles:
   title: Spitzék megveszik az István út 11.-et
-  titleNeedsReview: true
 1905-1906-a-peterdy-utca-4:
   title: Spitz és Mellinger a Peterdy utcában
-  titleNeedsReview: true
+  image:
+    alt: "A Peterdy utca 4. többemeletes, díszes homlokzata napjainkban, erkélyekkel és napellenzős ablakokkal; előtte parkoló autók"
+    caption: A Peterdy utca 4. napjainkban. Építésének történetében Spitz és Mellinger neve együtt szerepel.
+    credit: A mi Erzsébetvárosunk blog
+    license: nincs feltüntetve a forrásnál
+    sourceUrl: https://mierzsebetvarosunk.blog.hu/2016/02/22/peterdy_utca_4
+    sourceLabel: A mi Erzsébetvárosunk
+    depictsHouse: false
+    kind: photo
 1906-korul-spitz-imre-izidor-felesege:
   title: "Spitz és Mellinger: feltételezett családi szál"
-  titleNeedsReview: true
 1909-1910-a-barczy-korszak-fovarosi:
   title: Új iskolák a Bárczy-korszakban
-  titleNeedsReview: true
 1911-a-haz-es-telekjegyzekbol:
   title: Spitzék, a ház tulajdonosai
-  titleNeedsReview: true
 1912-spitz-janos-ferenc-a:
   title: Jelzálog a szabóipartestület házaira
-  titleNeedsReview: true
 1913-egy-fennmaradt-adat-szerint:
   title: Spitz a takarékpénztár választmányában
-  titleNeedsReview: true
 1914-jul-aug-az-elso-vilaghaboru-kitorese:
   title: Kitör az első világháború
-  titleNeedsReview: true
 1916-az-1916-os-hazjegyzek:
   title: Az 1916-os házjegyzék
-  titleNeedsReview: true
   image:
     alt: "Korabeli házjegyzék Dembinski-utcza oldala: 17 Kalix Ödön és neje, 18 Spitz Ján. Fer. s neje 4261/d"
     caption: A Dembinszky utca házainak tulajdonosai az 1916-os házjegyzékben. A 18. számnál Spitz János Ferenc és felesége, 4261/d helyrajzi számmal.
-    credit: ""
-    license: ""
+    credit: Budapesti házjegyzék, 1916
+    license: közkincs
     depictsHouse: false
     kind: document
 1917-orosz-forradalmak-megszunik-a:
   title: Orosz forradalmak
-  titleNeedsReview: true
 1918-az-influenzajarvany-vilagszerte-sulyos:
   title: Világméretű influenzajárvány
-  titleNeedsReview: true
 1918-okt-31-oszirozsas-forradalom-budapesten-a:
   title: Őszirózsás forradalom
-  titleNeedsReview: true
 1918-nov-11-fegyverszunet-veget-vet-a:
   title: Fegyverszünet a nyugati fronton
-  titleNeedsReview: true
 1919-marc-21-kikialtjak-a-magyarorszagi-tanacskoztarsasagot:
   title: Kikiáltják a Tanácsköztársaságot
-  titleNeedsReview: true
 1919-egy-korabeli-sajtoadat-spitz:
   title: Spitz a nyersfilmgyártó cég igazgatóságában
-  titleNeedsReview: true
 1919-kiss-janos-a-dembinszky:
   title: Kiss János és egy 1919-es büntetőügy
-  titleNeedsReview: true
 1919-nagy-gyorgy-a-nagyszoloson:
   title: "Még egy izgatási ügy: Nagy György"
-  titleNeedsReview: true
 1919-aug-a-tanacskoztarsasag-bukasa-katonai:
   title: Bukik a Tanácsköztársaság
-  titleNeedsReview: true
 1920-jun-4-alairjak-a-trianoni-bekeszerzodest:
   title: A trianoni békeszerződés
-  titleNeedsReview: true
 1923-fennmaradtak-a-strandfurdo-reszvenytarsasag:
   title: A Strandfürdő Rt. részvényei
-  titleNeedsReview: true
 1924-a-kereskedelmi-es-ipari:
   title: Drescher Lipót címe a címtárban
-  titleNeedsReview: true
 1924-ugyanebben-a-cimtarban-szalay:
   title: Szalay Ferenc címe a címtárban
-  titleNeedsReview: true
 1924-a-cimtar-rex-salamon:
   title: Rex Salamon neve a címtárban
-  titleNeedsReview: true
 1925-osz-a-magyar-penzugy-a:
   title: A Strandfürdő Rt. közgyűlési hirdetménye
-  titleNeedsReview: true
 1927-a-hangosfilm-megjelenese-the:
   title: Megszólal a hangosfilm
-  titleNeedsReview: true
 1928-az-1928-as-cimtarbol:
   title: Spitz János Ferenc az 1928-as címtárban
-  titleNeedsReview: true
 1928-febr-28-reggel-hetkor-elindul-a:
   title: Elindul a piros 12-es busz
-  titleNeedsReview: true
 1929-drescher-lipot-cipeszmester-a:
   title: Hócipők a III/5-ben
-  titleNeedsReview: true
   image:
     alt: "Korabeli újsághirdetés: Drescher Lipót cipészmester, készít divat női különleges hócipőket mindenféle szinben. Budapest, VII. ker. Dembinszky-u. 18. III. 5."
     caption: Drescher Lipót cipészmester hirdetése az Új Budapestben, 1929.
-    credit: ""
-    license: ""
+    credit: Új Budapest, 1929 · FSZEK / Hungaricana
+    license: közkincs
     sourceUrl: https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1929/?pg=7
     sourceLabel: Új Budapest, 1929
     depictsHouse: false
     kind: document
 1929-jun-delutanonkent-az-allatkert-es:
   title: A 12-es busz a Városligetig jár
-  titleNeedsReview: true
 1929-jul-a-varosligeti-hosszabbitas-csak:
   title: Véget ér a városligeti kitérő
-  titleNeedsReview: true
 1929-okt-a-new-york-i:
   title: A New York-i tőzsdei összeomlás
-  titleNeedsReview: true
 1929-nov-15-a-12-es-es:
   title: Összekötik a 12-es és az 5-ös buszt
-  titleNeedsReview: true
 1931-febr-15-az-mtk-sporttorteneti-nevtara:
   title: Meghal Spitz János Ferenc
-  titleNeedsReview: true
 1931-kinszki-imre-a-bethlen:
   title: Kinszki Imre a Bethlen Gábor utcában
-  titleNeedsReview: true
   image:
     alt: A Bethlen Gábor utca a Dembinszky utca sarka felé, 1931
     caption: Kinszki Imre felvétele a Bethlen Gábor utcáról a Dembinszky utca sarka felé, 1931. A környék dokumentuma; a 18-as épület beazonosítása külön vizsgálatot kíván.
-    credit: ""
-    license: ""
+    credit: Fortepan / Kinszki Imre
+    license: CC BY-SA 3.0
     sourceUrl: https://gallery.hungaricana.hu/en/Fortepan/1524355/
     sourceLabel: Hungaricana / Fortepan 157067
     depictsHouse: false
     kind: photo
 1933-jan-30-hitler-kancellar-lesz-nemetorszagban:
   title: Hitler kancellár lesz
-  titleNeedsReview: true
 1938-maj-az-elso-magyar-zsidotorveny:
   title: Az első zsidótörvény
-  titleNeedsReview: true
 1938-nov-az-elso-becsi-dontes:
   title: Az első bécsi döntés
-  titleNeedsReview: true
 1939-maj-a-masodik-zsidotorveny-tovabb:
   title: A második zsidótörvény
-  titleNeedsReview: true
 1939-szept-1-nemetorszag-megtamadja-lengyelorszagot-kezdetet:
   title: Kitör a második világháború
-  titleNeedsReview: true
 1940-nemetorszag-megszallja-franciaorszag-nagy:
   title: Németország megszállja Franciaországot
-  titleNeedsReview: true
 1941-magyarorszag-hadba-lep-a:
   title: Magyarország hadba lép
-  titleNeedsReview: true
 1942-1943-telen-a-2-magyar-hadsereg:
   title: A doni katasztrófa
-  titleNeedsReview: true
 1943-febr-sztalingradnal-a-nemet-hadero:
   title: Fordulat Sztálingrádnál
-  titleNeedsReview: true
 1944-marc-19-a-nemet-hadsereg-megszallja:
   title: Német megszállás
-  titleNeedsReview: true
 1944-apr-kotelezove-valik-a-sarga:
   title: Kötelező a sárga csillag
-  titleNeedsReview: true
 1944-maj-15-megkezdodik-a-videki-zsidosag:
   title: Megkezdődnek a vidéki deportálások
-  titleNeedsReview: true
 1944-jun-6-a-szovetsegesek-partra-szallnak:
   title: Partraszállás Normandiában
-  titleNeedsReview: true
 1944-jun-16-a-fovaros-kozzeteszi-a:
   title: A 18-as a csillagos házak listáján
-  titleNeedsReview: true
 1944-jun-vege-a-kijeloles-nyoman-a:
   title: Kényszerlakhely lesz a ház
-  titleNeedsReview: true
 1944-egy-1944-es-iparugyi:
   title: Plan Jakab parkettázó a listán
-  titleNeedsReview: true
 1944-szept-kozepe-korabeli-beszamolo-szerint-sulyos:
   title: Bombakár a környező utcákban
-  titleNeedsReview: true
 1944-okt-15-16-a-sikertelen-kiugrasi-kiserlet:
   title: Nyilas hatalomátvétel
-  titleNeedsReview: true
 1944-nov-letrejon-a-budapesti-nagy:
   title: Létrejön a nagy gettó
-  titleNeedsReview: true
 1944-dec-24-1945-febr-13-budapest-ostroma-alatt-a:
   title: Budapest ostroma
-  titleNeedsReview: true
 1944-dec-29-az-1945-januar-31:
   title: Weisz Károlyt a Duna-partra viszik
-  titleNeedsReview: true
 1945-jan-15-vagy-17-denes-mari-2014-es:
   title: Razzia a ház pincéjében
-  titleNeedsReview: true
 1945-jan-15-vagy-17-nehany-oraval-kesobb-ugyanebben-a-visszaemlekezesben-denes:
   title: Szovjet katonák a házban
-  titleNeedsReview: true
 1945-jan-18-lezarulnak-a-pesti-oldalert:
   title: Véget érnek a harcok a pesti oldalon
-  titleNeedsReview: true
 1945-jan-31-a-szabadsag-ki-tud:
   title: „Ki tud róla?”
-  titleNeedsReview: true
 1945-febr-13-budapest-egeszenek-ostroma-veget:
   title: Véget ér az ostrom
-  titleNeedsReview: true
 1945-maj-veget-er-a-masodik:
   title: Véget ér a háború Európában
-  titleNeedsReview: true
 1945-utan-pontos-ev-nelkul-denes-mari-szerint-a:
   title: Weiszék visszatérnek Párizsba
-  titleNeedsReview: true
 1945-aug-hirosima-es-nagaszaki-atomtamadasa:
   title: Hirosima és Nagaszaki
-  titleNeedsReview: true
 1946-febr-1-kikialtjak-a-koztarsasagot-magyarorszagon:
   title: Kikiáltják a köztársaságot
-  titleNeedsReview: true
 1946-aug-1-bevezetik-a-forintot-a:
   title: Bevezetik a forintot
-  titleNeedsReview: true
 1948-febr-16-kozlekedestorteneti-feldolgozas-szerint-az:
   title: Újra jár az 5-ös busz
-  titleNeedsReview: true
 1948-a-kommunista-hatalomatvetel-donto:
   title: A kommunista hatalomátvétel
-  titleNeedsReview: true
 1949-aug-20-az-uj-alkotmany-nyoman:
   title: Létrejön a Magyar Népköztársaság
-  titleNeedsReview: true
 1949-megalakul-a-nato-a:
   title: Megalakul a NATO
-  titleNeedsReview: true
 1950-a-dembinszky-bethlen-damjanich:
   title: Trolibuszgarázs a volt remízben
-  titleNeedsReview: true
 1952-1956-a-bethlen-gabor-utcai:
   title: Átszervezik a villamosforgalmat
-  titleNeedsReview: true
 1953-marc-5-meghal-sztalin-a-keleti:
   title: Meghal Sztálin
-  titleNeedsReview: true
 1953-a-korabbi-kozlekedestorteneti-kutatas:
   title: Az 5A busz a Szent János kórházig
-  titleNeedsReview: true
 1955-megalakul-a-varsoi-szerzodes:
   title: Megalakul a Varsói Szerződés
-  titleNeedsReview: true
 1956-okt-23-kitor-a-magyar-forradalom:
   title: Kitör a forradalom
-  titleNeedsReview: true
 1956-okt-23-egy-gyermekkori-visszaemlekezes-teherautokon:
   title: Teherautók a Dembinszky-kereszteződésnél
-  titleNeedsReview: true
 1956-dec-2-a-korabbi-busztorteneti-rekonstrukcio:
   title: Visszatér az 5-ös busz
-  titleNeedsReview: true
 1957-1960-egy-visszaemlekezes-harangi-laszlo:
   title: Kelmefestő műhely a Dembinszky utcában
-  titleNeedsReview: true
 1957-okt-4-a-szovjetunio-palyara-allitja:
   title: Pályára áll a Szputnyik–1
-  titleNeedsReview: true
 1958-maj-1-fortepan-felvetel-dokumental-felvonulokat:
   title: Felvonulók a Dembinszky utcában
-  titleNeedsReview: true
   image:
     alt: Felvonulók a Dembinszky utca 35. előtt, 1958
     caption: Felvonulók a Dembinszky utca 35. előtt, 1958. május 1. Nem fénykép a 18-as házról.
-    credit: ""
-    license: ""
+    credit: Fortepan
+    license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/en/photos/?id=18543
     sourceLabel: Fortepan 18543
     depictsHouse: false
     kind: photo
 1960-jan-25-meghal-mellinger-artur-akit:
   title: Meghal Mellinger Artúr
-  titleNeedsReview: true
 1961-felepul-a-berlini-fal:
   title: Felépül a berlini fal
-  titleNeedsReview: true
 1963-a-fortepan-148696-szamu:
   title: A Dembinszky 18 újra fényképen
-  titleNeedsReview: true
   image:
     alt: Felvonulók és léggömbök a Bethlen Gábor utca 35. előterében; balra a Dembinszky utca 18. épülete
     caption: A Bethlen Gábor utca 35. előtere 1963-ban, felvonulókkal és léggömbökkel. Balra azonosítható a Dembinszky utca 18. A felvétel pontos napját az archívum nem adja meg.
-    credit: ""
-    license: ""
+    credit: Fortepan / Barbjerik Ferenc
+    license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=148696
     sourceLabel: Fortepan 148696
     depictsHouse: true
     kind: photo
 1963-martin-luther-king-washingtoni:
   title: Martin Luther King washingtoni beszéde
-  titleNeedsReview: true
 1968-jan-elindul-az-uj-gazdasagi:
   title: Az új gazdasági mechanizmus
-  titleNeedsReview: true
 1968-maj-1-az-uvaterv-fortepan-felvetelen:
   title: Felvonulók a Nefelejcs utcai kereszteződésnél
-  titleNeedsReview: true
   image:
     alt: A Dembinszky utca a Nefelejcs utcai kereszteződésből, május elsejei felvonulókkal, 1968
     caption: A Dembinszky utca a Nefelejcs utca kereszteződéséből, május elsejei felvonulókkal, 1968. A D18 épülete ezen nincs külön azonosítva.
-    credit: ""
-    license: ""
+    credit: Fortepan / UVATERV
+    license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=97493
     sourceLabel: Fortepan 97493
     depictsHouse: false

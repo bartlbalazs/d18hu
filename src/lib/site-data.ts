@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { parse as parseYaml } from 'yaml';
-import { getBuildMode, isSiteUrlConfigured, resolveSiteUrl, type BuildMode } from './build-mode.ts';
+import { getBuildMode, type BuildMode } from './build-mode.ts';
 import { assembleEvents, type TimelineEvent } from './editorial/assemble.ts';
 import {
   auditEditorial,
@@ -40,9 +40,7 @@ export function loadSiteData(): SiteData {
   const site = siteEditorialSchema.parse(readYamlFile(SITE_EDITORIAL_PATH));
   const events = assembleEvents(timeline, eventsEditorial, readManifest());
 
-  const missingItems = auditEditorial(events, site, {
-    siteUrlConfigured: isSiteUrlConfigured(resolveSiteUrl()),
-  });
+  const missingItems = auditEditorial(events, site);
   if (missingItems.length > 0) {
     if (mode === 'release') throw new MissingEditorialItemsError(missingItems);
     console.warn(`\n[d18] Draft build.\n${formatMissingItems(missingItems)}\n`);

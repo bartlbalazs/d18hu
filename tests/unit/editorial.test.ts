@@ -107,7 +107,7 @@ describe('assembleEvents', () => {
 describe('auditEditorial', () => {
   it('passes complete data', () => {
     const events = assembleEvents(timeline, completeEditorial(), manifest);
-    expect(auditEditorial(events, completeSite, { siteUrlConfigured: true })).toEqual([]);
+    expect(auditEditorial(events, completeSite)).toEqual([]);
   });
 
   it('lists every missing item', () => {
@@ -118,14 +118,13 @@ describe('auditEditorial', () => {
     site.impresszum.contactEmail = 'valaki@example.com';
     site.building.postalCode = '';
 
-    const items = auditEditorial(assembleEvents(timeline, editorial, manifest), site, { siteUrlConfigured: false });
+    const items = auditEditorial(assembleEvents(timeline, editorial, manifest), site);
     expect(items.map((item) => `${item.id ?? 'site'}:${item.field}`)).toEqual([
       `${firstId}:title`,
       `${imageEventId}:title`,
       `${imageEventId}:image.credit`,
       'site:impresszum.contactEmail',
       'site:building.postalCode',
-      'site:SITE_URL',
     ]);
   });
 

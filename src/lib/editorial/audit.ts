@@ -12,11 +12,7 @@ export function isMissingValue(value: string | null | undefined): boolean {
 }
 
 /** Lists editorial data that must exist before a release build; empty result = releasable. */
-export function auditEditorial(
-  events: TimelineEvent[],
-  site: SiteEditorial,
-  options: { siteUrlConfigured: boolean },
-): MissingItem[] {
+export function auditEditorial(events: TimelineEvent[], site: SiteEditorial): MissingItem[] {
   const missing: MissingItem[] = [];
   const add = (item: MissingItem) => missing.push(item);
 
@@ -54,9 +50,6 @@ export function auditEditorial(
   }
   if (isMissingValue(site.building.postalCode)) {
     add({ scope: 'site', field: 'building.postalCode', message: 'postal code missing' });
-  }
-  if (!options.siteUrlConfigured) {
-    add({ scope: 'site', field: 'SITE_URL', message: 'final site URL not set (environment variable)' });
   }
   return missing;
 }

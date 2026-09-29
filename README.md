@@ -47,7 +47,7 @@ pnpm dev                 # http://localhost:4321, draft mode
 |---|---|
 | `pnpm dev` | Local development server (draft mode) |
 | `pnpm build:draft` | Builds `dist/` even if editorial data is missing; prints the missing items, shows a draft banner and marks every page `noindex` |
-| `pnpm build:release` | Builds the publishable site; **fails** while any editorial item is missing or `SITE_URL` is unset |
+| `pnpm build:release` | Builds the publishable site; **fails** while any editorial item is missing |
 | `pnpm preview` | Serves the built `dist/` locally |
 | `pnpm test` | Unit tests (timeline parser, ids, dates, editorial checks) |
 | `pnpm test:site` | Run after a build: checks the output (event counts, local images, metadata), validates the HTML and checks internal links |
@@ -144,7 +144,8 @@ have checked it against the original and set `verified: true`:
 `intro`, `eventsHeading`, and `backgroundYear`, the large number in the background), the address
 used for search engines (`building`) and the Impresszum. Empty strings count as missing; never
 fill the Impresszum with placeholder data. To replace the facade photo, overwrite
-`assets/facade4.png` and update `hero.photo` (alt, caption, credit).
+`assets/facade4.png` and update `hero.photo` (alt, caption, credit, source link). The Építők
+opening photo (`assets/facade5.png`) shows the same credit.
 
 ### Story pages
 
@@ -159,17 +160,15 @@ record excerpts, numbered sources). Their first versions were transcribed from t
 The look is code, not content: components in `src/components/`, styles in `src/styles/`
 (colours and fonts in `tokens.css`).
 
-### Before the first release
+### Publishing
 
-Run `pnpm build:draft` to see the current list. At the time of writing it contains:
+`pnpm build:release` builds the site for `https://www.dembinszky18.hu/`; set `SITE_URL` to build
+for another address, such as a staging copy. It refuses to run while any editorial item is
+missing: new events or images show up in the `pnpm build:draft` list until their title is
+reviewed and their alt text, caption, credit and licence are filled in.
 
-1. **Review the 108 AI-drafted event titles** in `editorial/events.yaml`; delete each
-   `titleNeedsReview: true` line once a title is approved.
-2. **Image credits and licences**: check each archive record (Fortepan asks for the donor's
-   name) and fill `credit` and `license`; add the facade photo credit in `editorial/site.yaml`.
-3. **Document highlight**: check the 1903 Maulner advertisement transcription against the
-   original, then set `verified: true` (unverified highlights are never shown).
-4. **Final address**: build with `SITE_URL=https://… pnpm build:release`.
+Document highlights (the 1903 Maulner advertisement, the 1904 Tarcsai clipping) stay hidden
+until their transcription is checked against the original and set to `verified: true`.
 
 ## Project layout
 
