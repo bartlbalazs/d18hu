@@ -69,7 +69,7 @@ The two story pages are the exception (see [Story pages](#story-pages)).
 | `input/timeline.md` | The research timeline: four era tables, one row per event. Dates and descriptions are published word for word. |
 | `editorial/events.yaml` | Per-event extras, keyed by event id: title, image caption/alt/credit/licence, document highlight |
 | `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum |
-| `assets/facade3.png` | Present-day facade photo at the top of the page |
+| `assets/facade4.png` | Present-day facade photo at the top of the page |
 
 Workflow: run `scripts/start-local.sh`, edit a file, reload the browser (restart the script if a
 change does not show up). To rebuild the static site in `dist/`, run `pnpm build:draft`, then
@@ -144,7 +144,7 @@ have checked it against the original and set `verified: true`:
 `intro`, `eventsHeading`, and `backgroundYear`, the large number in the background), the address
 used for search engines (`building`) and the Impresszum. Empty strings count as missing; never
 fill the Impresszum with placeholder data. To replace the facade photo, overwrite
-`assets/facade3.png` and update `hero.photo` (alt, caption, credit).
+`assets/facade4.png` and update `hero.photo` (alt, caption, credit).
 
 ### Story pages
 
@@ -179,7 +179,7 @@ Run `pnpm build:draft` to see the current list. At the time of writing it contai
 input/timeline.md        research source (read-only for the build)
 input/epitok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
 editorial/               owner-maintained YAML (titles, captions, credits, site texts)
-assets/facade3.png       hero photo
+assets/facade4.png       hero photo
 scripts/                 image download/check and font subsetting
 src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers
 src/components/          Astro components (header, hero, legend, era opener, event, figure)
