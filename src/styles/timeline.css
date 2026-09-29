@@ -343,6 +343,31 @@
   background: var(--d18-rule);
 }
 
+/* The final era's axis is drawn per row, so it can stop at the last event's marker. */
+.timeline--ends::before {
+  content: none;
+}
+
+.timeline--ends .event {
+  position: relative;
+}
+
+.timeline--ends .event::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--axis-col) / 2);
+  width: 1px;
+  background: var(--d18-rule);
+}
+
+/* Ends at the centre of the marker: the row's top padding plus half the marker. */
+.timeline--ends .event:last-child::before {
+  bottom: auto;
+  height: calc(1.1rem + var(--axis-col) / 2);
+}
+
 .event {
   display: grid;
   grid-template-columns: var(--axis-col) minmax(0, 1fr);
@@ -488,6 +513,11 @@
     left: calc(var(--date-col) + var(--col-gap) + var(--axis-col) / 2);
   }
 
+  /* The row is widened by 0.75rem on each side, so its axis segment starts that much further in. */
+  .timeline--ends .event::before {
+    left: calc(0.75rem + var(--date-col) + var(--col-gap) + var(--axis-col) / 2);
+  }
+
   .event {
     grid-template-columns: var(--date-col) var(--axis-col) minmax(0, 1fr);
     column-gap: var(--col-gap);
@@ -510,4 +540,35 @@
     grid-column: 3;
     grid-row: 1;
   }
+}
+
+/* ---------- Timeline closing ---------- */
+/* A pause, a short centred line, then an undecorated closing text: the documented history ends here. */
+.timeline-closing {
+  margin-top: 5rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+.timeline-closing::before {
+  content: '';
+  display: block;
+  width: 4.5rem;
+  height: 1px;
+  margin: 0 auto 2rem;
+  background: var(--d18-sand);
+}
+
+.timeline-closing > * {
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.timeline-closing h2 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  margin-bottom: 1rem;
+}
+
+.timeline-closing p + p {
+  margin-top: 1rem;
 }

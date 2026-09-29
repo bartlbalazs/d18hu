@@ -174,6 +174,10 @@ screens the header shows a **Menü** button that opens the same links as a panel
 `src/scripts/site-menu.ts` closes the panel after a link is chosen and, on the home page,
 marks the era being read with a dot. The era is picked by `src/lib/nav/current-era.ts`.
 
+After the last event, the timeline's axis stops and a short centred line and „A történet
+folytatódik” close the page, inviting residents to write. Its text is edited in
+`src/components/TimelineClosing.astro`.
+
 ### Publishing
 
 `pnpm build:release` builds the site for `https://www.dembinszky18.hu/`; set `SITE_URL` to build

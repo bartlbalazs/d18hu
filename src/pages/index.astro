@@ -4,6 +4,7 @@ import facade from '../../assets/facade4.png';
 import EraOpener from '../components/EraOpener.astro';
 import Hero from '../components/Hero.astro';
 import Legend from '../components/Legend.astro';
+import TimelineClosing from '../components/TimelineClosing.astro';
 import TimelineEvent from '../components/TimelineEvent.astro';
 import Base from '../layouts/Base.astro';
 import { archiveImageMetadata, fullSizeImage } from '../lib/images/archive-images.ts';
@@ -43,7 +44,7 @@ const jsonLd = [
   <Hero hero={site.hero} />
   <Legend />
   {
-    eras.map((era) => (
+    eras.map((era, index) => (
       <>
         <EraOpener era={era} total={eras.length} />
         <section class="container era-events" id={`esemenyek-${era.id}`} aria-labelledby={`esemenyek-cim-${era.id}`}>
@@ -51,7 +52,7 @@ const jsonLd = [
             Kronológia · {era.events.length} esemény
           </p>
           <h3 id={`esemenyek-cim-${era.id}`}>{era.eventsHeading}</h3>
-          <ol class="timeline">
+          <ol class:list={['timeline', index === eras.length - 1 && 'timeline--ends']}>
             {era.events.map((event) => (
               <TimelineEvent event={event} />
             ))}
@@ -60,6 +61,7 @@ const jsonLd = [
       </>
     ))
   }
+  <TimelineClosing />
 </Base>
 
 <script>

@@ -264,3 +264,40 @@ describe('statistics', () => {
     expect(html).toContain('Google Ireland');
   });
 });
+
+describe('timeline closing', () => {
+  const html = read('index.html');
+  const block = /<section class="container timeline-closing"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+  const text = (fragment: string) => fragment.replace(/<[^>]+>/g, '').trim();
+
+  it('closes the home page timeline once, after the last era and before the end of main', () => {
+    expect(count(html, /class="container timeline-closing"/g)).toBe(1);
+    const position = html.indexOf(block);
+    expect(position).toBeGreaterThan(html.lastIndexOf('id="esemenyek-1946-1968"'));
+    expect(position).toBeLessThan(html.indexOf('</main>'));
+    expect(count(html, /class="timeline timeline--ends"/g)).toBe(1);
+    expect(html.indexOf('<ol class="timeline timeline--ends"')).toBeGreaterThan(html.lastIndexOf('id="esemenyek-1946-1968"'));
+  });
+
+  it('has no decoration, button or year', () => {
+    expect(block).not.toMatch(/<(hr|img|svg|button|time)[\s>]/);
+    expect(text(block)).not.toMatch(/\b\d{4}\b/);
+  });
+
+  it('shows the owner text verbatim, with only „írjon” linking to the Impresszum', () => {
+    expect(block).toMatch(/<h2 id="tortenet-folytatodik">A történet folytatódik<\/h2>/);
+    const paragraphs = [...block.matchAll(/<p>([\s\S]*?)<\/p>/g)].map((match) => match[1]);
+    expect(paragraphs.map(text)).toEqual([
+      'A hatvanas évek után jóval kevesebb nyilvános forrás maradt fenn. Az újabb évtizedek történeteit ezért leginkább azok őrzik, akik a házban éltek vagy ma is itt laknak.',
+      'Ha Ön vagy családtagja lakott itt, esetleg van régi fényképe, dokumentuma vagy története a házról, írjon.',
+    ]);
+    expect([...block.matchAll(/href="([^"]+)"/g)].map((match) => match[1])).toEqual(['/impresszum/']);
+    expect(block).toContain('<a href="/impresszum/">írjon</a>.');
+  });
+
+  it('appears on no other page', () => {
+    for (const page of [...PAGES.slice(1), '404.html']) {
+      expect(read(page)).not.toContain('class="container timeline-closing"');
+    }
+  });
+});
