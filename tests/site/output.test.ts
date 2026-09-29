@@ -284,15 +284,15 @@ describe('timeline closing', () => {
     expect(text(block)).not.toMatch(/\b\d{4}\b/);
   });
 
-  it('shows the owner text verbatim, with only „írjon” linking to the Impresszum', () => {
+  it('shows the owner text verbatim, with only „ossza meg velünk” linking to the Impresszum', () => {
     expect(block).toMatch(/<h2 id="tortenet-folytatodik">A történet folytatódik<\/h2>/);
     const paragraphs = [...block.matchAll(/<p>([\s\S]*?)<\/p>/g)].map((match) => match[1]);
     expect(paragraphs.map(text)).toEqual([
       'A hatvanas évek után jóval kevesebb nyilvános forrás maradt fenn. Az újabb évtizedek történeteit ezért leginkább azok őrzik, akik a házban éltek vagy ma is itt laknak.',
-      'Ha Ön vagy családtagja lakott itt, esetleg van régi fényképe, dokumentuma vagy története a házról, írjon.',
+      'Ha Ön vagy családtagja itt lakott, és van régi fényképe, dokumentuma vagy egy megőrzött története a házról, kérem, ossza meg velünk! Minden apró emlék segít továbbírni a ház krónikáját.',
     ]);
     expect([...block.matchAll(/href="([^"]+)"/g)].map((match) => match[1])).toEqual(['/impresszum/']);
-    expect(block).toContain('<a href="/impresszum/">írjon</a>.');
+    expect(block).toContain('<a href="/impresszum/">ossza meg velünk</a>!');
   });
 
   it('appears on no other page', () => {
