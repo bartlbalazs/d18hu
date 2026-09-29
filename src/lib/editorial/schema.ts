@@ -75,6 +75,15 @@ export const siteEditorialSchema = z.strictObject({
     contactEmail: z.string().default(''),
     copyrightNotice: z.string().default(''),
   }),
+  // Optional: an empty ID builds the site without analytics. Not part of the editorial audit.
+  analytics: z
+    .strictObject({
+      measurementId: z
+        .string()
+        .regex(/^(G-[A-Z0-9]+)?$/, 'must be a Google Analytics measurement ID (G-…) or empty')
+        .default(''),
+    })
+    .default({ measurementId: '' }),
 });
 
 export type EventImageEditorial = z.infer<typeof eventImageEditorialSchema>;

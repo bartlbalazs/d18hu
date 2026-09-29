@@ -20,6 +20,8 @@ interface Props {
 
 const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality } = Astro.props;
 const full = await fullSizeImage(image);
+// A stable name for statistics: the source file's name without the build hash or extension.
+const imageName = image.src.split('?')[0].split('/').pop()!.split('.')[0];
 ---
 
 <figure class:list={['evidence', `evidence--${kind}`, Astro.props.class]}>
@@ -29,6 +31,7 @@ const full = await fullSizeImage(image);
     data-pswp-width={full.width}
     data-pswp-height={full.height}
     aria-label={`${alt} – nagyítás`}
+    data-stat-image={imageName}
   >
     <Picture
       src={image}

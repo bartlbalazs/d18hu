@@ -1,6 +1,7 @@
 // Assertions over the built site in dist/ (run after a build: pnpm build:draft && pnpm test:site).
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { parse as parseYaml } from 'yaml';
 import { parseTimeline } from '../../src/lib/timeline/parse.ts';
 
 const read = (path: string) => readFileSync(`dist/${path}`, 'utf8');
@@ -202,5 +203,64 @@ describe('site menu', () => {
 
   it('marks the current page in the menu', () => {
     expect(read('nevado/index.html')).toMatch(/<a href="\/nevado\/" aria-current="page"/);
+  });
+});
+
+describe('statistics', () => {
+  const measurementId: string = parseYaml(readFileSync('editorial/site.yaml', 'utf8')).analytics?.measurementId ?? '';
+  const isRelease = !read('index.html').includes('class="draft-banner"');
+  const enabled = isRelease && measurementId !== '';
+  const allPages = [...PAGES, '404.html'];
+
+  it('loads no third-party script from the static HTML', () => {
+    for (const page of allPages) {
+      expect(read(page)).not.toMatch(/<script[^>]+src="(https?:)?\/\//);
+    }
+  });
+
+  it('names every zoomable image by its source file, without the build hash', () => {
+    const assetNames = ['src/assets', 'assets']
+      .flatMap((dir) => readdirSync(dir, { recursive: true, encoding: 'utf8' }))
+      .map((path) => path.split('/').pop()!.split('.')[0]);
+    for (const page of PAGES) {
+      const links = [...read(page).matchAll(/<a class="evidence__link"[^>]*>/g)].map((match) => match[0]);
+      for (const link of links) {
+        const name = /data-stat-image="([^"]*)"/.exec(link)?.[1] ?? '';
+        expect(name).toMatch(/^[a-z0-9-]+$/);
+        expect(assetNames).toContain(name);
+      }
+    }
+  });
+
+  if (!enabled) {
+    it('has no trace of analytics without a measurement ID or in a draft build', () => {
+      for (const page of allPages) {
+        const html = read(page);
+        for (const marker of ['id="statisztika"', 'data-consent-settings', 'id="adatkezeles"', 'googletagmanager']) {
+          expect(html).not.toContain(marker);
+        }
+      }
+    });
+    return;
+  }
+
+  for (const page of allPages) {
+    it(`${page} has the hidden consent notice and the footer settings button`, () => {
+      const html = read(page);
+      const notice = /<section[^>]*id="statisztika"[^>]*>/.exec(html)?.[0] ?? '';
+      expect(count(html, /id="statisztika"/g)).toBe(1);
+      expect(notice).toMatch(/\shidden[\s>]/);
+      expect(notice).toContain(`data-measurement-id="${measurementId}"`);
+      expect(html).toMatch(/data-consent="granted"[^>]*>Elfogadom</);
+      expect(html).toMatch(/data-consent="denied"[^>]*>Nem kérem</);
+      const footer = /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? '';
+      expect(count(footer, /data-consent-settings/g)).toBe(1);
+    });
+  }
+
+  it('explains the data processing on the Impresszum', () => {
+    const html = read('impresszum/index.html');
+    expect(html).toMatch(/<h2 id="adatkezeles">Adatkezelés<\/h2>/);
+    expect(html).toContain('Google Ireland');
   });
 });

@@ -19,7 +19,7 @@ interface Props {
 }
 
 const { title, description, path, jsonLd, ogType, noindex } = Astro.props;
-const { isDraft, missingItems, eras } = loadSiteData();
+const { isDraft, missingItems, eras, analytics } = loadSiteData();
 ---
 
 <!doctype html>
@@ -45,9 +45,41 @@ const { isDraft, missingItems, eras } = loadSiteData();
     <main id="tartalom">
       <slot />
     </main>
-    <SiteFooter />
+    <SiteFooter analytics={analytics.enabled} />
+    {
+      analytics.enabled && (
+        <section
+          class="consent"
+          id="statisztika"
+          aria-labelledby="statisztika-cim"
+          hidden
+          data-measurement-id={analytics.measurementId}
+          data-site-host={analytics.siteHost}
+        >
+          <div class="container consent__inner">
+            <h2 class="consent__title" id="statisztika-cim" tabindex="-1">Látogatottsági statisztika</h2>
+            <p>
+              Szeretnénk a Google Analytics segítségével megszámolni, hányan és mit olvasnak az oldalon. Ehhez sütiket
+              használunk, de csak akkor, ha hozzájárul. <a href="/impresszum/#adatkezeles">Részletek</a>
+            </p>
+            <p class="consent__status" data-consent-status></p>
+            <div class="consent__actions">
+              <button type="button" class="consent__button" data-consent="granted">Elfogadom</button>
+              <button type="button" class="consent__button" data-consent="denied">Nem kérem</button>
+            </div>
+          </div>
+        </section>
+      )
+    }
     <script>
       import '../scripts/site-menu.ts';
     </script>
+    {
+      analytics.enabled && (
+        <script>
+          import '../scripts/statistics.ts';
+        </script>
+      )
+    }
   </body>
 </html>

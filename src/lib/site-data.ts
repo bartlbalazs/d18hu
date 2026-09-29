@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { parse as parseYaml } from 'yaml';
-import { getBuildMode, type BuildMode } from './build-mode.ts';
+import { getBuildMode, resolveSiteUrl, type BuildMode } from './build-mode.ts';
 import { assembleEvents, type TimelineEvent } from './editorial/assemble.ts';
 import {
   auditEditorial,
@@ -26,7 +26,11 @@ export type SiteData = {
   events: TimelineEvent[];
   site: SiteEditorial;
   missingItems: MissingItem[];
+  analytics: Analytics;
 };
+
+/** Analytics exists only in release builds with a measurement ID, and only runs on `siteHost`. */
+export type Analytics = { enabled: boolean; measurementId: string; siteHost: string };
 
 let cached: SiteData | undefined;
 
@@ -52,7 +56,14 @@ export function loadSiteData(): SiteData {
     events: events.filter((event) => event.era === era.id),
   }));
 
-  cached = { mode, isDraft: mode === 'draft', eras, events, site, missingItems };
+  const { measurementId } = site.analytics;
+  const analytics = {
+    enabled: mode === 'release' && measurementId !== '',
+    measurementId,
+    siteHost: new URL(resolveSiteUrl()).hostname,
+  };
+
+  cached = { mode, isDraft: mode === 'draft', eras, events, site, missingItems, analytics };
   return cached;
 }
 

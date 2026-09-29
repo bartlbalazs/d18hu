@@ -415,7 +415,8 @@ a:hover {
 
 .site-footer ul {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -425,6 +426,94 @@ a:hover {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+}
+
+/* A button that performs an action (Statisztika beállításai) but reads like the links beside it. */
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--d18-walnut);
+  font: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: var(--d18-ink);
+}
+
+.footer-link[hidden] {
+  display: none;
+}
+
+/* Consent notice: fixed to the bottom, non-modal, so the page stays readable and nothing shifts. */
+.consent {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 10;
+  max-height: 50dvh;
+  overflow-y: auto;
+  padding-block: 1rem calc(1rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--d18-rule);
+  background: var(--d18-paper);
+  color: var(--d18-ink);
+  box-shadow: 0 -12px 24px -12px rgb(41 37 33 / 35%);
+}
+
+.consent[hidden] {
+  display: none;
+}
+
+.consent__title {
+  font-size: 1.4rem;
+  margin: 0 0 0.25rem;
+}
+
+.consent__title:focus {
+  outline: none;
+}
+
+.consent__status:empty {
+  display: none;
+}
+
+.consent__status {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.consent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* Both choices look the same, so refusing is as easy as accepting. */
+.consent__button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 1.25rem;
+  border: 1px solid var(--d18-walnut);
+  border-radius: 4px;
+  background: var(--d18-paper);
+  color: var(--d18-ink);
+  font: 600 1rem/1 var(--font-text);
+  cursor: pointer;
+}
+
+.consent__button:hover {
+  background: var(--d18-paper-deep);
+}
+
+.consent__button[hidden] {
+  display: none;
 }
 
 /* Simple text pages (Impresszum) */
@@ -447,6 +536,15 @@ a:hover {
   display: grid;
   grid-template-columns: minmax(8rem, max-content) 1fr;
   gap: 0.5rem 1.5rem;
+}
+
+.page section {
+  margin-top: 2.5rem;
+}
+
+.page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 
 .page dt {

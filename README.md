@@ -10,11 +10,13 @@ two story pages, `/epitok/` (the builders) and `/nevado/` (the street's namesake
 [Firebase Hosting](https://firebase.google.com/docs/hosting) (see [Publishing](#publishing)).
 
 The site is plain HTML generated at build time with [Astro](https://astro.build/). It works
-without JavaScript. Two optional scripts add a zoomable image viewer
-([PhotoSwipe](https://photoswipe.com/)) and a small menu script that closes the Menü panel and
-marks the era being read. It was specified and built with
+without JavaScript. Optional scripts add a zoomable image viewer
+([PhotoSwipe](https://photoswipe.com/)), a small menu script that closes the Menü panel and
+marks the era being read, and consent-gated visitor statistics (see
+[Statistics](#statistics-google-analytics)). It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
-`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/` and `specs/004-mobile-navigation/`.
+`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`
+and `specs/005-google-analytics/`.
 
 ## Requirements
 
@@ -74,7 +76,7 @@ The two story pages are the exception (see [Story pages](#story-pages)).
 |---|---|
 | `input/timeline.md` | The research timeline: four era tables, one row per event. Dates and descriptions are published word for word. |
 | `editorial/events.yaml` | Per-event extras, keyed by event id: title, image caption/alt/credit/licence, document highlight |
-| `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum |
+| `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum, Google Analytics measurement ID |
 | `assets/facade4.png` | Present-day facade photo at the top of the page |
 
 Workflow: run `scripts/start-local.sh`, edit a file, reload the browser (restart the script if a
@@ -224,6 +226,39 @@ release is labelled with its commit.
 In the console, go to Hosting → Release history, open the previous release's ⋮ menu and
 choose **Roll back**. It takes about a minute.
 
+### Statistics (Google Analytics)
+
+Visitor statistics go to a Google Analytics 4 property, and only for visitors who accept the
+notice at the bottom of the page ("Elfogadom"). Before a choice, after "Nem kérem", with a
+browser Do Not Track / Global Privacy Control signal, or without JavaScript, nothing is loaded
+from Google and no cookie is set. "Statisztika beállításai" in the footer changes the choice; the
+Impresszum explains the data processing (Adatkezelés).
+
+Page views are counted, plus three events: `archive_source_click` (any external link in the page
+content), `image_zoom` (a photo opened in the viewer) and `era_select` (an era chosen in the
+menu). The code is `src/scripts/statistics.ts`, with the pure logic in `src/lib/statistics/`.
+
+**Turning it on or off.** Set `analytics.measurementId` in `editorial/site.yaml` to the
+property's measurement ID (`G-…`), or leave it empty to build without any analytics. The ID is
+public by design (it is in every published page), so committing it is fine; there are no API keys
+or other secrets. Draft builds and `pnpm dev` never include analytics, and the script only runs
+on the site's own hostname (`www.dembinszky18.hu`), not on `dembinszky18.web.app` or local
+previews.
+
+**One-time setup**, with the personal account (bartlbalazs@gmail.com):
+
+1. At <https://analytics.google.com/>, create a property (time zone Hungary) with a Web data
+   stream for `https://www.dembinszky18.hu`, and copy its measurement ID.
+2. In the data stream, turn **Enhanced measurement** off, so only page views and the three
+   events above are collected.
+3. Admin → Data collection and modification → **Data retention**: 2 months. **Data collection**:
+   Google signals off, granular location and device data off.
+4. Admin → Account settings: turn all **data sharing** settings off.
+5. Admin → Custom definitions: add event-scoped dimensions `source_url`, `timeline_event`,
+   `image_name` and `era`, to see the event details in reports (Real-time shows them anyway).
+6. Put the ID in `editorial/site.yaml`, commit, and run `pnpm site:publish`. Accept the notice on
+   the live site and check that the visit shows up under Reports → Real-time.
+
 ## Project layout
 
 ```text
@@ -232,7 +267,8 @@ input/epitok.md, nevado.md  drafts the story pages were transcribed from (not re
 editorial/               owner-maintained YAML (titles, captions, credits, site texts)
 assets/facade4.png       hero photo
 scripts/                 image download/check, font subsetting, local start, publishing
-src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers
+src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers, statistics
+src/scripts/             browser scripts: image viewer, menu, consent and statistics
 src/components/          Astro components (header, hero, legend, era opener, event, figure)
 src/pages/               /, /epitok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
@@ -249,6 +285,7 @@ lighthouserc*.json       Lighthouse budgets for the local build and the live sit
 
 The project constitution (`.specify/memory/constitution.md`) requires static HTML, a strict
 mobile performance budget, a mobile-first layout, no bloat and rich metadata for search engines.
+Its only runtime third-party exception is one analytics service that loads after consent.
 
 All dependencies are pinned to exact versions with a committed `pnpm-lock.yaml`. pnpm refuses
 packages published less than 7 days ago (`minimumReleaseAge` in `pnpm-workspace.yaml`), and
