@@ -6,12 +6,15 @@ section, a legend, four full-height era openers and every event from the researc
 two story pages, `/epitok/` (the builders) and `/nevado/` (the street's namesake), and
 `/impresszum/` (legal notice).
 
+**Live site: <https://www.dembinszky18.hu/>**, deployed on
+[Firebase Hosting](https://firebase.google.com/docs/hosting) (see [Publishing](#publishing)).
+
 The site is plain HTML generated at build time with [Astro](https://astro.build/). It works
-without JavaScript; the only script is an optional zoomable image viewer
-([PhotoSwipe](https://photoswipe.com/)). It was specified and built with
+without JavaScript. Two optional scripts add a zoomable image viewer
+([PhotoSwipe](https://photoswipe.com/)) and a small menu script that closes the Menü panel and
+marks the era being read. It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
-`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/` and `specs/004-mobile-navigation/`. It is hosted on
-[Firebase Hosting](https://firebase.google.com/docs/hosting) at <https://www.dembinszky18.hu/>.
+`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/` and `specs/004-mobile-navigation/`.
 
 ## Requirements
 
@@ -201,7 +204,9 @@ DNS records at the registrar (Forpsi; the MX, SRV, SPF and DMARC records for e-m
 |---|---|---|
 | `dembinszky18.hu` | A | `199.36.158.100` (replaces Forpsi's parking address `81.2.196.19`) |
 | `dembinszky18.hu` | TXT | `hosting-site=dembinszky18` |
-| `www.dembinszky18.hu` | TXT / CNAME | TODO: copy from the Firebase console |
+| `www.dembinszky18.hu` | A | `199.36.158.100` |
+| `www.dembinszky18.hu` | TXT | `hosting-site=dembinszky18` |
+| `_acme-challenge.www.dembinszky18.hu` | TXT | the certificate token shown in the Firebase console |
 
 #### Routine publishing
 
