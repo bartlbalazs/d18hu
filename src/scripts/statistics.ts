@@ -101,9 +101,9 @@ if (notice && measurementId && location.hostname === notice.dataset.siteHost) {
     const hadFocus = notice.contains(document.activeElement);
     notice.hidden = true;
     document.body.style.paddingBottom = '';
-    if (!hadFocus) return;
-    const footerButton = document.querySelector<HTMLElement>('.site-footer [data-consent-settings]');
-    (settingsOpener ?? footerButton)?.focus();
+    // Return focus only to the settings button that reopened the notice, never scrolling the page:
+    // after the first-visit notice, the reader stays where they are.
+    if (hadFocus) settingsOpener?.focus({ preventScroll: true });
   };
 
   const choose = (choice: 'granted' | 'denied') => {
@@ -139,7 +139,7 @@ if (notice && measurementId && location.hostname === notice.dataset.siteHost) {
     }
     if (acceptButton) acceptButton.hidden = hasBrowserSignal;
     showNotice();
-    heading?.focus();
+    heading?.focus({ preventScroll: true });
   };
 
   notice.addEventListener('click', (event) => {
