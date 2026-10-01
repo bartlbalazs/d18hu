@@ -98,14 +98,14 @@ export function imageNode(
 
 export function articleNode(
   site: URL,
-  article: { headline: string; description: string; path: string; imageUrl: string },
+  article: { headline: string; description: string; path: string; imageUrl?: string },
 ): JsonLd {
   return {
     '@type': 'Article',
     '@id': absoluteUrl(`${article.path}#article`, site),
     headline: article.headline,
     description: article.description,
-    image: article.imageUrl,
+    ...(article.imageUrl ? { image: article.imageUrl } : {}),
     inLanguage: 'hu',
     mainEntityOfPage: absoluteUrl(article.path, site),
     isPartOf: { '@id': absoluteUrl('/#website', site) },

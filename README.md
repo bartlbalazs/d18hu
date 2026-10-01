@@ -3,8 +3,8 @@
 A static, Hungarian-language website telling the history of the condominium building at
 Dembinszky utca 18., Budapest, from 1873 to 1968. It is one long narrative timeline: an opening
 section, a legend, four full-height era openers and every event from the research file, plus
-two story pages, `/epitok/` (the builders) and `/nevado/` (the street's namesake), and
-`/impresszum/` (legal notice).
+three story pages, `/epitok/` (the builders), `/lakok/` (the residents) and `/nevado/` (the
+street's namesake), and `/impresszum/` (legal notice).
 
 **Live site: <https://www.dembinszky18.hu/>**, deployed on
 [Firebase Hosting](https://firebase.google.com/docs/hosting) (see [Publishing](#publishing)).
@@ -15,8 +15,8 @@ without JavaScript. Optional scripts add a zoomable image viewer
 marks the era being read, and consent-gated visitor statistics (see
 [Statistics](#statistics-google-analytics)). It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
-`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`
-and `specs/005-google-analytics/`.
+`specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
+`specs/005-google-analytics/`, `specs/006-timeline-closing/` and `specs/007-lakok-page/`.
 
 ## Requirements
 
@@ -70,7 +70,7 @@ Regular builds never touch the network: archive images and fonts are committed.
 ## Editing the content
 
 The timeline content lives in four places, and you never need to touch the code to change it.
-The two story pages are the exception (see [Story pages](#story-pages)).
+The three story pages are the exception (see [Story pages](#story-pages)).
 
 | File | What it holds |
 |---|---|
@@ -157,11 +157,17 @@ opening photo (`assets/facade5.png`) shows the same credit.
 
 ### Story pages
 
-`/epitok/` and `/nevado/` are written by hand in `src/pages/epitok/index.astro` and
-`src/pages/nevado/index.astro`, so each can have its own layout (opening image, pull quotes,
-record excerpts, numbered sources). Their first versions were transcribed from the drafts in
-`input/epitok.md` and `input/nevado.md`; the build never reads those drafts, so edit the
-`.astro` files to change a story page. The Névadó portrait is committed in `src/assets/pages/`.
+`/epitok/`, `/lakok/` and `/nevado/` are written by hand in `src/pages/epitok/index.astro`,
+`src/pages/lakok/index.astro` and `src/pages/nevado/index.astro`, so each can have its own layout
+(opening image, pull quotes, record excerpts, numbered sources). Their first versions were
+transcribed from the drafts in `input/epitok.md`, `input/lakok.md` and `input/nevado.md`; the
+build never reads those drafts, so edit the `.astro` files to change a story page. The Névadó
+portrait is committed in `src/assets/pages/`.
+
+Lakók sets each period in a band with its home-timeline era colour, and the 1944–1945 section
+in the dark era tone. Its three name lists are collapsible `<details>` blocks, closed on load;
+`src/scripts/print-details.ts` opens them while the page is printed. It ends with a note
+offering correction or removal, linked to the impresszum contact address.
 
 ### Layout and design
 
@@ -251,14 +257,14 @@ previews.
 
 ```text
 input/timeline.md        research source (read-only for the build)
-input/epitok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
+input/epitok.md, lakok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
 editorial/               owner-maintained YAML (titles, captions, credits, site texts)
 assets/facade4.png       hero photo
 scripts/                 image download/check, font subsetting, local start, publishing
 src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers, statistics
-src/scripts/             browser scripts: image viewer, menu, consent and statistics
+src/scripts/             browser scripts: image viewer, menu, consent and statistics, print helper
 src/components/          Astro components (header, hero, legend, era opener, event, figure)
-src/pages/               /, /epitok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
+src/pages/               /, /epitok/, /lakok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
 src/assets/pages/        story page images (committed)
 src/fonts/               subset WOFF2 fonts + licences (committed)

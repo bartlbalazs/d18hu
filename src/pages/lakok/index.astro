@@ -1,0 +1,435 @@
+---
+import Base from '../../layouts/Base.astro';
+import { articleNode, breadcrumbNode, websiteNode } from '../../lib/seo/jsonld.ts';
+import { loadSiteData } from '../../lib/site-data.ts';
+import '../../styles/story.css';
+
+const { site } = loadSiteData();
+const siteUrl = Astro.site!;
+const path = '/lakok/';
+const title = 'Lakók – Dembinszky utca 18.';
+const description =
+  'Zongoratanárnő, színésznő, vasúti művezető, darukezelő: a Dembinszky utca 18. lakói és foglalkozásaik 1902 és 1954 között.';
+const jsonLd = [
+  websiteNode(siteUrl, site),
+  breadcrumbNode(siteUrl, [
+    { name: site.building.name, path: '/' },
+    { name: 'Lakók', path },
+  ]),
+  articleNode(siteUrl, { headline: 'Lakók', description, path }),
+];
+---
+
+<Base title={title} description={description} path={path} jsonLd={jsonLd} ogType="article">
+  <article class="lakok">
+    <header class="container story">
+      <p class="kicker">Dembinszky utca 18.</p>
+      <h1>Lakók</h1>
+      <p class="story__lead">Zongoratanárnő és színésznő, vasúti művezető és szemfedélkészítő, darukezelő és mozigépész. Fél évszázad alatt ilyen munkák kapcsolódtak a Dembinszky utca 18. lakóihoz. A foglalkozások mögött a város története is felsejlik: a századelő színházai és műhelyei, a háború utáni vasút és autóvállalkozás, majd az ötvenes évek iparosítása. Ugyanaz a cím, változó megélhetések.</p>
+      <p>A névsorok az 1902–1903-as, 1903–1904-es és 1922–1923-as <em>Budapesti Czim- és Lakásjegyzék</em>, valamint az 1954-es választói névjegyzék lapképeken ellenőrzött bejegyzéseiből készültek. Az adott forrás házhoz tartozó teljes listáját közöljük; ezek eltérő célú nyilvántartások, ezért nem fedik le a ház valamennyi lakóját. A portrékhoz korabeli újságokat és hirdetéseket, hangversenyműsorokat, szakfolyóiratokat, történeti feldolgozásokat és visszaemlékezéseket is használtunk. Ahol a személyazonosság bizonytalan, azt külön jelezzük. A bizonytalan foglalkozásmegjelölések eredeti alakjukban, kérdőjellel szerepelnek; a források a cikk végén érhetők el. <sup>[<a href="#forras-1">1</a>–<a href="#forras-4">4</a>]</sup></p>
+    </header>
+
+    <section class="lakok-band lakok-band--1" aria-labelledby="kezdetek">
+      <div class="container story">
+        <h2 id="kezdetek">A kezdetek: színpad, műhely, hivatal, 1902–1904</h2>
+        <p>A korai lakók között udvari egyenruhakészítő és szabósegéd, bankhivatalnok és bolti szolga egyaránt akadt. A szakmákon belüli különbségek is látszanak: Spitzer Adolf mészárosmester, Blau Salamon cipészsegéd volt. A házhoz művészi munka is kapcsolódott: Armandola Aranka zongorát tanított, Almássy Iza színésznőként dolgozott. A címtár néhány sora így a megélhetés különböző szintjeit és a város kulturális életét is egymás mellé helyezi. <sup>[<a href="#forras-1">1</a>–<a href="#forras-2">2</a>]</sup></p>
+        <h3>A két korai évfolyam névsora</h3>
+        <details class="name-list" id="nevsor-1902">
+          <summary>A két korai évfolyam névsorának megnyitása (67 bejegyzés)</summary>
+          <p>A „—” az adott évfolyamból hiányzó bejegyzést jelöli.</p>
+          <section class="name-list__frame" aria-label="A két korai évfolyam névsora" tabindex="0">
+            <table>
+              <caption class="visually-hidden">A két korai évfolyam névsora</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Név</th>
+                  <th scope="col">1902–1903: foglalkozás / státusz</th>
+                  <th scope="col">1903–1904: foglalkozás / státusz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Ádám Mihály</td><td>hivatalszolga</td><td>—</td></tr>
+                <tr><td>Ágoston Béla</td><td>bankhivatalnok</td><td>bankhivatalnok</td></tr>
+                <tr><td>özv. Almássy Aladárné</td><td>tanítónő</td><td>—</td></tr>
+                <tr><td>Almássy Iza</td><td>színésznő</td><td>—</td></tr>
+                <tr><td>Armandola Aranka</td><td>zongoratanárnő</td><td>—</td></tr>
+                <tr><td>Bánver Lajos</td><td>helyettes tanító</td><td>—</td></tr>
+                <tr><td>Baranyai Sándor</td><td>asztalossegéd</td><td>—</td></tr>
+                <tr><td>Blau Salamon</td><td>cipészsegéd</td><td>—</td></tr>
+                <tr><td>Body István</td><td>szabósegéd</td><td>—</td></tr>
+                <tr><td>Engel Mór</td><td>—</td><td>ügynök</td></tr>
+                <tr><td>Fazekas József</td><td>iskolaszolga</td><td>—</td></tr>
+                <tr><td>Feldmann Ármin</td><td>közszolga</td><td>—</td></tr>
+                <tr><td>Fink Oszkár</td><td>bankhivatalnok</td><td>bankhivatalnok</td></tr>
+                <tr><td>Freund Mátyás</td><td>kereskedelmi utazó</td><td>kereskedelmi utazó</td></tr>
+                <tr><td>Friedenstein Jakab</td><td>magánhivatalnok</td><td>magánhivatalnok</td></tr>
+                <tr><td>Friedmann Jakab</td><td>—</td><td>sajtügynök</td></tr>
+                <tr><td>Fuchs János</td><td>—</td><td>nyomdászsegéd</td></tr>
+                <tr><td>özv. Garami Edéné</td><td>varrónő</td><td>varrónő</td></tr>
+                <tr><td>Garami Ernő</td><td>magánhivatalnok</td><td>—</td></tr>
+                <tr><td>Göhlert Károly</td><td>tisztviselő</td><td>—</td></tr>
+                <tr><td>Günther Lajos</td><td>—</td><td>pincér</td></tr>
+                <tr><td>özv. Günther Vilmosné</td><td>—</td><td>nyugdíjas</td></tr>
+                <tr><td>Hay Károly</td><td>írnok</td><td>írnok</td></tr>
+                <tr><td>Iványi Szerén</td><td>—</td><td>irodista</td></tr>
+                <tr><td>Jandó Jenő</td><td>betűszedő</td><td>—</td></tr>
+                <tr><td>Juhos Lajos</td><td>—</td><td>MÁV-alkalmazott</td></tr>
+                <tr><td>Kirsteier János</td><td>nyomdászsegéd</td><td>—</td></tr>
+                <tr><td>Kiss Mihály</td><td>bolti szolga</td><td>bolti szolga</td></tr>
+                <tr><td>Kohn Mariska</td><td>—</td><td>fodrásznő</td></tr>
+                <tr><td>Kosula József</td><td>fa- és szénkereskedő</td><td>—</td></tr>
+                <tr><td>Kramer Lipót A.</td><td>—</td><td>fényképnagyító</td></tr>
+                <tr><td>Kronemer Bencze</td><td>—</td><td>metsző</td></tr>
+                <tr><td>dr. Legény Sándor</td><td>—</td><td>ügyvédjelölt</td></tr>
+                <tr><td>özv. Löwy Samuné</td><td>—</td><td>magánzó</td></tr>
+                <tr><td>Lukács Árpádné</td><td>varrónő</td><td>—</td></tr>
+                <tr><td>Marer Simon</td><td>magánzó</td><td>faügynök</td></tr>
+                <tr><td>Mautner Adolf</td><td>—</td><td>gázkészülékgyártó vállalkozó</td></tr>
+                <tr><td>Neidhart István</td><td>magánhivatalnok</td><td>magánhivatalnok</td></tr>
+                <tr><td>Neumann Sándor</td><td>kereskedelmi utazó</td><td>—</td></tr>
+                <tr><td>Noszák Károly</td><td>ügynök</td><td>—</td></tr>
+                <tr><td>Paksy Zsuzsánna</td><td>—</td><td>magánzó</td></tr>
+                <tr><td>Petrovits Ferencz</td><td>—</td><td>díjnok</td></tr>
+                <tr><td>Petrovits Robert / Róbert<br><span class="name-list__birth">(1902–1903 / 1903–1904)</span></td><td>MÁV-művezető</td><td>MÁV-művezető</td></tr>
+                <tr><td>özv. Podvinetz Árminné</td><td>—</td><td>magánzó</td></tr>
+                <tr><td>Posch Gyula</td><td>MÁV-hivatalnok</td><td>MÁV-hivatalnok</td></tr>
+                <tr><td>Pösch Gyula</td><td>MÁV-tisztviselő</td><td>—</td></tr>
+                <tr><td>Reisz Lajos</td><td>állványkölcsönző</td><td>—</td></tr>
+                <tr><td>Richter József</td><td>—</td><td>kenyérelárusító</td></tr>
+                <tr><td>Rothauser / Rothhauser Lajos<br><span class="name-list__birth">(1902–1903 / 1903–1904)</span></td><td>építész</td><td>építész</td></tr>
+                <tr><td>Scheidt György</td><td>—</td><td>MÁV-őr</td></tr>
+                <tr><td>Schreiber Jenő</td><td>kalauz</td><td>bádogossegéd</td></tr>
+                <tr><td>Schreiner Antal</td><td>—</td><td>pincér</td></tr>
+                <tr><td>Seifert / Szeifert Mária<br><span class="name-list__birth">(1902–1903 / 1903–1904)</span></td><td>varrónő</td><td>varrónő</td></tr>
+                <tr><td>Spitz János Ferencz / János Fer.<br><span class="name-list__birth">(1902–1903 / 1903–1904)</span></td><td>udvari egyenruhakészítő</td><td>egyenruhakereskedő</td></tr>
+                <tr><td>Spitzer Adolf</td><td>mészárosmester</td><td>—</td></tr>
+                <tr><td>özv. Steiger Lajosné</td><td>magánzó</td><td>magánzó</td></tr>
+                <tr><td>Stern Mihály</td><td>bádogossegéd</td><td>bádogossegéd</td></tr>
+                <tr><td>Stern Mór</td><td>cipészsegéd</td><td>—</td></tr>
+                <tr><td>Stróbl József</td><td>bírósági végrehajtó</td><td>—</td></tr>
+                <tr><td>Südfeld Gyula</td><td>kereskedősegéd</td><td>—</td></tr>
+                <tr><td>özv. Szalay Ádámné</td><td>—</td><td>magánzó</td></tr>
+                <tr><td>Szellő Sándor</td><td>—</td><td>fővárosi tanító</td></tr>
+                <tr><td>Széplaky Lajos</td><td>magánzó</td><td>—</td></tr>
+                <tr><td>Sztankovits József</td><td>—</td><td>fa- és szénkereskedő</td></tr>
+                <tr><td>Sztankovits Ödön</td><td>—</td><td>tanár</td></tr>
+                <tr><td>Waszily Lajos</td><td>asztalos</td><td>—</td></tr>
+                <tr><td>Weinberger Hermina</td><td>—</td><td>varrónő</td></tr>
+              </tbody>
+            </table>
+          </section>
+        </details>
+        <p>A névsor mellé téve a korabeli műsorokat, hirdetéseket és folyóiratokat, megmozdulnak a nevek. Hangverseny és városligeti színház, világítást ígérő készülék és iskolai versóra kerül közelebb: azok a helyek és ügyek, amelyek kitölthették a lakók napjait.</p>
+        <h3>Armandola Aranka: zongoralecke és hangverseny</h3>
+        <p>A címtár zongoratanárnője valószínűleg az az Armandola Aranka, aki 1901. március 9-én Fusz Ferenccel együtt zongorázott a Magyar Tanítók Turista Egyletének hangversenyén, a József körút 8. alatt. A Zenetudományi Intézet plakátokra épülő adatbázisa Rubinstein és Gobbi magyar dallamfantáziáját jelöli a műsorban. <sup>[<a href="#forras-5">5</a>]</sup></p>
+        <p>1902. május 31-én a Budapesti Magyar Zeneegyesület hangversenyén már énekesként szerepel a neve, Gounod <em>Faustjának</em> részleteinél. A zongoratanárnő mögött így olyan előadó körvonalazódik, aki többféle szerepben vett részt Budapest zenei életében. A ritka név és a zenei tevékenység erősíti az azonosítást, bár a műsorok lakcímet nem közölnek. <sup>[<a href="#forras-6">6</a>]</sup></p>
+        <h3>Almássy Iza: Mici hercegnő és a cake-walk</h3>
+        <p>Almássy Iza neve valószínűleg azonos a sajtóban Almási Izaként említett színésznőével. A <em>Budapesti Napló</em> 1903. június 24-én Féld Mátyás <em>Bob herceg és Mici hercegnő</em> című bohózatának városligeti bemutatóját harangozta be: Mici szerepére Almási Izát jelölte. <sup>[<a href="#forras-7">7</a>]</sup></p>
+        <p>A közlemény külön attrakciót is ígért: Féld Olga és Almási Iza új cake-walkját. A szereposztási előzetesből a nyári színház szórakoztató világa rajzolódik ki, ahol az új tánc éppúgy közönségcsalogató lehetett, mint maga a darab. A ház színésznője ezzel a könnyű színpadi műfajjal hozható kapcsolatba.</p>
+        <h3>Kramer Lipót A.: fényképnagyító</h3>
+        <p>Kramer Lipót A. fényképnagyítóként szerepel az 1903–1904-es jegyzékben: az elkészült felvételek nagyobb méretű változatainak előállításával foglalkozott. A fotográfia az ő révén külön mesterségként jelenik meg a ház névsorában. <sup>[<a href="#forras-2">2</a>]</sup></p>
+        <h3>Rothauser Lajos: egy építész további nyoma</h3>
+        <p>Rothauser Lajos építész volt; a következő évfolyam Rothhauser alakban közli a nevét. Egy későbbi levéltári feldolgozás az 1911–1912-ben épült Lázár utca 7. és 9. bérházainál Rothauser Lajost és Rothauser Józsefet nevezi meg kivitelezőként. A házakat Freund Dezső tervezte. <sup>[<a href="#forras-1">1</a>–<a href="#forras-2">2</a>, <a href="#forras-8">8</a>]</sup></p>
+        <p>Ha a név ugyanazt az embert jelöli, a Dembinszky utcai lakó később maga is részt vett budapesti bérházak építésében. A szakma és a név egyezése ígéretes nyom, a személyazonosság azonban még nincs bizonyítva.</p>
+        <h3>Mautner Adolf: fény és géperő egyetlen készülékből</h3>
+        <p>Mautner Adolf gázkészülékgyártó vállalkozóként szerepel az 1903–1904-es névsorban. A következő évek cégjegyzéke már a vállalkozását is ide köti: a Mautner Adolf és Társai címeként a Dembinszky utca 18-at adja meg, társtulajdonosként Mautnert és Wilczek Gusztávot nevezi meg. <sup>[<a href="#forras-2">2</a>, <a href="#forras-15">15</a>]</sup></p>
+        <p>A cég 1899-es hirdetése a <em>Perfector</em> nevű, szabadalmazott gázgyártó készüléket kínálta világításra, fűtésre és gépek hajtására. Szállodák, színházak, kávéházak és műhelyek mellett gazdaságoknak is ajánlotta: szecskavágók és darálók működtetését ígérte, sőt benzin- és petróleummotorok átalakítását is vállalta. A vevők aggodalmait a „Nem robban! Nem ártalmas!” felkiáltással próbálta eloszlatni. Ez a reklám ígérete volt; a teljesítmény igazolására a Technológiai Múzeum tekintélyét is felvonultatta. Mautner történetében már a századfordulón összekapcsolódik a világítás és a gépi munka üzlete. <sup>[<a href="#forras-16">16</a>]</sup></p>
+        <h3>Sztankovits Ödön: térképek és dél-amerikai levelek</h3>
+        <p>A címtár tanára valószínűleg az a Sztankovits Ödön, akit a Magyar Földrajzi Társaság könyvtártörténete térképészként és első önálló könyvtárosaként említ. Az 1906–1909 közötti években összeállította a könyvtár cédulakatalógusát, 1909-ben pedig a külön megszervezett könyvtárosi állás első betöltője lett. A tanári foglalkozást a földrajztudomány történeti feldolgozásának 1904-es névsora is megerősíti. <sup>[<a href="#forras-2">2</a>, <a href="#forras-17">17</a>]</sup></p>
+        <p>Munkája különös távolságra vezetett Budapesttől. Zakarjás János, a 18. századi jezsuita misszionárius latin nyelvű leveleit fordította magyarra; ezek 1910-ben jelentek meg a <em>Földrajzi Közleményekben</em>. A levelek dél-amerikai közösségek életéről és szokásairól számoltak be, a hittérítő szemszögéből. A lehetséges házbeli lakó így egy régi utazás leírását tette hozzáférhetővé a magyar olvasóknak. <sup>[<a href="#forras-18">18</a>]</sup></p>
+        <h3>Szellő Sándor: mit ér a szépen elmondott vers?</h3>
+        <p>Szellő Sándor fővárosi tanítóként került a lakók közé. Valószínűleg ugyanő írta a <em>Népnevelők Lapjában</em> 1900-ban <em>Az aesthetikai érzelem s a népiskola</em> című cikket. Ebben azt kifogásolta, hogy az iskola a gyermek értelmének fejlesztése közben háttérbe szorítja az érzelmek és a szépérzék nevelését. Jól elkészített szemléltető képeket, éneket, költészetet, rajzot és kézimunkát ajánlott ennek ellensúlyozására. <sup>[<a href="#forras-2">2</a>, <a href="#forras-19">19</a>]</sup></p>
+        <p>A versórának szerinte a költemény gondolataihoz, képeihez és érzelmeihez is el kell vezetnie a gyereket; a szép előadás önmagában kevés. Az énektanításban a dallam megtanulása mellett annak finom árnyalataira figyelt volna. A névsor egyszerű „tanító” megjelölése mögött így egy pedagógiai vita résztvevője sejlik fel. Az 1914-es címtár Szellő Sándort már a Váci úti elemi iskola helyettes igazgatójaként sorolja fel. <sup>[<a href="#forras-19">19</a>–<a href="#forras-20">20</a>]</sup></p>
+        <p>A ház építtetője, Spitz János Ferencz is a lakók között szerepel: előbb udvari egyenruhakészítőként, majd egyenruhakereskedőként. Részletes történetét az <em>Építők</em> cikk meséli el. A korai névsorban így a beruházó mellett azok is helyet kaptak, akik segédként, alkalmazottként vagy saját mesterségükből keresték a kenyerüket. A gázkészülék és a tanítók írásai pedig azt is megmutatják, mennyiféle elképzelés élt ekkor a technika és az oktatás jövőjéről. <sup>[<a href="#forras-1">1</a>–<a href="#forras-2">2</a>, <a href="#forras-13">13</a>]</sup></p>
+      </div>
+    </section>
+
+    <section class="lakok-band lakok-band--2" aria-labelledby="vasut-1922">
+      <div class="container story">
+        <h2 id="vasut-1922">1922: vasút, sajtó és autóvállalkozás</h2>
+        <p>Az első világháború, az 1918–1919-es politikai fordulatok és Trianon után más ország vette körül ugyanazt a házat. A lakók munkái között azonban sok ismerős foglalkozás maradt: vasutasok, hivatalnokok, nyomdász, varrónő és férfiszabó szerepel az 1922–1923-as címtárban. Közéjük egy autóvállalat tulajdonosa is bekerült. A régi és az új közlekedési világ egyetlen névsorban találkozik. <sup>[<a href="#forras-3">3</a>]</sup></p>
+        <h3>Az 1922–1923-as évfolyam névsora</h3>
+        <details class="name-list" id="nevsor-1922">
+          <summary>Az 1922–1923-as évfolyam névsorának megnyitása (35 bejegyzés)</summary>
+          <section class="name-list__frame" aria-label="Az 1922–1923-as évfolyam névsora" tabindex="0">
+            <table>
+              <caption class="visually-hidden">Az 1922–1923-as évfolyam névsora</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Név</th>
+                  <th scope="col">Foglalkozás / státusz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Ádám Márk</td><td>szemfedélkészítő</td></tr>
+                <tr><td>Balogh Vilmos</td><td>pénzt. tisztv. ?</td></tr>
+                <tr><td>Barabás Ferencz</td><td>szerkesztő</td></tr>
+                <tr><td>Beretzky Elemér</td><td>írnok</td></tr>
+                <tr><td>Engländer Dezső</td><td>magánhivatalnok</td></tr>
+                <tr><td>Farkas Erzsébet</td><td>pt. s. tiszt ?</td></tr>
+                <tr><td>Gajárszky István</td><td>szállodai hivatalnok</td></tr>
+                <tr><td>Garami Ede</td><td>fővárosi számvevőségi főtiszt</td></tr>
+                <tr><td>özv. Goldheim Lipótné</td><td>nyugdíjas</td></tr>
+                <tr><td>Graselly Miklós</td><td>iskolaigazgató</td></tr>
+                <tr><td>György Károly</td><td>gépészmérnök</td></tr>
+                <tr><td>Hafner Adolf</td><td>főpincér</td></tr>
+                <tr><td>Haupt Vilma</td><td>varrónő</td></tr>
+                <tr><td>dr. Hieronymi Kornél</td><td>orvos</td></tr>
+                <tr><td>özv. Horák Béláné</td><td>magánzó</td></tr>
+                <tr><td>László József</td><td>gépészmérnök</td></tr>
+                <tr><td>László Mihály</td><td>nyomdász</td></tr>
+                <tr><td>özv. Löwenfeld Gyuláné</td><td>magánzó</td></tr>
+                <tr><td>Löwinger Hermann</td><td>raktárnok</td></tr>
+                <tr><td>Markovits Ágoston</td><td>MÁV-főellenőr</td></tr>
+                <tr><td>Márkus Simon</td><td>kereskedelmi utazó</td></tr>
+                <tr><td>dr. Merényi József</td><td>lapszerkesztő</td></tr>
+                <tr><td>Náthán Aladár</td><td>magánhivatalnok</td></tr>
+                <tr><td>Náthán Géza</td><td>magánhivatalnok</td></tr>
+                <tr><td>Náthán Ignácz</td><td>magánzó</td></tr>
+                <tr><td>özv. Petrik Ferenczné</td><td>m. hiv. ?</td></tr>
+                <tr><td>Petrovits Károly</td><td>betűszedő</td></tr>
+                <tr><td>Petrovits Róbert</td><td>MÁV-művezető</td></tr>
+                <tr><td>Pogány Dávid Dezső</td><td>utazó</td></tr>
+                <tr><td>Szimcsák Alajos</td><td>minisztériumi hivatalnok</td></tr>
+                <tr><td>Szombathy József</td><td>MÁV-hivatalnok</td></tr>
+                <tr><td>Takács Eberhard Árpád</td><td>autóvállalat-tulajdonos</td></tr>
+                <tr><td>Vadász Sándor</td><td>pénzbeszedő</td></tr>
+                <tr><td>Weisz Sándor</td><td>magánhivatalnok</td></tr>
+                <tr><td>Wépi János</td><td>férfiszabó</td></tr>
+              </tbody>
+            </table>
+          </section>
+        </details>
+        <p>A művezető a vasúti műhelyekbe, az autóvállalkozó a motoros közlekedéshez vezet. A szerkesztő lehetséges előtörténetében egy kassai napilap bukkan fel, az orvos neve mellett pedig egy régi fénykép kínál nyomot. A foglalkozásokból munkanapok és pályák kezdenek kibomlani.</p>
+        <h3>Graselly Miklós: az iskola és a gazdasági egyesület</h3>
+        <p>Graselly Miklós iskolaigazgatóként lakott a házban. Valószínű korábbi nyoma a <em>Kecskeméti Lapok</em> 1911. március 12-i számában található: az újság ugyanilyen néven földművesiskolai igazgatót említ, aki a Kecskeméti Gazdasági Egyesületet képviselte. Kiss Elemér titkárral a lajosmizsei gazdasági egyesület alakuló közgyűlésére készültek. <sup>[<a href="#forras-3">3</a>, <a href="#forras-9">9</a>]</sup></p>
+        <p>Az újságbeli igazgató munkája tehát az iskola falain túl is folytatódott, a mezőgazdasági egyesületi életben. A ritka név és az igazgatói szerep összekapcsolja a két adatot, de a későbbi budapesti lakóval való azonosságot még külön forrásnak kellene megerősítenie.</p>
+        <h3>Petrovits Róbert: húsz év távolságából</h3>
+        <p>Petrovits Róbert neve és MÁV-művezetői foglalkozása mindkét korai kötetben, majd 1922-ben is ugyanennél a háznál szerepel. Ez a névsorok legerősebb folytonossági nyoma: a háború előtti és utáni címhez ugyanaz a név és szakma kapcsolódik. A bejegyzések közötti évekről nincs adatunk, így a megszakítás nélküli itt lakás nem igazolható. <sup>[<a href="#forras-1">1</a>–<a href="#forras-3">3</a>]</sup></p>
+        <p>1922-ben Markovits Ágoston MÁV-főellenőr és Szombathy József MÁV-hivatalnok is itt szerepel. A vasút többféle munkakörrel volt jelen a ház közösségében.</p>
+        <h3>Takács Eberhard Árpád: autóvállalat, telefonkapcsolattal</h3>
+        <p>Takács Eberhard Árpád autóvállalat-tulajdonos volt; mellette a „Józs. 51–47” telefonszámot is feltüntette a címtár. A vállalkozás pontos tevékenységét nem ismerjük. <sup>[<a href="#forras-3">3</a>]</sup></p>
+        <p>Bejegyzése a motoros közlekedéshez kapcsolódó megélhetést hozza a vasutasok mellé. Petrovits és Takács révén a ház névsorában egymás mellé kerül a nagy közlekedési intézmény alkalmazottja és az autós magánvállalkozó.</p>
+        <h3>Dr. Merényi József: egy kassai szerkesztőség lehetséges emléke</h3>
+        <p>Az 1922-es címtár dr. Merényi Józsefet lapszerkesztőként nevezi meg. Lehetséges, hogy ő az az 1879-ben született Merényi József, aki 1902-ben a kassai <em>Felsőmagyarország</em> munkatársa lett. Ötvös Anna sajtótörténeti tanulmánya a lap egymást követő szerkesztői között is felsorolja; főként politikai és gazdasági cikkeket írt, Kassát pedig 1916-ban hagyta el. <sup>[<a href="#forras-3">3</a>, <a href="#forras-21">21</a>]</sup></p>
+        <p>Éppen ottléte idején gyorsult fel a hírek útja: a lap 1903-ban vezette be a fővárosi telefon-hírszolgálatot. Az MTI hírei közvetlen beszélgetés révén jutottak el a szerkesztőséghez. Ha az azonosítás helyes, a Dembinszky utcai lakó már a háború előtt ilyen hírszerkesztői közegben dolgozott. <sup>[<a href="#forras-21">21</a>]</sup></p>
+        <h3>Dr. Hieronymi Kornél: egy fénykép második élete</h3>
+        <p>Dr. Hieronymi Kornél orvosként szerepel a háznál. Egy fényképkereskedő katalógusa egy 1890 körüli, Klösz György műterméből származó portrét kérdőjelesen Hieronymi Kornél MÁV-pályaorvos képeként azonosít. A leírás szerint az elő- és hátoldalon saját kezű aláírása látható. A fényképet később igazolványként használták: hátára kitöltött formanyomtatványt ragasztottak, majd iratlyukasztóval átlyukasztották. Egy műtermi arckép így a mindennapi ügyintézés tárgya lett. A házbeli orvossal való azonosság nincs igazolva; a vasúti orvosi kapcsolatot és a fényképes portrét ezért lehetőségként kezeljük. <sup>[<a href="#forras-3">3</a>, <a href="#forras-22">22</a>]</sup></p>
+        <h3>Ádám Márk: szemfedélkészítő</h3>
+        <p>Ádám Márk a temetkezéshez szükséges szemfedeleket készítette: ezek könnyű takarók, amelyekkel a halottat a ravatalon vagy a koporsóban lefedik. Mestersége a városi szolgáltatások egyik kevésbé látható oldalát őrzi a névsorban. <sup>[<a href="#forras-3">3</a>, <a href="#forras-10">10</a>]</sup></p>
+        <p>A szerkesztő, az orvos, a vasutas és a szemfedélkészítő munkája a városi élet egészen különböző pillanataihoz kapcsolódott. A következő névsorig azonban üldöztetés és ostrom is elérte a házat.</p>
+      </div>
+    </section>
+
+    <section class="lakok-band lakok-band--3" aria-labelledby="csillagos-haz">
+      <div class="container story">
+        <h2 id="csillagos-haz">1944–1945: csillagos ház</h2>
+        <p>A Dembinszky utca 18. szerepel a <em>Fővárosi Közlöny</em> 1944. június 16-i mellékletében kijelölt <a href="https://www.csillagoshazak.hu/sites/csillagoshazak.hu/files/pdfs/rendelet1.pdf#page=3" rel="noopener noreferrer">csillagos házak</a> között: az épületet a zsidónak minősített budapestiek kényszerlakhelyei közé sorolták. <sup>[<a href="#forras-26">26</a>]</sup> <a href="https://www.csillagoshazak.hu/hazak/VII/dembinszky18" rel="noopener noreferrer">Dénes Mari</a> 2014-ben közölt családi visszaemlékezése szerint 1945. január 15-én vagy 17-én nyilasok razziáztak a pincében, és elhurcolták nagyapját, Erdős Ferenc első világháborús hadirokkantat; a család többé nem hallott felőle. <sup>[<a href="#forras-27">27</a>]</sup> Az ötvenes évek foglalkozásaihoz érve ennek az emberi veszteségnek az emlékét is magunkkal visszük.</p>
+      </div>
+    </section>
+
+    <section class="lakok-band lakok-band--4" aria-labelledby="gepek-1954">
+      <div class="container story">
+        <h2 id="gepek-1954">1954: gépek és munkanormák</h2>
+        <p>Az ötvenes években az iparosítás nyelve is megérkezik a névsorba: vasesztergályos, géplakatos, időelemző és segédmunkás szerepel benne. Az 1954-es választói névjegyzék az állandó bejelentett lakásuk alapján sorolja a házhoz a választókat. Mellettük tovább él a kézműves és szolgáltató Budapest: szabók, varrónők, eladók, takarítók és egy táncos neve is olvasható. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        <h3>Az 1954-es választói névjegyzék házbeli listája</h3>
+        <details class="name-list" id="nevsor-1954">
+          <summary>A teljes 1954-es választói névsor megnyitása (107 bejegyzés)</summary>
+          <p>A nőknél a közölt születési név zárójelben, a fő névalak alatt szerepel. A csillaggal jelölt nevek olvasást könnyítő, valószínű javítások; eredeti alakjukat a táblázat alatti jegyzet őrzi.</p>
+          <section class="name-list__frame" aria-label="Az 1954-es választói névjegyzék házbeli listája" tabindex="0">
+            <table>
+              <caption class="visually-hidden">Az 1954-es választói névjegyzék házbeli listája</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Név</th>
+                  <th scope="col">Foglalkozás / státusz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Balázs Ferenc</td><td>tisztviselő</td></tr>
+                <tr><td>Balázs Ferencné<br><span class="name-list__birth">(szül. Böhm Sorolta)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Balázs Józsefné<br><span class="name-list__birth">(szül. Hidukovics Gizella)</span></td><td>árus</td></tr>
+                <tr><td>Borok Albert</td><td>gázviz. ?</td></tr>
+                <tr><td>Borok Albertné<sup>*</sup><br><span class="name-list__birth">(szül. Hajdukovics Erzsébet)</span></td><td>műhímző</td></tr>
+                <tr><td>Braun Jenő</td><td>tisztviselő</td></tr>
+                <tr><td>Braun Jenőné<br><span class="name-list__birth">(szül. Groszmann Olga)</span></td><td>jelölő</td></tr>
+                <tr><td>Bodzási Lajos</td><td>vasesztergályos</td></tr>
+                <tr><td>Bellák Árpád</td><td>jegykezelő</td></tr>
+                <tr><td>Bellák Árpádné<br><span class="name-list__birth">(szül. Haupt Mária)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Bicski Katalin</td><td>háztartásbeli</td></tr>
+                <tr><td>Czin József</td><td>segédvájár</td></tr>
+                <tr><td>Czin Józsefné<br><span class="name-list__birth">(szül. Nagy Erzsébet)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>özv. Csipke Józsefné<br><span class="name-list__birth">(szül. Kalb Elza)</span></td><td>nyugdíjas</td></tr>
+                <tr><td>Csomos Teréz</td><td>varrónő</td></tr>
+                <tr><td>özv. Csukai Sándorné<br><span class="name-list__birth">(szül. Benkő Rozália)</span></td><td>takarító</td></tr>
+                <tr><td>özv. Deutsch Aladárné<br><span class="name-list__birth">(szül. Löwenfeld Lívia)</span></td><td>nyugdíjas</td></tr>
+                <tr><td>Dvoreszky Balázsné<br><span class="name-list__birth">(szül. Perkics Rozália)</span></td><td>gym. ?</td></tr>
+                <tr><td>Dévényi Adolf</td><td>kárpitos</td></tr>
+                <tr><td>Dévényi Adolfné<br><span class="name-list__birth">(szül. Weinberger Regina)</span></td><td>takarító</td></tr>
+                <tr><td>Dylong Lászlóné<br><span class="name-list__birth">(szül. Bopper Julia)</span></td><td>tisztviselő</td></tr>
+                <tr><td>Erdély József</td><td>tisztviselő</td></tr>
+                <tr><td>Erdély Józsefné<br><span class="name-list__birth">(szül. Schpnberger Gizella)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Fehér Imre</td><td>szabó</td></tr>
+                <tr><td>Fehér Imréné<br><span class="name-list__birth">(szül. Sebestyén Rozália)</span></td><td>szabó</td></tr>
+                <tr><td>Fehér Pál</td><td>áruda ?</td></tr>
+                <tr><td>Felkai Jenő</td><td>kisp. ?</td></tr>
+                <tr><td>Felkai Jenőné<br><span class="name-list__birth">(szül. Wiener Erzsébet)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Felkai Andor</td><td>vegyész</td></tr>
+                <tr><td>Felkai Éva</td><td>egyetemi hallgató</td></tr>
+                <tr><td>Fürst Mihály</td><td>fogtechnikus</td></tr>
+                <tr><td>Fürst Mihályné<br><span class="name-list__birth">(szül. Eskstein Erzsébet)</span></td><td>rak. ?</td></tr>
+                <tr><td>Fürst Simonné<br><span class="name-list__birth">(szül. Steiner Mina)</span></td><td>cipőfelsőrész-készítő</td></tr>
+                <tr><td>Groszwirt Lajosné<br><span class="name-list__birth">(szül. Weisz Regina)</span></td><td>operatőr</td></tr>
+                <tr><td>Grünkut Imre<sup>*</sup></td><td>fogot. ?</td></tr>
+                <tr><td>Gábor Györgyné<br><span class="name-list__birth">(szül. Komlós Veronika)</span></td><td>tisztviselő</td></tr>
+                <tr><td>Hajdukocics Antal</td><td>éjjeliőr</td></tr>
+                <tr><td>Hajdukovics Antalné<br><span class="name-list__birth">(szül. Mágel Róza)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Hegedűs Andorné<br><span class="name-list__birth">(szül. Kohn Róza)</span></td><td>varrónő</td></tr>
+                <tr><td>Horváth János</td><td>időelemző</td></tr>
+                <tr><td>Horváth Jánosné<br><span class="name-list__birth">(szül. Bánk Jolán)</span></td><td>irodakt. ?</td></tr>
+                <tr><td>özv. Kökény Mihályné<br><span class="name-list__birth">(szül. Bazai Anna)</span></td><td>tisztviselő</td></tr>
+                <tr><td>Kulka Jenő</td><td>rakt. ?</td></tr>
+                <tr><td>Kulka Jenőné<br><span class="name-list__birth">(szül. Schmellinger Róza)</span></td><td>varrónő</td></tr>
+                <tr><td>Koncsár Lajos</td><td>géplakato ?</td></tr>
+                <tr><td>Kovács Zoltán<sup>*</sup></td><td>felsz. ?</td></tr>
+                <tr><td>Kovács István</td><td>szerelő</td></tr>
+                <tr><td>Kovács Zoltánné<br><span class="name-list__birth">(szül. Varga Rozália)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>özv. Kovács Lajosné</td><td>háztartásbeli</td></tr>
+                <tr><td>Kovács Jánosné<br><span class="name-list__birth">(szül. Ballák Magda)</span></td><td>mozigépész</td></tr>
+                <tr><td>Kohn Sándor Sámuel<sup>*</sup></td><td>segédmunkás</td></tr>
+                <tr><td>Kohn Sándor Sámuelné<br><span class="name-list__birth">(szül. Krausz Irén)</span></td><td>kartonfőző</td></tr>
+                <tr><td>özv. Koltsi Adolfné<br><span class="name-list__birth">(szül. Kőwi Berta)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Klamár József</td><td>g. művez. ?</td></tr>
+                <tr><td>Klamár Józsefné<br><span class="name-list__birth">(szül. Szommer Margit)</span></td><td>eladó</td></tr>
+                <tr><td>Komlós Sándorné<br><span class="name-list__birth">(szül. Berger Ilona)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Lőwy Lipót Pálné<br><span class="name-list__birth">(szül. Beer Olga)</span></td><td>bedolgozó</td></tr>
+                <tr><td>Lovas Róbert</td><td>m. ellenőr ?</td></tr>
+                <tr><td>Lovas Róbertné<br><span class="name-list__birth">(szül. Ruskó Ibolya)</span></td><td>SZTK-előadó</td></tr>
+                <tr><td>Lehrfeld Fábián</td><td>eltartott</td></tr>
+                <tr><td>Lehrefeld Fábiánné<br><span class="name-list__birth">(szül. Schwarc Kornélia)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>László Béláné<br><span class="name-list__birth">(szül. Groszmann Emma)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>László Julia</td><td>háztartásbeli</td></tr>
+                <tr><td>Lakatos Gézáné<br><span class="name-list__birth">(szül. Kovács Katalin)</span></td><td>darukezelő</td></tr>
+                <tr><td>Reiner Józsefné<br><span class="name-list__birth">(szül. Bánk Margit)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Megyeri Mihály</td><td>házfelügyelő</td></tr>
+                <tr><td>Megyeri Mihályné<br><span class="name-list__birth">(szül. Halász Mária)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Molnár Ida</td><td>táncos</td></tr>
+                <tr><td>Nagy Sándor</td><td>segédmunkás</td></tr>
+                <tr><td>Nagy Sándorné<br><span class="name-list__birth">(szül. Horváth Teréz)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Nagy Lajos</td><td>ewst. ?</td></tr>
+                <tr><td>Németh Ferencn</td><td>ker. ?</td></tr>
+                <tr><td>Németh Ferencné<br><span class="name-list__birth">(szül. Beer Klára)</span></td><td>vásári k. ?</td></tr>
+                <tr><td>Oláh Mária</td><td>pénztáros</td></tr>
+                <tr><td>Pap Vilmos</td><td>szeráros ?</td></tr>
+                <tr><td>Papp Vilmosné<br><span class="name-list__birth">(szül. Entra Ilona)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Polacsek Józsefné<br><span class="name-list__birth">(szül. Kállai Zsófia)</span></td><td>takarítónő</td></tr>
+                <tr><td>Raffai Mátyás</td><td>csapos</td></tr>
+                <tr><td>Raffai Mátyásné<br><span class="name-list__birth">(szül. Wolner Anna)</span></td><td>takarító</td></tr>
+                <tr><td>Reiner József</td><td>váll. i. ?</td></tr>
+                <tr><td>Répa Józsefné<br><span class="name-list__birth">(szül. Ponnyár Julia)</span></td><td>házfelügyelő</td></tr>
+                <tr><td>Simonfai Ilona</td><td>kegydíjas</td></tr>
+                <tr><td>Szécsi József</td><td>üveges</td></tr>
+                <tr><td>Széci Józsefné<br><span class="name-list__birth">(szül. Kántor Mária)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Szabó Lászlóné<br><span class="name-list__birth">(szül. Borog Mária)</span></td><td>szoblány ?</td></tr>
+                <tr><td>Szabó Mária</td><td>párt. ?</td></tr>
+                <tr><td>Szabó Róza</td><td>pártla. ?</td></tr>
+                <tr><td>Rzuszkó Ferenc</td><td>géplakatos</td></tr>
+                <tr><td>Szirtes Ferencné<br><span class="name-list__birth">(szül. Müller Terézia)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>özv. Szigeti Ernőné<br><span class="name-list__birth">(szül. Edelstein Ilona)</span></td><td>gém.?</td></tr>
+                <tr><td>Szöghy Dezső</td><td>asztalos</td></tr>
+                <tr><td>özv. Háman Dogoberné<br><span class="name-list__birth">(szül. Schindler Julia)</span></td><td>nyugdíjas</td></tr>
+                <tr><td>Taub Béla</td><td>tisztviselő</td></tr>
+                <tr><td>Taub Béláné<sup>*</sup><br><span class="name-list__birth">(szül. Holzer Irén)</span></td><td>elárusító</td></tr>
+                <tr><td>Tóth András? (1936)</td><td>géplakatos</td></tr>
+                <tr><td>Tóth Andrásné<br><span class="name-list__birth">(szül. Ignéczi Eszter)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Tokaji Erzsébet</td><td>elárusító</td></tr>
+                <tr><td>Ujvári István</td><td>MÁV vez. ?</td></tr>
+                <tr><td>Ujvári Istvánné<br><span class="name-list__birth">(szül. Megyeri Erzsébet)</span></td><td>szabász</td></tr>
+                <tr><td>Tóth András (1911)</td><td>italmérő</td></tr>
+                <tr><td>Ughy Emil</td><td>műsz. e. ?</td></tr>
+                <tr><td>Ughy Ferenc<sup>*</sup></td><td>MÁV st. ?</td></tr>
+                <tr><td>Ughy Ferencné<br><span class="name-list__birth">(szül. Czotter Terézia)</span></td><td>háztartásbeli</td></tr>
+                <tr><td>Vadáz Hedvig</td><td>tisztviselő</td></tr>
+                <tr><td>Vadász Endre</td><td>tiszv. ?</td></tr>
+                <tr><td>Viener Jakabné<br><span class="name-list__birth">(szül. Schlézinger Gizella)</span></td><td>járadél. ?</td></tr>
+                <tr><td>Weigletter István</td><td>asztalos</td></tr>
+              </tbody>
+            </table>
+          </section>
+          <p><em>Névjavítások:</em> a forrásban „Borok Akbertné”, „Grünkut Imrex”, „Kovács Zolátn”, „Kohn Sándorx Sámuel”, „Tabub Béláné” és „Ughy Ferecn” áll. A javítások szerkesztői értelmezések; az „x” jel pontos szerepe nem tisztázott. <sup>[<a href="#forras-4">4</a>]</sup></p>
+          <p><em>Lehetséges foglalkozás-feloldások:</em> a „kisp.” valószínűleg kisiparost, a „gym.” gyári munkást jelöl; a „szeráros” talán szertáros, az „ewst.” talán esztergályos hibásan gépelt alakja. A „párt.” és „pártla.” esetében felmerült a pártmunkás, illetve pártalkalmazott értelmezés is, de ezt a lapképek nem igazolják. Ezek feltevések, ezért a táblázatban megmaradt az eredeti, kérdőjellel jelölt szöveg. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        </details>
+        <p>A darukezelő és az időelemző sora az ipari munka világába vezet, a mozigépészé a vetítőfülkébe. Felkai Andor neve mellől egy sporttörténeti nyom indul tovább, Molnár Ida pedig tizennyolc évesen már táncosként szerepel. Az ötvenes évek lakóinak életét is többféle munka és szenvedély töltötte ki.</p>
+        <h3>Lakatos Gézáné, Kovács Katalin: darukezelő</h3>
+        <p>Lakatos Gézáné, született Kovács Katalin darukezelőként dolgozott. A női lakók munkája az ő bejegyzésében az ipari gépek világához kapcsolódik. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        <p>Az ilyen munkát a korszak nyilvánosan is bemutatta: egy 1952-es filmhíradó női darukezelőket szerepeltetett a gyöngyösi Váltó- és Kitérőgyárban. Ez a szakma korabeli hátterét szemlélteti; Katalin munkahelyét nem azonosítja. <sup>[<a href="#forras-11">11</a>]</sup></p>
+        <h3>Kovács Jánosné, Ballák Magda: a vetítés mögött</h3>
+        <p>Kovács Jánosné, született Ballák Magda mozigépész volt. A századelő színésznője után az előadás technikai oldalán dolgozó nő is megjelenik a ház történetében: munkája a filmvetítéshez kapcsolódott. A filmszínház nevét a névjegyzék nem közli. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        <h3>Horváth János: a munka idejének mérője</h3>
+        <p>Horváth János időelemzőként dolgozott. Szakmája a munkaműveletek időigényének vizsgálatához és a munkanormákhoz kapcsolódott: ahhoz, mennyi idő szükséges egy-egy feladat elvégzésére. <sup>[<a href="#forras-4">4</a>, <a href="#forras-12">12</a>]</sup></p>
+        <p>Az Országos Munkabérmegállapító Bizottság 1949-es hivatalos lapjában közölt iparági kollektív szerződés már külön időelemzési és normaosztályt sorolt fel. Horváth foglalkozása ebbe a munkaszervezési világba illeszkedik. A kézművesek termékei és a hivatalnokok ügyei mellé a névsorban magának a munkának a mérése is odakerül.</p>
+        <h3>Lőwy Lipót Pálné, Beer Olga: bedolgozó</h3>
+        <p>Beer Olga bedolgozó volt: a megnevezés vállalat vagy más megbízó számára vállalt, otthon elvégezhető munkát jelöl. A készített termék nem derül ki a névjegyzékből. Sora arra emlékeztet, hogy az ipari munkavégzés a lakóhelyhez is kapcsolódhatott, bár Olga munkájának pontos helyét nem ismerjük. <sup>[<a href="#forras-4">4</a>, <a href="#forras-14">14</a>]</sup></p>
+        <h3>Felkai Andor és Felkai Éva: a névjegyzéktől a kosárlabdapályáig</h3>
+        <p>Az 1954-es névjegyzék egymás után sorolja fel Felkai Andort, az 1926-ban született vegyészt és Felkai Évát, az 1933-ban született egyetemi hallgatót. A munkát és a továbbtanulást rögzítő sorok mellé a sport története kínál lehetséges folytatást. <sup>[<a href="#forras-4">4</a>, <a href="#forras-24">24</a>]</sup></p>
+        <p>Andor valószínűleg azonos a Vívó és Atlétikai Club, a VAC háború után újjászervezett kosárlabdacsapatának játékosával. Szász György klubtörténete az első osztályú csapat tagjai között említi. Kornfeld György visszaemlékezése egy 1946-os, amerikai tisztviselők elleni mérkőzésen is felsorolja, később pedig a női csapat edzőjeként és a zsidó kórház igazgatójaként idézi fel. A vegyészi foglalkozás mellett így egy sportolói és közösségszervezői pálya lehetősége is kirajzolódik. <sup>[<a href="#forras-23">23</a>]</sup></p>
+        <p>Kornfeld Andor húgáról is beszél: ő a női csapatban kosárlabdázott, később Hollandiába költözött, és egy VAC-os vízilabdázó feleségeként Delikátné lett. Ez Éva történetéhez is ígéretes nyom, de a visszaemlékezés nem közli a húg keresztnevét. Évával való azonossága, sőt a névjegyzék két Felkaijának testvéri kapcsolata is egyelőre feltevés. <sup>[<a href="#forras-23">23</a>]</sup></p>
+        <h3>Molnár Ida: tizennyolc éves táncos</h3>
+        <p>Molnár Ida 1936. január 14-én született Csákváron; az 1954-es névjegyzék már táncosként tartja számon a Dembinszky utcában. Alig tizennyolc évesen művészi munkával került a ház foglalkozásai közé. Almássy Iza század eleji színésznői bejegyzése, Ballák Magda mozigépészi munkája és Ida táncosi sora három különböző ponton kapcsolja a lakókat az előadások világához. <sup>[<a href="#forras-4">4</a>, <a href="#forras-25">25</a>]</sup></p>
+        <p>A műszaki szakmák mellé sport, továbbtanulás és művészi munka társul. A sok háztartásbeli és nyugdíjas bejegyzése pedig más élethelyzeteket őriz: az iparosítás korának házközössége is több volt a termelésben dolgozók névsoránál.</p>
+      </div>
+    </section>
+
+    <section class="lakok-band" aria-labelledby="megelhetesek">
+      <div class="container story">
+        <h2 id="megelhetesek">Egy cím, változó megélhetések</h2>
+        <p>A három korszak között óvatosan kirajzolódik egy irány: a műhelyek, üzletek és hivatalok mellé előbb autóvállalkozás, később újabb ipari és műszaki munkák kerülnek. A társadalmi átalakulás a női foglalkozások változatosságában is felsejlik. A különböző célú névsorokból ennek mértékét nem lehet megállapítani.</p>
+        <p>A személyes nyomok viszont közel hozzák a lakókat: Armandola hangversenye, Iza színházi szerepe, Mautner készülékhirdetése, Petrovits visszatérő neve. A tanítók írásai és a Felkai Andorhoz köthető sportemlékek további, részben még feltételes történeteket nyitnak meg. Másokról egyetlen mesterség maradt fenn. Együtt azt mutatják meg, hányféle munkából, tervből és élethelyzetből állt össze ugyanannak a bérháznak a közössége.</p>
+      </div>
+    </section>
+
+    <section class="lakok-band" aria-labelledby="forrasok">
+      <div class="container story sources">
+        <h2 id="forrasok">Források és továbbolvasás</h2>
+        <p><em>Névsori megjegyzések:</em> Posch és Pösch Gyula lehet ugyanaz a személy. A korai táblázat jelzett névváltozatai valószínű egyezések; Schreiber Jenő eltérő foglalkozású bejegyzéseinek azonossága bizonytalan. A „magánzó” nem nevez meg konkrét szakmát. Az 1954-es listában hat valószínű névjavítást csillag jelez, az eredeti alakok a táblázat alatt olvashatók; a többi szokatlan névalakot megőriztük. Lőwy ő/ö ékezete bizonytalan. A két Tóth András külön bejegyzés, eltérő születési évvel. <sup>[<a href="#forras-1">1</a>–<a href="#forras-4">4</a>]</sup></p>
+        <ol>
+          <li id="forras-1"><a href="https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_14_1902-1903/" rel="noopener noreferrer">Budapesti Czim- és Lakásjegyzék, 1902–1903 – Hungaricana</a>. Korai névsor és foglalkozások.</li>
+          <li id="forras-2"><a href="https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_15_1903-1904/" rel="noopener noreferrer">Budapesti Czim- és Lakásjegyzék, 1903–1904 – Hungaricana</a>. A második korai névsor.</li>
+          <li id="forras-3"><a href="https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_28_1922-1923/" rel="noopener noreferrer">Budapesti Czim- és Lakásjegyzék, 1922–1923 – Hungaricana</a>. Az 1922-es lakásjegyzéki adatok.</li>
+          <li id="forras-4"><a href="https://library.hungaricana.hu/hu/view/BFL_BPValasztoiNevjegyzek1954_07_kerulet_127_valasztokerulet/?pg=12" rel="noopener noreferrer">Végleges választói névjegyzék, 1954, VII. kerület, 127. választókerület – Budapest Főváros Levéltára / Hungaricana</a>. A ház 107 bejegyzése a pg=12–20 jelű lapképeken; fond: HU BFL XXIII.119.</li>
+          <li id="forras-5"><a href="https://db.zti.hu/koncert/koncert_Adatlap.asp?kID=1417" rel="noopener noreferrer">Zenetudományi Intézet, Koncertadatbázis: 1901. március 9.</a> Armandola Aranka zongorás szereplése; alapforrás: OSZK plakátgyűjteménye.</li>
+          <li id="forras-6"><a href="https://db.zti.hu/koncert/koncert_Adatlap.asp?kID=1482" rel="noopener noreferrer">Zenetudományi Intézet, Koncertadatbázis: 1902. május 31.</a> Armandola Aranka énekes szereplése.</li>
+          <li id="forras-7"><a href="https://www.epa.hu/04300/04337/01600/pdf/EPA04337_budapesti_naplo_1903_171.pdf" rel="noopener noreferrer">Budapesti Napló, 1903. június 24., 171. szám, 10. oldal – EPA, PDF</a>. Almási Iza szerepének és cake-walkjának beharangozója.</li>
+          <li id="forras-8"><a href="https://habitation.archivportal.hu/hu/lazar-utca-7-es-9" rel="noopener noreferrer">Lakás-Történet: Lázár utca 7. és 9.</a> Rothauser Lajos és József kivitelezői szerepe.</li>
+          <li id="forras-9"><a href="https://epa.oszk.hu/04500/04582/03860/pdf/EPA04582_kecskemeti_lapok_1911_060.pdf" rel="noopener noreferrer">Kecskeméti Lapok, 1911. március 12., 60. szám, 4. oldal – EPA, PDF</a>. Graselly Miklós földművesiskolai igazgató és az egyesületi közgyűlés.</li>
+          <li id="forras-10"><a href="https://mek.oszk.hu/02100/02115/html/4-1660.html" rel="noopener noreferrer">Magyar Néprajzi Lexikon: szemfedél – MEK</a>. A tárgy és rendeltetése.</li>
+          <li id="forras-11"><a href="https://filmhiradokonline.hu/watch.php?id=11012" rel="noopener noreferrer">Filmhíradók Online: Munkák a gyöngyösi Váltó- és Kitérőgyárban, 1952. január</a>. Női darukezelők korabeli bemutatása; szakmatörténeti párhuzam.</li>
+          <li id="forras-12"><a href="https://misc.bibl.u-szeged.hu/56182/1/omb_kozlony_1949_009.pdf" rel="noopener noreferrer">Az Országos Munkabérmegállapító Bizottság Hivatalos Lapja, 1949. március 3., 9. szám – SZTE, PDF</a>. Időelemzési és normaosztály, a PDF 2. lapján. A munkakör általános háttere: <a href="https://www.ksh.hu/docs/szolgaltatasok/hun/feor08/3/3161.html" rel="noopener noreferrer">KSH, FEOR–08, Munka- és termelésszervező</a>.</li>
+          <li id="forras-13"><a href="/epitok/">Dembinszky utca 18.: Építők</a>. Spitz János Ferencz története.</li>
+          <li id="forras-14"><a href="https://international.ipums.org/international/resources/enum_materials_pdf/enum_instruct_hu1970a.pdf" rel="noopener noreferrer">KSH: 1970. évi népszámlálás – Utasítás számlálóbiztosok és felülvizsgálók részére, 41. oldal – IPUMS, PDF</a>. A bedolgozás későbbi, részletes meghatározása.</li>
+          <li id="forras-15"><a href="https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_17_1905-1906/?pg=633" rel="noopener noreferrer">Budapesti Czim- és Lakásjegyzék, 1905–1906, 574. oldal – Hungaricana</a>. Mautner Adolf és Társai, Mautner Adolf és Wilczek Gusztáv neve, a vállalkozás Dembinszky utca 18. alatti címe.</li>
+          <li id="forras-16"><a href="https://tgyk.hu/sek/0159/Somogyi_Ujsag_06_1899_02_07.pdf#page=6" rel="noopener noreferrer">Somogyi Ujság, 1899. február 7., 6. szám, 6. oldal – Takáts Gyula Könyvtár, PDF</a>. A Mautner Adolf és Társai cég Perfector-hirdetése; a teljesítményre és biztonságra vonatkozó állítások a reklámból származnak.</li>
+          <li id="forras-17"><a href="https://real-j.mtak.hu/10070/1/FoldrajziKozlemenyek_1934.pdf" rel="noopener noreferrer">Dubovitz István: A Magyar Földrajzi Társaság könyvtárának hatvanéves története, Földrajzi Közlemények, 1934, 71. oldal – REAL-J, PDF</a>. Sztankovits Ödön térképész, könyvtáros és katalóguskészítő. Tanári megjelölése: <a href="https://hungarian-geography.hu/konyvtar/kiadv/fodor_foldrajz.pdf" rel="noopener noreferrer">Fodor Ferenc: A magyar földrajztudomány története, 292. oldal, PDF</a>.</li>
+          <li id="forras-18"><a href="https://www.epa.oszk.hu/00000/00033/00004/lacza.htm" rel="noopener noreferrer">Lacza Tihamér: Magyar jezsuiták Latin-Amerikában (II. rész), Fórum Társadalomtudományi Szemle, 2000/2 – EPA</a>. Zakarjás János levelei, Sztankovits Ödön fordítása és az 1910-es közlés.</li>
+          <li id="forras-19"><a href="https://epa.oszk.hu/06000/06054/01686/pdf/EPA06054_nepnevelok_lapja_1900_024.pdf" rel="noopener noreferrer">Szellő Sándor: Az aesthetikai érzelem s a népiskola, Népnevelők Lapja, 1900. június 16., 24. szám, 377–379. oldal – EPA, PDF</a>. A tanító saját írása a művészeti és érzelmi nevelésről.</li>
+          <li id="forras-20"><a href="https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_26_1914/?pg=540" rel="noopener noreferrer">Budapesti Czim- és Lakásjegyzék, 1914, 475. oldal – Hungaricana</a>. Szellő Sándor a Váci úti elemi iskola helyettes igazgatójaként.</li>
+          <li id="forras-21"><a href="https://mek.oszk.hu/21700/21761/21761.pdf" rel="noopener noreferrer">Ötvös Anna: A Felsőmagyarország című kassai napilap és tulajdonosa, Matzner Sámuel – Médiatörténeti tanulmányok 2020, 14. oldal, különösen az 52. jegyzet – MEK, PDF</a>. Merényi József kassai újságírói és szerkesztői pályája, valamint a lap telefon-hírszolgálata; a budapesti lakóval való azonosság nincs igazolva.</li>
+          <li id="forras-22"><a href="https://webshop.fenyiratok.hu/index.php?product_id=24494&amp;route=product%2Fproduct" rel="noopener noreferrer">Fényiratok: Klösz György – Hieronymi Kornél (?) MÁV-pályaorvos</a>. Fényképkatalógus, D083003 tétel: 1890 körüli portré, aláírások és későbbi igazolványként való használat. A katalógus azonosítása is kérdőjeles.</li>
+          <li id="forras-23"><a href="https://maccabi.hu/wp-content/uploads/2020/02/vac_hun.pdf" rel="noopener noreferrer">Szász György: A Vívó és Atlétikai Club (VAC) története, Fekete Sas, Budapest, 2019, 43–44. és 65–66. oldal – Maccabi VAC, PDF</a>. Felkai Andor kosárlabdázása; Kornfeld György visszaemlékezése Andorra és keresztnevén nem említett húgára. A házbeli lakókkal való kapcsolatok a portréban jelzett bizonyossággal szerepelnek.</li>
+          <li id="forras-24"><a href="https://static-cdn.hungaricana.hu/pdf1/BFL_BPValasztoiNevjegyzek1954_07/BFL_BPValasztoiNevjegyzek1954_07_kerulet_127_valasztokerulet-1732801725/page0014.pdf" rel="noopener noreferrer">Az 1954-es választói névjegyzék Felkai Andort és Felkai Évát tartalmazó lapja – BFL / Hungaricana, PDF</a>. Születési adatok és foglalkozások; a névjegyzék nem közöl rokoni kapcsolatot.</li>
+          <li id="forras-25"><a href="https://static-cdn.hungaricana.hu/pdf1/BFL_BPValasztoiNevjegyzek1954_07/BFL_BPValasztoiNevjegyzek1954_07_kerulet_127_valasztokerulet-1732801725/page0017.pdf" rel="noopener noreferrer">Az 1954-es választói névjegyzék Molnár Idát tartalmazó lapja – BFL / Hungaricana, PDF</a>. Csákvári születési hely, 1936. január 14-i születési idő és táncos foglalkozás.</li>
+          <li id="forras-26"><a href="https://www.csillagoshazak.hu/sites/csillagoshazak.hu/files/pdfs/rendelet1.pdf#page=3" rel="noopener noreferrer">A Fővárosi Közlöny 1944. június 16-i, 30. számának melléklete – Csillagos Házak, PDF</a>. A Dembinszky utca 18. a VII. kerület kijelölt épületei között, a melléklet 3. oldalán. A dokumentum a kényszerköltöztetések szabályait is közli.</li>
+          <li id="forras-27"><a href="https://www.csillagoshazak.hu/hazak/VII/dembinszky18" rel="noopener noreferrer">Csillagos Házak: VII. kerület, Dembinszky utca 18. – Dénes Mari visszaemlékezése, 2014. február 19.</a> Családi emlékezés a pince nyilas razziájáról és Erdős Ferenc elhurcolásáról; a január 15-i vagy 17-i dátumot maga a visszaemlékezés adja meg bizonytalanul.</li>
+        </ol>
+        <p class="lakok-note">
+          Ha Ön vagy családtagja szerepel a névsorokban, és javítást vagy törlést kér, írjon a
+          <a href={`mailto:${site.impresszum.contactEmail}`}>{site.impresszum.contactEmail}</a> címre.
+        </p>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<script>
+  import '../../scripts/print-details.ts';
+</script>

@@ -133,3 +133,165 @@
   outline: 2px solid var(--d18-sand);
   outline-offset: 4px;
 }
+
+/* ---------- Lakók: period bands in the home timeline's era tones ---------- */
+.lakok-band {
+  padding-block: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+.lakok-band--1 { background: var(--era-1); }
+.lakok-band--2 { background: var(--era-2); }
+.lakok-band--4 { background: var(--era-4); }
+
+.lakok-band--3 {
+  background: var(--era-3);
+  color: var(--era-3-ink);
+}
+
+.lakok-band .story {
+  padding-block: 0;
+}
+
+/* The band edge already separates the periods, so the first heading needs no rule. */
+.lakok-band .story > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* --d18-muted falls below AA on the darker light tones; --era-muted keeps it. */
+.lakok-band--1,
+.lakok-band--2,
+.lakok-band--4 {
+  --d18-muted: var(--era-muted);
+}
+
+.lakok-band--3 a,
+.lakok-band--3 a:hover {
+  color: var(--era-3-ink);
+}
+
+.lakok-band--3 :focus-visible {
+  outline-color: var(--era-3-ink);
+}
+
+.lakok-band .sources {
+  margin-top: 0;
+}
+
+/* Keep a range marker such as [1–2] on one line. */
+.lakok sup {
+  white-space: nowrap;
+}
+
+.lakok-note {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--d18-rule);
+}
+
+/* ---------- Lakók: collapsible name lists ---------- */
+.name-list {
+  margin-block: 1.25rem 2rem;
+  border: 1px solid var(--d18-rule);
+  background: rgb(255 255 255 / 0.35);
+}
+
+.name-list summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--d18-walnut);
+}
+
+.name-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.name-list summary::before {
+  content: '';
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  rotate: -45deg;
+}
+
+.name-list[open] summary::before {
+  rotate: 45deg;
+}
+
+.name-list summary:hover {
+  color: var(--d18-ink);
+}
+
+.name-list[open] summary {
+  border-bottom: 1px solid var(--d18-rule);
+}
+
+.name-list > p {
+  margin: 1rem;
+  font-size: 0.95rem;
+  color: var(--d18-muted);
+}
+
+.name-list__frame {
+  overflow-x: auto;
+}
+
+.name-list__frame:focus-visible {
+  outline-offset: -2px;
+}
+
+.name-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-variant-numeric: lining-nums;
+}
+
+#nevsor-1902 table {
+  min-width: 30rem;
+}
+
+.name-list th,
+.name-list td {
+  padding: 0.45rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.name-list th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--d18-muted);
+  border-bottom: 1px solid var(--d18-rule);
+}
+
+.name-list tbody tr:nth-child(even) {
+  background: var(--house-row);
+}
+
+.name-list__birth {
+  font-size: 0.875rem;
+  color: var(--d18-muted);
+}
+
+@media print {
+  .lakok-band {
+    background: none;
+    color: inherit;
+  }
+
+  .name-list__frame {
+    overflow: visible;
+  }
+}

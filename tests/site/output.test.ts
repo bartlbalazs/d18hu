@@ -15,7 +15,7 @@ const navLinks = (html: string, label: string) => {
   const nav = new RegExp(`<nav aria-label="${label}">([\\s\\S]*?)</nav>`).exec(html)?.[1] ?? '';
   return [...nav.matchAll(/href="([^"#]+)"/g)].map((match) => match[1]);
 };
-const PAGES = ['index.html', 'epitok/index.html', 'nevado/index.html', 'impresszum/index.html'];
+const PAGES = ['index.html', 'epitok/index.html', 'lakok/index.html', 'nevado/index.html', 'impresszum/index.html'];
 
 describe('built timeline page', () => {
   const html = read('index.html');
@@ -103,9 +103,9 @@ describe('every page', () => {
       expect(html).toMatch(/\.site-header\{[^}]*position:sticky/);
     });
 
-    it(`${page} lists the pages in the menu as Építők, Névadó, Impresszum`, () => {
+    it(`${page} lists the pages in the menu as Építők, Lakók, Névadó, Impresszum`, () => {
       const html = read(page);
-      const expected = ['/epitok/', '/nevado/', '/impresszum/'];
+      const expected = ['/epitok/', '/lakok/', '/nevado/', '/impresszum/'];
       expect(navLinks(html, 'Fő navigáció').filter((href) => href !== '/')).toEqual(expected);
       expect(navLinks(html, 'Lábléc')).toEqual(expected);
     });
@@ -117,6 +117,7 @@ describe('every page', () => {
     for (const file of htmlFiles) expect(read(file)).not.toContain('href="/irasok/"');
     const sitemap = read('sitemap.xml');
     expect(sitemap).toMatch(/\/epitok\/<\/loc>/);
+    expect(sitemap).toMatch(/\/lakok\/<\/loc>/);
     expect(sitemap).toMatch(/\/nevado\/<\/loc>/);
     expect(sitemap).not.toContain('/irasok/');
   });
@@ -147,6 +148,52 @@ describe('story pages', () => {
     const markers = [...html.matchAll(/href="#forras-(\d+)"/g)].map((match) => Number(match[1]));
     expect(new Set(markers)).toEqual(new Set(ids));
     expect(html).not.toContain('Javasolt nyitókép');
+  });
+});
+
+describe('Lakók page', () => {
+  const html = read('lakok/index.html');
+
+  it('is an article without images', () => {
+    expect(html).toContain('<meta property="og:type" content="article"');
+    const types = jsonLdTypes(html);
+    expect(types).toEqual(expect.arrayContaining(['WebSite', 'BreadcrumbList', 'Article']));
+    expect(types).not.toContain('ImageObject');
+    expect(html).not.toContain('<img');
+    expect(html).not.toContain('<figure class="evidence');
+  });
+
+  it('gives the 1944–1945 passage its own section', () => {
+    expect(html).toMatch(/<h2[^>]*>1944–1945: csillagos ház<\/h2>/);
+  });
+
+  it('links every source marker to one of its 27 numbered sources, and cites each one', () => {
+    const ids = [...html.matchAll(/id="forras-(\d+)"/g)].map((match) => Number(match[1]));
+    expect(ids).toEqual(Array.from({ length: 27 }, (_, index) => index + 1));
+    const markers = [...html.matchAll(/href="#forras-(\d+)"/g)].map((match) => Number(match[1]));
+    expect(new Set(markers)).toEqual(new Set(ids));
+  });
+
+  it('has clean, relative internal links', () => {
+    expect(html).not.toContain('utm_');
+    expect(html).not.toContain('<a href="https://www.dembinszky18.hu');
+  });
+
+  it('keeps the three name lists closed, labelled with their entry counts', () => {
+    const lists = html.match(/<details class="name-list"[^>]*>/g) ?? [];
+    expect(lists).toHaveLength(3);
+    for (const list of lists) expect(list).not.toMatch(/\sopen[\s=>]/);
+    const summaries = [...html.matchAll(/<summary[^>]*>([\s\S]*?)<\/summary>/g)].map((match) => match[1].trim());
+    expect(summaries.map((text) => /\((\d+) bejegyzés\)$/.exec(text)?.[1])).toEqual(['67', '35', '107']);
+  });
+
+  it('transcribes every row of the three name lists', () => {
+    const rowCounts = [...html.matchAll(/<tbody>([\s\S]*?)<\/tbody>/g)].map((match) => count(match[1], /<tr>/g));
+    expect(rowCounts).toEqual([67, 35, 107]);
+  });
+
+  it('ends with a correction and removal note after the sources', () => {
+    expect(html.indexOf('mailto:')).toBeGreaterThan(html.indexOf('id="forras-27"'));
   });
 });
 
@@ -194,15 +241,16 @@ describe('site menu', () => {
       expect(html).toContain('aria-labelledby="menu-oldalak"');
       const menu = /<div[^>]*id="fomenu"[^>]*>([\s\S]*?)<\/div>/.exec(html)?.[1] ?? '';
       const links = [...menu.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
-      expect(links).toHaveLength(7);
+      expect(links).toHaveLength(8);
       expect(links.slice(0, 4).every((href) => href.startsWith('/#korszak-'))).toBe(true);
-      expect(links.slice(4)).toEqual(['/epitok/', '/nevado/', '/impresszum/']);
+      expect(links.slice(4)).toEqual(['/epitok/', '/lakok/', '/nevado/', '/impresszum/']);
       expect(html).not.toContain('aria-current="location"');
     });
   }
 
   it('marks the current page in the menu', () => {
     expect(read('nevado/index.html')).toMatch(/<a href="\/nevado\/" aria-current="page"/);
+    expect(read('lakok/index.html')).toMatch(/<a href="\/lakok\/" aria-current="page"/);
   });
 });
 
