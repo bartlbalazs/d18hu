@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { deriveDates } from '../../src/lib/timeline/dates.ts';
 import { deriveEventId, slugify } from '../../src/lib/timeline/ids.ts';
-import { escapeHtml, renderInlineHtml } from '../../src/lib/timeline/inline-html.ts';
+import type { PhrasingContent } from 'mdast';
+import { escapeHtml, renderInlineHtml, toPlainText } from '../../src/lib/timeline/inline-html.ts';
 
 describe('deriveDates', () => {
   it.each([
@@ -58,6 +59,16 @@ describe('renderInlineHtml', () => {
 
   it('rejects unsupported nodes such as raw HTML', () => {
     expect(() => renderInlineHtml([{ type: 'html', value: '<script>' }])).toThrow(/unsupported/);
+  });
+
+  it('allows a bare line break, read as a space in plain text', () => {
+    const nodes: PhrasingContent[] = [
+      { type: 'text', value: 'a.' },
+      { type: 'html', value: '<br>' },
+      { type: 'text', value: 'b' },
+    ];
+    expect(renderInlineHtml(nodes)).toBe('a.<br>b');
+    expect(toPlainText(nodes)).toBe('a. b');
   });
 
   it('escapes quotes', () => {

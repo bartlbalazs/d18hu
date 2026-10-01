@@ -29,6 +29,10 @@ function renderNode(node: PhrasingContent): string {
     case 'link':
       assertHttpsUrl(node.url);
       return `<a href="${escapeHtml(node.url)}" rel="noopener noreferrer">${renderInlineHtml(node.children)}</a>`;
+    case 'html':
+      // Table cells cannot hold Markdown line breaks, so a bare <br> is the one raw HTML allowed.
+      if (isLineBreak(node.value)) return '<br>';
+      throw new InlineRenderError(`unsupported inline HTML "${node.value}"`);
     default:
       throw new InlineRenderError(`unsupported inline Markdown "${node.type}"`);
   }
@@ -38,10 +42,15 @@ export function toPlainText(nodes: PhrasingContent[]): string {
   return nodes
     .map((node) => {
       if (node.type === 'text' || node.type === 'inlineCode') return node.value;
+      if (node.type === 'html' && isLineBreak(node.value)) return ' ';
       if ('children' in node) return toPlainText(node.children as PhrasingContent[]);
       return '';
     })
     .join('');
+}
+
+function isLineBreak(html: string): boolean {
+  return /^<br\s*\/?>$/i.test(html);
 }
 
 export function assertHttpsUrl(url: string): void {

@@ -95,7 +95,7 @@ The build stops with a clear message if something is malformed, and prints the m
 
    - **Sáv** (lane): `D18`, `D18 • személy`, `Környék`, `Magyarország` or `Világ`
    - **Bizonyosság** (certainty): `Igazolt`, `Valószínű`, `Feltételezés`, or `—` for background events
-   - Descriptions may use `**bold**`, `*italic*` and `[links](https://…)`
+   - Descriptions may use `**bold**`, `*italic*`, `[links](https://…)` and `<br>` to start a new line
    - Everything after the fourth era (e.g. "Nyitott kérdések…") is never published
 2. Run `pnpm build:draft`. The new event appears in the missing-items list with its id (the date
    plus the first four words, e.g. `1912-maj-3-mi-tortent-es-miert`).
