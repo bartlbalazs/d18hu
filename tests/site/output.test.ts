@@ -154,13 +154,17 @@ describe('story pages', () => {
 describe('Lakók page', () => {
   const html = read('lakok/index.html');
 
-  it('is an article without images', () => {
+  it('is an article that opens with the credited façade photo after the lead', () => {
     expect(html).toContain('<meta property="og:type" content="article"');
-    const types = jsonLdTypes(html);
-    expect(types).toEqual(expect.arrayContaining(['WebSite', 'BreadcrumbList', 'Article']));
-    expect(types).not.toContain('ImageObject');
-    expect(html).not.toContain('<img');
-    expect(html).not.toContain('<figure class="evidence');
+    expect(jsonLdTypes(html)).toEqual(expect.arrayContaining(['WebSite', 'BreadcrumbList', 'Article', 'ImageObject']));
+    expect(count(html, /<figure class="evidence/g)).toBe(1);
+    expect(html).toMatch(/<figure class="evidence[\s\S]*?loading="eager"/);
+    expect(html).toContain('Globetrotter19');
+    const lead = html.indexOf('class="story__lead"');
+    const figure = html.indexOf('<figure class="evidence');
+    const firstBand = html.indexOf('class="lakok-band');
+    expect(lead).toBeLessThan(figure);
+    expect(figure).toBeLessThan(firstBand);
   });
 
   it('gives the 1944–1945 passage its own section', () => {

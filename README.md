@@ -154,7 +154,9 @@ used for search engines (`building`) and the Impresszum, including the hosting p
 (`hostingProvider`, `hostingAddress`, `hostingContactUrl`), which Hungarian law requires there. Empty strings count as missing; never
 fill the Impresszum with placeholder data. To replace the facade photo, overwrite
 `assets/facade4.png` and update `hero.photo` (alt, caption, credit, source link). The Építők
-opening photo (`assets/facade5.png`) shows the same credit.
+opening photo (`assets/facade5.png`) shows the same credit. The Lakók opening photo
+(`assets/facade6.png`, another Globetrotter19 photo) has its caption and credit in
+`src/pages/lakok/index.astro`.
 
 ### Story pages
 

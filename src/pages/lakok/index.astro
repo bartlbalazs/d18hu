@@ -1,6 +1,9 @@
 ---
+import facade from '../../../assets/facade6.png';
+import EvidenceFigure from '../../components/EvidenceFigure.astro';
 import Base from '../../layouts/Base.astro';
-import { articleNode, breadcrumbNode, websiteNode } from '../../lib/seo/jsonld.ts';
+import { fullSizeImage } from '../../lib/images/archive-images.ts';
+import { articleNode, breadcrumbNode, imageNode, websiteNode } from '../../lib/seo/jsonld.ts';
 import { loadSiteData } from '../../lib/site-data.ts';
 import '../../styles/story.css';
 
@@ -10,13 +13,27 @@ const path = '/lakok/';
 const title = 'Lakók – Dembinszky utca 18.';
 const description =
   'Zongoratanárnő, színésznő, vasúti művezető, darukezelő: a Dembinszky utca 18. lakói és foglalkozásaik 1902 és 1954 között.';
+const facadeCaption = 'A Dembinszky utca 18. utcai homlokzata 2022-ben';
+const facadeCredit = 'Fotó: Globetrotter19, 2022, CC BY-SA 3.0, kivágás, utómunka';
+const facadeSource = {
+  label: 'Wikimedia Commons',
+  url: 'https://commons.wikimedia.org/wiki/File:Dembinszky_Stra%C3%9Fe_18_und_20,_2022_Erzs%C3%A9betv%C3%A1ros.jpg',
+};
+const openingImage = await fullSizeImage(facade);
 const jsonLd = [
   websiteNode(siteUrl, site),
   breadcrumbNode(siteUrl, [
     { name: site.building.name, path: '/' },
     { name: 'Lakók', path },
   ]),
-  articleNode(siteUrl, { headline: 'Lakók', description, path }),
+  articleNode(siteUrl, { headline: 'Lakók', description, path, imageUrl: new URL(openingImage.src, siteUrl).href }),
+  imageNode(siteUrl, {
+    contentUrl: openingImage.src,
+    caption: facadeCaption,
+    credit: facadeCredit,
+    sourceUrl: facadeSource.url,
+    path,
+  }),
 ];
 ---
 
@@ -26,6 +43,18 @@ const jsonLd = [
       <p class="kicker">Dembinszky utca 18.</p>
       <h1>Lakók</h1>
       <p class="story__lead">Zongoratanárnő és színésznő, vasúti művezető és szemfedélkészítő, darukezelő és mozigépész. Fél évszázad alatt ilyen munkák kapcsolódtak a Dembinszky utca 18. lakóihoz. A foglalkozások mögött a város története is felsejlik: a századelő színházai és műhelyei, a háború utáni vasút és autóvállalkozás, majd az ötvenes évek iparosítása. Ugyanaz a cím, változó megélhetések.</p>
+      <EvidenceFigure
+        class="story__opening story__opening--tall"
+        image={facade}
+        alt="A Dembinszky utca 18. háromemeletes utcai homlokzata ferde rálátásból: dúsan faragott, növényi díszítésű ablakkeretek, hullámos párkány, kovácsoltvas erkély, előtte villamos-felsővezetékek"
+        caption={facadeCaption}
+        credit={facadeCredit}
+        source={facadeSource}
+        widths={[320, 480, 640]}
+        sizes="(min-width: 400px) 352px, 100vw"
+        eager
+        quality={40}
+      />
       <p>A névsorok az 1902–1903-as, 1903–1904-es és 1922–1923-as <em>Budapesti Czim- és Lakásjegyzék</em>, valamint az 1954-es választói névjegyzék lapképeken ellenőrzött bejegyzéseiből készültek. Az adott forrás házhoz tartozó teljes listáját közöljük; ezek eltérő célú nyilvántartások, ezért nem fedik le a ház valamennyi lakóját. A portrékhoz korabeli újságokat és hirdetéseket, hangversenyműsorokat, szakfolyóiratokat, történeti feldolgozásokat és visszaemlékezéseket is használtunk. Ahol a személyazonosság bizonytalan, azt külön jelezzük. A bizonytalan foglalkozásmegjelölések eredeti alakjukban, kérdőjellel szerepelnek; a források a cikk végén érhetők el. <sup>[<a href="#forras-1">1</a>–<a href="#forras-4">4</a>]</sup></p>
     </header>
 
@@ -431,5 +460,6 @@ const jsonLd = [
 </Base>
 
 <script>
+  import '../../scripts/lightbox.ts';
   import '../../scripts/print-details.ts';
 </script>
