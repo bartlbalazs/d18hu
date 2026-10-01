@@ -11,9 +11,12 @@ const rows = [
   { label: 'Üzemeltető', value: impresszum.operator },
   { label: 'Szerző', value: impresszum.author },
   { label: 'Kapcsolat', value: impresszum.contactEmail, isEmail: true },
+  { label: 'Tárhelyszolgáltató', value: impresszum.hostingProvider, isHosting: true },
   { label: 'Szerzői jog', value: impresszum.copyrightNotice },
 ];
-const complete = rows.every((row) => !isMissingValue(row.value));
+const complete = [...rows.map((row) => row.value), impresszum.hostingAddress, impresszum.hostingContactUrl].every(
+  (value) => !isMissingValue(value),
+);
 const jsonLd = [
   websiteNode(siteUrl, site),
   breadcrumbNode(siteUrl, [
@@ -39,7 +42,24 @@ const jsonLd = [
           {rows.map((row) => (
             <>
               <dt>{row.label}</dt>
-              <dd>{row.isEmail ? <a href={`mailto:${row.value}`}>{row.value}</a> : row.value}</dd>
+              {row.isEmail ? (
+                <dd>
+                  <a href={`mailto:${row.value}`}>{row.value}</a>
+                </dd>
+              ) : row.isHosting ? (
+                <dd>
+                  {row.value}
+                  <br />
+                  {impresszum.hostingAddress}
+                  <br />
+                  Kapcsolat:{' '}
+                  <a href={impresszum.hostingContactUrl} rel="noopener noreferrer">
+                    {impresszum.hostingContactUrl.replace(/^https:\/\//, '')}
+                  </a>
+                </dd>
+              ) : (
+                <dd>{row.value}</dd>
+              )}
             </>
           ))}
         </dl>

@@ -73,6 +73,9 @@ export const siteEditorialSchema = z.strictObject({
     operator: z.string().default(''),
     author: z.string().default(''),
     contactEmail: z.string().default(''),
+    hostingProvider: z.string().default(''),
+    hostingAddress: z.string().default(''),
+    hostingContactUrl: z.string().default(''),
     copyrightNotice: z.string().default(''),
   }),
   // Optional: an empty ID builds the site without analytics. Not part of the editorial audit.

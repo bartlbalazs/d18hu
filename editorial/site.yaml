@@ -49,6 +49,10 @@ impresszum:
   operator: Bartl Balázs
   author: Bartl Balázs
   contactEmail: bartlbalazs@gmail.com
+  # Tárhelyszolgáltató (Ektv. 4. §): on the free Spark plan, Firebase Hosting is provided by Google LLC.
+  hostingProvider: Google LLC (Firebase Hosting)
+  hostingAddress: 1600 Amphitheatre Parkway, Mountain View, CA 94043, Amerikai Egyesült Államok
+  hostingContactUrl: https://firebase.google.com/support
   copyrightNotice: © 2026 Bartl Balázs. A szövegek a forrás megjelölésével szabadon idézhetők.
 
 # Google Analytics (specs/005-google-analytics). The measurement ID is public by design: it

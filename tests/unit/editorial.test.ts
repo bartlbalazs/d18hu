@@ -66,6 +66,9 @@ const completeSite = siteEditorialSchema.parse({
     operator: 'Üzemeltető',
     author: 'Szerző',
     contactEmail: 'szerzo@d18.hu',
+    hostingProvider: 'Tárhely Kft.',
+    hostingAddress: 'Budapest',
+    hostingContactUrl: 'https://tarhely.hu/kapcsolat',
     copyrightNotice: '© 2026',
   },
 });

@@ -208,6 +208,14 @@ describe('impresszum page', () => {
     expect(html).toContain('Ha hibát talál');
   });
 
+  it('names the hosting provider after the contact row', () => {
+    const terms = [...html.matchAll(/<dt>([^<]+)<\/dt>/g)].map((match) => match[1]);
+    expect(terms.slice(0, 5)).toEqual(['Üzemeltető', 'Szerző', 'Kapcsolat', 'Tárhelyszolgáltató', 'Szerzői jog']);
+    expect(html).toContain('Google LLC (Firebase Hosting)');
+    expect(html).toContain('1600 Amphitheatre Parkway, Mountain View, CA 94043, Amerikai Egyesült Államok');
+    expect(html).toMatch(/<a href="https:\/\/firebase\.google\.com\/support"[^>]*>firebase\.google\.com\/support<\/a>/);
+  });
+
   it('describes the operator as the site publisher', () => {
     const publisher = jsonLdGraph(html).find((node) => node['@type'] === 'Person');
     expect(publisher).toMatchObject({ name: 'Bartl Balázs', email: 'mailto:bartlbalazs@gmail.com' });

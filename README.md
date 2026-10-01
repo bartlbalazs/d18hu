@@ -150,7 +150,8 @@ have checked it against the original and set `verified: true`:
 
 `editorial/site.yaml` holds the opening section (`hero`), the text on each era opener (`eras`:
 `intro`, `eventsHeading`, and `backgroundYear`, the large number in the background), the address
-used for search engines (`building`) and the Impresszum. Empty strings count as missing; never
+used for search engines (`building`) and the Impresszum, including the hosting provider
+(`hostingProvider`, `hostingAddress`, `hostingContactUrl`), which Hungarian law requires there. Empty strings count as missing; never
 fill the Impresszum with placeholder data. To replace the facade photo, overwrite
 `assets/facade4.png` and update `hero.photo` (alt, caption, credit, source link). The Építők
 opening photo (`assets/facade5.png`) shows the same credit.
