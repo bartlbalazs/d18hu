@@ -91,6 +91,33 @@
       "fetchedAt": "2026-10-01T17:43:36.928Z"
     },
     {
+      "originalUrl": "assets/events/spitz/1895-11-15-spitz-sportegyenruha.png",
+      "file": "local-1895-11-15-spitz-sportegyenruha-655bfbac.png",
+      "sha256": "655bfbacd79dc811e1460f9da06b774f439fbd1432262c766f24686e146f3bd6",
+      "width": 1825,
+      "height": 343,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.407Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1897-02-28-spitz-vivoszerek.png",
+      "file": "local-1897-02-28-spitz-vivoszerek-d36928c8.png",
+      "sha256": "d36928c8721cb84614b546167c3f99d30bd102c4d411727e7350bbef638f79c9",
+      "width": 1811,
+      "height": 485,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.409Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1898-10-11-spitz-bruna-kerekpar.png",
+      "file": "local-1898-10-11-spitz-bruna-kerekpar-118ac038.png",
+      "sha256": "118ac038e16a1076330e05ab412e968afe63cc16726333c3e6eb90e3232f2bd9",
+      "width": 858,
+      "height": 570,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.410Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1900-07-22_D04_Lakaskiadas_Krausz.png",
       "file": "local-1900-07-22-d04-lakaskiadas-krausz-d8abad15.png",
       "sha256": "d8abad15e4fe097efe0d692dc925cf227d8f15cf353f541ae56c1d769b3d4257",
@@ -127,6 +154,15 @@
       "fetchedAt": "2026-10-01T17:43:36.935Z"
     },
     {
+      "originalUrl": "assets/events/spitz/1901-1902-spitz-cegtarsak.png",
+      "file": "local-1901-1902-spitz-cegtarsak-ed7231fc.png",
+      "sha256": "ed7231fc336ca1148141b009b5edfc0abf2e5267a80a8996d0699a7f49bd9ce0",
+      "width": 808,
+      "height": 128,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.415Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1902-02-16_D08_Simplex_alagyujto.png",
       "file": "local-1902-02-16-d08-simplex-alagyujto-1ab73d3c.png",
       "sha256": "1ab73d3cd4e15131d6599d4e843788bc361ad8628274324d96fa72c60b519755",
@@ -143,6 +179,15 @@
       "height": 424,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T17:43:36.937Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1905-06-25-spitz-zarora.png",
+      "file": "local-1905-06-25-spitz-zarora-9dba7ab5.png",
+      "sha256": "9dba7ab5d5868199a9573a0fb39ce05fbb8bbecad9357ce07896871659a57f26",
+      "width": 390,
+      "height": 256,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.418Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1908-07-21_D13_Moya_irogep.png",
@@ -172,6 +217,24 @@
       "fetchedAt": "2026-10-01T17:43:36.947Z"
     },
     {
+      "originalUrl": "assets/events/spitz/1910-11-30-spitz-balesetbiztositas.png",
+      "file": "local-1910-11-30-spitz-balesetbiztositas-7f04d552.png",
+      "sha256": "7f04d55262cfa14c9fa2dd11981631fd92b651e9b5bae21a856ded74507388e3",
+      "width": 983,
+      "height": 1923,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.425Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1911-03-22-23-spitz-bervita.png",
+      "file": "local-1911-03-22-23-spitz-bervita-74ddc113.png",
+      "sha256": "74ddc113468970860691633319d26c59cca8f7a7c943828c68b294db9432a986",
+      "width": 1985,
+      "height": 2764,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.433Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1912-05-15_D17_Kalix_kenyergyara.png",
       "file": "local-1912-05-15-d17-kalix-kenyergyara-893a9134.png",
       "sha256": "893a91349de570d63bc32cd42cd4526214ab74dc21ccf3755b9efc1685f430d6",
@@ -179,6 +242,24 @@
       "height": 1272,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T17:43:36.950Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1915-04-15-spitz-csanad.png",
+      "file": "local-1915-04-15-spitz-csanad-f0871941.png",
+      "sha256": "f0871941ad991d6ea9219519bcaf550220413c536fba824beaf71a87cf4eb7ed",
+      "width": 478,
+      "height": 493,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.436Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1915-12-07-spitz-korhazi-ruha.png",
+      "file": "local-1915-12-07-spitz-korhazi-ruha-9706f24f.png",
+      "sha256": "9706f24fc2209823585abb41ef11f680b976e7b8a416b5470ab4a97d99ab2046",
+      "width": 438,
+      "height": 603,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.437Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1916-12-15_D18_Bradovka_potkave.png",
@@ -251,6 +332,15 @@
       "height": 488,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T17:43:36.963Z"
+    },
+    {
+      "originalUrl": "assets/events/spitz/1933-06-06-spitz-imre.png",
+      "file": "local-1933-06-06-spitz-imre-c3df8497.png",
+      "sha256": "c3df8497006cc0b3b9dd9080be16dd3cff9adf103df5e1c6f71d450a18d84b46",
+      "width": 1465,
+      "height": 1508,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-01T19:06:54.442Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1936-03-01_D28_Pint_uveges.png",
