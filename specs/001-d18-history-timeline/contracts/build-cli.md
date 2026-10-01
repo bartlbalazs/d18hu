@@ -31,7 +31,7 @@ Exit code 0 = success; non-zero = failure with a human-readable report on stderr
 
 ```text
 Missing editorial items (12):
-  event 1903-dec-27-maulner-adolf-es-tarsai  title      no editorial title
+  event 1903-dec-27-mautner-adolf-es-tarsai  title      no editorial title
   event 1963-a-ket-oldali-...                image.credit  image credit missing
   site  impresszum.contactEmail                         empty
 ```

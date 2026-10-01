@@ -36,8 +36,8 @@ describe('ids', () => {
   });
 
   it('uses the date and the first four words', () => {
-    expect(deriveEventId('1903. dec. 27.', 'Maulner Adolf és Társai a VII., Dembinszky')).toBe(
-      '1903-dec-27-maulner-adolf-es-tarsai',
+    expect(deriveEventId('1903. dec. 27.', 'Mautner Adolf és Társai a VII., Dembinszky')).toBe(
+      '1903-dec-27-mautner-adolf-es-tarsai',
     );
   });
 });

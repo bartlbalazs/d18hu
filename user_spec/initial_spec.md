@@ -187,7 +187,7 @@ Kiemelt, felkutatandó / beilleszthető képi helyek a mai timeline alapján:
 
 - A feltöltött homlokzatfotó a nyitóban és a korai házeseménynél, „mai állapot” felirattal.
 - Fortepan #82508: Rottenbiller–Dembinszky környéki nézet, **nem** bizonyítottan a 18-as.
-- 1903-as Maulner-hirdetés és 1904-es Budapesti Napló-cikk: eredeti, jogszerűen használható képkivágat, ha rendelkezésre áll; addig szöveges forráslink vagy hiteles, pontosan megjelölt átirat.
+- 1903-as Mautner-hirdetés és 1904-es Budapesti Napló-cikk: eredeti, jogszerűen használható képkivágat, ha rendelkezésre áll; addig szöveges forráslink vagy hiteles, pontosan megjelölt átirat.
 - 1929-es Drescher-hirdetés: a III/5-ös történethez.
 - Az 1944-es csillagosház-jegyzék releváns részlete; a 1945. januári „Ki tud róla?” közlés, ha megfelelő kép érhető el.
 - Fortepan #148696: 1963-as fénykép, amelyen a ház balra azonosítható; a forrás-Markdownban a tényleges képfájl URL-je már szerepel.

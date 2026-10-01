@@ -185,7 +185,7 @@ for another address, such as a staging copy. It refuses to run while any editori
 missing: new events or images show up in the `pnpm build:draft` list until their title is
 reviewed and their alt text, caption, credit and licence are filled in.
 
-Document highlights (the 1903 Maulner advertisement, the 1904 Tarcsai clipping) stay hidden
+Document highlights (the 1903 Mautner advertisement, the 1904 Tarcsai clipping) stay hidden
 until their transcription is checked against the original and set to `verified: true`.
 
 The site is hosted on Firebase Hosting, in the project named in `.firebaserc` and owned by the

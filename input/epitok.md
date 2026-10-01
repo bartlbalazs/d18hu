@@ -154,7 +154,7 @@ A rendkívül pontos dátum forrását azonban a cikk nem közli. Amíg nem lát
 
 A környező adatok ugyanakkor jól illeszkednek az 1901 körüli építéshez. A *Budapesti Czim- és Lakásjegyzék* 1902–1903-as évfolyamában a **Dembinszky utca 18. már lakott címként szerepel**.
 
-1903 decemberében az *Eperjesi Lapok* hirdetése szerint a **Maulner Adolf és Társai gázkészülék-vállalat** ezen a címen kínált svájci minta szerint készült kalcium-karbidot. A Dembinszky 18 ekkor már nem puszta telek vagy építési helyszín, hanem működő városi cím.
+1903 decemberében az *Eperjesi Lapok* hirdetése szerint a **Mautner Adolf és Társai gázkészülék-vállalat** ezen a címen kínált svájci minta szerint készült kalcium-karbidot. A Dembinszky 18 ekkor már nem puszta telek vagy építési helyszín, hanem működő városi cím.
 
 1904-ben pedig egy egészen más történet vezeti ide az újságolvasót. A *Budapesti Napló* arról tudósított, hogy **Tarcsai Viktor tanár**, aki „a repülőgép problémájával foglalkozott”, 2400 koronát vett fel egy bankháznál, majd eltűnt Budapestről. Felesége, Della Pilo Laura a Dembinszky utca 18. alatti lakásban maradt.
 

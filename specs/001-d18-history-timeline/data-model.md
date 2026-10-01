@@ -88,7 +88,7 @@ Keyed by event `id`. All fields optional in the schema; *required-for-release* r
 enforced by the audit (below).
 
 ```yaml
-1903-dec-27-maulner-adolf-es-tarsai:
+1903-dec-27-mautner-adolf-es-tarsai:
   title: Karbidot hirdetnek a 18-as címről
   titleNeedsReview: true           # set on AI drafts; delete after review (else a missing item)
   highlight:

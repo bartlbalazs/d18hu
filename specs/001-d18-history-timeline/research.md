@@ -54,7 +54,7 @@ newest release was younger than 7 days, the newest *eligible* release is chosen.
 - **Decision**: `id = slug(dateLabel) + "-" + slug(first 4 words of plain-text description)`.
   - **Slug rules**: lower-case; Hungarian accents folded (á→a, é→e, í→i, ó/ö/ő→o, ú/ü/ű→u);
     non-alphanumerics → `-`; repeats collapsed.
-  - **Example**: `1903-dec-27-maulner-adolf-es-tarsai`.
+  - **Example**: `1903-dec-27-mautner-adolf-es-tarsai`.
   - **Failures**: a duplicate id fails the build (`DuplicateEventId`), and so does an
     editorial key that matches no event (`OrphanedEditorialEntry`).
 - **Rationale**: The id is readable in URLs and anchors. It does not depend on row position,

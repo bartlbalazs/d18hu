@@ -29,7 +29,7 @@
   are shown verbatim from the timeline file (inline emphasis kept); titles are drafted once by
   AI into a separate editorial file keyed by event id and reviewed/edited there by the owner.
 - Q: How does each event get a permanent id? → A: Derived deterministically from the event's
-  content (date label + opening words of the description, e.g. `1903-12-27-maulner-...`), so
+  content (date label + opening words of the description, e.g. `1903-12-27-mautner-...`), so
   adding/reordering rows changes nothing; if editorial entries no longer match any event, the
   build stops and lists them for re-linking.
 - Q: Are downloaded archive images committed or fetched on every build? → A: Downloaded once
@@ -453,7 +453,7 @@ required metadata is present and valid.
 - Event titles are drafted once by AI from the "Esemény és jelentőség" text into the editorial
   metadata. They are not regenerated on each build and must be reviewed by the owner before
   publication.
-- The first document highlight is the 1903 Maulner advertisement address transcription
+- The first document highlight is the 1903 Mautner advertisement address transcription
   ("Budapest, VII., Dembinszky-utca 18."), as in the mockup, shown as a clearly labelled
   transcription until a lawfully usable scan is available.
 - The present-day facade photo (hero image) is `assets/facade.png` (784 × 1476 px). Its
