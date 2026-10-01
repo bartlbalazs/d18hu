@@ -32,11 +32,6 @@
   max-width: 26rem;
 }
 
-/* The full street front is about 4:7, so it gets a narrower column to stay a screen high. */
-.story .story__opening--tall {
-  max-width: 22rem;
-}
-
 .story p + p,
 .story p + ul,
 .story ul + p {
@@ -298,9 +293,5 @@
 
   .name-list__frame {
     overflow: visible;
-  }
-
-  .story .story__opening--tall {
-    max-width: 7.5cm; /* about half an A4 page high */
   }
 }

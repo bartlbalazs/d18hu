@@ -15,10 +15,15 @@ interface Props {
   sizes: string;
   eager?: boolean;
   quality?: number;
+  /** Crops the page image at build time (for example 4:3, anchored at the bottom); the viewer still opens the full photo. */
+  crop?: { aspectRatio: number; position: string };
   class?: string;
 }
 
-const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality } = Astro.props;
+const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality, crop } = Astro.props;
+const cropProps = crop
+  ? { width: image.width, height: Math.round(image.width / crop.aspectRatio), fit: 'cover' as const, position: crop.position }
+  : {};
 const full = await fullSizeImage(image);
 // A stable name for statistics: the source file's name without the build hash or extension.
 const imageName = image.src.split('?')[0].split('/').pop()!.split('.')[0];
@@ -44,6 +49,7 @@ const imageName = image.src.split('?')[0].split('/').pop()!.split('.')[0];
       fetchpriority={eager ? 'high' : 'auto'}
       decoding="async"
       quality={quality}
+      {...cropProps}
     />
     <span class="evidence__zoom" set:html={icons.zoomIn} />
   </a>

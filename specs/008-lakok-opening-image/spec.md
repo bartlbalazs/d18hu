@@ -14,6 +14,7 @@
 
 - Q: Should the photo stand on its own, or be a faded backdrop like era 1 on the home page? → A: On its own. It is the site's only picture of the whole street front, and a faded backdrop would hide the building and repeat the home page.
 - Q: Where does the photo go? → A: After the lead and before the method paragraph, the same order as the Névadó portrait.
+- Q: The full photo is tall and narrow; how should it be framed? → A: A 4:3 crop of the ground floor (entrance, balcony, carved keystone faces, street trees), the full column width, like the home page hero. The image viewer still opens the whole photo.
 - Q: Whose photo is it? → A: Globetrotter19, 1 May 2022, CC BY-SA 3.0, from Wikimedia Commons ("Dembinszky Straße 18 und 20, 2022 Erzsébetváros.jpg"), cropped and retouched.
 
 ## User Scenarios & Testing *(mandatory)*
@@ -28,14 +29,14 @@ A visitor opens the Lakók page. Near the top, before the long lists and portrai
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor on `/lakok/`, **When** the page loads, **Then** the façade photo shows after the lead and before the method paragraph, uncropped, with a caption and a credit line.
+1. **Given** a visitor on `/lakok/`, **When** the page loads, **Then** the façade photo shows after the lead and before the method paragraph, cropped to 4:3 on the ground floor, with a caption and a credit line.
 2. **Given** the photo is shown, **When** the visitor clicks or taps it, **Then** it opens enlarged in the same viewer the other pages use, and closes back to the same scroll position.
 3. **Given** a screen reader user, **When** they reach the photo, **Then** it is announced with an alternative text that describes the façade.
 4. **Given** a 320 px wide screen, **When** the page loads, **Then** the photo fits the column, and the page does not scroll sideways.
 
 ### Edge Cases
 
-- The photo is tall (about 4 : 7). On a phone it must not push the lead out of the first screen. The lead stays above the photo.
+- The photo is tall (about 4 : 7), so the page shows a 4:3 crop. On a phone the lead stays above the photo.
 - Slow connections: the photo is the page's largest element. It must load in modern compressed formats at the size the screen needs, and the page keeps its Lighthouse scores.
 - Printing: the photo prints in the column at no more than half a page high.
 
@@ -44,10 +45,10 @@ A visitor opens the Lakók page. Near the top, before the long lists and portrai
 ### Functional Requirements
 
 - **FR-001**: The Lakók page MUST show `assets/facade6.png` once, in the opening part of the page, before the first era section.
-- **FR-002**: The photo MUST be placed after the lead and before the method paragraph, in a column narrower than the text, so the whole photo is about one screen high.
+- **FR-002**: The photo MUST be placed after the lead and before the method paragraph, at the full column width.
 - **FR-003**: The photo MUST use the same figure treatment as the opening images on Építők and Névadó: frame, caption, credit line, and click to enlarge.
-- **FR-004**: The photo MUST NOT be cropped; its full height is shown, scaled to the column.
-- **FR-005**: The caption and credit MUST read "A Dembinszky utca 18. utcai homlokzata 2022-ben" and "Fotó: Globetrotter19, 2022, CC BY-SA 3.0, kivágás, utómunka", with a link to the Wikimedia Commons file page, as the licence requires.
+- **FR-004**: On the page, the photo MUST be shown as a 4:3 crop of its lower part, showing the entrance and the ground floor. Enlarging it MUST show the whole, uncropped photo.
+- **FR-005**: The caption and credit MUST read "A Dembinszky utca 18. kapuja és földszinti ablakai 2022-ben" and "Fotó: Globetrotter19, 2022, CC BY-SA 3.0, kivágás, utómunka", with a link to the Wikimedia Commons file page, as the licence requires.
 - **FR-006**: The photo MUST have a Hungarian alternative text that describes the street front.
 - **FR-007**: The page's structured data MUST name the photo as the article's image, as Névadó does.
 - **FR-008**: The requirement of feature 007 that the page has no images (FR-007a) is replaced by this feature.

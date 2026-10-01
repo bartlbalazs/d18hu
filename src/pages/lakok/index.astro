@@ -13,7 +13,7 @@ const path = '/lakok/';
 const title = 'Lakók – Dembinszky utca 18.';
 const description =
   'Zongoratanárnő, színésznő, vasúti művezető, darukezelő: a Dembinszky utca 18. lakói és foglalkozásaik 1902 és 1954 között.';
-const facadeCaption = 'A Dembinszky utca 18. utcai homlokzata 2022-ben';
+const facadeCaption = 'A Dembinszky utca 18. kapuja és földszinti ablakai 2022-ben';
 const facadeCredit = 'Fotó: Globetrotter19, 2022, CC BY-SA 3.0, kivágás, utómunka';
 const facadeSource = {
   label: 'Wikimedia Commons',
@@ -44,14 +44,15 @@ const jsonLd = [
       <h1>Lakók</h1>
       <p class="story__lead">Zongoratanárnő és színésznő, vasúti művezető és szemfedélkészítő, darukezelő és mozigépész. Fél évszázad alatt ilyen munkák kapcsolódtak a Dembinszky utca 18. lakóihoz. A foglalkozások mögött a város története is felsejlik: a századelő színházai és műhelyei, a háború utáni vasút és autóvállalkozás, majd az ötvenes évek iparosítása. Ugyanaz a cím, változó megélhetések.</p>
       <EvidenceFigure
-        class="story__opening story__opening--tall"
+        class="story__opening"
         image={facade}
-        alt="A Dembinszky utca 18. háromemeletes utcai homlokzata ferde rálátásból: dúsan faragott, növényi díszítésű ablakkeretek, hullámos párkány, kovácsoltvas erkély, előtte villamos-felsővezetékek"
+        alt="A Dembinszky utca 18. földszintje és első emelete ferde rálátásból: arcos zárókövű, dúsan faragott ablakkeretek, kovácsoltvas erkély, a kapu előtt fiatal utcafák"
         caption={facadeCaption}
         credit={facadeCredit}
         source={facadeSource}
-        widths={[320, 480, 640]}
-        sizes="(min-width: 400px) 352px, 100vw"
+        widths={[400, 600, 784]}
+        sizes="(min-width: 760px) 704px, 100vw"
+        crop={{ aspectRatio: 4 / 3, position: 'bottom' }}
         eager
         quality={40}
       />
