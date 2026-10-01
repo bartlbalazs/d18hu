@@ -189,30 +189,14 @@ Document highlights (the 1903 Mautner advertisement, the 1904 Tarcsai clipping) 
 until their transcription is checked against the original and set to `verified: true`.
 
 The site is hosted on Firebase Hosting, in the project named in `.firebaserc` and owned by the
-personal account **bartlbalazs@gmail.com** (never the work account). `firebase.json` holds the
-hosting settings: trailing-slash redirects, the `404.html` page, caching and security headers.
+owner's personal Google account (never a work account). `firebase.json` holds the hosting
+settings: trailing-slash redirects, the `404.html` page, caching and security headers.
 The Firebase CLI is a pinned devDependency, so always run it as `pnpm exec firebase`.
 
 #### One-time setup
 
-1. At <https://console.firebase.google.com/>, signed in as bartlbalazs@gmail.com, create the
-   project `dembinszky18` (Google Analytics is not needed). If that ID is taken, use
-   `dembinszky18-hu` and put it in `.firebaserc`.
-2. `pnpm exec firebase login`, choosing bartlbalazs@gmail.com.
-3. `pnpm site:publish`. The site is now at `https://<project-id>.web.app/`.
-4. In the console, go to Hosting → Add custom domain. Add `www.dembinszky18.hu`, then
-   `dembinszky18.hu` with "Redirect to www.dembinszky18.hu". Enter the DNS records it shows at
-   the registrar and wait for "Connected" (the certificate can take up to 24 hours).
-
-DNS records at the registrar (Forpsi; the MX, SRV, SPF and DMARC records for e-mail stay as they are):
-
-| Host | Type | Value |
-|---|---|---|
-| `dembinszky18.hu` | A | `199.36.158.100` (replaces Forpsi's parking address `81.2.196.19`) |
-| `dembinszky18.hu` | TXT | `hosting-site=dembinszky18` |
-| `www.dembinszky18.hu` | A | `199.36.158.100` |
-| `www.dembinszky18.hu` | TXT | `hosting-site=dembinszky18` |
-| `_acme-challenge.www.dembinszky18.hu` | TXT | the certificate token shown in the Firebase console |
+Creating the Firebase project and connecting the domain is described in
+[docs/domain-setup.md](docs/domain-setup.md).
 
 #### Routine publishing
 
@@ -222,8 +206,8 @@ pnpm verify:live    # afterwards: live link check and Lighthouse
 ```
 
 `site:publish` runs `check`, `test`, `build:release` and `test:site`, refuses draft output, and
-deploys only when all of them pass and the CLI is logged in as bartlbalazs@gmail.com. Each
-release is labelled with its commit.
+deploys only when all of them pass and the CLI is logged in as the owner account set in
+`scripts/publish.sh`. Each release is labelled with its commit.
 
 #### Rollback
 
@@ -249,7 +233,7 @@ or other secrets. Draft builds and `pnpm dev` never include analytics, and the s
 on the site's own hostname (`www.dembinszky18.hu`), not on `dembinszky18.web.app` or local
 previews.
 
-**One-time setup**, with the personal account (bartlbalazs@gmail.com):
+**One-time setup**, with the owner's personal Google account:
 
 1. At <https://analytics.google.com/>, create a property (time zone Hungary) with a Web data
    stream for `https://www.dembinszky18.hu`, and copy its measurement ID.
@@ -283,6 +267,7 @@ specs/                   Spec Kit feature spec, plan, research, data model, cont
 .specify/, .claude/      Spec Kit configuration and commands
 firebase.json, .firebaserc  Firebase Hosting settings and project
 lighthouserc*.json       Lighthouse budgets for the local build and the live site
+docs/                    one-time setup guides (domain and hosting)
 ```
 
 ## Principles and supply chain
