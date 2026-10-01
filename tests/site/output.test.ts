@@ -313,7 +313,7 @@ describe('statistics', () => {
       expect(notice).toContain(`data-measurement-id="${measurementId}"`);
       expect(html).toMatch(/data-consent="granted"[^>]*>Elfogadom</);
       expect(html).toMatch(/data-consent="denied"[^>]*>Nem kérem</);
-      const footer = /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? '';
+      const footer = /<footer class="site-footer"[\s\S]*?<\/footer>/.exec(html)?.[0] ?? '';
       expect(count(footer, /data-consent-settings/g)).toBe(1);
     });
   }
