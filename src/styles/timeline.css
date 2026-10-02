@@ -184,6 +184,12 @@
   display: block;
 }
 
+/* Same size as the legend entries; .legend itself is set larger. */
+.legend__group--scope p {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
 .legend__intro {
   margin-bottom: 0.75rem;
   font-size: 0.9375rem;
