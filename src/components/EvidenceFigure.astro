@@ -17,10 +17,13 @@ interface Props {
   quality?: number;
   /** Crops the page image at build time (for example 4:3, anchored at the bottom); the viewer still opens the full photo. */
   crop?: { aspectRatio: number; position: string };
+  /** A short heading shown above the caption, such as which page of a source the image shows. */
+  label?: string;
   class?: string;
 }
 
-const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality, crop } = Astro.props;
+const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality, crop, label } =
+  Astro.props;
 const cropProps = crop
   ? { width: image.width, height: Math.round(image.width / crop.aspectRatio), fit: 'cover' as const, position: crop.position }
   : {};
@@ -54,6 +57,7 @@ const imageName = image.src.split('?')[0].split('/').pop()!.split('.')[0];
     <span class="evidence__zoom" set:html={icons.zoomIn} />
   </a>
   <figcaption>
+    {label && <span class="evidence__label">{label}</span>}
     {caption}
     {
       (credit || source) && (

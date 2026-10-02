@@ -16,7 +16,8 @@ marks the era being read, and consent-gated visitor statistics (see
 [Statistics](#statistics-google-analytics)). It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
 `specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
-`specs/005-google-analytics/`, `specs/006-timeline-closing/` and `specs/007-lakok-page/`.
+`specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/` and
+`specs/009-lakok-source-images/`.
 
 ## Requirements
 
@@ -164,8 +165,10 @@ opening photo (`assets/facade5.png`) shows the same credit. The Lakók opening p
 `src/pages/lakok/index.astro` and `src/pages/nevado/index.astro`, so each can have its own layout
 (opening image, pull quotes, record excerpts, numbered sources). Their first versions were
 transcribed from the drafts in `input/epitok.md`, `input/lakok.md` and `input/nevado.md`; the
-build never reads those drafts, so edit the `.astro` files to change a story page. The Névadó
-portrait is committed in `src/assets/pages/`.
+build never reads those drafts, so edit the `.astro` files to change a story page. Story page
+images are committed in `src/assets/pages/`: the Névadó portrait, and the Lakók source images in
+`src/assets/pages/lakok/`. The Lakók images' captions, alt texts, credits, source links and
+display widths are in `src/lib/lakok/figures.ts`.
 
 Lakók sets each period in a band with its home-timeline era colour, and the 1944–1945 section
 in the dark era tone. Its three name lists are collapsible `<details>` blocks, closed on load;
@@ -265,11 +268,12 @@ editorial/               owner-maintained YAML (titles, captions, credits, site 
 assets/facade4.png       hero photo
 scripts/                 image download/check, font subsetting, local start, publishing
 src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers, statistics
+src/lib/lakok/figures.ts captions, credits and sizes of the Lakók source images
 src/scripts/             browser scripts: image viewer, menu, consent and statistics, print helper
 src/components/          Astro components (header, hero, legend, era opener, event, figure)
 src/pages/               /, /epitok/, /lakok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
-src/assets/pages/        story page images (committed)
+src/assets/pages/        story page images (committed); lakok/ holds the Lakók source images
 src/fonts/               subset WOFF2 fonts + licences (committed)
 tests/unit/, tests/site/ Vitest suites
 specs/                   Spec Kit feature spec, plan, research, data model, contracts

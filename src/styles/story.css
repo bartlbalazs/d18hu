@@ -166,6 +166,11 @@
   --d18-muted: var(--era-muted);
 }
 
+/* Figure captions use --d18-muted, which is too dark to read on the era 3 band. */
+.lakok-band--3 {
+  --d18-muted: var(--era-3-ink);
+}
+
 .lakok-band--3 a,
 .lakok-band--3 a:hover {
   color: var(--era-3-ink);
@@ -177,6 +182,40 @@
 
 .lakok-band .sources {
   margin-top: 0;
+}
+
+/* Source images keep their own shape; these cap their width (see src/lib/lakok/figures.ts). */
+.lakok-band .evidence {
+  margin-block: 1.75rem;
+}
+
+.story .lakok-figure--narrow {
+  max-width: 25rem;
+}
+
+.story .lakok-figure--medium {
+  max-width: 30rem;
+}
+
+.story .lakok-figure--wide {
+  max-width: 38.75rem;
+}
+
+/* Directory lines and text strips are too low for the overlaid zoom button; it sits below them instead. */
+.lakok-figure--strip .evidence__zoom {
+  position: static;
+  margin: 0.25rem 0 0 auto;
+}
+
+/* Two clips shown together, with a visible gap so they don't read as one continuous source. */
+.lakok-figure-pair {
+  display: grid;
+  gap: 1.375rem;
+  margin-block: 1.75rem;
+}
+
+.lakok-figure-pair .evidence {
+  margin-block: 0;
 }
 
 /* Keep a range marker such as [1–2] on one line. */
@@ -293,5 +332,19 @@
 
   .name-list__frame {
     overflow: visible;
+  }
+
+  /* Keep each source image under half a page and with its caption. */
+  .lakok .evidence {
+    break-inside: avoid;
+  }
+
+  .lakok .evidence img {
+    max-height: 12cm;
+    width: auto;
+  }
+
+  .lakok .evidence__zoom {
+    display: none;
   }
 }

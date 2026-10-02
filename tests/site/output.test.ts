@@ -171,7 +171,7 @@ describe('Lakók page', () => {
   it('is an article that opens with the credited façade photo after the lead', () => {
     expect(html).toContain('<meta property="og:type" content="article"');
     expect(jsonLdTypes(html)).toEqual(expect.arrayContaining(['WebSite', 'BreadcrumbList', 'Article', 'ImageObject']));
-    expect(count(html, /<figure class="evidence/g)).toBe(1);
+    expect(count(html, /<figure class="evidence/g)).toBe(15);
     expect(html).toMatch(/<figure class="evidence[\s\S]*?loading="eager"/);
     expect(html).toContain('Globetrotter19');
     const lead = html.indexOf('class="story__lead"');
@@ -179,6 +179,91 @@ describe('Lakók page', () => {
     const firstBand = html.indexOf('class="lakok-band');
     expect(lead).toBeLessThan(figure);
     expect(figure).toBeLessThan(firstBand);
+  });
+
+  const at = (stem: string) => html.indexOf(`data-stat-image="${stem}"`);
+  const heading = (text: string) => html.indexOf(`<h3>${text}</h3>`);
+  const band = (id: string) => html.indexOf(`<h2 id="${id}">`);
+  const expectBetween = (stem: string, after: number, before: number) => {
+    expect(after, `${stem}: heading before it`).toBeGreaterThan(0);
+    expect(at(stem), `${stem}: position`).toBeGreaterThan(after);
+    expect(at(stem), `${stem}: position`).toBeLessThan(before);
+  };
+  const pairs = () => [...html.matchAll(/<div class="lakok-figure-pair">([\s\S]*?)<\/div>/g)].map((match) => match[1]);
+
+  const portraits = {
+    armandola: heading('Armandola Aranka: zongoralecke és hangverseny'),
+    almassy: heading('Almássy Iza: Mici hercegnő és a cake-walk'),
+    kramer: heading('Kramer Lipót A.: fényképnagyító'),
+    mautner: heading('Mautner Adolf: fény és géperő egyetlen készülékből'),
+    sztankovits: heading('Sztankovits Ödön: térképek és dél-amerikai levelek'),
+    szello: heading('Szellő Sándor: mit ér a szépen elmondott vers?'),
+    graselly: heading('Graselly Miklós: az iskola és a gazdasági egyesület'),
+    petrovits: heading('Petrovits Róbert: húsz év távolságából'),
+    takacs: heading('Takács Eberhard Árpád: autóvállalat, telefonkapcsolattal'),
+    merenyi: heading('Dr. Merényi József: egy kassai szerkesztőség lehetséges emléke'),
+  };
+
+  it('places the portrait images after their paragraphs', () => {
+    expectBetween('18-armandola-hangverseny-1902', portraits.armandola, portraits.almassy);
+    expectBetween('16-almasi-iza-portre-1900', portraits.almassy, at('17-iza-cake-walk-1903'));
+    expectBetween('17-iza-cake-walk-1903', portraits.almassy, portraits.kramer);
+    expect(html.slice(at('16-almasi-iza-portre-1900'), at('17-iza-cake-walk-1903'))).toContain('<p>');
+    expectBetween('04-mautner-perfector-1899', portraits.mautner, portraits.sztankovits);
+    expectBetween('19-szello-cikkkezdet-1900', portraits.szello, at('20-szello-cikkvege-1900'));
+    expectBetween('20-szello-cikkvege-1900', portraits.szello, html.indexOf('<p>A ház építtetője, Spitz János Ferencz'));
+    expectBetween('21-graselly-lajosmizse-1911', portraits.graselly, portraits.petrovits);
+    expectBetween('07-petrovits-1902', portraits.petrovits, at('08-petrovits-1922'));
+    expectBetween('08-petrovits-1922', portraits.petrovits, html.indexOf('<p>1922-ben Markovits Ágoston'));
+    expectBetween('09-takacs-auto-1922', portraits.takacs, portraits.merenyi);
+  });
+
+  it('places the 1944 and 1954 images', () => {
+    expectBetween('12-csillagos-hazak-1944', band('csillagos-haz'), band('gepek-1954'));
+    const starHouseSection = html.slice(band('csillagos-haz'), band('gepek-1954'));
+    expect(count(starHouseSection, /<figure/g)).toBe(1);
+    expectBetween('13-gepeszek-1954', band('gepek-1954'), heading('Az 1954-es választói névjegyzék házbeli listája'));
+    expectBetween(
+      '14-mozigepesz-1954',
+      heading('Kovács Jánosné, Ballák Magda: a vetítés mögött'),
+      heading('Horváth János: a munka idejének mérője'),
+    );
+    expectBetween(
+      '15-idoelemzes-1949',
+      heading('Horváth János: a munka idejének mérője'),
+      heading('Lőwy Lipót Pálné, Beer Olga: bedolgozó'),
+    );
+  });
+
+  it('loads, describes and credits every source image', () => {
+    const images = html.match(/<img [^>]*>/g) ?? [];
+    expect(images.filter((image) => image.includes('loading="eager"'))).toHaveLength(1);
+    for (const image of images.slice(1)) {
+      expect(image).toContain('loading="lazy"');
+      expect(image).toMatch(/\swidth="\d+"/);
+      expect(image).toMatch(/\sheight="\d+"/);
+    }
+    const figures = [...html.matchAll(/<figure class="evidence[\s\S]*?<\/figure>/g)].map((match) => match[0]);
+    for (const figure of figures) {
+      expect(figure).toMatch(/alt="[^"]+"/);
+      expect(figure).toMatch(/class="evidence__credit">[\s\S]*?<a href="https:\/\//);
+    }
+    expect(count(html, /eredeti forrás/g)).toBe(14);
+    const spares = ['01-armandola-1902', '02-almassy-iza-1902', '03-rothauser-1902', '05-szello-iskola-1914'];
+    spares.push('06-spitz-1902', '10-merenyi-1922', '11-adam-szemfedel-1922');
+    for (const spare of spares) expect(html).not.toContain(spare);
+    expect(jsonLdTypes(html).filter((type) => type === 'ImageObject')).toHaveLength(1);
+  });
+
+  it('groups the Szellő and Petrovits clips in labelled pairs', () => {
+    const groups = pairs();
+    expect(groups).toHaveLength(2);
+    for (const group of groups) expect(count(group, /<figure/g)).toBe(2);
+    expect(groups[0]).toContain('data-stat-image="19-szello-cikkkezdet-1900"');
+    expect(groups[0]).toContain('<span class="evidence__label">Cikkkezdet, 377. oldal</span>');
+    expect(groups[0]).toContain('<span class="evidence__label">Zárórész, 379. oldal</span>');
+    expect(groups[1]).toContain('data-stat-image="07-petrovits-1902"');
+    expect(groups[1]).toContain('data-stat-image="08-petrovits-1922"');
   });
 
   it('gives the 1944–1945 passage its own section', () => {

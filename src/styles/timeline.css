@@ -102,6 +102,12 @@
   display: block;
 }
 
+.evidence__label {
+  display: block;
+  font-weight: 600;
+  color: inherit;
+}
+
 .evidence--document img {
   object-fit: contain;
   max-height: 80svh;

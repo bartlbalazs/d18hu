@@ -3,6 +3,7 @@ import facade from '../../../assets/facade6.png';
 import EvidenceFigure from '../../components/EvidenceFigure.astro';
 import Base from '../../layouts/Base.astro';
 import { fullSizeImage } from '../../lib/images/archive-images.ts';
+import { figureProps, lakokFigures } from '../../lib/lakok/figures.ts';
 import { articleNode, breadcrumbNode, imageNode, websiteNode } from '../../lib/seo/jsonld.ts';
 import { loadSiteData } from '../../lib/site-data.ts';
 import '../../styles/story.css';
@@ -153,9 +154,12 @@ const jsonLd = [
         <h3>Armandola Aranka: zongoralecke és hangverseny</h3>
         <p>A címtár zongoratanárnője valószínűleg az az Armandola Aranka, aki 1901. március 9-én Fusz Ferenccel együtt zongorázott a Magyar Tanítók Turista Egyletének hangversenyén, a József körút 8. alatt. A Zenetudományi Intézet plakátokra épülő adatbázisa Rubinstein és Gobbi magyar dallamfantáziáját jelöli a műsorban. <sup>[<a href="#forras-5">5</a>]</sup></p>
         <p>1902. május 31-én a Budapesti Magyar Zeneegyesület hangversenyén már énekesként szerepel a neve, Gounod <em>Faustjának</em> részleteinél. A zongoratanárnő mögött így olyan előadó körvonalazódik, aki többféle szerepben vett részt Budapest zenei életében. A ritka név és a zenei tevékenység erősíti az azonosítást, bár a műsorok lakcímet nem közölnek. <sup>[<a href="#forras-6">6</a>]</sup></p>
+        <EvidenceFigure {...figureProps(lakokFigures.armandolaConcert)} />
         <h3>Almássy Iza: Mici hercegnő és a cake-walk</h3>
         <p>Almássy Iza neve valószínűleg azonos a sajtóban Almási Izaként említett színésznőével. A <em>Budapesti Napló</em> 1903. június 24-én Féld Mátyás <em>Bob herceg és Mici hercegnő</em> című bohózatának városligeti bemutatóját harangozta be: Mici szerepére Almási Izát jelölte. <sup>[<a href="#forras-7">7</a>]</sup></p>
+        <EvidenceFigure {...figureProps(lakokFigures.almasiPortrait)} />
         <p>A közlemény külön attrakciót is ígért: Féld Olga és Almási Iza új cake-walkját. A szereposztási előzetesből a nyári színház szórakoztató világa rajzolódik ki, ahol az új tánc éppúgy közönségcsalogató lehetett, mint maga a darab. A ház színésznője ezzel a könnyű színpadi műfajjal hozható kapcsolatba.</p>
+        <EvidenceFigure {...figureProps(lakokFigures.almasiCakeWalk)} />
         <h3>Kramer Lipót A.: fényképnagyító</h3>
         <p>Kramer Lipót A. fényképnagyítóként szerepel az 1903–1904-es jegyzékben: az elkészült felvételek nagyobb méretű változatainak előállításával foglalkozott. A fotográfia az ő révén külön mesterségként jelenik meg a ház névsorában. <sup>[<a href="#forras-2">2</a>]</sup></p>
         <h3>Rothauser Lajos: egy építész további nyoma</h3>
@@ -164,12 +168,17 @@ const jsonLd = [
         <h3>Mautner Adolf: fény és géperő egyetlen készülékből</h3>
         <p>Mautner Adolf gázkészülékgyártó vállalkozóként szerepel az 1903–1904-es névsorban. A következő évek cégjegyzéke már a vállalkozását is ide köti: a Mautner Adolf és Társai címeként a Dembinszky utca 18-at adja meg, társtulajdonosként Mautnert és Wilczek Gusztávot nevezi meg. <sup>[<a href="#forras-2">2</a>, <a href="#forras-15">15</a>]</sup></p>
         <p>A cég 1899-es hirdetése a <em>Perfector</em> nevű, szabadalmazott gázgyártó készüléket kínálta világításra, fűtésre és gépek hajtására. Szállodák, színházak, kávéházak és műhelyek mellett gazdaságoknak is ajánlotta: szecskavágók és darálók működtetését ígérte, sőt benzin- és petróleummotorok átalakítását is vállalta. A vevők aggodalmait a „Nem robban! Nem ártalmas!” felkiáltással próbálta eloszlatni. Ez a reklám ígérete volt; a teljesítmény igazolására a Technológiai Múzeum tekintélyét is felvonultatta. Mautner történetében már a századfordulón összekapcsolódik a világítás és a gépi munka üzlete. <sup>[<a href="#forras-16">16</a>]</sup></p>
+        <EvidenceFigure {...figureProps(lakokFigures.mautnerPerfector)} />
         <h3>Sztankovits Ödön: térképek és dél-amerikai levelek</h3>
         <p>A címtár tanára valószínűleg az a Sztankovits Ödön, akit a Magyar Földrajzi Társaság könyvtártörténete térképészként és első önálló könyvtárosaként említ. Az 1906–1909 közötti években összeállította a könyvtár cédulakatalógusát, 1909-ben pedig a külön megszervezett könyvtárosi állás első betöltője lett. A tanári foglalkozást a földrajztudomány történeti feldolgozásának 1904-es névsora is megerősíti. <sup>[<a href="#forras-2">2</a>, <a href="#forras-17">17</a>]</sup></p>
         <p>Munkája különös távolságra vezetett Budapesttől. Zakarjás János, a 18. századi jezsuita misszionárius latin nyelvű leveleit fordította magyarra; ezek 1910-ben jelentek meg a <em>Földrajzi Közleményekben</em>. A levelek dél-amerikai közösségek életéről és szokásairól számoltak be, a hittérítő szemszögéből. A lehetséges házbeli lakó így egy régi utazás leírását tette hozzáférhetővé a magyar olvasóknak. <sup>[<a href="#forras-18">18</a>]</sup></p>
         <h3>Szellő Sándor: mit ér a szépen elmondott vers?</h3>
         <p>Szellő Sándor fővárosi tanítóként került a lakók közé. Valószínűleg ugyanő írta a <em>Népnevelők Lapjában</em> 1900-ban <em>Az aesthetikai érzelem s a népiskola</em> című cikket. Ebben azt kifogásolta, hogy az iskola a gyermek értelmének fejlesztése közben háttérbe szorítja az érzelmek és a szépérzék nevelését. Jól elkészített szemléltető képeket, éneket, költészetet, rajzot és kézimunkát ajánlott ennek ellensúlyozására. <sup>[<a href="#forras-2">2</a>, <a href="#forras-19">19</a>]</sup></p>
         <p>A versórának szerinte a költemény gondolataihoz, képeihez és érzelmeihez is el kell vezetnie a gyereket; a szép előadás önmagában kevés. Az énektanításban a dallam megtanulása mellett annak finom árnyalataira figyelt volna. A névsor egyszerű „tanító” megjelölése mögött így egy pedagógiai vita résztvevője sejlik fel. Az 1914-es címtár Szellő Sándort már a Váci úti elemi iskola helyettes igazgatójaként sorolja fel. <sup>[<a href="#forras-19">19</a>–<a href="#forras-20">20</a>]</sup></p>
+        <div class="lakok-figure-pair">
+          <EvidenceFigure {...figureProps(lakokFigures.szelloStart)} />
+          <EvidenceFigure {...figureProps(lakokFigures.szelloEnd)} />
+        </div>
         <p>A ház építtetője, Spitz János Ferencz is a lakók között szerepel: előbb udvari egyenruhakészítőként, majd egyenruhakereskedőként. Részletes történetét az <em>Építők</em> cikk meséli el. A korai névsorban így a beruházó mellett azok is helyet kaptak, akik segédként, alkalmazottként vagy saját mesterségükből keresték a kenyerüket. A gázkészülék és a tanítók írásai pedig azt is megmutatják, mennyiféle elképzelés élt ekkor a technika és az oktatás jövőjéről. <sup>[<a href="#forras-1">1</a>–<a href="#forras-2">2</a>, <a href="#forras-13">13</a>]</sup></p>
       </div>
     </section>
@@ -234,12 +243,18 @@ const jsonLd = [
         <h3>Graselly Miklós: az iskola és a gazdasági egyesület</h3>
         <p>Graselly Miklós iskolaigazgatóként lakott a házban. Valószínű korábbi nyoma a <em>Kecskeméti Lapok</em> 1911. március 12-i számában található: az újság ugyanilyen néven földművesiskolai igazgatót említ, aki a Kecskeméti Gazdasági Egyesületet képviselte. Kiss Elemér titkárral a lajosmizsei gazdasági egyesület alakuló közgyűlésére készültek. <sup>[<a href="#forras-3">3</a>, <a href="#forras-9">9</a>]</sup></p>
         <p>Az újságbeli igazgató munkája tehát az iskola falain túl is folytatódott, a mezőgazdasági egyesületi életben. A ritka név és az igazgatói szerep összekapcsolja a két adatot, de a későbbi budapesti lakóval való azonosságot még külön forrásnak kellene megerősítenie.</p>
+        <EvidenceFigure {...figureProps(lakokFigures.grasellySociety)} />
         <h3>Petrovits Róbert: húsz év távolságából</h3>
         <p>Petrovits Róbert neve és MÁV-művezetői foglalkozása mindkét korai kötetben, majd 1922-ben is ugyanennél a háznál szerepel. Ez a névsorok legerősebb folytonossági nyoma: a háború előtti és utáni címhez ugyanaz a név és szakma kapcsolódik. A bejegyzések közötti évekről nincs adatunk, így a megszakítás nélküli itt lakás nem igazolható. <sup>[<a href="#forras-1">1</a>–<a href="#forras-3">3</a>]</sup></p>
+        <div class="lakok-figure-pair">
+          <EvidenceFigure {...figureProps(lakokFigures.petrovits1902)} />
+          <EvidenceFigure {...figureProps(lakokFigures.petrovits1922)} />
+        </div>
         <p>1922-ben Markovits Ágoston MÁV-főellenőr és Szombathy József MÁV-hivatalnok is itt szerepel. A vasút többféle munkakörrel volt jelen a ház közösségében.</p>
         <h3>Takács Eberhard Árpád: autóvállalat, telefonkapcsolattal</h3>
         <p>Takács Eberhard Árpád autóvállalat-tulajdonos volt; mellette a „Józs. 51–47” telefonszámot is feltüntette a címtár. A vállalkozás pontos tevékenységét nem ismerjük. <sup>[<a href="#forras-3">3</a>]</sup></p>
         <p>Bejegyzése a motoros közlekedéshez kapcsolódó megélhetést hozza a vasutasok mellé. Petrovits és Takács révén a ház névsorában egymás mellé kerül a nagy közlekedési intézmény alkalmazottja és az autós magánvállalkozó.</p>
+        <EvidenceFigure {...figureProps(lakokFigures.takacsCarFirm)} />
         <h3>Dr. Merényi József: egy kassai szerkesztőség lehetséges emléke</h3>
         <p>Az 1922-es címtár dr. Merényi Józsefet lapszerkesztőként nevezi meg. Lehetséges, hogy ő az az 1879-ben született Merényi József, aki 1902-ben a kassai <em>Felsőmagyarország</em> munkatársa lett. Ötvös Anna sajtótörténeti tanulmánya a lap egymást követő szerkesztői között is felsorolja; főként politikai és gazdasági cikkeket írt, Kassát pedig 1916-ban hagyta el. <sup>[<a href="#forras-3">3</a>, <a href="#forras-21">21</a>]</sup></p>
         <p>Éppen ottléte idején gyorsult fel a hírek útja: a lap 1903-ban vezette be a fővárosi telefon-hírszolgálatot. Az MTI hírei közvetlen beszélgetés révén jutottak el a szerkesztőséghez. Ha az azonosítás helyes, a Dembinszky utcai lakó már a háború előtt ilyen hírszerkesztői közegben dolgozott. <sup>[<a href="#forras-21">21</a>]</sup></p>
@@ -255,6 +270,7 @@ const jsonLd = [
       <div class="container story">
         <h2 id="csillagos-haz">1944–1945: csillagos ház</h2>
         <p>A Dembinszky utca 18. szerepel a <em>Fővárosi Közlöny</em> 1944. június 16-i mellékletében kijelölt <a href="https://www.csillagoshazak.hu/sites/csillagoshazak.hu/files/pdfs/rendelet1.pdf#page=3" rel="noopener noreferrer">csillagos házak</a> között: az épületet a zsidónak minősített budapestiek kényszerlakhelyei közé sorolták. <sup>[<a href="#forras-26">26</a>]</sup> <a href="https://www.csillagoshazak.hu/hazak/VII/dembinszky18" rel="noopener noreferrer">Dénes Mari</a> 2014-ben közölt családi visszaemlékezése szerint 1945. január 15-én vagy 17-én nyilasok razziáztak a pincében, és elhurcolták nagyapját, Erdős Ferenc első világháborús hadirokkantat; a család többé nem hallott felőle. <sup>[<a href="#forras-27">27</a>]</sup> Az ötvenes évek foglalkozásaihoz érve ennek az emberi veszteségnek az emlékét is magunkkal visszük.</p>
+        <EvidenceFigure {...figureProps(lakokFigures.yellowStarList)} />
       </div>
     </section>
 
@@ -262,6 +278,7 @@ const jsonLd = [
       <div class="container story">
         <h2 id="gepek-1954">1954: gépek és munkanormák</h2>
         <p>Az ötvenes években az iparosítás nyelve is megérkezik a névsorba: vasesztergályos, géplakatos, időelemző és segédmunkás szerepel benne. Az 1954-es választói névjegyzék az állandó bejelentett lakásuk alapján sorolja a házhoz a választókat. Mellettük tovább él a kézműves és szolgáltató Budapest: szabók, varrónők, eladók, takarítók és egy táncos neve is olvasható. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        <EvidenceFigure {...figureProps(lakokFigures.machinists1954)} />
         <h3>Az 1954-es választói névjegyzék házbeli listája</h3>
         <details class="name-list" id="nevsor-1954">
           <summary>A teljes 1954-es választói névsor megnyitása (107 bejegyzés)</summary>
@@ -395,9 +412,11 @@ const jsonLd = [
         <p>Az ilyen munkát a korszak nyilvánosan is bemutatta: egy 1952-es filmhíradó női darukezelőket szerepeltetett a gyöngyösi Váltó- és Kitérőgyárban. Ez a szakma korabeli hátterét szemlélteti; Katalin munkahelyét nem azonosítja. <sup>[<a href="#forras-11">11</a>]</sup></p>
         <h3>Kovács Jánosné, Ballák Magda: a vetítés mögött</h3>
         <p>Kovács Jánosné, született Ballák Magda mozigépész volt. A századelő színésznője után az előadás technikai oldalán dolgozó nő is megjelenik a ház történetében: munkája a filmvetítéshez kapcsolódott. A filmszínház nevét a névjegyzék nem közli. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        <EvidenceFigure {...figureProps(lakokFigures.projectionist1954)} />
         <h3>Horváth János: a munka idejének mérője</h3>
         <p>Horváth János időelemzőként dolgozott. Szakmája a munkaműveletek időigényének vizsgálatához és a munkanormákhoz kapcsolódott: ahhoz, mennyi idő szükséges egy-egy feladat elvégzésére. <sup>[<a href="#forras-4">4</a>, <a href="#forras-12">12</a>]</sup></p>
         <p>Az Országos Munkabérmegállapító Bizottság 1949-es hivatalos lapjában közölt iparági kollektív szerződés már külön időelemzési és normaosztályt sorolt fel. Horváth foglalkozása ebbe a munkaszervezési világba illeszkedik. A kézművesek termékei és a hivatalnokok ügyei mellé a névsorban magának a munkának a mérése is odakerül.</p>
+        <EvidenceFigure {...figureProps(lakokFigures.timeStudyGrading)} />
         <h3>Lőwy Lipót Pálné, Beer Olga: bedolgozó</h3>
         <p>Beer Olga bedolgozó volt: a megnevezés vállalat vagy más megbízó számára vállalt, otthon elvégezhető munkát jelöl. A készített termék nem derül ki a névjegyzékből. Sora arra emlékeztet, hogy az ipari munkavégzés a lakóhelyhez is kapcsolódhatott, bár Olga munkájának pontos helyét nem ismerjük. <sup>[<a href="#forras-4">4</a>, <a href="#forras-14">14</a>]</sup></p>
         <h3>Felkai Andor és Felkai Éva: a névjegyzéktől a kosárlabdapályáig</h3>
