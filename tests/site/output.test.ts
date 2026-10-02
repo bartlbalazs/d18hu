@@ -242,6 +242,14 @@ describe('impresszum page', () => {
   });
 });
 
+describe('resident correction note', () => {
+  it('separates the contact email from the preceding word', () => {
+    const email: string = parseYaml(readFileSync('editorial/site.yaml', 'utf8')).impresszum.contactEmail;
+    const note = /<p class="lakok-note">([\s\S]*?)<\/p>/.exec(read('lakok/index.html'))?.[1] ?? '';
+    expect(note).toContain(`írjon a <a href="mailto:${email}">${email}</a> címre.`);
+  });
+});
+
 describe('404 page', () => {
   const html = read('404.html');
 
