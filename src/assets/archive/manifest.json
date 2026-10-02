@@ -181,6 +181,15 @@
       "fetchedAt": "2026-10-01T17:43:36.937Z"
     },
     {
+      "originalUrl": "assets/events/spitz/1902-1903-spitz-cimtar.png",
+      "file": "local-1902-1903-spitz-cimtar-d88b9b8b.png",
+      "sha256": "d88b9b8bb299d33dd4af518696ff1f0e7f6e72a32f97f2041338dfab242a9549",
+      "width": 744,
+      "height": 946,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-02T11:11:36.637Z"
+    },
+    {
       "originalUrl": "assets/events/spitz/1905-06-25-spitz-zarora.png",
       "file": "local-1905-06-25-spitz-zarora-9dba7ab5.png",
       "sha256": "9dba7ab5d5868199a9573a0fb39ce05fbb8bbecad9357ce07896871659a57f26",

@@ -173,8 +173,17 @@
     sourceLabel: "Budapesti Napló, 1901. december 11. (EPA)"
     depictsHouse: false
     kind: "document"
-1902-1903-egy-betuszedo-mellett-szerepel:
-  title: A cím feltűnik a címtárban
+1902-1903-negyvenharom-lakasjegyzeki-bejegyzes-tartozik:
+  title: A ház lakói a címtárban
+  image:
+    alt: Az 1902–1903-as budapesti címtár Spitz névcsoportjának részlete; az alsó sorokban János Ferenc udvari egyenruhakészítő neve és a VII., Dembinski utca 18. címe olvasható.
+    caption: Spitz János Ferenc udvari egyenruhakészítő a Dembinszky utca 18. címmel szerepel az 1902–1903-as budapesti címtárban. A laprészlet a Spitz névcsoport más bejegyzéseit is tartalmazza.
+    credit: Budapesti Czim- és Lakásjegyzék, 1902–1903, 1606. oldal / Fővárosi Szabó Ervin Könyvtár, Hungaricana
+    license: a digitális példány felhasználási licence nincs ellenőrizve
+    sourceUrl: https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_14_1902-1903/?pg=1677
+    sourceLabel: Hungaricana – Budapesti Czim- és Lakásjegyzék, 1902–1903
+    depictsHouse: false
+    kind: document
 1902-febr-16-50-fillerert-hirdetik-a:
   title: "Simplex alágyújtó a Dembinszky utcából"
   image:
