@@ -6,12 +6,12 @@
   title: Megszületik Budapest
   image:
     alt: "Korabeli térkép: Budapest és környékének beépített területe 1873-ban, a beépült városrészek rózsaszínnel, a környező települések kékkel jelölve"
-    caption: Budapest és környékének beépített területe 1873-ban. A leendő Dembinszky utca környéke ekkor még a beépített városon kívül esik.
+    caption: Budapest és környékének beépítettségi térképe, 1873. A leendő Dembinszky utca környéke ekkor még a beépített városon kívül esik.
     credit: Cartography Associates, David Rumsey Collection
     license: CC BY-NC-SA 3.0
     depictsHouse: false
     kind: document
-1889-megnyilik-a-parizsi-vilagkiallitas:
+1889-az-ipari-es-varosi:
   title: Megnyílik a párizsi világkiállítás
 1889-a-korabbi-duloutbol-kialakitott:
   title: Nevet kap a Dembinszky utca
@@ -19,7 +19,7 @@
   title: "Kiadó lakások és üzlethelyiségek"
   image:
     alt: "Szöveges újsághirdetés utcai és udvari lakások, raktárak és bolthelyiségek kiadásáról; a felsorolt címek között a Dembinszky utca 4. és 6/a. szerepel."
-    caption: "Kiadó lakások, raktárak és bolthelyiségek hirdetése, köztük a Dembinszky utca 4. és 6/a. címmel. 1892. augusztus 7."
+    caption: "Lakás-, raktár- és üzlethelyiség-hirdetés."
     credit: "Egyetértés / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/06000/06048/05879/pdf/EPA06048_egyetertes_1892_218.pdf#page=12"
@@ -30,40 +30,40 @@
   title: "Stettner Jakabné ingóságainak árverése"
   image:
     alt: "Újságkivágás fővárosi árverések felsorolásával; Stettner Jakabné 309 forintra becsült ingóságainál a Dembinszky utca 8. cím olvasható."
-    caption: "Árverési közlemény Stettner Jakabné ingóságairól. A január 7-re meghirdetett árverés helyszíne a Dembinszky utca 8. 1893. január 4."
+    caption: "Árverési közlemény; a január 4-i közlés január 7-re hirdeti az árverést."
     credit: "Egyetértés / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/06000/06048/06026/pdf/EPA06048_egyetertes_1893_004.pdf#page=6"
     sourceLabel: "Egyetértés, 1893. január 4. (EPA)"
     depictsHouse: false
     kind: "document"
-1894-jun-10-fuchs-albert-mazolo-es:
+1894-jun-10-marvany-fa-es-bronzutanzatokat:
   title: "Fuchs Albert mázoló és fényező"
   image:
     alt: "Díszes keretű, szöveges reklám Fuchs Albert mázoló- és fényezőmester nagy betűs nevével és a Dembinszky utca 19. címmel."
-    caption: "Fuchs Albert mázoló- és fényezőmester hirdetése a Dembinszky utca 19. címmel. 1894. június 10."
+    caption: "Fuchs Albert keretes hirdetése."
     credit: "Sport-Világ / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/06000/06041/00027/pdf/EPA06041_sport_vilag_1894_027.pdf#page=10"
     sourceLabel: "Sport-Világ, 1894. június 10. (EPA)"
     depictsHouse: false
     kind: "document"
-1895-nov-15-sportegyenruhak-es-vivofelszerelesek-a:
+1895-nov-15-a-spitz-bernat-egyenruhazati:
   title: Sportegyenruhák és vívófelszerelések
   image:
-    alt: 'A Sport-Világ korabeli lapképe: sportegyenruhák és vívófelszerelések.'
-    caption: Sportegyenruhák és vívófelszerelések. Sport-Világ, II. évf., 41. szám; 8. oldal (PDF 8).
+    alt: 'Széles, keretes Spitz Bernát-reklám két egyenruhás férfi rajzával; kétoldalt vívó- és kerékpáros felszerelések felsorolása, középen a Fürdő utca 7. cím.'
+    caption: Spitz Bernát illusztrált hirdetése, 1895. november 15. II. évf., 41. szám; 8. oldal (PDF 8).
     credit: 'Sport-Világ; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/06000/06041/00072/pdf/EPA06041_sport_vilag_1895_041.pdf#page=8
     sourceLabel: Sport-Világ
     depictsHouse: false
     kind: document
-1896-millenniumi-unnepsegek-es-kiallitas:
+1896-a-leendo-haz-kozeleben:
   title: Millenniumi ünnepségek a Városligetben
   image:
     alt: "A Városligeti-tó a millenniumi kiállítás idején: a vízen csónakok, a túlparton fák, pavilonok és egy nagy, gömb alakú léggömb"
-    caption: A Városligeti-tó a millenniumi kiállítás léggömbjével, 1896. Klösz György felvétele.
+    caption: A Városligeti-tó és a millenniumi kiállítás léggömbje, 1896.
     credit: Fortepan / Budapest Főváros Levéltára, Klösz György, HU.BFL.XV.19.d.1.09.036
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=82710
@@ -72,22 +72,22 @@
     kind: photo
 1896-1898-korul-a-kesobb-csikagokent-emlegetett:
   title: Beépül a „Csikágó”
-1897-febr-28-hazai-es-olasz-vivoszerek:
+1897-febr-28-a-ceg-cimlapi-reklamja:
   title: Hazai és olasz vívószerek
   image:
-    alt: 'A Sport-Világ korabeli lapképe: hazai és olasz vívószerek.'
-    caption: Hazai és olasz vívószerek. Sport-Világ, IV. évf., 6. szám; 1. oldal (PDF 1).
+    alt: 'Spitz Bernát vívószerhirdetése nagy VÍVÓSZEREK felirattal, felül kard, kétoldalt vívómaszkok rajzával és a Fürdő utca 7. címmel.'
+    caption: Illusztrált vívószerhirdetés, 1897. február 28. IV. évf., 6. szám; 1. oldal (PDF 1).
     credit: 'Sport-Világ; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/06000/06041/00132/pdf/EPA06041_sport_vilag_1897_006.pdf#page=1
     sourceLabel: Sport-Világ
     depictsHouse: false
     kind: document
-1898-okt-11-kerekpar-elarusitas-a-spitz:
+1898-okt-11-a-bruna-kerekparok-reklamja:
   title: Kerékpár-elárusítás a Spitz üzletben
   image:
-    alt: 'A Országos Hírlap korabeli lapképe: kerékpár-elárusítás a spitz üzletben.'
-    caption: Kerékpár-elárusítás a Spitz üzletben. Országos Hírlap, II. évf., 280. szám; 15. oldal (PDF 15).
+    alt: 'Keretes reklám nagy BRUNA felirattal; a kerékpáriskola és kerékpár-elárusítók címei között Spitz Bernát Fürdő utca 7. alatti egyenruha-intézete szerepel.'
+    caption: A Bruna kerékpáriskola és elárusítóhelyeinek reklámja, 1898. október 11. II. évf., 280. szám; 15. oldal (PDF 15).
     credit: 'Országos Hírlap; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/00200/00242/00323/pdf/00323.pdf#page=15
@@ -96,11 +96,11 @@
     kind: document
 1899-egy-helytorteneti-feldolgozas-szerint:
   title: Márkus Géza meg nem valósult terve
-1900-korul-klosz-gyorgy-felvetelen-a:
+1900-korul-a-rottenbiller-utca-es:
   title: Klösz György felvétele az utcatorkolatról
   image:
-    alt: Korabeli utcakép a Rottenbiller utca és a Dembinszky utca torkolatáról
-    caption: "Klösz György felvétele a Rottenbiller utca és a Dembinszky utca torkolatáról, 1900 körül."
+    alt: "Felnőttek és gyerekek a Rottenbiller és a Dembinszky utca macskaköves torkolatánál; az előtérben villamossínek, mögöttük kerítéssel körülvett alacsony épületek."
+    caption: "A Rottenbiller és a Dembinszky utca torkolata, 1900 körül."
     credit: Fortepan / Budapest Főváros Levéltára, Klösz György, HU.BFL.XV.19.d.1.07.184
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=82508
@@ -111,7 +111,7 @@
   title: "Kiadó lakás, felvilágosítás a Krausz-irodában"
   image:
     alt: "Keskeny, keretes apróhirdetés két szobás lakás kiadásáról; felvilágosítást Krausz H. József Dembinszky utca 20. alatti gyári irodájában kínál."
-    caption: "Dembinszky utcai lakáshirdetés. Érdeklődni a 20. szám alatti Krausz H. József gyári irodájában lehetett; a lakás házszáma nincs megadva. 1900. július 22."
+    caption: "Lakáshirdetés; a megadott cím az érdeklődés helye, a lakás házszáma nincs feltüntetve."
     credit: "Budapesti Napló / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/04300/04337/00555/pdf/EPA04337_budapesti_naplo_1900_199.pdf#page=20"
@@ -122,18 +122,18 @@
   title: A közölt átadási nap
   image:
     alt: "Korabeli színes várostérkép: Budapest székes főváros térképe, rajzolta Homolka József, 1903"
-    caption: Homolka József Budapest-térképe, 1903. Az Erzsébetváros utcahálózata néhány évvel a ház közölt átadása után.
+    caption: Homolka József Budapest-térképe, 1903; nem az átadás évéből származik.
     credit: Homolka József, Eggenberger-féle könyvkereskedés, 1903
     license: közkincs
     depictsHouse: false
     kind: document
-1901-korul-a-haz-tervezoje-valoszinuleg:
+1901-korul-a-megvalosult-haz-tervlapja:
   title: Mellinger Artúr, a valószínű tervező
-1901-1902-spitz-janos-ferenc-es:
+1901-1902-onallo-cegjegyzesi-joggal-rendelkezo:
   title: A Spitz szabócég társai
   image:
     alt: 'A Budapesti Czim- és Lakásjegyzék bejegyzése: Spitz Bernát, Bernhard Spitz, társtagok Spitz Imre Izidor és Spitz János Ferencz, polgári és egyenruha-készítő és felszerelő iparüzlet, V., Fürdő utca 7.'
-    caption: Spitz János Ferenc és Spitz Imre Izidor cégtagsága a Spitz Bernát cégnél. Budapesti Czim- és Lakásjegyzék, 1901–1902, 501. oldal.
+    caption: A Spitz Bernát cég címtári bejegyzése, 1901–1902, 501. oldal.
     credit: 'Budapesti Czim- és Lakásjegyzék; digitális példány: Hungaricana'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://library.hungaricana.hu/hu/view/BPLAKCIMJEGYZEK_13_1901-1902/?pg=560
@@ -144,7 +144,7 @@
   title: "Budapesti házakat keresnek bérbevételre"
   image:
     alt: "Keretes apróhirdetés budapesti házak bérbevételéről, Gy. B. névjelzéssel és a Dembinszky utca 29., 2. ajtó címmel."
-    caption: "Gy. B. jobb helyen fekvő budapesti házakat keres bérbevételre; elérhetősége a Dembinszky utca 29., 2. ajtó. 1901. január 23."
+    caption: "Házbérbevételi apróhirdetés Gy. B. névjelzéssel."
     credit: "Egyetértés / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/06000/06048/08925/pdf/EPA06048_egyetertes_1901_023.pdf#page=9"
@@ -155,31 +155,31 @@
   title: "Takarítást vállaló asszony hirdetése"
   image:
     alt: "Rövid, keretes takarítási apróhirdetés egy szegény asszonytól, a Dembinszky utca 4., II. emelet 24. elérhetőséggel."
-    caption: "Takarítást vállaló asszony apróhirdetése a Dembinszky utca 4., II. emelet 24. címről. 1901. augusztus 17."
+    caption: "Keretes apróhirdetés G. B. névjelzéssel."
     credit: "Budapesti Napló / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/04300/04337/00937/pdf/EPA04337_budapesti_naplo_1901_225.pdf#page=16"
     sourceLabel: "Budapesti Napló, 1901. augusztus 17. (EPA)"
     depictsHouse: false
     kind: "document"
-1901-dec-11-ozvegy-kiss-jozsefne-szereny:
+1901-dec-11-szereny-dijazasert-vallal-takaritast:
   title: "Özvegy Kiss Józsefné takarítást vállal"
   image:
     alt: "Keretes apróhirdetés özvegy Kiss Józsefné takarítási ajánlatával és a Dembinszky utca 4., II. emelet 24. címmel."
-    caption: "Özvegy Kiss Józsefné takarítást vállaló hirdetése, Dembinszky utca 4., II. emelet 24. 1901. december 11."
+    caption: "Özvegy Kiss Józsefné takarítási apróhirdetése."
     credit: "Budapesti Napló / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/04300/04337/01053/pdf/EPA04337_budapesti_naplo_1901_341.pdf#page=20"
     sourceLabel: "Budapesti Napló, 1901. december 11. (EPA)"
     depictsHouse: false
     kind: "document"
-1902-1903-a-cim-felbukkan-egy:
+1902-1903-egy-betuszedo-mellett-szerepel:
   title: A cím feltűnik a címtárban
-1902-febr-16-a-simplex-takarekossagi-alagyujtot:
+1902-febr-16-50-fillerert-hirdetik-a:
   title: "Simplex alágyújtó a Dembinszky utcából"
   image:
     alt: "Keskeny szöveges reklám a Simplex takarékossági alágyújtóról, 50 filléres árral és a Dembinszky utca 34., I. emelet 6. címmel."
-    caption: "A Simplex alágyújtó reklámja. A főszétküldési telep címeként a Dembinszky utca 34., I. emelet 6. szerepel. 1902. február 16."
+    caption: "Simplex alágyújtó-reklám; a cím a főszétküldési telepé."
     credit: "Üstökös / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03000/03016/02236/pdf/EPA03016_ustokos_45_evf_2318_sz_1902_februar_16.pdf#page=12"
@@ -190,31 +190,31 @@
   title: "Szépírás és másolási munkák"
   image:
     alt: "Keretes apróhirdetés szépírást, másolást és írásbeli munkákat vállaló hirdetőtől, Dembinszky utca 4., II. emelet 24. címmel."
-    caption: "Másolást, kérvények, ajánlatok és költségvetések elkészítését vállaló hirdetés a Dembinszky utca 4., II. emelet 24. címről. 1902. június 24."
+    caption: "Kérvények, ajánlatok és költségvetések készítését vállaló hirdetés."
     credit: "Budapesti Napló / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/04300/04337/01243/pdf/EPA04337_budapesti_naplo_1902_171.pdf#page=16"
     sourceLabel: "Budapesti Napló, 1902. június 24. (EPA)"
     depictsHouse: false
     kind: "document"
-1903-dec-17-a-wright-testverek-vegrehajtjak:
+1903-dec-17-sikeres-iranyitott-motoros-repulest:
   title: A Wright testvérek első repülése
 1903-dec-27-mautner-adolf-es-tarsai:
   title: Karbidot hirdetnek a 18-as címről
   image:
     alt: "Korabeli újsághirdetés: Calcium-Carbid, Mautner Adolf és Társai gázkészülék-gyártási vállalata, Budapest, VII. ker., Dembinszky-utcza 18. sz."
-    caption: Mautner Adolf és Társai calcium-carbid-hirdetése az Eperjesi Lapokban, 1903.
+    caption: Mautner Adolf és Társai calcium-carbid-hirdetése.
     credit: Eperjesi Lapok, 1903. dec. 27.
     license: közkincs
     sourceUrl: https://epa.oszk.hu/05600/05623/00259/pdf/EPA05623_eperjesi_lapok_1903_52.pdf
     sourceLabel: Eperjesi Lapok, 1903
     depictsHouse: false
     kind: document
-1904-jul-1-jul-10-eltunik-tarcsai-viktor-a:
+1904-jul-1-jul-10-a-julius-10-i:
   title: Eltűnik egy repülőgép-tervező
   image:
     alt: "Korabeli újságcikk „Két tanár eltünése” címmel, amely Tarcsai Viktor eltűnéséről és a Dembinszky-utca 18. alatti lakásról ír"
-    caption: A „Két tanár eltünése” című hír a Budapesti Naplóban, 1904. július 10.
+    caption: A „Két tanár eltünése” című hír, 1904. július 10.
     credit: Budapesti Napló, 1904, 190. szám
     license: közkincs
     sourceUrl: https://www.epa.hu/04300/04337/01963/pdf/EPA04337_budapesti_naplo_1904_190.pdf
@@ -223,12 +223,11 @@
     kind: document
 1905-egy-korabeli-ingatlanforgalmi-kozles:
   title: Spitzék megveszik az István út 11.-et
-1905-jun-25-kozos-fel-nyolcas-zarora:
+1905-jun-25-a-budapesti-egyenruhazati-intezetek:
   title: Közös fél nyolcas záróra
   image:
-    alt: 'A Szombathelyi Friss Újság / Vasmegyei Napló korabeli lapképe: közös fél nyolcas záróra.'
-    caption: Közös fél nyolcas záróra. Szombathelyi Friss Újság / Vasmegyei Napló, 174. szám; 3. oldal (PDF 3).
-      A timeline dátuma a közlés napja.
+    alt: 'Egyhasábos újsághír Egyenruházati intézetek zárórája címmel; a fél nyolcas zárórában megállapodó cégek felsorolásában Spitz Bernát neve is olvasható.'
+    caption: Zárórahír, 174. szám; 3. oldal (PDF 3). A timeline dátuma, 1905. június 25., a közlés napja.
     credit: 'Szombathelyi Friss Újság / Vasmegyei Napló; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/06400/06433/01328/pdf/EPA06433_szombathelyi_friss_ujsag_1905_174.pdf#page=3
@@ -239,7 +238,7 @@
   title: Spitz és Mellinger a Peterdy utcában
   image:
     alt: "A Peterdy utca 4. többemeletes, díszes homlokzata napjainkban, erkélyekkel és napellenzős ablakokkal; előtte parkoló autók"
-    caption: A Peterdy utca 4. napjainkban. Építésének történetében Spitz és Mellinger neve együtt szerepel.
+    caption: A Peterdy utca 4. modern kori homlokzatfotója; nem a Dembinszky utca 18.
     credit: A mi Erzsébetvárosunk blog
     license: nincs feltüntetve a forrásnál
     sourceUrl: https://mierzsebetvarosunk.blog.hu/2016/02/22/peterdy_utca_4
@@ -248,22 +247,22 @@
     kind: photo
 1906-korul-spitz-imre-izidor-felesege:
   title: "Spitz és Mellinger: feltételezett családi szál"
-1908-jul-21-a-moya-irogepet-200:
+1908-jul-21-lathato-irast-egyszeru-kezelest:
   title: "Moya írógép 200 koronáért"
   image:
     alt: "A Moya írógép reklámja nagy betűs címsorral és egy írógép rajzával; alul a forgalmazó Dembinszky utca 28. címe olvasható."
-    caption: "A Moya írógép 200 koronás reklámja. Forgalmazója a Külföldi Újdonságokat Terjesztő Vállalat írógéposztálya, Dembinszky utca 28. 1908. július 21."
+    caption: "A Moya írógép illusztrált reklámja."
     credit: "Bácska / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/05400/05442/02710/pdf/EPA05442_bacska_1908_052.pdf#page=6"
     sourceLabel: "Bácska, 1908. július 21. (EPA)"
     depictsHouse: false
     kind: "document"
-1908-jul-21-a-viktoria-villamos-ongyujto:
+1908-jul-21-nyolc-koronaert-kinalja-a:
   title: "Viktoria villamos öngyújtó"
   image:
     alt: "A Viktoria villamos öngyújtó reklámja a készülék rajzával, nyolckoronás árral és a forgalmazó Dembinszky utca 28. címével."
-    caption: "A Viktoria villamos öngyújtó készülék reklámja, a Külföldi Újdonságokat Terjesztő Vállalat Dembinszky utca 28. címével. 1908. július 21."
+    caption: "A Viktoria villamos öngyújtó illusztrált reklámja."
     credit: "Bácska / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/05400/05442/02710/pdf/EPA05442_bacska_1908_052.pdf#page=6"
@@ -272,24 +271,23 @@
     kind: "document"
 1909-1910-a-barczy-korszak-fovarosi:
   title: Új iskolák a Bárczy-korszakban
-1910-jan-1-kun-szabo-mihaly-a:
+1910-jan-1-vendeglok-es-kavehazak-szamara:
   title: "Kun Szabó Mihály Vigadó zenegépe"
   image:
     alt: "A Vigadó önműködő zenemű reklámja: balra a nagy, szekrényszerű készülék képe, jobbra a leírás, Kun Szabó Mihály neve és a Dembinszky utca 6. cím."
-    caption: "Kun Szabó Mihály Vigadó önműködő zeneművének reklámja, Dembinszky utca 6. címmel. 1910. január 1."
+    caption: "A Vigadó önműködő zenemű illusztrált reklámja."
     credit: "Fogadó / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03900/03962/00139/pdf/EPA03962_fogado_1910_01.pdf#page=27"
     sourceLabel: "Fogadó, 1910. január 1. (EPA)"
     depictsHouse: false
     kind: "document"
-1910-nov-30-sikeres-fellebbezes-a-biztositasi:
+1910-nov-30-az-allami-munkasbiztositasi-hivatal:
   title: Sikeres fellebbezés a biztosítási besorolás ellen
   image:
-    alt: 'A Szabó Hírlap korabeli lapképe: sikeres fellebbezés a biztosítási besorolás ellen.'
-    caption: 'Sikeres fellebbezés a biztosítási besorolás ellen. 9145/910. számú határozat, Budapest, 1910. november
-      30.; megjelent: Szabó Hírlap, 1911. január 1., 1. szám, 16. oldal (PDF 14). A döntés a balesetbiztosítási
-      besorolásról szól, nem általános biztosításmentességről.'
+    alt: 'Nyomtatott határozat M. kir. Állami Munkásbiztosítási Hivatal fejléccel és 9145/910. számmal; a Spitz Bernát cég neve dőlten szedve, alatta Megokolás és aláírásjelzések.'
+    caption: '9145/910. számú határozat, Budapest, 1910. november 30.; megjelent 1911. január 1., 1. szám,
+      16. oldal (PDF 14). Balesetbiztosítási besorolásról szól, nem általános biztosításmentességről.'
     credit: 'Szabó Hírlap; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/04900/04914/00055/pdf/EPA04914_szabo_hirlap_1911_01.pdf#page=14
@@ -298,12 +296,12 @@
     kind: document
 1911-a-haz-es-telekjegyzekbol:
   title: Spitzék, a ház tulajdonosai
-1911-marc-22-23-a-spitz-ceg-a:
+1911-marc-22-23-ullmann-jako-fotitkar-beszamoloja:
   title: A Spitz cég a szabóipari bérvitában
   image:
-    alt: 'A Szabó Hírlap korabeli lapképe: a spitz cég a szabóipari bérvitában.'
-    caption: 'A Spitz cég a szabóipari bérvitában. Ullmann Jákó: Nyilatkozat. Szabó Hírlap, 1911. április 1., 7.
-      szám; 3–5. oldal (PDF 1–3).'
+    alt: 'Kéthasábos szöveges lapoldal, felül 4-es oldalszámmal; a bal hasábban a március 22–23-i történések, Spitz Imre és Spitz Ferenc János neve olvasható.'
+    caption: 'Ullmann Jákó: Nyilatkozat, 1911. április 1., 7. szám; 3–5. oldal (PDF 1–3).
+      A képen a 4. oldal látható.'
     credit: 'Szabó Hírlap; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/04900/04914/00061/pdf/EPA04914_szabo_hirlap_1911_07.pdf#page=2
@@ -312,11 +310,11 @@
     kind: document
 1912-spitz-janos-ferenc-a:
   title: Jelzálog a szabóipartestület házaira
-1912-maj-15-kalix-odon-peksutemeny-es:
+1912-maj-15-teljes-tejjel-keszitett-sutemenyeket:
   title: "Kalix Ödön péksütemény- és kenyérgyára"
   image:
     alt: "Keretes szöveges reklám Kalix Ödön péksütemény- és kenyérgyárának nagy betűs nevével és a Dembinszky utca 17. címmel."
-    caption: "Kalix Ödön péksütemény- és kenyérgyárának hirdetése, Dembinszky utca 17. 1912. május 15."
+    caption: "Keretes reklám a Dembinszky utca 17. címmel."
     credit: "Magyar Vendéglős- és Kávés-Ipar / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03800/03813/00320/pdf/EPA03813_magyar_vendeglos_es_kaves_ipar_1912_10.pdf#page=20"
@@ -325,63 +323,61 @@
     kind: "document"
 1913-egy-fennmaradt-adat-szerint:
   title: Spitz a takarékpénztár választmányában
-1914-jul-aug-az-elso-vilaghaboru-kitorese:
+1914-jul-aug-a-monarchia-hadba-lep:
   title: Kitör az első világháború
-1915-apr-15-elkeszult-csanad-varmegye-szemelyzetenek:
+1915-apr-15-csanad-varmegye-alispani-jelentese:
   title: Elkészült Csanád vármegye személyzetének ruházata
   image:
-    alt: 'A Makói Független Újság korabeli lapképe: elkészült csanád vármegye személyzetének ruházata.'
-    caption: Elkészült Csanád vármegye személyzetének ruházata. Csanádmegye a mult hónapban – Az alispáni jelentés.
-      Makói Független Újság, VI. évf., 89. szám; 2. oldal (PDF 2). A dátum a közlés napja. A szomszédos mondatban
-      szereplő 2300 korona háztartási megtakarítás, nem a ruhaszállítás ára.
+    alt: 'Kivágott újsághasáb: a Spitz Bernát cég vármegyei ruhaszállításáról szóló bekezdés alatt 2300 koronás háztartási megtakarítást említő mondat látható.'
+    caption: Csanádmegye a mult hónapban – Az alispáni jelentés, VI. évf., 89. szám; 2. oldal (PDF 2).
+      1915. április 15. a közlés napja. A 2300 korona háztartási megtakarítás, nem a ruhaszállítás ára.
     credit: 'Makói Független Újság; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/06000/06093/01237/pdf/EPA06093_makoi_fuggetlen_ujsag_1915_089.pdf#page=2
     sourceLabel: Makói Független Újság
     depictsHouse: false
     kind: document
-1915-dec-7-korhazi-ruhaszallitas-bekes-varmegyenek:
+1915-dec-7-bekes-varmegye-elfogadja-az:
   title: Kórházi ruhaszállítás Békés vármegyének
   image:
-    alt: 'A Békésmegyei Függetlenség korabeli lapképe: kórházi ruhaszállítás békés vármegyének.'
-    caption: Kórházi ruhaszállítás Békés vármegyének. Árlejtések a vármegyén. Békésmegyei Függetlenség, 1915. december
-      12., 99. szám; 4. oldal (PDF 4). A döntés napja december 7. A 3701 korona a Dobay cég irodaszer-megrendelése,
-      nem a Spitz-szállítás ára.
+    alt: 'Egyhasábos újsághír Árlejtések a vármegyén címmel; a Dobay cég 3701 koronás irodaszer-megrendelése után a Spitz Bernát cég ruhaszállítási ajánlata szerepel.'
+    caption: Árlejtések a vármegyén, 1915. december 12., 99. szám; 4. oldal (PDF 4). A döntés december 7-i.
+      A 3701 korona a Dobay cég irodaszer-megrendelése, nem a Spitz-szállítás ára.
     credit: 'Békésmegyei Függetlenség; digitális példány: OSZK EPA'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://epa.oszk.hu/05400/05401/01217/pdf/EPA05401_bekesmegyei_fuggetlenseg_1915_099.pdf#page=4
     sourceLabel: Békésmegyei Függetlenség
     depictsHouse: false
     kind: document
-1916-az-1916-os-hazjegyzek:
+1916-a-18-szam-a:
   title: Az 1916-os házjegyzék
   image:
     alt: "Korabeli házjegyzék Dembinski-utcza oldala: 17 Kalix Ödön és neje, 18 Spitz Ján. Fer. s neje 4261/d"
-    caption: A Dembinszky utca házainak tulajdonosai az 1916-os házjegyzékben. A 18. számnál Spitz János Ferenc és felesége, 4261/d helyrajzi számmal.
+    caption: A Dembinski-utcza oldala az 1916-os házjegyzékből.
     credit: Budapesti házjegyzék, 1916
     license: közkincs
     depictsHouse: false
     kind: document
-1916-dec-15-bradovka-gusztav-a-kolini:
+1916-dec-15-fuge-malata-es-rozskavet:
   title: "Bradovka Gusztáv pótkávéhirdetése"
   image:
     alt: "Keretes reklám a kolini pótkávégyárak termékeiről; füge-, maláta- és rozskávét kínál, Bradovka Gusztáv Dembinszky utca 41. címével."
-    caption: "A kolini pótkávégyárak reklámja. Képviselőjük, Bradovka Gusztáv a Dembinszky utca 41. címet adja meg. 1916. december 15."
+    caption: "A kolini pótkávégyárak keretes reklámja."
     credit: "Magyar Vendéglős- és Kávés-Ipar / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03800/03813/00430/pdf/EPA03813_magyar_vendeglos_es_kaves_ipar_1916_24.pdf#page=2"
     sourceLabel: "Magyar Vendéglős- és Kávés-Ipar, 1916. december 15. (EPA)"
     depictsHouse: false
     kind: "document"
-1917-orosz-forradalmak-megszunik-a:
+1917-megszunik-a-cari-rendszer:
   title: Orosz forradalmak
-1918-az-influenzajarvany-vilagszerte-sulyos:
+1918-vilagszerte-sulyos-vesztesegeket-okoz:
   title: Világméretű influenzajárvány
-1918-okt-31-oszirozsas-forradalom-budapesten-a:
+1918-okt-31-a-monarchia-es-a:
   title: Őszirózsás forradalom
-1918-nov-11-fegyverszunet-veget-vet-a:
+1918-nov-11-a-nyugati-front-harcainak:
   title: Fegyverszünet a nyugati fronton
-1919-marc-21-kikialtjak-a-magyarorszagi-tanacskoztarsasagot:
+1919-marc-21-magyarorszagon-kikialtjak-a-magyarorszagi:
   title: Kikiáltják a Tanácsköztársaságot
 1919-egy-korabeli-sajtoadat-spitz:
   title: Spitz a nyersfilmgyártó cég igazgatóságában
@@ -389,9 +385,9 @@
   title: Kiss János és egy 1919-es büntetőügy
 1919-nagy-gyorgy-a-nagyszoloson:
   title: "Még egy izgatási ügy: Nagy György"
-1919-aug-a-tanacskoztarsasag-bukasa-katonai:
+1919-aug-katonai-megszallas-es-politikai:
   title: Bukik a Tanácsköztársaság
-1920-jun-4-alairjak-a-trianoni-bekeszerzodest:
+1920-jun-4-az-orszag-hatarait-es:
   title: A trianoni békeszerződés
 1923-fennmaradtak-a-strandfurdo-reszvenytarsasag:
   title: A Strandfürdő Rt. részvényei
@@ -401,11 +397,11 @@
   title: Szalay Ferenc címe a címtárban
 1924-a-cimtar-rex-salamon:
   title: Rex Salamon neve a címtárban
-1924-nov-1-reisz-sandor-rezmuves-es:
+1924-nov-1-egy-javitott-harom-ustos:
   title: "Reisz Sándor rézműves vállalata"
   image:
     alt: "Keretes reklám nagy Vendéglői tűzhely címsorral, Reisz Sándor rézműves és cinező vállalatának nevével és a Dembinszky utca 20. címmel."
-    caption: "Reisz Sándor rézműves és cinező vállalatának reklámja, benne eladó vendéglői tűzhellyel; Dembinszky utca 20. 1924. november 1."
+    caption: "Reisz Sándor vendéglői tűzhelyet kínáló reklámja."
     credit: "Fogadó / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03900/03969/00095/pdf/EPA03969_fogado_1924_20.pdf#page=8"
@@ -414,24 +410,24 @@
     kind: "document"
 1925-osz-a-magyar-penzugy-a:
   title: A Strandfürdő Rt. közgyűlési hirdetménye
-1926-szept-29-richter-istvan-disz-templom:
+1926-szept-29-a-vii-dembinszky-utca:
   title: "Richter István festő és mázoló"
   image:
     alt: "Sárgás papíron, díszes keretben Richter István festő és mázoló nagy betűs neve, szolgáltatásai és a Dembinszky utca 11. címe."
-    caption: "Richter István dísz-, templom- és szobafestő, mázoló hirdetése a Dembinszky utca 11. címmel. 1926. szeptember 29."
+    caption: "Richter István díszes keretű hirdetése."
     credit: "Fővárosi Hírlap / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_FovarosiHirlap_1926/?pg=291"
     sourceLabel: "Fővárosi Hírlap, 1926. szeptember 29. (Hungaricana)"
     depictsHouse: false
     kind: "document"
-1927-a-hangosfilm-megjelenese-the:
+1927-uj-korszakot-indit-a:
   title: Megszólal a hangosfilm
 1927-szept-1-egy-intelligens-leany-helyben:
   title: "Háztartásvezetői munkát kereső leány"
   image:
     alt: "Háromsoros apróhirdetés háztartásvezetői állást kereső leánytól; kapcsolattartóként Barcs Béla gyógyszerész és a Dembinszky utca 52., II. emelet 33. szerepel."
-    caption: "Háztartásvezetői munkát kereső leány hirdetése. Érdeklődni Barcs Béla gyógyszerésznél, a Dembinszky utca 52., II. emelet 33. címen lehetett. 1927. szeptember 1."
+    caption: "Háztartásvezetői álláskereső apróhirdetés; a megadott cím a kapcsolattartóé."
     credit: "Magyar Úriasszonyok Lapja / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/04000/04045/00061/pdf/EPA04045_magyar_uriasszonyok_lapja_1927_25.pdf#page=24"
@@ -442,33 +438,33 @@
   title: Spitz János Ferenc az 1928-as címtárban
 1928-febr-28-reggel-hetkor-elindul-a:
   title: Elindul a piros 12-es busz
-1928-okt-6-schwarcz-zsigmond-badogos-es:
+1928-okt-6-az-uj-budapest-beszerzesi:
   title: "Schwarcz Zsigmond bádogos és szerelő"
   image:
     alt: "Kétsoros nyomtatott hirdetés Schwarcz Zsigmond bádogos és szerelő nevével, Dembinszky utca 10. címmel."
-    caption: "Schwarcz Zsigmond bádogos és szerelő a beszerzési források között, Dembinszky utca 10. címmel. 1928. október 6."
+    caption: "Schwarcz Zsigmond hirdetése a beszerzési források között."
     credit: "Új Budapest / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1928/?pg=275"
     sourceLabel: "Új Budapest, 1928. október 6. (Hungaricana)"
     depictsHouse: false
     kind: "document"
-1928-okt-17-fratrichevich-istvan-diszito-festo:
+1928-okt-17-templomok-epuletek-lepcsohazak-es:
   title: "Fratrichevich István díszítőfestő"
   image:
     alt: "Keretes reklám Fratrichevich István nagy betűs nevével, festési és mázolási szolgáltatásaival és a Dembinszky utca 33. címmel."
-    caption: "Fratrichevich István díszítő-festő és mázoló reklámja, Dembinszky utca 33. 1928. október 17."
+    caption: "Fratrichevich István keretes reklámja."
     credit: "Független Budapest / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/FuggetlenBudapest_1928/?pg=397"
     sourceLabel: "Független Budapest, 1928. október 17. (Hungaricana)"
     depictsHouse: false
     kind: "document"
-1928-okt-20-eltero-lapfejlec-rintche-marton-asztalosmester-a:
+1928-okt-20-eltero-lapfejlec-az-uj-budapest-beszerzesi:
   title: "Rintche Márton asztalosmester"
   image:
     alt: "Kétsoros nyomtatott hirdetés Rintche Márton asztalosmester nevével és a Dembinszky utca 23. címmel."
-    caption: "Rintche Márton asztalosmester, Dembinszky utca 23. Az évfolyamjegyzék az oldalt az 1928. október 20-i számhoz sorolja, a nyomtatott lapfejléc azonban október 13-át jelöl."
+    caption: "Rintche Márton hirdetése. Az évfolyamjegyzék 1928. október 20-ra sorolja az oldalt, a nyomtatott lapfejléc október 13-át jelöl."
     credit: "Új Budapest / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1928/?pg=287"
@@ -479,7 +475,7 @@
   title: Hócipők a III/5-ben
   image:
     alt: "Korabeli újsághirdetés: Drescher Lipót cipészmester, készít divat női különleges hócipőket mindenféle szinben. Budapest, VII. ker. Dembinszky-u. 18. III. 5."
-    caption: Drescher Lipót cipészmester hirdetése az Új Budapestben, 1929.
+    caption: Drescher Lipót hócipőhirdetése.
     credit: Új Budapest, 1929 · FSZEK / Hungaricana
     license: közkincs
     sourceUrl: https://library.hungaricana.hu/hu/view/FSZEK_HelyiLapok_UjBudapest_1929/?pg=7
@@ -490,103 +486,102 @@
   title: A 12-es busz a Városligetig jár
 1929-jul-a-varosligeti-hosszabbitas-csak:
   title: Véget ér a városligeti kitérő
-1929-okt-a-new-york-i:
+1929-okt-a-vilaggazdasagi-valsag-jelkepes:
   title: A New York-i tőzsdei összeomlás
-1929-nov-15-a-12-es-es:
+1929-nov-15-a-vorosmarty-teren-mar:
   title: Összekötik a 12-es és az 5-ös buszt
 1931-febr-15-az-mtk-sporttorteneti-nevtara:
   title: Meghal Spitz János Ferenc
-1931-kinszki-imre-a-bethlen:
+1931-a-dembinszky-utca-sarka:
   title: Kinszki Imre a Bethlen Gábor utcában
   image:
-    alt: A Bethlen Gábor utca a Dembinszky utca sarka felé, 1931
-    caption: Kinszki Imre felvétele a Bethlen Gábor utcáról a Dembinszky utca sarka felé, 1931. A környék dokumentuma.
+    alt: "Két mosolygó gyerek kabátban és sapkában a Bethlen Gábor utcai járdán; mögöttük egy nő áll a lehúzott üzletredőny mellett."
+    caption: Bethlen Gábor utca a Dembinszky utca sarka felé, 1931; környékfotó, nem a 18-as ház képe.
     credit: Fortepan / Kinszki Imre
     license: CC BY-SA 3.0
     sourceUrl: https://gallery.hungaricana.hu/en/Fortepan/1524355/
     sourceLabel: Hungaricana / Fortepan 157067
     depictsHouse: false
     kind: photo
-1931-maj-6-gombos-miklos-es-tamas:
+1931-maj-6-kozponti-futest-vizvezetek-es:
   title: "Gombos és Tamás lemezáruüzeme"
   image:
     alt: "Vastag keretű reklám Gombos Miklós és Tamás Mihály lemezáruüzemének nevével, fűtési és szerelési szolgáltatásaival és a Dembinszky utca 29. címmel."
-    caption: "Gombos Miklós és Tamás Mihály lemezáruüzemének reklámja, Dembinszky utca 29. 1931. május 6."
+    caption: "Fűtési és szerelési szolgáltatásokat felsoroló reklám."
     credit: "Független Budapest / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/FuggetlenBudapest_1931/?pg=201"
     sourceLabel: "Független Budapest, 1931. május 6. (Hungaricana)"
     depictsHouse: false
     kind: "document"
-1933-jan-30-hitler-kancellar-lesz-nemetorszagban:
+1933-jan-30-nemetorszagban-megkezdodik-a-naci:
   title: Hitler kancellár lesz
-1933-jun-6-spitz-imre-a-ceg:
+1933-jun-6-matyasfoldon-meghal-spitz-imre:
   title: Spitz Imre, a cég egykori vezetőjének halála
   image:
-    alt: 'A Egyenlőség korabeli lapképe: spitz imre, a cég egykori vezetőjének halála.'
-    caption: Spitz Imre, a cég egykori vezetőjének halála. Egyenlőség, LIII. évf., 33–34. szám, 1933. június 17.;
-      24. oldal (PDF 24). A hír csak Imrét ír, az Izidor második név nem szerepel. A „volt” jelző nem ad biztos
-      megszűnési dátumot a céghez.
+    alt: 'Kéthasábos újságoldal Egyenlőség fejléccel és 24-es oldalszámmal; Spitz Imre halálhíre a bal hasáb alján kezdődik és a jobb hasáb tetején folytatódik.'
+    caption: Halálhír, LIII. évf., 33–34. szám, 1933. június 17.; 24. oldal (PDF 24), június 6-i halálozással.
+      Csak az Imre név szerepel, az Izidor nem. A „volt” jelzőből a cég megszűnésének dátuma nem állapítható meg.
     credit: 'Egyenlőség; digitális példány: BCU Cluj digitális könyvtár'
     license: a konkrét digitális példány felhasználási licence nincs ellenőrizve
     sourceUrl: https://dspace.bcucluj.ro/bitstream/123456789/92752/1/LIII-33-34-19330617.pdf#page=24
     sourceLabel: Egyenlőség
     depictsHouse: false
     kind: document
-1936-marc-1-pint-janos-uveges-es:
+1936-marc-1-koltsegvetes-kesziteset-is-felajanlja:
   title: "Pint János üveges és képkeretező"
   image:
     alt: "Keretes szöveges reklám Pint János üveges és képkeretező vállalatának nevével, Dembinszky utca 23. címmel."
-    caption: "Pint János üveges és képkeretező vállalatának hirdetése, Dembinszky utca 23. 1936. március 1."
+    caption: "Szöveges hirdetés a Dembinszky utca 23. címmel."
     credit: "Magyar Szállodás és Vendéglős / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03900/03944/00192/pdf/EPA03944_magyar_szallodas_es_vendeglos_1936_05.pdf#page=13"
     sourceLabel: "Magyar Szállodás és Vendéglős, 1936. március 1. (EPA)"
     depictsHouse: false
     kind: "document"
-1936-marc-1-nemeth-laszlo-szobafesto-es:
+1936-marc-1-a-legegyszerubbtol-a-legdiszesebb:
   title: "Németh László szobafestő és mázoló"
   image:
     alt: "Keretes szöveges reklám Németh László szobafestő és mázolómester nagy betűs nevével és a Dembinszky utca 23. címmel."
-    caption: "Németh László szobafestő és mázolómester reklámja, Dembinszky utca 23. 1936. március 1."
+    caption: "Festési és mázolási munkákat kínáló keretes reklám."
     credit: "Magyar Szállodás és Vendéglős / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03900/03944/00192/pdf/EPA03944_magyar_szallodas_es_vendeglos_1936_05.pdf#page=18"
     sourceLabel: "Magyar Szállodás és Vendéglős, 1936. március 1. (EPA)"
     depictsHouse: false
     kind: "document"
-1938-maj-az-elso-magyar-zsidotorveny:
+1938-maj-gazdasagi-es-szakmai-kvotakat:
   title: Az első zsidótörvény
-1938-nov-az-elso-becsi-dontes:
+1938-nov-magyarorszag-hatarait-modositja-az:
   title: Az első bécsi döntés
-1939-maj-a-masodik-zsidotorveny-tovabb:
+1939-maj-tovabb-szukulnek-a-zsidonak:
   title: A második zsidótörvény
 1939-szept-1-nemetorszag-megtamadja-lengyelorszagot-kezdetet:
   title: Kitör a második világháború
-1940-nemetorszag-megszallja-franciaorszag-nagy:
+1940-weisz-artur-es-felesege:
   title: Németország megszállja Franciaországot
-1941-magyarorszag-hadba-lep-a:
+1941-a-szovjetunio-ellen-lep:
   title: Magyarország hadba lép
-1941-jul-4-a-prima-egeszsegugyi-vallalat:
+1941-jul-4-a-vii-dembinszky-utca:
   title: "A Prima egészségügyi vállalat"
   image:
     alt: "Rövid reklám nagy, ferde Prima felirattal, egészségügyi vállalat megjelöléssel, telefonszámmal és a Dembinszky utca 37. címmel."
-    caption: "A Prima egészségügyi vállalat reklámja, Dembinszky utca 37. címmel. 1941. július 4."
+    caption: "Rövid reklám telefonszámmal és a Dembinszky utca 37. címmel."
     credit: "Baross Szövetség / OSZK – Elektronikus Periodika Archívum (EPA)"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://epa.oszk.hu/03700/03761/00311/pdf/EPA03761_baross_szovetseg_1941_27.pdf#page=4"
     sourceLabel: "Baross Szövetség, 1941. július 4. (EPA)"
     depictsHouse: false
     kind: "document"
-1942-1943-telen-a-2-magyar-hadsereg:
+1942-1943-telen-tomeges-emberveszteseget-okoz-a:
   title: A doni katasztrófa
-1943-febr-sztalingradnal-a-nemet-hadero:
+1943-febr-a-nemet-hadero-sztalingradi:
   title: Fordulat Sztálingrádnál
 1944-marc-19-a-nemet-hadsereg-megszallja:
   title: Német megszállás
-1944-apr-kotelezove-valik-a-sarga:
+1944-apr-a-jogszabalyban-meghatarozott-zsidok:
   title: Kötelező a sárga csillag
-1944-maj-15-megkezdodik-a-videki-zsidosag:
+1944-maj-15-auschwitz-birkenauba-kezdik-tomegesen:
   title: Megkezdődnek a vidéki deportálások
 1944-jun-6-a-szovetsegesek-partra-szallnak:
   title: Partraszállás Normandiában
@@ -600,9 +595,9 @@
   title: Bombakár a környező utcákban
 1944-okt-15-16-a-sikertelen-kiugrasi-kiserlet:
   title: Nyilas hatalomátvétel
-1944-nov-letrejon-a-budapesti-nagy:
+1944-nov-a-kenyszerlakhelyek-rendszere-ujabb:
   title: Létrejön a nagy gettó
-1944-dec-24-1945-febr-13-budapest-ostroma-alatt-a:
+1944-dec-24-1945-febr-13-az-ostrom-alatt-budapest:
   title: Budapest ostroma
 1944-dec-29-az-1945-januar-31:
   title: Weisz Károlyt a Duna-partra viszik
@@ -610,37 +605,37 @@
   title: Razzia a ház pincéjében
 1945-jan-15-vagy-17-nehany-oraval-kesobb-ugyanebben-a-visszaemlekezesben-denes:
   title: Szovjet katonák a házban
-1945-jan-18-lezarulnak-a-pesti-oldalert:
+1945-jan-18-felszabadulnak-a-nagy-getto:
   title: Véget érnek a harcok a pesti oldalon
 1945-jan-31-a-szabadsag-ki-tud:
   title: „Ki tud róla?”
-1945-febr-13-budapest-egeszenek-ostroma-veget:
+1945-febr-13-az-ostrom-vegere-budapest:
   title: Véget ér az ostrom
-1945-maj-veget-er-a-masodik:
+1945-maj-europaban-veget-er-a:
   title: Véget ér a háború Európában
 1945-utan-pontos-ev-nelkul-denes-mari-szerint-a:
   title: Weiszék visszatérnek Párizsba
-1945-aug-hirosima-es-nagaszaki-atomtamadasa:
+1945-aug-japan-kapitulal-a-hirosimat:
   title: Hirosima és Nagaszaki
-1946-febr-1-kikialtjak-a-koztarsasagot-magyarorszagon:
+1946-febr-1-magyarorszagon-kikialtjak-a-koztarsasagot:
   title: Kikiáltják a köztársaságot
-1946-aug-1-bevezetik-a-forintot-a:
+1946-aug-1-a-hiperinflacio-utan-a:
   title: Bevezetik a forintot
 1948-febr-16-kozlekedestorteneti-feldolgozas-szerint-az:
   title: Újra jár az 5-ös busz
-1948-a-kommunista-hatalomatvetel-donto:
+1948-megindul-az-allamszocialista-berendezkedes:
   title: A kommunista hatalomátvétel
-1949-aug-20-az-uj-alkotmany-nyoman:
+1949-aug-20-uj-alkotmany-teremti-meg:
   title: Létrejön a Magyar Népköztársaság
-1949-megalakul-a-nato-a:
+1949-a-hideghaboru-intezmenyes-keretet:
   title: Megalakul a NATO
 1950-a-dembinszky-bethlen-damjanich:
   title: Trolibuszgarázs a volt remízben
-1950-szept-10-hamori-karoly-tango-es:
+1950-szept-10-tango-es-gombosharmonikak-javitasat:
   title: "Hámori Károly harmonikajavító"
   image:
     alt: "Sárgás papírra nyomtatott apróhirdetés tangó- és gombosharmonikák javításáról és hangolásáról, Hámori Károly nevével és a Dembinszky utca 52., I. emelet 18. címmel."
-    caption: "Hámori Károly harmonikajavító hirdetése. A lapképen Dembinszky utca 52., I. emelet 18. olvasható. 1950. szeptember 10."
+    caption: "Hangszerjavítási apróhirdetés; a lapképen Dembinszky utca 52., I. emelet 18. olvasható."
     credit: "Evangélikus Élet / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/EvangelikusElet_1950/?pg=157"
@@ -649,13 +644,13 @@
     kind: "document"
 1952-1956-a-bethlen-gabor-utcai:
   title: Átszervezik a villamosforgalmat
-1953-marc-5-meghal-sztalin-a-keleti:
+1953-marc-5-a-keleti-blokk-politikajaban:
   title: Meghal Sztálin
 1953-a-korabbi-kozlekedestorteneti-kutatas:
   title: Az 5A busz a Szent János kórházig
-1955-megalakul-a-varsoi-szerzodes:
+1955-magyarorszag-is-tagja-a:
   title: Megalakul a Varsói Szerződés
-1956-okt-23-kitor-a-magyar-forradalom:
+1956-okt-23-a-haz-kornyezetet-is:
   title: Kitör a forradalom
 1956-okt-23-egy-gyermekkori-visszaemlekezes-teherautokon:
   title: Teherautók a Dembinszky-kereszteződésnél
@@ -663,54 +658,54 @@
   title: Visszatér az 5-ös busz
 1957-1960-egy-visszaemlekezes-harangi-laszlo:
   title: Kelmefestő műhely a Dembinszky utcában
-1957-okt-4-a-szovjetunio-palyara-allitja:
+1957-okt-4-az-elso-mesterseges-holdat:
   title: Pályára áll a Szputnyik–1
 1958-maj-1-fortepan-felvetel-dokumental-felvonulokat:
   title: Felvonulók a Dembinszky utcában
   image:
-    alt: Felvonulók a Dembinszky utca 35. előtt, 1958
-    caption: Felvonulók a Dembinszky utca 35. előtt, 1958. május 1. Nem fénykép a 18-as házról.
+    alt: "Férfiak nagy zászlókat visznek a Dembinszky utca 35. kapuja előtt; a háttérben a házszám és az Éljen május felirat látható."
+    caption: Zászlóvivők a Dembinszky utca 35. előtt, 1958. május 1.; nem a 18-as ház képe.
     credit: Fortepan
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/en/photos/?id=18543
     sourceLabel: Fortepan 18543
     depictsHouse: false
     kind: photo
-1960-jan-25-meghal-mellinger-artur-akit:
+1960-jan-25-a-haz-valoszinu-tervezojekent:
   title: Meghal Mellinger Artúr
-1961-felepul-a-berlini-fal:
+1961-a-ketteosztott-europa-lathato:
   title: Felépül a berlini fal
 1963-a-fortepan-148696-szamu:
   title: A Dembinszky 18 újra fényképen
   image:
     alt: Felvonulók és léggömbök a Bethlen Gábor utca 35. előterében; balra a Dembinszky utca 18. épülete
-    caption: A Bethlen Gábor utca 35. előtere 1963-ban, felvonulókkal és léggömbökkel. Balra azonosítható a Dembinszky utca 18. A felvétel pontos napját az archívum nem adja meg.
+    caption: Bethlen Gábor utca 35., 1963; balra a Dembinszky utca 18. A pontos napot az archívum nem adja meg.
     credit: Fortepan / Barbjerik Ferenc
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=148696
     sourceLabel: Fortepan 148696
     depictsHouse: true
     kind: photo
-1963-martin-luther-king-washingtoni:
+1963-a-polgarjogi-mozgalom-tortenetenek:
   title: Martin Luther King washingtoni beszéde
 1966-maj-12-a-pest-megyei-temetkezesi:
   title: "Fedeles ládák a temetkezési vállalattól"
   image:
     alt: "Apróhirdetés tizennégy fedeles ládáról a Pest megyei Temetkezési Vállalattól, Dembinszky utca 52. címmel."
-    caption: "A Pest megyei Temetkezési Vállalat tizennégy fedeles ládát kínáló hirdetése, Dembinszky utca 52. címmel. 1966. május 12."
+    caption: "A Pest megyei Temetkezési Vállalat ládákat kínáló apróhirdetése."
     credit: "Pest Megyei Hírlap / Hungaricana"
     license: "felhasználási licenc nem ellenőrzött"
     sourceUrl: "https://library.hungaricana.hu/hu/view/PestMegyeiHirlap_1966_05/?pg=106"
     sourceLabel: "Pest Megyei Hírlap, 1966. május 12. (Hungaricana)"
     depictsHouse: false
     kind: "document"
-1968-jan-elindul-az-uj-gazdasagi:
+1968-jan-a-keso-kadar-korszak:
   title: Az új gazdasági mechanizmus
 1968-maj-1-az-uvaterv-fortepan-felvetelen:
   title: Felvonulók a Nefelejcs utcai kereszteződésnél
   image:
     alt: A Dembinszky utca a Nefelejcs utcai kereszteződésből, május elsejei felvonulókkal, 1968
-    caption: A Dembinszky utca a Nefelejcs utca kereszteződéséből, május elsejei felvonulókkal, 1968. A D18 épülete ezen nincs külön azonosítva.
+    caption: Dembinszky utca a Nefelejcs utcai kereszteződésből, 1968. május 1.; a D18 épülete nincs külön azonosítva.
     credit: Fortepan / UVATERV
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=97493

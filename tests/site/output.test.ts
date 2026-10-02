@@ -38,6 +38,20 @@ describe('built timeline page', () => {
     }
   });
 
+  it('does not repeat event titles at the start of descriptions or captions', () => {
+    const { events } = parseTimeline(readFileSync('input/timeline.md', 'utf8'));
+    const editorial = parseYaml(readFileSync('editorial/events.yaml', 'utf8'));
+    const words = (value: string) => (value.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []).join(' ');
+    for (const event of events) {
+      const metadata = editorial[event.id];
+      const title = words(metadata.title);
+      expect(words(event.descriptionText).startsWith(title), event.id).toBe(false);
+      if (metadata.image) {
+        expect(words(metadata.image.caption).startsWith(title), event.id).toBe(false);
+      }
+    }
+  });
+
   it('has four era openers and working anchor targets for every era link', () => {
     expect(count(html, /class="era-opener era-opener--\d"/g)).toBe(4);
     for (const era of ['1873-1913', '1914-1938', '1939-1945', '1946-1968']) {
