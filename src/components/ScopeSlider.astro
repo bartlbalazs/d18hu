@@ -1,0 +1,58 @@
+---
+import { CATEGORY_DISPLAY } from '../lib/icons.ts';
+import { CONSENT_STORAGE_KEY } from '../lib/statistics/consent.ts';
+import { DEFAULT_SCOPE, SCOPE_LABELS, SCOPE_STORAGE_KEY, SCOPES } from '../lib/timeline/scope.ts';
+
+// The inline script runs before the timeline is parsed, so hidden events never flash and the layout never
+// shifts. It mirrors initialScope() in src/lib/timeline/scope.ts; without JS no scope is set and everything shows.
+const question = 'Milyen messzire nézzünk a háztól?';
+// A soft hyphen lets the longest label break as "Magyar-ország" in the narrow tick column.
+const tickLabel = (label: string) => label.replace('Magyarország', 'Magyar\u00ADország');
+---
+
+<script
+  is:inline
+  define:vars={{ consentKey: CONSENT_STORAGE_KEY, scopeKey: SCOPE_STORAGE_KEY, scopes: SCOPES, fallback: DEFAULT_SCOPE }}
+>
+  var scope = fallback;
+  try {
+    var stored = localStorage.getItem(scopeKey);
+    var signal = navigator.globalPrivacyControl === true || navigator.doNotTrack === '1';
+    if (localStorage.getItem(consentKey) === 'granted' && !signal && scopes.indexOf(stored) >= 0) scope = stored;
+  } catch (error) {}
+  document.documentElement.dataset.scope = scope;
+</script>
+
+<aside class="scope" id="ido-latomezo" popover="auto" aria-labelledby="ido-latomezo-kerdes">
+  <p class="scope__question" id="ido-latomezo-kerdes">{question}</p>
+  <input
+    class="scope__range"
+    type="range"
+    min="0"
+    max="3"
+    step="1"
+    value={SCOPES.indexOf(DEFAULT_SCOPE)}
+    aria-labelledby="ido-latomezo-kerdes"
+    aria-valuetext={SCOPE_LABELS[DEFAULT_SCOPE]}
+  />
+  <div class="scope__ticks" aria-hidden="true">
+    {
+      SCOPES.map((scope, index) => (
+        <span class={`scope__tick scope__tick--${scope}`} data-scope-step={index}>
+          <Fragment set:html={CATEGORY_DISPLAY[scope].icon} />
+          {tickLabel(SCOPE_LABELS[scope])}
+        </span>
+      ))
+    }
+  </div>
+  <p class="scope__help">A csúszka tágítja a történet látómezejét: a háztól egészen a világ eseményeiig.</p>
+  <p class="visually-hidden" aria-live="polite" data-scope-status></p>
+</aside>
+
+<button type="button" class="scope-toggle" popovertarget="ido-latomezo" aria-label={question}>
+  {SCOPES.map((scope) => <span class={`scope-toggle__icon scope-toggle__icon--${scope}`} set:html={CATEGORY_DISPLAY[scope].icon} />)}
+</button>
+
+<script>
+  import '../scripts/timeline-scope.ts';
+</script>

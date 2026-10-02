@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { parse as parseYaml } from 'yaml';
 import { parseTimeline } from '../../src/lib/timeline/parse.ts';
+import { scopeCounts } from '../../src/lib/timeline/scope.ts';
 
 const read = (path: string) => readFileSync(`dist/${path}`, 'utf8');
 const count = (html: string, pattern: RegExp) => (html.match(pattern) ?? []).length;
@@ -430,6 +431,13 @@ describe('statistics', () => {
     expect(html).toMatch(/<h2 id="adatkezeles">Adatkezelés<\/h2>/);
     expect(html).toContain('Google Ireland');
   });
+
+  it('says that consent also lets the browser remember the timeline setting', () => {
+    for (const page of allPages) expect(read(page)).toContain('megjegyezzük a böngészőjében');
+    const section = /<section aria-labelledby="adatkezeles">[\s\S]*?<\/section>/.exec(read('impresszum/index.html'))?.[0] ?? '';
+    expect(section).toContain('<dt>Idővonal-beállítás</dt>');
+    expect(section).toContain('(d18-idovonal)');
+  });
 });
 
 describe('timeline closing', () => {
@@ -465,6 +473,97 @@ describe('timeline closing', () => {
   it('appears on no other page', () => {
     for (const page of [...PAGES.slice(1), '404.html']) {
       expect(read(page)).not.toContain('class="container timeline-closing"');
+    }
+  });
+});
+
+describe('timeline scope', () => {
+  const html = read('index.html');
+  const { events } = parseTimeline(readFileSync('input/timeline.md', 'utf8'));
+  const panel = /<aside[^>]*id="ido-latomezo"[\s\S]*?<\/aside>/.exec(html)?.[0] ?? '';
+  const firstOpener = html.indexOf('class="era-opener');
+  const legendIcon = (category: string) =>
+    new RegExp(`class="legend__icon legend__icon--${category}">(<svg[\\s\\S]*?</svg>)`).exec(html)?.[1];
+
+  it('keeps every event in the page', () => {
+    expect(count(html, /data-event-id="/g)).toBe(events.length);
+  });
+
+  it('places one panel between the Jelmagyarázat and the first chapter opener', () => {
+    expect(count(html, /id="ido-latomezo"/g)).toBe(1);
+    const position = html.indexOf('id="ido-latomezo"');
+    expect(position).toBeGreaterThan(html.indexOf('id="jelmagyarazat"'));
+    expect(position).toBeLessThan(firstOpener);
+    expect(panel).toMatch(/<aside[^>]*popover="auto"/);
+  });
+
+  it('has the question, a labelled four-step range, the explanation and a live status', () => {
+    expect(panel).toMatch(/<p class="scope__question" id="ido-latomezo-kerdes">Milyen messzire nézzünk a háztól\?<\/p>/);
+    const range = /<input[^>]*type="range"[^>]*>/.exec(panel)?.[0] ?? '';
+    for (const attribute of ['min="0"', 'max="3"', 'step="1"', 'value="1"', 'aria-valuetext="Környék"', 'aria-labelledby="ido-latomezo-kerdes"']) {
+      expect(range).toContain(attribute);
+    }
+    expect(panel).toContain('A csúszka tágítja a történet látómezejét: a háztól egészen a világ eseményeiig.');
+    expect(count(panel, /aria-live="polite"/g)).toBe(1);
+  });
+
+  it('labels the four steps in order with the Jelmagyarázat icons', () => {
+    const ticks = [...panel.matchAll(/<span class="scope__tick scope__tick--(\w+)" data-scope-step="(\d)">(<svg[\s\S]*?<\/svg>)\s*([^<]+)<\/span>/g)];
+    expect(ticks.map((tick) => [tick[1], tick[2], tick[4].replace(/\u00ad|&shy;/g, '').trim()])).toEqual([
+      ['house', '0', 'Ház'],
+      ['area', '1', 'Környék'],
+      ['hungary', '2', 'Magyarország'],
+      ['world', '3', 'Világ'],
+    ]);
+    for (const tick of ticks) expect(tick[3]).toBe(legendIcon(tick[1]));
+  });
+
+  it('pre-renders the cumulative count of every era for each scope', () => {
+    const eras = [...new Set(events.map((event) => event.era))];
+    for (const era of eras) {
+      const section = new RegExp(`<section[^>]*id="esemenyek-${era}"[\\s\\S]*?</section>`).exec(html)?.[0] ?? '';
+      const rendered = Object.fromEntries(
+        [...section.matchAll(/<span data-scope-count="(\w+)">(\d+)<\/span>/g)].map((match) => [match[1], Number(match[2])]),
+      );
+      expect(rendered).toEqual(scopeCounts(events.filter((event) => event.era === era)));
+    }
+  });
+
+  it('has a round button that opens the panel and shows the current scope icon', () => {
+    const toggle = /<button[^>]*class="scope-toggle"[^>]*>[\s\S]*?<\/button>/.exec(html)?.[0] ?? '';
+    expect(toggle).toContain('popovertarget="ido-latomezo"');
+    expect(toggle).toContain('aria-label="Milyen messzire nézzünk a háztól?"');
+    expect(count(toggle, /class="scope-toggle__icon scope-toggle__icon--/g)).toBe(4);
+  });
+
+  it('places the panel beside the timeline from 1100px and as a popover below', () => {
+    const css = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)]
+      .map((match) => readFileSync(`dist${match[1]}`, 'utf8'))
+      .join('')
+      .concat([...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((match) => match[1]).join(''));
+    expect(css).toMatch(/\((min-width:\s*|width\s*>=\s*)1100px\)/);
+    expect(css).toContain('.scope:popover-open');
+  });
+
+  it('explains the slider at the end of the Jelmagyarázat', () => {
+    const legend = /<section[^>]*aria-labelledby="jelmagyarazat"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    const groups = legend.split('class="legend__group');
+    const last = groups[groups.length - 1];
+    expect(last).toContain('<h3>Milyen messzire nézzünk a háztól?</h3>');
+    expect(last).toContain('tágítja a történet látómezejét.');
+    expect(last).not.toContain('Környék állással');
+  });
+
+  it('sets the scope in an inline script before the first chapter opener', () => {
+    const position = html.indexOf('dataset.scope');
+    expect(position).toBeGreaterThan(0);
+    expect(position).toBeLessThan(firstOpener);
+  });
+
+  it('appears on no other page', () => {
+    for (const page of [...PAGES.slice(1), '404.html']) {
+      const other = read(page);
+      for (const marker of ['id="ido-latomezo"', '<span data-scope-count', 'dataset.scope']) expect(other).not.toContain(marker);
     }
   });
 });

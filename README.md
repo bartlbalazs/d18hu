@@ -12,12 +12,12 @@ street's namesake), and `/impresszum/` (legal notice).
 The site is plain HTML generated at build time with [Astro](https://astro.build/). It works
 without JavaScript. Optional scripts add a zoomable image viewer
 ([PhotoSwipe](https://photoswipe.com/)), a small menu script that closes the Menü panel and
-marks the era being read, and consent-gated visitor statistics (see
+marks the era being read, a timeline scope slider, and consent-gated visitor statistics (see
 [Statistics](#statistics-google-analytics)). It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
 `specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
-`specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/` and
-`specs/009-lakok-source-images/`.
+`specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/`,
+`specs/009-lakok-source-images/` and `specs/010-timeline-scope-slider/`.
 
 ## Requirements
 
@@ -56,7 +56,7 @@ pnpm dev                 # http://localhost:4321, draft mode
 | `pnpm build:draft` | Builds `dist/` even if editorial data is missing; prints the missing items, shows a draft banner and marks every page `noindex` |
 | `pnpm build:release` | Builds the publishable site; **fails** while any editorial item is missing |
 | `pnpm preview` | Serves the built `dist/` locally |
-| `pnpm test` | Unit tests (timeline parser, ids, dates, editorial checks) |
+| `pnpm test` | Unit tests (timeline parser, ids, dates, timeline scope, editorial checks) |
 | `pnpm test:site` | Run after a build: checks the output (event counts, local images, metadata), validates the HTML and checks internal links |
 | `pnpm check` | Type check |
 | `pnpm lighthouse` | Lighthouse mobile audit against the constitution's budgets (reports stay local in `.lighthouseci/`) |
@@ -186,6 +186,17 @@ screens the header shows a **Menü** button that opens the same links as a panel
 `src/scripts/site-menu.ts` closes the panel after a link is chosen and, on the home page,
 marks the era being read with a dot. The era is picked by `src/lib/nav/current-era.ts`.
 
+The home page timeline has a slider, „Milyen messzire nézzünk a háztól?”, with four cumulative
+steps: Ház, Környék, Magyarország and Világ. Each step also shows the narrower ones, and the page
+opens at Környék. From 1100 px wide it is a panel beside a narrower timeline, hidden over the
+chapter openers. Below 1100 px it opens from a round button in the lower right corner. A link to
+a hidden event widens the view to show it. Without JavaScript every event shows and there is no
+slider. The setting is remembered (`localStorage` key `d18-idovonal`) only after the visitor
+accepts the statistics notice, and it is deleted when they withdraw. The logic is in
+`src/lib/timeline/scope.ts`, the markup and the no-flash inline script in
+`src/components/ScopeSlider.astro`, and the behaviour in `src/scripts/timeline-scope.ts`. The
+Jelmagyarázat ends with a description of it, edited in `src/components/Legend.astro`.
+
 After the last event, the timeline's axis stops and a short centred line and „A történet
 folytatódik” close the page, inviting residents to write. Its text is edited in
 `src/components/TimelineClosing.astro`.
@@ -232,7 +243,8 @@ Visitor statistics go to a Google Analytics 4 property, and only for visitors wh
 notice at the bottom of the page ("Elfogadom"). Before a choice, after "Nem kérem", with a
 browser Do Not Track / Global Privacy Control signal, or without JavaScript, nothing is loaded
 from Google and no cookie is set. "Statisztika beállításai" in the footer changes the choice; the
-Impresszum explains the data processing (Adatkezelés).
+Impresszum explains the data processing (Adatkezelés). Accepting also lets the home page remember
+the timeline slider setting in the browser; withdrawing deletes it.
 
 Page views are counted, plus three events: `archive_source_click` (any external link in the page
 content), `image_zoom` (a photo opened in the viewer) and `era_select` (an era chosen in the
@@ -267,10 +279,10 @@ input/epitok.md, lakok.md, nevado.md  drafts the story pages were transcribed fr
 editorial/               owner-maintained YAML (titles, captions, credits, site texts)
 assets/facade4.png       hero photo
 scripts/                 image download/check, font subsetting, local start, publishing
-src/lib/                 pure logic: parser, ids, dates, editorial checks, SEO helpers, statistics
+src/lib/                 pure logic: parser, ids, dates, timeline scope, editorial checks, SEO helpers, statistics
 src/lib/lakok/figures.ts captions, credits and sizes of the Lakók source images
-src/scripts/             browser scripts: image viewer, menu, consent and statistics, print helper
-src/components/          Astro components (header, hero, legend, era opener, event, figure)
+src/scripts/             browser scripts: image viewer, menu, timeline scope slider, consent and statistics, print helper
+src/components/          Astro components (header, hero, legend, scope slider, era opener, event, figure)
 src/pages/               /, /epitok/, /lakok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
 src/assets/pages/        story page images (committed); lakok/ holds the Lakók source images

@@ -1,6 +1,6 @@
 // Progressive enhancement only: without JS the notice and settings buttons stay hidden and nothing
 // is measured. Google's tag is added only after the visitor accepts (Consent Mode "basic").
-import { CONSENT_STORAGE_KEY, resolveConsent, type ConsentState } from '../lib/statistics/consent.ts';
+import { CONSENT_STORAGE_KEY, SCOPE_STORAGE_KEY, resolveConsent, type ConsentState } from '../lib/statistics/consent.ts';
 import { statisticsEventFor } from '../lib/statistics/events.ts';
 
 declare global {
@@ -89,6 +89,12 @@ if (notice && measurementId && location.hostname === notice.dataset.siteHost) {
     (window as unknown as Record<string, boolean>)[`ga-disable-${measurementId}`] = true;
     window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
     deleteAnalyticsCookies();
+    // The timeline setting is kept only with consent, and withdrawal can happen on any page.
+    try {
+      localStorage.removeItem(SCOPE_STORAGE_KEY);
+    } catch {
+      // Storage became unavailable: nothing can be read back from it either.
+    }
   };
 
   // Space below the page, so the fixed notice never covers the end of the page or the footer.
@@ -125,6 +131,7 @@ if (notice && measurementId && location.hostname === notice.dataset.siteHost) {
       withdraw();
     }
     hideNotice();
+    document.dispatchEvent(new CustomEvent('d18:consent', { detail: choice }));
   };
 
   const openSettings = (event: MouseEvent) => {

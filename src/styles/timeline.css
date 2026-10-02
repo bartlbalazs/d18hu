@@ -196,7 +196,8 @@
     column-gap: 3rem;
   }
 
-  .legend__title {
+  .legend__title,
+  .legend__group--scope {
     grid-column: 1 / -1;
   }
 }
@@ -577,4 +578,200 @@
 
 .timeline-closing p + p {
   margin-top: 1rem;
+}
+
+/* ---------- Timeline scope ---------- */
+/* html[data-scope] is set by ScopeSlider.astro before the timeline is parsed. Without it (no JS) every event,
+   the full counts and no slider are shown. */
+html[data-scope="house"] .event:not(.event--house),
+html[data-scope="area"] :is(.event--hungary, .event--world),
+html[data-scope="hungary"] .event--world {
+  display: none;
+}
+
+[data-scope-count] {
+  display: none;
+}
+
+html:not([data-scope]) [data-scope-count="world"],
+html[data-scope="house"] [data-scope-count="house"],
+html[data-scope="area"] [data-scope-count="area"],
+html[data-scope="hungary"] [data-scope-count="hungary"],
+html[data-scope="world"] [data-scope-count="world"] {
+  display: inline;
+}
+
+/* The last era's axis ends at its last visible event, not at a hidden one. */
+html[data-scope="house"] .timeline--ends .event:nth-last-child(1 of .event--house)::before,
+html[data-scope="area"] .timeline--ends .event:nth-last-child(1 of .event--house, .event--area)::before,
+html[data-scope="hungary"] .timeline--ends .event:nth-last-child(1 of .event--house, .event--area, .event--hungary)::before {
+  bottom: auto;
+  height: calc(1.1rem + var(--axis-col) / 2);
+}
+
+.scope,
+.scope-toggle {
+  display: none;
+}
+
+/* Below 1100px the panel is a popover opened from a round button in the lower right corner. */
+.scope:popover-open {
+  display: block;
+  position: fixed;
+  inset: auto var(--gutter) calc(var(--gutter) + 4rem) auto;
+  width: min(20rem, 100vw - 2 * var(--gutter));
+  max-height: calc(100dvh - var(--header-height) - var(--gutter) - 5rem);
+  overflow-y: auto;
+  box-shadow: 0 0.5rem 1.5rem rgb(41 37 33 / 0.25);
+}
+
+html[data-scope] .scope-toggle {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  border: 2px solid var(--d18-paper);
+  border-radius: 50%;
+  background: var(--d18-walnut);
+  color: var(--d18-paper);
+  font-size: 1.4rem;
+  box-shadow: 0 0.25rem 0.75rem rgb(41 37 33 / 0.3);
+  cursor: pointer;
+}
+
+.scope-toggle__icon {
+  display: none;
+}
+
+html[data-scope="house"] .scope-toggle__icon--house,
+html[data-scope="area"] .scope-toggle__icon--area,
+html[data-scope="hungary"] .scope-toggle__icon--hungary,
+html[data-scope="world"] .scope-toggle__icon--world {
+  display: contents;
+}
+
+/* The menu, the image viewer and the consent notice all take precedence over the round button. */
+html:has(#fomenu:popover-open, .pswp--open, #statisztika:not([hidden])) .scope-toggle {
+  visibility: hidden;
+}
+
+/* From 1100px the panel sits beside a narrower timeline, just below the sticky header. */
+@media (min-width: 1100px) {
+  :root {
+    --scope-panel: 16rem;
+    --scope-gap: 2rem;
+  }
+
+  html[data-scope] .era-events {
+    --scope-timeline: min(100% - 2 * var(--gutter) - var(--scope-panel) - var(--scope-gap), var(--reading-width));
+    width: var(--scope-timeline);
+    margin-inline: max(var(--gutter), (100% - var(--scope-timeline) - var(--scope-panel) - var(--scope-gap)) / 2) auto;
+  }
+
+  html[data-scope] .scope {
+    display: block;
+    position: fixed;
+    inset: calc(var(--header-height) + 1rem) max(var(--gutter), (100vw - var(--reading-width) - var(--scope-panel) - var(--scope-gap)) / 2) auto auto;
+    z-index: 9;
+    width: var(--scope-panel);
+  }
+
+  html[data-scope] .scope-toggle {
+    display: none;
+  }
+}
+
+/* Hidden until the script has placed them, so neither shows over the hero on the first paint. */
+html[data-scope] .scope-toggle:not([data-visible="true"]) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (min-width: 1100px) {
+  html[data-scope] .scope:not([data-visible="true"]) {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scope,
+  .scope-toggle {
+    transition:
+      opacity 200ms,
+      visibility 200ms;
+  }
+}
+
+.scope {
+  margin: 0;
+  padding: 1rem 1.125rem 1.125rem;
+  border: 1px solid var(--d18-rule);
+  background: var(--d18-paper-alt);
+  color: var(--d18-ink);
+}
+
+.scope__question {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+/* The track runs from the centre of the first tick column to the centre of the last, so each step sits
+   above its label (the browser's thumb is about 16px wide). */
+.scope__range {
+  display: block;
+  width: calc(75% + 16px);
+  min-height: 44px;
+  margin: 0.5rem calc(12.5% - 8px) 0;
+  accent-color: var(--d18-walnut);
+  cursor: pointer;
+}
+
+.scope__ticks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  color: var(--d18-muted);
+}
+
+.scope__tick {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.scope__tick .icon {
+  font-size: 1.1rem;
+}
+
+html[data-scope="house"] .scope__tick--house,
+html[data-scope="area"] .scope__tick:is(.scope__tick--house, .scope__tick--area),
+html[data-scope="hungary"] .scope__tick:not(.scope__tick--world),
+html[data-scope="world"] .scope__tick {
+  color: var(--d18-walnut);
+  font-weight: 600;
+}
+
+.scope__help {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--d18-muted);
+}
+
+@media print {
+  .scope,
+  .scope-toggle {
+    display: none !important;
+  }
 }

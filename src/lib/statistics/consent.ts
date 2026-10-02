@@ -1,5 +1,8 @@
 export const CONSENT_STORAGE_KEY = 'd18-statisztika';
 
+/** The home page timeline's scope setting, stored only with consent and removed on withdrawal. */
+export const SCOPE_STORAGE_KEY = 'd18-idovonal';
+
 export type ConsentState = 'granted' | 'denied' | 'ask';
 
 /**
