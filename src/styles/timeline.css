@@ -184,6 +184,12 @@
   display: block;
 }
 
+.legend__intro {
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--d18-muted);
+}
+
 .legend__note {
   margin-top: 0.75rem;
   font-size: 0.9375rem;
@@ -762,12 +768,6 @@ html[data-scope="world"] .scope__tick {
   font-weight: 600;
 }
 
-.scope__help {
-  margin-top: 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  color: var(--d18-muted);
-}
 
 @media print {
   .scope,

@@ -12,7 +12,8 @@ const categoryExplanations = {
 <section class="container legend rule-top" aria-labelledby="jelmagyarazat">
   <h2 class="legend__title" id="jelmagyarazat">Jelmagyarázat</h2>
   <div class="legend__group">
-    <h3>Eseménytípus – nagy ikon az idővonalon</h3>
+    <h3>A történet léptékei</h3>
+    <p class="legend__intro">Az idővonalon minden esemény mellett nagy ikon jelzi a léptékét.</p>
     <ul class="legend__list">
       {
         Object.entries(CATEGORY_DISPLAY).map(([category, display]) => (
@@ -28,7 +29,8 @@ const categoryExplanations = {
     </ul>
   </div>
   <div class="legend__group">
-    <h3>Bizonyosság – kis ikon és szó az esemény fölött</h3>
+    <h3>Bizonyosság</h3>
+    <p class="legend__intro">Az esemény fölött kis ikon és egy szó jelzi, mennyire biztos az állítás.</p>
     <ul class="legend__list">
       {
         Object.values(CONFIDENCE_DISPLAY).map((display) => (

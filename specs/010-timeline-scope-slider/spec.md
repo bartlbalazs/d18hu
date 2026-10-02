@@ -28,6 +28,7 @@ Every era still has at least two events at the narrowest setting.
 - Q: What should happen at laptop widths (about 1100–1400 px), where a side panel doesn't fit beside the full 1060 px timeline column? → A: From 1100 px up, the timeline column narrows to make room for the side panel. Below 1100 px, the round button is used.
 - Q: What should the side panel do while it scrolls past the full-width chapter openers between eras? → A: It steps aside: the panel fades out while a chapter opener fills the screen and comes back when the next era's events start. The chapter openers keep their current layout.
 - Q: Should the timeline remember the visitor's last setting on a later visit? → A: Only if the visitor has accepted cookies in the site's existing consent notice. Then the last setting is stored in their browser and used on the next visit. Without acceptance, every page load starts at Környék and nothing is stored. A link to a hidden event still widens the view (FR-011).
+- Q: Should the slider panel itself carry the explanation text? → A: No. The panel shows only the question and Ház · Környék · Magyarország · Világ; the detailed explanation stays in the Jelmagyarázat.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -77,7 +78,7 @@ While reading a long timeline, the visitor can reach the slider without scrollin
 **Acceptance Scenarios**:
 
 1. **Given** a wide screen, **When** the visitor scrolls above the start of the timeline, **Then** the slider is not shown above the hero or the Jelmagyarázat.
-2. **Given** a wide screen, **When** the timeline is in view, **Then** the slider stays in view as a side panel to the right of the timeline column, just below the site header, fully open, with the question, the four labelled positions with their icons, and the short explanation. It does not cover event text.
+2. **Given** a wide screen, **When** the timeline is in view, **Then** the slider stays in view as a side panel to the right of the timeline column, just below the site header, fully open, with the question and the four labelled positions with their icons. It does not cover event text.
 3. **Given** a narrow screen, **When** the timeline is in view, **Then** a small round button with an icon sits in a lower corner of the screen.
 4. **Given** a narrow screen, **When** the visitor taps the round button, **Then** the full slider opens. When they tap outside it, press Escape or tap the button again, it closes back to the circle.
 5. **Given** a narrow screen, **When** the circle is closed, **Then** its icon shows the current setting, so the visitor can tell how far the view reaches without opening it.
@@ -119,7 +120,7 @@ A visitor reading the Jelmagyarázat learns that the slider exists and how it wo
 - **FR-018**: When the visitor accepts cookies, the current setting MUST be stored at that moment. When they withdraw consent (from the footer's settings link), the stored setting MUST be deleted, and the next page load starts at Környék.
 - **FR-019**: The consent notice and the data-handling section of the Impresszum page MUST say that accepting also lets the site remember the timeline setting in the browser.
 - **FR-004**: The slider MUST be headed "Milyen messzire nézzünk a háztól?". Each position MUST show its label and the same icon the Jelmagyarázat uses for that category.
-- **FR-005**: On wide screens (1100 px and wider) the slider MUST be a side panel to the right of the timeline column, always open, and show the short explanation "A csúszka tágítja a történet látómezejét: a háztól egészen a világ eseményeiig."
+- **FR-005**: On wide screens (1100 px and wider) the slider MUST be a side panel to the right of the timeline column, always open. Like the narrow-screen panel, it shows only the question and the four labelled positions; the explanation lives in the Jelmagyarázat (FR-013).
 - **FR-016**: On wide screens the side panel MUST fade out while a chapter opener fills the screen and return when the next era's events start. The chapter openers MUST keep their current layout. With reduced motion, the panel hides and returns without a fade.
 - **FR-015**: From 1100 px up, the timeline column MUST narrow so the side panel fits beside it without overlap. Below 1100 px the timeline keeps its current layout.
 - **FR-006**: On narrow screens (below 1100 px) the slider MUST collapse into a small round button in a lower corner. The button MUST open the full slider, and the slider MUST close again by tapping outside it, pressing Escape or tapping the button. The button must be at least 44 × 44 px.

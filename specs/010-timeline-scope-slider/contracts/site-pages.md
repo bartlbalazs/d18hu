@@ -10,7 +10,6 @@
   - the question "Milyen messzire nézzünk a háztól?", with an `id` that the range input's `aria-labelledby` points to
   - `input type="range"` with `min="0"`, `max="3"`, `step="1"`, `value="1"` and `aria-valuetext="Környék"`
   - four tick labels in order, Ház · Környék · Magyarország · Világ, each with the same SVG icon as the matching Jelmagyarázat category
-  - the explanation "A csúszka tágítja a történet látómezejét: a háztól egészen a világ eseményeiig."
   - one `aria-live="polite"` element
 - **The round button**: one `button` with `popovertarget="ido-latomezo"` and an accessible name, "Milyen messzire nézzünk a háztól?". It contains the four icons.
 - **Era counts**: each era's kicker contains four `[data-scope-count]` spans (`house`, `area`, `hungary`, `world`). Their numbers equal that era's cumulative counts computed from `input/timeline.md` (see [data-model.md](../data-model.md)).

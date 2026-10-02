@@ -497,13 +497,13 @@ describe('timeline scope', () => {
     expect(panel).toMatch(/<aside[^>]*popover="auto"/);
   });
 
-  it('has the question, a labelled four-step range, the explanation and a live status', () => {
+  it('has only the question, a labelled four-step range and a live status', () => {
     expect(panel).toMatch(/<p class="scope__question" id="ido-latomezo-kerdes">Milyen messzire nézzünk a háztól\?<\/p>/);
     const range = /<input[^>]*type="range"[^>]*>/.exec(panel)?.[0] ?? '';
     for (const attribute of ['min="0"', 'max="3"', 'step="1"', 'value="1"', 'aria-valuetext="Környék"', 'aria-labelledby="ido-latomezo-kerdes"']) {
       expect(range).toContain(attribute);
     }
-    expect(panel).toContain('A csúszka tágítja a történet látómezejét: a háztól egészen a világ eseményeiig.');
+    expect(panel).not.toContain('scope__help');
     expect(count(panel, /aria-live="polite"/g)).toBe(1);
   });
 
@@ -543,6 +543,15 @@ describe('timeline scope', () => {
       .concat([...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((match) => match[1]).join(''));
     expect(css).toMatch(/\((min-width:\s*|width\s*>=\s*)1100px\)/);
     expect(css).toContain('.scope:popover-open');
+  });
+
+  it('names the categories as the scales of the story in the Jelmagyarázat', () => {
+    const legend = /<section[^>]*aria-labelledby="jelmagyarazat"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+    expect([...legend.matchAll(/<h3>([^<]+)<\/h3>/g)].map((match) => match[1])).toEqual([
+      'A történet léptékei',
+      'Bizonyosság',
+      'Milyen messzire nézzünk a háztól?',
+    ]);
   });
 
   it('explains the slider at the end of the Jelmagyarázat', () => {
