@@ -59,7 +59,7 @@ No setup is needed. There are no new dependencies or folders beyond the files cr
 
 **Goal**: A working cumulative slider, placed in the page flow after the Jelmagyarázat. Events, era counts and the axis end follow the setting. Without JS, everything shows.
 
-**Independent Test**: In `/`, setting Ház, Környék, Magyarország and Világ shows 44, 88, 114 and 135 events, and each era count matches data-model.md.
+**Independent Test**: In `/`, setting Ház, Környék, Magyarország and Világ shows 45, 88, 114 and 135 events, and each era count matches data-model.md.
 
 - [X] T003 [US1] In `tests/site/output.test.ts`, add `describe('timeline scope', …)` covering contracts/site-pages.md "Home page → Markup". It asserts:
   - 135 `data-event-id` elements are still there.
@@ -107,7 +107,7 @@ No setup is needed. There are no new dependencies or folders beyond the files cr
   - Listen for `click` on `.scope__ticks`: take the closest `[data-scope-step]` and apply its scope.
   - Widen for links (FR-011), on load and on `hashchange`: if `location.hash` names an element inside an `.event` that isn't rendered, apply `narrowestScopeFor(event.dataset.category)`, only if that is wider than the current scope. Then call `target.scrollIntoView()`.
 
-**Checkpoint**: `pnpm build:release && pnpm test:site` passes T003. Manually (quickstart 2–5 and 9–10), the four settings give 44, 88, 114 and 135 events with the right counts, the last era's axis ends at its last visible event, there's no slider and the full counts show without JS, and the printout follows the setting.
+**Checkpoint**: `pnpm build:release && pnpm test:site` passes T003. Manually (quickstart 2–5 and 9–10), the four settings give 45, 88, 114 and 135 events with the right counts, the last era's axis ends at its last visible event, there's no slider and the full counts show without JS, and the printout follows the setting.
 
 ---
 

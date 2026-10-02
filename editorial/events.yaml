@@ -714,10 +714,10 @@
   title: Felvonulók a Nefelejcs utcai kereszteződésnél
   image:
     alt: A Dembinszky utca a Nefelejcs utcai kereszteződésből, május elsejei felvonulókkal, 1968
-    caption: Dembinszky utca a Nefelejcs utcai kereszteződésből, 1968. május 1.; a D18 épülete nincs külön azonosítva.
+    caption: Dembinszky utca a Nefelejcs utcai kereszteződésből, 1968. május 1.; a D18 épülete a távoli háttérben azonosítható.
     credit: Fortepan / UVATERV
     license: CC BY-SA 3.0
     sourceUrl: https://fortepan.hu/hu/photos/?id=97493
     sourceLabel: Fortepan 97493
-    depictsHouse: false
+    depictsHouse: true
     kind: photo

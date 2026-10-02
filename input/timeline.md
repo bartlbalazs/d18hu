@@ -159,7 +159,7 @@ Budapest születésétől a hatvanas évek végéig a ház története a körny�
 | 1963 | Világ | A polgárjogi mozgalom történetének mérföldköve Martin Luther King washingtoni beszéde. | — | — | — | — |
 | 1966. máj. 12. | Környék | A **Pest megyei Temetkezési Vállalat** a **VII., Dembinszky utca 52.** címről tizennégy darab, 50 × 50 méretű, fedeles ládát ajánl fel. A hirdetés a ládák korábbi vagy későbbi rendeltetését nem közli. | Igazolt | [Pest Megyei Hírlap, 1966. máj. 12.](https://library.hungaricana.hu/hu/view/PestMegyeiHirlap_1966_05/?pg=106) | assets/events/hirdetesek/1966-05-12_D33_Temetkezesi_ladak.png | Egy különös apróhirdetés 1966-ból |
 | 1968. jan. | Magyarország | A késő Kádár-korszak gazdasági hétköznapjaiban fontos fordulatot jelent az új gazdasági mechanizmus elindulása. | — | — | — | — |
-| 1968. máj. 1. | Környék | Az UVATERV Fortepan-felvételén május elsejei felvonulók haladnak a Dembinszky utcában, a Nefelejcs utca kereszteződésénél. A 18-as ház ezen a képen nem azonosítható. | Igazolt | [Fortepan 97493](https://fortepan.hu/hu/photos/?id=97493) | https://fortepan.download/file/fortepan-eu/1600/fortepan_97493.jpg | Felvonulások az utcában |
+| 1968. máj. 1. | D18 | Az UVATERV Fortepan-felvételén május elsejei felvonulók haladnak a Dembinszky utcában, a Nefelejcs utca kereszteződésénél. A 18-as ház a kép távoli hátterében azonosítható. | Igazolt | [Fortepan 97493](https://fortepan.hu/hu/photos/?id=97493) | https://fortepan.download/file/fortepan-eu/1600/fortepan_97493.jpg | Felvonulások az utcában |
 
 ## Nyitott kérdések és vitatott állítások
 

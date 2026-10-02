@@ -15,8 +15,8 @@ The home page timeline has 135 events in four categories, shown with the same fo
 | 1873–1913 | 19 | 16 | 3 | 2 |
 | 1914–1938 | 15 | 15 | 6 | 7 |
 | 1939–1945 | 8 | 2 | 11 | 6 |
-| 1946–1968 | 2 | 11 | 6 | 6 |
-| **Visible at this setting** | **44** | **88** | **114** | **135** |
+| 1946–1968 | 3 | 10 | 6 | 6 |
+| **Visible at this setting** | **45** | **88** | **114** | **135** |
 
 Every era still has at least two events at the narrowest setting.
 
@@ -140,7 +140,7 @@ A visitor reading the Jelmagyarázat learns that the slider exists and how it wo
 
 ### Measurable Outcomes
 
-- **SC-001**: The timeline shows exactly 44 events at Ház, 88 at Környék, 114 at Magyarország and 135 at Világ, and each era's count matches the era table above for every setting.
+- **SC-001**: The timeline shows exactly 45 events at Ház, 88 at Környék, 114 at Magyarország and 135 at Világ, and each era's count matches the era table above for every setting.
 - **SC-002**: A first-time visitor sees the Környék setting, and a returning visitor who accepted cookies sees their last setting, in both cases with no visible flash of events that should be hidden.
 - **SC-003**: A visitor can change the setting in one drag or tap on wide screens, and in two taps on narrow screens (open, choose).
 - **SC-004**: The home page keeps its current Lighthouse scores (performance at or above its current value, accessibility, best practices and SEO at 100) and shows no new layout shift.

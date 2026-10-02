@@ -19,7 +19,7 @@ Expected: all pass. Record the gzipped size of the new home-page script in the p
 ## Manual checks (`pnpm preview`, open `/`)
 
 1. **Default**: In a fresh private window the slider is at Környék, and 88 events show. Nothing flashes on a throttled reload (SC-002).
-2. **Cumulative**: At Ház, Környék, Magyarország and Világ, the total is 44, 88, 114 and 135, and each era count matches [data-model.md](data-model.md) (SC-001). The last era's axis ends at its last visible event.
+2. **Cumulative**: At Ház, Környék, Magyarország and Világ, the total is 45, 88, 114 and 135, and each era count matches [data-model.md](data-model.md) (SC-001). The last era's axis ends at its last visible event.
 3. **Keyboard and screen reader**: Arrow keys, Home and End move the slider. The screen reader reads the setting by name and announces "<name>: <n> esemény".
 4. **Reading position**: Mid-page, change the setting. The event at the top stays put. If it gets hidden, the view moves to the nearest visible event.
 5. **Link to a hidden event**: Open `/#<id of a Világ event>` in a fresh window. The slider widens to Világ, and the event is in view.
