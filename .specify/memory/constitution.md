@@ -1,12 +1,3 @@
-<!--
-Sync Impact Report
-- Version: 1.2.0 → 1.3.0 (MINOR: performance budget relaxed)
-- Modified principle: II. Performance Budget — Largest Contentful Paint ≤ 2.0 s → ≤ 2.5 s
-  (Core Web Vitals "good" threshold). With 126 events the home page measured 2.03 s in
-  simulated mobile Lighthouse; the delay is page length, not image loading.
-- Templates: no change needed (plan-template refers to the constitution, not to the number).
-- Follow-up: lighthouserc.json and lighthouserc.live.json updated to 2500 ms.
--->
 # D18 Condo Building History Constitution
 
 ## Core Principles
@@ -58,12 +49,19 @@ ranking signal.
 
 - No JavaScript frameworks, CSS frameworks, or UI component libraries.
 - JavaScript is optional progressive enhancement only, vanilla, and ≤ 20 KB compressed site-wide.
-- No third-party trackers, ad scripts, social embeds, or external CDNs at runtime, with one
-  exception: a single analytics service MAY be used if it loads, sets cookies or sends data only
+- No third-party trackers, ad scripts, social embeds, or external CDNs at runtime, with two
+  exceptions. First, a single analytics service MAY be used if it loads, sets cookies or sends data only
   after the visitor's explicit consent, refusing is as easy as accepting, and it never delays the
   first view. Without consent the site MUST make no third-party requests. The consent notice and
   its script count towards the 20 KB JavaScript budget; the service's own script, loaded only
   after consent, does not, but pages MUST still meet Principle II after consent.
+- A second exception covers playing a recording the page links to: a single embedded media
+  player MAY load from the provider's privacy-enhanced domain (e.g. `youtube-nocookie.com`)
+  only after the visitor presses a play control, and pressing it counts as consent to that
+  embed alone, not to statistics. Before that press the page MUST make no request to the
+  provider, at most one such embed MAY exist at a time, the Impresszum MUST disclose it, and
+  pages MUST still meet Principle II after it loads. Its script does not count towards the
+  20 KB JavaScript budget; the site's own script that loads it does.
 - At most two self-hosted web-font families (e.g., one display serif and one text sans), in
   WOFF2 with `font-display: swap`, subset to the characters the site's language needs, loading
   only the weights and styles actually used; total font payload ≤ 150 KB compressed.
@@ -124,4 +122,4 @@ A change MUST NOT be merged unless:
   for adding a principle or materially expanding guidance, PATCH for clarifications.
 - Every plan and code review MUST verify compliance; unjustified complexity is rejected.
 
-**Version**: 1.3.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-01
+**Version**: 1.4.0 | **Ratified**: 2026-09-28 | **Last Amended**: 2026-10-05
