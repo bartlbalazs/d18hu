@@ -1,5 +1,5 @@
 ---
-import { CATEGORY_DISPLAY, CONFIDENCE_DISPLAY } from '../lib/icons.ts';
+import { CATEGORY_DISPLAY, CONFIDENCE_DISPLAY, icons } from '../lib/icons.ts';
 
 const categoryExplanations = {
   house: 'Maga az épület és a címe. A „Személy” jelölésű sorok a házhoz kötődő emberek máshol zajló történetei.',
@@ -50,12 +50,25 @@ const categoryExplanations = {
       Történelmi háttéreseménynél nincs bizonyossági jelölés.
     </p>
   </div>
+  <div class="legend__group legend__group--music">
+    <h3>Mit hallgatott Budapest?</h3>
+    <ul class="legend__list">
+      <li class="legend__item">
+        <span class="legend__icon legend__icon--music" set:html={icons.music} />
+        <span>
+          Rövid zenei kitérő: egy dal, amelyet a korszak Budapestje hallhatott. Nem azt jelenti, hogy a 18-as ház
+          lakói bizonyosan ezt hallgatták.
+        </span>
+      </li>
+    </ul>
+  </div>
   <div class="legend__group legend__group--scope">
     <h3>Milyen messzire nézzünk a háztól?</h3>
     <p>
       Az idővonal mellett – keskeny képernyőn a jobb alsó sarokban lévő gombbal – beállíthatja, milyen messzire
       nézzünk a háztól. A négy fokozat: Ház, Környék, Magyarország, Világ. Minden fokozat az előzőt is tartalmazza, így
-      a csúszka a háztól egészen a világ eseményeiig tágítja a történet látómezejét.
+      a csúszka a háztól egészen a világ eseményeiig tágítja a történet látómezejét. A zenei kitérők a Környék
+      fokozattól kezdve látszanak.
     </p>
   </div>
 </section>

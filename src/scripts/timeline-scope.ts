@@ -20,6 +20,8 @@ if (panel && range) {
   const root = document.documentElement;
   const status = panel.querySelector<HTMLElement>('[data-scope-status]');
   const events = [...document.querySelectorAll<HTMLElement>('.event')];
+  // Music cards are timeline rows too, but not events: they don't count in the announcement.
+  const historyEvents = events.filter((event) => !event.classList.contains('event--music'));
   const isRendered = (element: Element) => element.getClientRects().length > 0;
   const headerLine = () => parseFloat(getComputedStyle(root).getPropertyValue('--header-height')) + 8;
 
@@ -78,7 +80,7 @@ if (panel && range) {
     syncRange();
     store();
     scheduleVisibility();
-    if (announce && status) status.textContent = `${SCOPE_LABELS[scope]}: ${events.filter(isRendered).length} esemény`;
+    if (announce && status) status.textContent = `${SCOPE_LABELS[scope]}: ${historyEvents.filter(isRendered).length} esemény`;
   };
 
   range.addEventListener('input', () => apply(SCOPES[Number(range.value)], { announce: true }));

@@ -84,13 +84,14 @@ export function buildingNode(
 
 export function imageNode(
   site: URL,
-  image: { contentUrl: string; caption: string; credit: string; sourceUrl?: string; path: string },
+  image: { contentUrl: string; caption: string; credit: string; license?: string; sourceUrl?: string; path: string },
 ): JsonLd {
   return {
     '@type': 'ImageObject',
     contentUrl: absoluteUrl(image.contentUrl, site),
     caption: image.caption,
     ...(image.credit ? { creditText: image.credit } : {}),
+    ...(image.license ? { license: image.license } : {}),
     ...(image.sourceUrl ? { acquireLicensePage: image.sourceUrl } : {}),
     url: absoluteUrl(image.path, site),
   };

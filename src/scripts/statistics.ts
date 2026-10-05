@@ -1,7 +1,7 @@
 // Progressive enhancement only: without JS the notice and settings buttons stay hidden and nothing
 // is measured. Google's tag is added only after the visitor accepts (Consent Mode "basic").
 import { CONSENT_STORAGE_KEY, SCOPE_STORAGE_KEY, resolveConsent, type ConsentState } from '../lib/statistics/consent.ts';
-import { statisticsEventFor } from '../lib/statistics/events.ts';
+import { musicStatisticsEvent, statisticsEventFor } from '../lib/statistics/events.ts';
 
 declare global {
   interface Window {
@@ -12,6 +12,8 @@ declare global {
     globalPrivacyControl?: boolean;
   }
 }
+
+const eventIdOf = (element: HTMLElement | null) => element?.dataset.eventId ?? element?.dataset.musicId;
 
 const notice = document.getElementById('statisztika');
 const measurementId = notice?.dataset.measurementId;
@@ -97,16 +99,16 @@ if (notice && measurementId && location.hostname === notice.dataset.siteHost) {
     }
   };
 
-  // Space below the page, so the fixed notice never covers the end of the page or the footer.
+  // Space below the page (see body in base.css), so the fixed notice never covers the end of the page or the footer.
   const showNotice = () => {
     notice.hidden = false;
-    document.body.style.paddingBottom = `${notice.offsetHeight}px`;
+    document.documentElement.style.setProperty('--consent-notice-height', `${notice.offsetHeight}px`);
   };
 
   const hideNotice = () => {
     const hadFocus = notice.contains(document.activeElement);
     notice.hidden = true;
-    document.body.style.paddingBottom = '';
+    document.documentElement.style.removeProperty('--consent-notice-height');
     // Return focus only to the settings button that reopened the notice, never scrolling the page:
     // after the first-visit notice, the reader stays where they are.
     if (hadFocus) settingsOpener?.focus({ preventScroll: true });
@@ -168,10 +170,18 @@ if (notice && measurementId && location.hostname === notice.dataset.siteHost) {
       dataset: link.dataset,
       inMenu: link.closest('#fomenu') !== null,
       inContent: link.closest('main') !== null,
-      eventId: link.closest<HTMLElement>('[data-event-id]')?.dataset.eventId,
+      inMusicPlayer: link.closest('[data-music-player]') !== null,
+      eventId: eventIdOf(link.closest<HTMLElement>('[data-event-id], [data-music-id]')),
       pagePath: location.pathname,
       siteOrigin: location.origin,
     });
+    if (reading) window.gtag('event', reading.name, reading.params);
+  });
+
+  // music-player.ts reports what the visitor does with a song; only known events are passed on.
+  document.addEventListener('d18:music', (event) => {
+    if (consent !== 'granted' || !window.gtag) return;
+    const reading = musicStatisticsEvent((event as CustomEvent).detail);
     if (reading) window.gtag('event', reading.name, reading.params);
   });
 

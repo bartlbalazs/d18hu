@@ -1,0 +1,280 @@
+# Provenance of the music card images, as delivered with the originals (2026-10-05). Kept for reference; the build
+# reads editorial/music.yaml. In this folder the files use hyphens instead of underscores; 1942 is a JPEG of the
+# fully opaque PNG; the two Fortepan scans are downscaled to 1600 px on the long edge, so their size and sha256 differ.
+assets:
+- year: 1901
+  song: Őszi rózsa, fehér őszi rózsa
+  subject: Fráter Lóránd
+  role: szerző portréja
+  filename: 1901_frater_lorand.jpg
+  download_url: https://upload.wikimedia.org/wikipedia/commons/e/e5/Fr%C3%A1ter_L%C3%B3r%C3%A1nd_1894.jpg
+  source_page: https://commons.wikimedia.org/wiki/File:Fr%C3%A1ter_L%C3%B3r%C3%A1nd_1894.jpg
+  license: Public domain / Public Domain Mark (Commons)
+  attribution: Letzter Sándor, Fráter Lóránd, 1894. Wikimedia Commons.
+  alt: Fráter Lóránd portréja, 1894
+  object_position: 50% 30%
+  notes: Alacsonyabb felbontású, de a kártya jobb oldali, részben maszkolt sávjához elegendő.
+  requested_download_url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Fr%C3%A1ter_L%C3%B3r%C3%A1nd_1894.jpg
+  image_date: '1894-10-27'
+  creator: Letzter Sándor
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  license_tags:
+  - PD-old-assumed
+  - PD-US-expired
+  - Public Domain Mark 1.0
+  license_note: 'A Commons PD-old-assumed jelölést használ: az alkotó halálozási ideje nincs megadva, a közkincsminősítés
+    120 évnél régebbi keletkezés alapján feltételezett. A PDM státuszjelölés, nem engedélyező licenc.'
+  width: 267
+  height: 480
+  format: JPEG
+  size_bytes: 43440
+  sha256: ddabf9cf5e32a5d2971c82d377443691e221827c476680aae4e3e1eb4e2286ac
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Commons leírása Fráter Lóránd nótaszerzőként azonosítja; dátum: 1894. október 27.; szerző: Letzter
+      Sándor. Az eredeti kép teljes alakos, egyenruhás portré. A Commons eredeti állománya csak 267 × 480 pixel.'
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+- year: 1904
+  song: Egy rózsaszál szebben beszél
+  subject: Kacsóh Pongrác
+  role: szerző portréja
+  filename: 1904_kacsoh_pongrac.jpg
+  download_url: https://upload.wikimedia.org/wikipedia/commons/4/43/Kacs%C3%B3h_Pongr%C3%A1c_1906.jpg
+  source_page: https://commons.wikimedia.org/wiki/File:Kacs%C3%B3h_Pongr%C3%A1c_1906.jpg
+  license: Public domain (Commons)
+  attribution: Ismeretlen szerző, Ország-Világ, 1906. Wikimedia Commons.
+  alt: Kacsóh Pongrác portréja, 1906
+  object_position: 50% 35%
+  notes: Nagyon jól illik a századfordulós portrésorhoz.
+  requested_download_url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Kacs%C3%B3h_Pongr%C3%A1c_1906.jpg
+  image_date: '1906'
+  creator: Ismeretlen szerző
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  license_tags:
+  - PD-old-70-expired
+  - Public Domain Mark 1.0
+  license_note: A Commons közkincsként jelöli (PD-old-70-expired / Public Domain Mark). A szerző ismeretlenként
+    szerepel.
+  width: 972
+  height: 1518
+  format: JPEG
+  size_bytes: 187616
+  sha256: d62f363d3d611df898883adc200b7ab388070053521186a6b7253a2e0740cefb
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Commons leírása és a kép nyomtatott képaláírása Kacsóh Pongrácot azonosítja. Forrás: Ország-Világ,
+      1906. november 25., 48. szám, 951. oldal.'
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+- year: 1916
+  song: Hajmási Péter, Hajmási Pál
+  subject: Kálmán Imre
+  role: szerző portréja
+  filename: 1916_kalman_imre.jpg
+  download_url: https://upload.wikimedia.org/wikipedia/commons/0/0d/K%C3%A1lm%C3%A1n_Imre_cropped_%28Willinger_Vilmos%2C_1924%29.jpg
+  source_page: https://commons.wikimedia.org/wiki/File:K%C3%A1lm%C3%A1n_Imre_cropped_(Willinger_Vilmos,_1924).jpg
+  license: Public domain / Public Domain Mark (Commons)
+  attribution: Wilhelm Willinger, Kálmán Imre, 1924. Wikimedia Commons.
+  alt: Kálmán Imre portréja, 1924
+  object_position: 50% 34%
+  notes: Későbbi, de korabeli műtermi portré; vizuálisan erős és egységes.
+  requested_download_url: https://commons.wikimedia.org/wiki/Special:Redirect/file/K%C3%A1lm%C3%A1n_Imre_cropped_%28Willinger_Vilmos%2C_1924%29.jpg
+  image_date: '1924'
+  creator: Wilhelm Willinger (Willinger Vilmos)
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  license_tags:
+  - PD-Art / PD-old-70-expired
+  - Public Domain Mark 1.0
+  license_note: A Commons közkincsként jelöli; Wilhelm Willinger 1943-ban halt meg. A fájl másik kép kivágata.
+  width: 567
+  height: 779
+  format: JPEG
+  size_bytes: 366007
+  sha256: 3b002cce7835e94225c7d19668a185ed42c8dd23ce5ea24b6b183548c4e6c42e
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: A Commons Kálmán Imreként azonosítja. Willinger 1924-es, Hubert Marischkát és Kálmán Imrét ábrázoló fényképének
+      már a forrásban kivágott változata. A kért fájl eredetije került a csomagba, további kivágás nélkül.
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+- year: 1926
+  song: Van a Bajza utca sarkán
+  subject: Zerkovitz Béla
+  role: szerző portréja
+  filename: 1926_zerkovitz_bela.jpg
+  download_url: https://upload.wikimedia.org/wikipedia/commons/d/de/Zerkovitz_B%C3%A9la_k%C3%A9p.jpg
+  source_page: https://commons.wikimedia.org/wiki/File:Zerkovitz_B%C3%A9la_k%C3%A9p.jpg
+  license: Public domain (PD-HU-unknown, Commons)
+  attribution: Ismeretlen szerző, kb. 1915–1925, Magyar Színművészeti Lexikon. Wikimedia Commons.
+  alt: Zerkovitz Béla portréja
+  object_position: 55% 36%
+  notes: Szűk mellkép, sötét zakóval; az eredeti forrás 371 × 466 pixeles.
+  requested_download_url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Zerkovitz_B%C3%A9la_k%C3%A9p.jpg
+  image_date: 1915–1925
+  creator: Ismeretlen szerző
+  license_url: https://commons.wikimedia.org/wiki/Template:PD-HU-unknown
+  license_tags:
+  - PD-HU-unknown
+  license_note: A Commons PD-HU-unknown jelölést használ. A közkincsminősítés a forrásoldal közlése.
+  width: 371
+  height: 466
+  format: JPEG
+  size_bytes: 35591
+  sha256: c23da080e382e8d771d2579ff6fe3b263d84e6ef96d73eb3837700cc70effe33
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Commons leírása Zerkovitz Bélát azonosítja; keletkezés: 1915–1925; közlés: Magyar Színművészeti Lexikon,
+      Budapest, 1931. A letöltött kép szűk mellkép, sötét zakóval; a bemeneti világos öltönyre utaló megjegyzés
+      nem helytálló.'
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+  original_notes: A világos öltöny miatt a filtertől is jól elkülönül a háttértől.
+- year: 1935
+  song: Szomorú vasárnap
+  subject: Seress Rezső
+  role: szerző portréja
+  filename: 1935_seress_rezso.jpg
+  download_url: https://upload.wikimedia.org/wikipedia/commons/b/be/Seress_Rezs%C5%91.jpg
+  source_page: https://commons.wikimedia.org/wiki/File:Seress_Rezs%C5%91.jpg
+  license: Public domain (Commons; HU source-country status)
+  attribution: Ismeretlen szerző, Seress Rezső, kb. 1925. Wikimedia Commons.
+  alt: Seress Rezső portréja
+  object_position: 58% 34%
+  notes: Erős, karakteres profilportré; a jobb oldali fade-es médiamezőben különösen jól működik.
+  requested_download_url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Seress_Rezs%C5%91.jpg
+  image_date: kb. 1925
+  creator: Ismeretlen szerző
+  license_url: https://creativecommons.org/publicdomain/mark/1.0/
+  license_tags:
+  - PD-old-70
+  - Public Domain Mark 1.0
+  license_note: A Commons közkincsként jelöli (PD-old-70 / Public Domain Mark), miközben a szerzőt ismeretlennek
+    nevezi. Az alkotó halálozási ideje nincs dokumentálva a fájloldalon; itt a forrásoldal státuszát rögzítjük.
+  width: 639
+  height: 963
+  format: JPEG
+  size_bytes: 216260
+  sha256: 512fa4371f57bd7281f631e5f1837230dcd989b66369d4ac0cb21b2ef7c3a35d
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Commons leírása Seress Rezsőt azonosítja; dátum: kb. 1925. A kép profilportré, cigarettával. A 639
+      × 963 pixeles aktuális eredeti a korábbi feltöltésnél nagyobb.'
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+- year: 1942
+  song: Valahol Oroszországban
+  subject: Karády Katalin
+  role: előadó portréja
+  filename: 1942_karady_katalin.png
+  download_url: https://upload.wikimedia.org/wikipedia/commons/d/d4/Karady_Katalin.png
+  source_page: https://commons.wikimedia.org/wiki/File:Karady_Katalin.png
+  license: Public domain (PD-HU-unknown, Commons)
+  attribution: Magyar Film Iroda, Karády Katalin, 1942. Wikimedia Commons.
+  alt: Karády Katalin portréja, 1942
+  object_position: 50% 28%
+  notes: Pont az esemény évéből származó portré, ezért ez a sor egyik legerősebb darabja.
+  requested_download_url: https://commons.wikimedia.org/wiki/Special:Redirect/file/Karady_Katalin.png
+  image_date: '1942'
+  creator: Magyar Film Iroda
+  license_url: https://commons.wikimedia.org/wiki/Template:PD-HU-unknown
+  license_tags:
+  - PD-HU-unknown
+  license_note: A Commons PD-HU-unknown jelölést használ; szerzőként intézményt nevez meg. A közkincsminősítés a
+    forrásoldal közlése.
+  width: 564
+  height: 871
+  format: PNG
+  size_bytes: 972882
+  sha256: 3eefa5d99b3d014151831dae9b9967e62713e8356ec57a850af41df53bf4ab77
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Commons leírása Karády Katalint azonosítja; dátum: 1942; szerzőként Magyar Film Irodát nevez meg. A
+      forrás a Magyar Nemzeti Múzeum MNMMUSEUM1195395 azonosítójú rekordjára hivatkozik.'
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+- year: 1959
+  song: Pancsoló kislány
+  subject: Magyar Rádió stúdiója
+  role: korabeli médiakörnyezet
+  filename: 1959_magyar_radio_fortepan_146927.jpg
+  download_url: https://fortepan.download/file/fortepan-eu/download/fortepan_146927.jpg
+  source_page: https://commons.wikimedia.org/wiki/File:Magyar_R%C3%A1di%C3%B3_st%C3%BAdi%C3%B3ja,_1959_(Fortepan,_146927).jpg
+  license: CC BY-SA 3.0
+  attribution: 'FORTEPAN / Szalay Zoltán, 1959, Fortepan #146927.'
+  alt: A Magyar Rádió stúdiója 1959-ben
+  object_position: 50% 48%
+  notes: Szándékosan nem az MTVA Kovács Eszti-fotót választja, mert ahhoz külön fizetős licenc tartozik. Ez szabadon
+    használható korabeli médiakörnyezet.
+  requested_download_url: https://fortepan.download/file/fortepan-eu/1600/fortepan_146927.jpg
+  image_date: '1959'
+  creator: Szalay Zoltán
+  license_url: https://creativecommons.org/licenses/by-sa/3.0/
+  license_tags:
+  - CC BY-SA 3.0
+  license_note: CC BY-SA 3.0 Unported. Forrásmegjelölés, licenchivatkozás és a módosítások jelzése szükséges; átdolgozás
+    megosztásakor azonos vagy kompatibilis licenc alkalmazandó.
+  width: 6351
+  height: 5633
+  format: JPEG
+  size_bytes: 17052712
+  sha256: e171fc75edc68166da6f7e86d1b45361693850d3c1fe8f4b53eeaed08d1ba86f
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Commons és a Fortepan #146927 rekordja szerint a Magyar Rádió 1-es stúdiója, 1959. A Fortepan Ungváry
+      Lászlót, Orbán Violát, Gál Sándort és Pogány Margitot nevezi meg. Korabeli médiakörnyezetet mutat; a forrás
+      nem állít kapcsolatot a Pancsoló kislány felvételével.'
+    additional_source_pages:
+    - https://fortepan.hu/hu/photos/?id=146927
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+  fortepan_id: 146927
+- year: 1968
+  song: Amikor én még kissrác voltam
+  subject: Illés együttes
+  role: korabeli előadás
+  filename: 1968_illes_fortepan_190597.jpg
+  download_url: https://fortepan.download/file/fortepan-eu/download/fortepan_190597.jpg
+  source_page: https://fortepan.hu/hu/photos/?id=190597
+  license: CC BY-SA 3.0
+  attribution: 'FORTEPAN / Szalay Zoltán, 1968, Fortepan #190597.'
+  alt: Az Illés együttes az 1968-as Táncdalfesztivál döntőjében
+  object_position: 50% 42%
+  notes: Közvetlenül a dal 1968-as Táncdalfesztivál-sikeréhez kapcsolódó kép.
+  requested_download_url: https://fortepan.download/file/fortepan-eu/1600/fortepan_190597.jpg
+  image_date: '1968'
+  creator: Szalay Zoltán
+  license_url: https://creativecommons.org/licenses/by-sa/3.0/
+  license_tags:
+  - CC BY-SA 3.0
+  license_note: CC BY-SA 3.0 Unported, a Fortepan felhasználási feltételei szerint. FORTEPAN / Szalay Zoltán forrásmegjelölés
+    szükséges.
+  width: 5718
+  height: 5768
+  format: JPEG
+  size_bytes: 15716256
+  sha256: 9ad478208c040339993d6a63debc5fc97fa65e6973efd24be9790c55e4c79ec9
+  verification:
+    status: verified_against_source_metadata_and_visual_check
+    checked_on: '2026-10-05'
+    note: 'A Fortepan #190597 rekordja és a Hungaricana azonosítása szerint: Erkel Színház, a Táncdalfesztivál döntője,
+      1968. Az Illés együttes tagjai: Szörényi Szabolcs, Szörényi Levente, Bródy János, mögöttük Illés Lajos és
+      Pásztory Zoltán. A Beatkorszak Szalay Zoltán-kiállításának képaláírása az Amikor én még kissrác voltam dalhoz
+      is kapcsolja ezt a képszámot.'
+    additional_source_pages:
+    - https://gallery.hungaricana.hu/hu/Fortepan/1538592/
+    - https://beatkorszak.hu/szalay-zoltan-kiallitas-illes
+  modifications: Nincs; a letöltött eredeti fájl csak átnevezve.
+  fortepan_id: 190597
+package:
+  checked_on: '2026-10-05'
+  image_count: 8
+  original_files: true
+  resolution_scope: A megadott Commons-fájlok aktuális Original file változata; a Fortepan-fotóknál a hivatalos
+    teljes felbontású download változat.
+  year_semantics: 'A year a zenei idővonal éve, nem feltétlenül a fénykép keletkezési éve. A kép dátuma: image_date.'
+  verification_scope: A személy/esemény azonosítása a forrás rekordja és a tényleges letöltött kép ellenőrzésén
+    alapul; nem önálló arcfelismerésen.
+  input_preservation: A kért nevek, dalok, szerepek, fájlnevek, attribúciók, altok és object_position értékek megőrizve.
+    A download_url a tényleges eredetire mutat; a bemeneti URL a requested_download_url mezőben marad. Zerkovitz
+    téves öltönyleírása javítva, eredetije az original_notes mezőben.

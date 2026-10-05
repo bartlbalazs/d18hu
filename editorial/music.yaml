@@ -1,0 +1,287 @@
+# „Mit hallgatott Budapest?” – songs on the home page timeline (see specs/011-timeline-music-layer/data-model.md).
+# - No image fields: every music card uses the same note icon.
+# - slug, anchor_id, youtube_id and youtube_embed_url are checked against year, title and youtube_url.
+# - Many label uploads block embedding (YouTube error 150): test a new recording in the player before release.
+music_timeline:
+  schema_version: 1
+  label: Mit hallgatott Budapest?
+  cta_label: Meghallgatom
+  items:
+  - type: music
+    year: 1901
+    slug: 1901-oszi-rozsa-feher-oszi-rozsa
+    anchor_id: zene-1901-oszi-rozsa-feher-oszi-rozsa
+    title: Őszi rózsa, fehér őszi rózsa
+    credit: Fráter Lóránd
+    composer: Fráter Lóránd
+    lyricist: Zalár József
+    description: 'A századfordulón egy népszerű dal még elsősorban kottán, vendéglőkben és élő muzsikán keresztül
+      járta be az országot. Az Őszi rózsa, fehér őszi rózsa 1901-ben már nyomtatásban is megjelent. Különlegessége,
+      hogy 1914-ből maga a szerző, Fráter Lóránd előadásában is fennmaradt gramofonfelvétel: így nemcsak a dallamot,
+      hanem a korszak előadásmódjának egy darabját is hallhatjuk.'
+    playback_source: youtube
+    youtube_id: k9DhNQVzFnI
+    youtube_url: https://www.youtube.com/watch?v=k9DhNQVzFnI
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/k9DhNQVzFnI
+    recording_artist: Fráter Lóránd
+    recording_relation: author_period_recording
+    recording_note: 1914-es gramofonfelvétel maga Fráter Lóránd előadásában, Columbia E 972. A timeline éve a dal
+      1901-es megjelenését jelöli; a meghallgatható felvétel 1914-es.
+    sources:
+    - title: Magyar Könyvkereskedők Évkönyve, 1901 – zeneműjegyzék
+      url: https://epa.oszk.hu/02500/02548/00013/pdf/EPA02548_magyar_konyvkereskedok_evkonyve_1901_281-323.pdf
+      purpose: 1901-es megjelenés
+    - title: Gramofon Online – Fráter Lóránd korai felvétele
+      url: https://gramofononline.hu/352554452/oszi_rozsa_feher_oszi_rozsa
+      purpose: korai gramofonfelvétel és szerzőségi adatok
+    recording_year: 1914
+    recording_label: Columbia
+    recording_catalog_number: E 972
+    media:
+      src: 1901-frater-lorand.jpg
+      alt: "Fráter Lóránd portréja, 1894"
+      credit: "Letzter Sándor, Fráter Lóránd, 1894. Wikimedia Commons"
+      license: "Public domain / Public Domain Mark (Commons)"
+      license_url: https://creativecommons.org/publicdomain/mark/1.0/
+      source_title: Wikimedia Commons
+      source_url: https://commons.wikimedia.org/wiki/File:Fr%C3%A1ter_L%C3%B3r%C3%A1nd_1894.jpg
+      position: 50% 6%
+  - type: music
+    year: 1904
+    slug: 1904-egy-rozsaszal-szebben-beszel
+    anchor_id: zene-1904-egy-rozsaszal-szebben-beszel
+    title: Egy rózsaszál szebben beszél
+    credit: Kacsóh Pongrác · János vitéz
+    composer: Kacsóh Pongrác
+    lyricist: Heltai Jenő
+    work: János vitéz
+    description: '1904 őszén a János vitéz budapesti bemutatója egy újfajta nagyvárosi tömegélmény része lett. Dalai
+      nem maradtak a Király Színház falai között: kottán, zongorán és otthoni éneklésben is tovább éltek. Az Egy
+      rózsaszál szebben beszél már azt a korszakot jelzi, amikor egy színpadi siker rövid idő alatt közös városi
+      dallammá válhatott.'
+    playback_source: youtube
+    youtube_id: Wh7fmbrJA7E
+    youtube_url: https://www.youtube.com/watch?v=Wh7fmbrJA7E
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/Wh7fmbrJA7E
+    recording_artist: Palló Imre, Kiss Ferenc
+    recording_relation: archival_film_recording
+    recording_note: Archív részlet Gaál Béla János vitéz-filmjéből, Palló Imre és Kiss Ferenc közreműködésével.
+      A timeline éve az 1904-es Király Színház-i ősbemutatót jelöli.
+    sources:
+    - title: Egy rózsaszál szebben beszél – a János vitéz születésének története
+      url: https://pnsz.jegy.hu/program/egy-rozsaszal-szebben-beszel-168262
+      purpose: 1904. november 18-i Király Színház-bemutató
+    recording_year: 1938
+    recording_source: János vitéz (1938), hangosfilm
+    media:
+      src: 1904-kacsoh-pongrac.jpg
+      alt: "Kacsóh Pongrác portréja, 1906"
+      credit: "Ismeretlen szerző, Ország-Világ, 1906. Wikimedia Commons"
+      license: "Public domain (Commons)"
+      license_url: https://creativecommons.org/publicdomain/mark/1.0/
+      source_title: Wikimedia Commons
+      source_url: https://commons.wikimedia.org/wiki/File:Kacs%C3%B3h_Pongr%C3%A1c_1906.jpg
+      position: 50% 24%
+  - type: music
+    year: 1916
+    slug: 1916-hajmasi-peter-hajmasi-pal
+    anchor_id: zene-1916-hajmasi-peter-hajmasi-pal
+    title: Hajmási Péter, Hajmási Pál
+    credit: Kálmán Imre · Csárdáskirálynő
+    composer: Kálmán Imre
+    lyricist: Gábor Andor
+    work: Csárdáskirálynő
+    description: '1916-ban Budapest már két éve háborúban élt, a színházakban mégis tovább szólt az operett. A Csárdáskirálynő
+      pezsgővel, cigányzenével és könnyed refrénekkel kínált néhány órányi menekülést abból, ami odakint történt.
+      A Hajmási Péter, Hajmási Pál ennek a különös kettősségnek lett egyik legtartósabb dallama: háborús Budapest
+      zenéje, amelyben szinte semmi sem szól a háborúról.'
+    playback_source: youtube
+    youtube_id: xahdLvks9kk
+    youtube_url: https://www.youtube.com/watch?v=xahdLvks9kk
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/xahdLvks9kk
+    recording_artist: Honthy Hanna, Feleki Kamill és Homm Pál
+    recording_relation: later_recording
+    recording_note: 'Későbbi klasszikus operettfelvétel. A timeline éve a budapesti bemutató éve: 1916.'
+    sources:
+    - title: Nemzeti Archívum – Csárdáskirálynő, az operettek operettje
+      url: https://nemzetiarchivum.hu/stories/Csardaskiralyno
+      purpose: 1916. november 3-i budapesti bemutató és történeti háttér
+    media:
+      src: 1916-kalman-imre.jpg
+      alt: "Kálmán Imre portréja, 1924"
+      credit: "Wilhelm Willinger, Kálmán Imre, 1924. Wikimedia Commons"
+      license: "Public domain / Public Domain Mark (Commons)"
+      license_url: https://creativecommons.org/publicdomain/mark/1.0/
+      source_title: Wikimedia Commons
+      source_url: https://commons.wikimedia.org/wiki/File:K%C3%A1lm%C3%A1n_Imre_cropped_(Willinger_Vilmos,_1924).jpg
+      position: 50% 20%
+  - type: music
+    year: 1926
+    slug: 1926-van-a-bajza-utca-sarkan
+    anchor_id: zene-1926-van-a-bajza-utca-sarkan
+    title: Van a Bajza utca sarkán
+    credit: Zerkovitz Béla · Csókos asszony
+    composer: Zerkovitz Béla
+    lyricist: Szilágyi László
+    work: Csókos asszony
+    description: 'A húszas évekre Budapest már saját magáról énekel. A Csókos asszony szereplői és helyszínei nem
+      távoli mesevilágban mozognak, hanem felismerhető pesti utcákon és városi terekben; a korabeli sajtó a Van
+      a Bajza utca sarkán című számot már 1926-ban az operett egyik slágerének nevezte. A Dembinszky utca történetében
+      ezért különösen jó állomás: a könnyűzene egyszer csak földrajzilag is egészen közel ér.'
+    playback_source: youtube
+    youtube_id: CKUargsxlaw
+    youtube_url: https://www.youtube.com/watch?v=CKUargsxlaw
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/CKUargsxlaw
+    recording_artist: Udvardy Tibor és Petress Zsuzsa
+    recording_relation: later_recording
+    recording_note: Későbbi operettfelvétel. A timeline éve a Csókos asszony 1926-os sikeréhez kapcsolódik.
+    sources:
+    - title: Debreczeni Újság, 1926. május 12.
+      url: https://epa.oszk.hu/05500/05567/08808/pdf/EPA05567_debreczeni_ujsag_1926_106.pdf
+      purpose: korabeli említés a számról mint az operett egyik slágeréről
+    media:
+      src: 1926-zerkovitz-bela.jpg
+      alt: "Zerkovitz Béla portréja"
+      credit: "Ismeretlen szerző, kb. 1915–1925, Magyar Színművészeti Lexikon. Wikimedia Commons"
+      license: "Public domain (PD-HU-unknown, Commons)"
+      license_url: https://commons.wikimedia.org/wiki/Template:PD-HU-unknown
+      source_title: Wikimedia Commons
+      source_url: https://commons.wikimedia.org/wiki/File:Zerkovitz_B%C3%A9la_k%C3%A9p.jpg
+      position: 55% 58%
+  - type: music
+    year: 1935
+    slug: 1935-szomoru-vasarnap
+    anchor_id: zene-1935-szomoru-vasarnap
+    title: Szomorú vasárnap
+    credit: Kalmár Pál · Seress Rezső
+    composer: Seress Rezső
+    lyricist: Jávor László
+    description: A Szomorú vasárnap egy budapesti dalból néhány év alatt nemzetközi jelenség lett. Kalmár Pál 1935-ös
+      magyar felvétele után hamar külföldi változatok is készültek, majd a dal világkarriert futott be. Addig a
+      pesti közönség sokszor külföldről érkező divatokat vett át; ezúttal egy budapesti kávéházi dal indult el az
+      ellenkező irányba.
+    playback_source: youtube
+    youtube_id: Ebt2D8Vm8s4
+    youtube_url: https://www.youtube.com/watch?v=Ebt2D8Vm8s4
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/Ebt2D8Vm8s4
+    recording_artist: Kalmár Pál
+    recording_relation: period_recording_reissue
+    recording_note: Kalmár Pál előadása; a YouTube-videó modern kiadói feltöltés, a történeti felvétel 1935-höz
+      kötődik.
+    sources:
+    - title: Erzsébetvárosi Zsidó Történeti Tár – Seress Rezső
+      url: https://www.erzsitt.hu/video/seress-rezso/
+      purpose: a dal keletkezése és 1935-ös Kalmár Pál-felvétele
+    media:
+      src: 1935-seress-rezso.jpg
+      alt: "Seress Rezső portréja"
+      credit: "Ismeretlen szerző, Seress Rezső, kb. 1925. Wikimedia Commons"
+      license: "Public domain (Commons; HU source-country status)"
+      license_url: https://creativecommons.org/publicdomain/mark/1.0/
+      source_title: Wikimedia Commons
+      source_url: https://commons.wikimedia.org/wiki/File:Seress_Rezs%C5%91.jpg
+      position: 58% 12%
+  - type: music
+    year: 1942
+    slug: 1942-valahol-oroszorszagban
+    anchor_id: zene-1942-valahol-oroszorszagban
+    title: Valahol Oroszországban
+    credit: Karády Katalin
+    composer: De Fries Károly
+    lyricist: Kovách Kálmán
+    work: Valahol Oroszországban
+    description: A háború itt már nem háttér, hanem maga a dal témája. Az 1942-es rövidfilmben egy frontra visszatérő
+      hadnagy arra kéri Karádyt, hogy a rádión keresztül énekeljen a katonáknak; a fronton aztán rádió köré gyűlve
+      hallgatják. A tömegmédia itt láthatatlan hidat épít a budapesti otthon és a több ezer kilométerre lévő háború
+      között.
+    playback_source: youtube
+    youtube_id: r7i2WnvY_gE
+    youtube_url: https://www.youtube.com/watch?v=r7i2WnvY_gE
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/r7i2WnvY_gE
+    recording_artist: Karády Katalin
+    recording_relation: period_recording
+    recording_note: Archív, 1942-es filmes felvétel.
+    sources:
+    - title: PORT.hu – Valahol Oroszországban (1942)
+      url: https://port.hu/adatlap/film/tv/valahol-oroszorszagban-valahol-oroszorszagban/movie-60540
+      purpose: a rövidfilm cselekménye, évszáma és alkotói
+    media:
+      src: 1942-karady-katalin.jpg
+      alt: "Karády Katalin portréja, 1942"
+      credit: "Magyar Film Iroda, Karády Katalin, 1942. Wikimedia Commons"
+      license: "Public domain (PD-HU-unknown, Commons)"
+      license_url: https://commons.wikimedia.org/wiki/Template:PD-HU-unknown
+      source_title: Wikimedia Commons
+      source_url: https://commons.wikimedia.org/wiki/File:Karady_Katalin.png
+      position: 50% 32%
+  - type: music
+    year: 1959
+    slug: 1959-pancsolo-kislany
+    anchor_id: zene-1959-pancsolo-kislany
+    title: Pancsoló kislány
+    credit: Kovács Eszti
+    composer: Berki Géza
+    lyricist: Brandt István
+    description: 'A Pancsoló kislány világa látványosan hétköznapibb annál, ahonnan ez a zenei történet elindult:
+      strand, nyár, gyerekzsivaj és Bambi kerül a sláger középpontjába. Közben maga a zenehallgatás is megváltozott:
+      Kovács Eszti 1959-ben énekelte fel a számot, amely az első magyar mikrobarázdás kislemezen jelent meg. A sláger
+      immár könnyen hazavihető tárgy lett.'
+    playback_source: youtube
+    youtube_id: sFcdFRV1OdE
+    youtube_url: https://www.youtube.com/watch?v=sFcdFRV1OdE
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/sFcdFRV1OdE
+    recording_artist: Kovács Eszti
+    recording_relation: hungaroton_reissue
+    recording_note: YouTube Music/Topic-feltöltés a Hungaroton 1993-as 'Legendák – A hatvanas évek gyermekdalai'
+      kiadásából. A timeline éve továbbra is az eredeti dal és Kovács Eszti 1959-es stúdiófelvételéhez kapcsolódik.
+    sources:
+    - title: Nemzeti Archívum – Kovács Eszti a Pancsoló kislány felvételekor
+      url: https://nemzetiarchivum.hu/photobank/item/FOTO-eb5dd4b7f9254f91a3347a69d5109caa
+      purpose: 1959-es stúdiófelvétel és az első magyar mikrobarázdás kislemez
+    recording_source: Eszti Kovács – Topic / Hungaroton
+    recording_release_year: 1993
+    media:
+      src: 1959-magyar-radio-fortepan-146927.jpg
+      alt: "A Magyar Rádió stúdiója 1959-ben"
+      caption: "A Magyar Rádió 1-es stúdiója, 1959 – korabeli illusztráció, nem a felvétel képe"
+      credit: "FORTEPAN / Szalay Zoltán, 1959, Fortepan #146927"
+      license: "CC BY-SA 3.0"
+      license_url: https://creativecommons.org/licenses/by-sa/3.0/
+      modifications: "módosítás: kicsinyítve, a honlapon tónusszűrővel és áttűnéssel"
+      source_title: "Fortepan #146927"
+      source_url: https://fortepan.hu/hu/photos/?id=146927
+      position: 50% 25%
+  - type: music
+    year: 1968
+    slug: 1968-amikor-en-meg-kissrac-voltam
+    anchor_id: zene-1968-amikor-en-meg-kissrac-voltam
+    title: Amikor én még kissrác voltam
+    credit: Illés
+    composer: Szörényi Levente
+    lyricist: Bródy János
+    description: 'Hatvanhét évvel az Őszi rózsa után már elektromos gitár szól, és egy új nemzedék beszél saját
+      magáról. Az Illés dala gyerekkori utcákat és bérházudvarokat idéz fel, miközben az 1968-as Táncdalfesztivál
+      nagydíját is elnyerte. Különösen jó végpont: mire a timeline elér 1968-hoz, Budapest már nem pusztán helyszíne
+      a slágernek, hanem maga is az emlékezés tárgya.'
+    playback_source: youtube
+    youtube_id: AuUOndssMKw
+    youtube_url: https://www.youtube.com/watch?v=AuUOndssMKw
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/AuUOndssMKw
+    recording_artist: Illés
+    recording_relation: period_recording
+    recording_note: 1968-as Illés-felvétel.
+    sources:
+    - title: Nemzeti Archívum – Táncdalfesztivál 1968
+      url: https://nemzetiarchivum.hu/photobank/item/FOTO-2d6e93b8745e456a978d7ed5634a4394
+      purpose: az 1968-as nagydíj és az Illés előadása
+    media:
+      src: 1968-illes-fortepan-190597.jpg
+      alt: "Az Illés együttes az 1968-as Táncdalfesztivál döntőjében"
+      caption: "Az Illés együttes az 1968-as Táncdalfesztivál döntőjében, az Erkel Színházban"
+      credit: "FORTEPAN / Szalay Zoltán, 1968, Fortepan #190597"
+      license: "CC BY-SA 3.0"
+      license_url: https://creativecommons.org/licenses/by-sa/3.0/
+      modifications: "módosítás: kicsinyítve, a honlapon tónusszűrővel és áttűnéssel"
+      source_title: "Fortepan #190597"
+      source_url: https://fortepan.hu/hu/photos/?id=190597
+      position: 50% 71%

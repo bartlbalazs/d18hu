@@ -101,7 +101,9 @@ const jsonLd = [
             <dd>
               A megnézett oldalakat, az eszköz típusát, a hozzávetőleges helyet és azt, honnan érkezett. Ezen felül
               három eseményt: ha megnyit egy forrás hivatkozást, ha kinagyít egy képet, és ha a menüben korszakot
-              választ. IP-címet a Google Analytics nem tárol, hirdetési célra az adatokat nem használjuk.
+              választ. A nyitóoldal zenei bejegyzéseinél azt is, ha elindít, megállít vagy bezár egy dalt, a dalhoz
+              ugrik, vagy megnyitja a YouTube-on. IP-címet a Google Analytics nem tárol, hirdetési célra az adatokat
+              nem használjuk.
             </dd>
             <dt>Jogalap</dt>
             <dd>Az Ön hozzájárulása (GDPR 6. cikk (1) bekezdés a) pont).</dd>
@@ -124,5 +126,13 @@ const jsonLd = [
         </section>
       )
     }
+    <section aria-labelledby="zenei-felvetelek">
+      <h2 id="zenei-felvetelek">Zenei felvételek</h2>
+      <p>
+        A nyitóoldal „Mit hallgatott Budapest?” bejegyzéseinél a „Meghallgatom” gomb megnyomása után a felvétel a
+        YouTube adatvédelmi módban működő lejátszójából (youtube-nocookie.com) töltődik be. Addig az oldal nem
+        kapcsolódik a YouTube-hoz. A lejátszó a YouTube (Google Ireland Ltd.) adatkezelési szabályai szerint működik.
+      </p>
+    </section>
   </div>
 </Base>

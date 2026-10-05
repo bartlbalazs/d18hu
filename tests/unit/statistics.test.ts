@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { resolveConsent } from '../../src/lib/statistics/consent.ts';
-import { statisticsEventFor } from '../../src/lib/statistics/events.ts';
+import { MUSIC_EVENT_NAMES, musicStatisticsEvent, statisticsEventFor } from '../../src/lib/statistics/events.ts';
 
 describe('resolveConsent', () => {
   it('treats unavailable storage as a refusal', () => {
@@ -31,7 +31,14 @@ describe('resolveConsent', () => {
 });
 
 describe('statisticsEventFor', () => {
-  const base = { dataset: {}, inMenu: false, inContent: false, pagePath: '/', siteOrigin: 'https://www.dembinszky18.hu' };
+  const base = {
+    dataset: {},
+    inMenu: false,
+    inContent: false,
+    inMusicPlayer: false,
+    pagePath: '/',
+    siteOrigin: 'https://www.dembinszky18.hu',
+  };
 
   it('reports an archive source with the timeline event it belongs to', () => {
     const link = { ...base, href: 'https://fortepan.hu/hu/photos/?id=1', inContent: true, eventId: 'e-1908' };
@@ -67,5 +74,37 @@ describe('statisticsEventFor', () => {
     expect(statisticsEventFor({ ...base, href: 'https://example.org/' })).toBeNull();
     expect(statisticsEventFor({ ...base, href: 'https://www.dembinszky18.hu/nevado/', inContent: true })).toBeNull();
     expect(statisticsEventFor({ ...base, href: 'mailto:someone@example.org', inContent: true })).toBeNull();
+  });
+});
+
+describe('music statistics', () => {
+  const params = { year: '1935', title: 'Szomorú vasárnap', artist: 'Kalmár Pál', youtube_id: 'dQw4w9WgXcQ' };
+
+  it('leaves the player link to music_open_youtube', () => {
+    const link = {
+      href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      dataset: {},
+      inMenu: false,
+      inContent: true,
+      inMusicPlayer: true,
+      pagePath: '/',
+      siteOrigin: 'https://www.dembinszky18.hu',
+    };
+    expect(statisticsEventFor(link)).toBeNull();
+    expect(statisticsEventFor({ ...link, inMusicPlayer: false, eventId: 'zene-1935-szomoru-vasarnap' })).toEqual({
+      name: 'archive_source_click',
+      params: { source_url: link.href, timeline_event: 'zene-1935-szomoru-vasarnap' },
+    });
+  });
+
+  it.each(MUSIC_EVENT_NAMES)('passes %s through', (name) => {
+    expect(musicStatisticsEvent({ name, params: { ...params, extra: 'x' } })).toEqual({ name, params });
+  });
+
+  it('rejects unknown names and incomplete params', () => {
+    expect(musicStatisticsEvent({ name: 'music_skip', params })).toBeNull();
+    expect(musicStatisticsEvent({ name: 'music_play', params: { ...params, year: 1935 } })).toBeNull();
+    expect(musicStatisticsEvent({ name: 'music_play' })).toBeNull();
+    expect(musicStatisticsEvent(null)).toBeNull();
   });
 });

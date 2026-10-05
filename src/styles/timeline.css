@@ -174,6 +174,12 @@
   color: var(--d18-walnut);
 }
 
+.legend__icon--music {
+  border-style: dashed;
+  border-color: var(--d18-sand);
+  color: var(--d18-walnut);
+}
+
 .legend__icon--confidence {
   border: 0;
   color: var(--d18-walnut);
@@ -209,6 +215,7 @@
   }
 
   .legend__title,
+  .legend__group--music,
   .legend__group--scope {
     grid-column: 1 / -1;
   }
@@ -561,6 +568,496 @@
   }
 }
 
+/* ---------- Music layer ---------- */
+/* „Mit hallgatott Budapest?”: one card design for every song, a quiet edited intermezzo between the events.
+   The year sits in the date column and the node on the axis through the shared .event rules. */
+/* The node takes the card's own surface, so icon and card read as one entry. */
+.event--music .event__node {
+  border-color: var(--d18-sand);
+  background: var(--d18-paper-alt);
+  color: var(--d18-walnut);
+}
+
+/* The article is the size container: the image goes beside the text only when the card itself is wide enough. */
+.music {
+  container: music / inline-size;
+  max-width: 46rem;
+  padding: 1.1rem 1.25rem;
+  border-block: 1px solid var(--d18-rule);
+  background: var(--d18-paper-alt);
+}
+
+.music__kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.music__kicker-icon {
+  display: inline-flex;
+  color: var(--d18-walnut);
+  font-size: 0.95em;
+}
+
+.music__title {
+  margin-top: 0.3rem;
+  font-size: clamp(1.45rem, 4vw, 1.75rem);
+  font-weight: 500;
+}
+
+.music__credit {
+  margin-top: 0.15rem;
+  color: var(--d18-walnut);
+  font-weight: 600;
+}
+
+.music__text {
+  margin-top: 0.6rem;
+  max-width: 62ch;
+  color: #3f3934;
+}
+
+.music__recording {
+  margin-top: 0.6rem;
+  color: var(--d18-muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.music__recording-detail {
+  display: block;
+}
+
+/* Image: one treatment for every song, so portraits, film stills and record labels read as one family.
+   Its box takes its size from the card, never from the file, so loading it shifts nothing. */
+.music__media {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  margin: 0.9rem -1.25rem 0;
+  overflow: hidden;
+}
+
+.music__media[hidden] {
+  display: none;
+}
+
+.music__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--music-image-position, 50% 50%);
+  filter: grayscale(0.7) sepia(0.12) contrast(0.92) brightness(1.03);
+  opacity: 0.84;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, rgb(0 0 0 / 0.25) 12%, rgb(0 0 0 / 0.75) 32%, #000 48%);
+  mask-image: linear-gradient(to top, transparent 0%, rgb(0 0 0 / 0.25) 12%, rgb(0 0 0 / 0.75) 32%, #000 48%);
+}
+
+/* A faint veil in the card's own paper tone. */
+.music__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgb(238 230 217 / 0.12);
+  pointer-events: none;
+}
+
+@container music (min-width: 38rem) {
+  .music--with-media > .music__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 64fr) minmax(0, 36fr);
+    grid-template-rows: repeat(7, auto) 1fr;
+    column-gap: 1.5rem;
+    margin-right: -1.25rem;
+  }
+
+  .music__layout > * {
+    grid-column: 1;
+  }
+
+  /* Runs the card's full height, from rule to rule, and fades in from the text side. */
+  .music__layout > .music__media {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    min-height: 18rem;
+    margin: -1.1rem 0;
+    aspect-ratio: auto;
+  }
+
+  .music__media img {
+    position: absolute;
+    inset: 0;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.25) 12%, rgb(0 0 0 / 0.75) 32%, #000 48%);
+    mask-image: linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.25) 12%, rgb(0 0 0 / 0.75) 32%, #000 48%);
+  }
+}
+
+/* Button and sources share a row; an opened source list drops below both. */
+.music__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.25rem 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.music__play,
+.music__external {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  min-height: 44px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* html[data-scope] is set by the inline script in ScopeSlider.astro, so it also means "JavaScript runs":
+   the in-page button then replaces the no-JS link without a layout shift. */
+html:not([data-scope]) .music__play,
+html[data-scope] .music__external {
+  display: none;
+}
+
+/* The three labels (Meghallgatom, Most szól, Folytatás) share one width, so changing state never shifts the card. */
+.music__play {
+  justify-content: center;
+  min-width: 15ch;
+  padding: 0 0.9rem;
+  border: 1px solid var(--d18-rule);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--d18-walnut);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.music__play:is(:hover, :focus-visible) {
+  border-color: var(--d18-sand);
+  background: var(--d18-paper);
+}
+
+.music__play:is([data-state="playing"], [data-state="paused"]) {
+  border-color: var(--d18-walnut);
+  background: var(--d18-paper-deep);
+}
+
+.music__play[aria-busy="true"] {
+  cursor: progress;
+}
+
+.music__sources {
+  flex: 1 1 100%;
+}
+
+@container music (min-width: 30rem) {
+  .music__sources {
+    flex: 0 1 auto;
+  }
+}
+
+.music__sources[open] {
+  flex-basis: 100%;
+}
+
+.music__sources-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  list-style: none;
+  color: var(--d18-walnut);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.music__sources-toggle::-webkit-details-marker {
+  display: none;
+}
+
+/* A small chevron: down while closed, up while open. */
+.music__sources-toggle::after {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: -0.2rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  rotate: 45deg;
+}
+
+.music__sources[open] .music__sources-toggle::after {
+  margin-top: 0.25rem;
+  rotate: -135deg;
+}
+
+.music__sources-toggle:hover {
+  color: var(--d18-ink);
+}
+
+.music__sources .event__sources {
+  margin-top: 0.25rem;
+}
+
+.music__recording-note,
+.music__media-credit {
+  margin-top: 0.5rem;
+  max-width: 62ch;
+  color: var(--d18-muted);
+  font-size: 0.875rem;
+}
+
+.music__media-credit a .icon {
+  font-size: 0.8em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .music__play,
+  .music__sources-toggle,
+  .music__sources-toggle::after {
+    transition:
+      background-color 120ms ease,
+      border-color 120ms ease,
+      color 120ms ease,
+      rotate 120ms ease;
+  }
+}
+
+.music--highlight .music {
+  outline: 2px solid var(--d18-walnut);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .music--highlight .music {
+    animation: music-highlight 1600ms ease-out;
+  }
+
+  @keyframes music-highlight {
+    from {
+      background: var(--d18-paper-deep);
+    }
+  }
+}
+
+/* ---------- Music player ---------- */
+/* One fixed panel at the bottom, above the consent notice when that is open. YouTube's embed rules ask for a
+   player viewport of at least 200 × 200 px with nothing over it, so the video is never smaller or covered. */
+.music-player {
+  position: fixed;
+  inset: auto 0 var(--consent-notice-height, 0px) 0;
+  z-index: 8;
+  max-height: calc(100dvh - var(--header-height));
+  overflow-y: auto;
+  padding-block: 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--d18-rule);
+  background: var(--d18-paper-alt);
+  color: var(--d18-ink);
+  box-shadow: 0 -12px 24px -12px rgb(41 37 33 / 35%);
+}
+
+.music-player[hidden] {
+  display: none;
+}
+
+body.music-player-visible {
+  --music-player-pad: var(--music-player-height, 0px);
+}
+
+.music-player__inner {
+  display: grid;
+  grid-template-areas:
+    'info'
+    'video'
+    'error'
+    'controls';
+  gap: 0.5rem;
+  width: min(100% - 2 * var(--gutter), var(--reading-width));
+  margin-inline: auto;
+}
+
+.music-player__info {
+  grid-area: info;
+  min-width: 0;
+}
+
+.music-player__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  color: var(--d18-walnut);
+}
+
+.music-player__icon {
+  align-self: center;
+  font-size: 1.1rem;
+}
+
+/* The year in the date column's serif, so the player reads as the card it came from. */
+.music-player__year {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.music-player__category {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.music-player__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.music-player__credit {
+  color: var(--d18-walnut);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.music-player__artist {
+  color: var(--d18-muted);
+  font-size: 0.875rem;
+}
+
+.music-player__video {
+  grid-area: video;
+  height: 200px;
+  min-width: 200px;
+  background: var(--d18-ink);
+}
+
+.music-player__video[hidden],
+.music-player__error[hidden],
+.music-player__button[hidden] {
+  display: none;
+}
+
+.music-player__video iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.music-player__error {
+  grid-area: error;
+  font-weight: 600;
+}
+
+.music-player__controls {
+  grid-area: controls;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+}
+
+.music-player__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--d18-walnut);
+  font: 600 0.9375rem/1 var(--font-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.music-player__button:hover {
+  background: var(--d18-paper-deep);
+  color: var(--d18-ink);
+}
+
+.music-player__toggle {
+  border: 1px solid var(--d18-walnut);
+  font-size: 1.25rem;
+}
+
+.music-player__close {
+  margin-left: auto;
+  font-size: 1.25rem;
+}
+
+/* Play while paused, pause while a song is loading or playing. */
+.music-player__pause-icon,
+.music-player:is([data-state="playing"], [data-state="loading"]) .music-player__play-icon {
+  display: none;
+}
+
+.music-player:is([data-state="playing"], [data-state="loading"]) .music-player__pause-icon {
+  display: inline;
+}
+
+.music-player__jump-long {
+  display: none;
+}
+
+@media (min-width: 760px) {
+  .music-player__inner {
+    grid-template-columns: 356px minmax(0, 1fr);
+    grid-template-areas:
+      'video info'
+      'video error'
+      'video controls';
+    grid-template-rows: auto auto 1fr;
+    column-gap: 1.5rem;
+  }
+
+  .music-player__controls {
+    align-self: end;
+  }
+
+  .music-player__year {
+    font-size: 1.5rem;
+  }
+
+  .music-player__jump-long {
+    display: inline;
+  }
+
+  .music-player__jump-short {
+    display: none;
+  }
+}
+
+@media print {
+  .music-player,
+  .music__play,
+  .music__external,
+  .music__sources-toggle::after {
+    display: none !important;
+  }
+
+  .music__sources::details-content {
+    display: block;
+    content-visibility: visible;
+  }
+
+  .music__media {
+    break-inside: avoid;
+  }
+}
+
 /* ---------- Timeline closing ---------- */
 /* A pause, a short centred line, then an undecorated closing text: the documented history ends here. */
 .timeline-closing {
@@ -615,8 +1112,8 @@ html[data-scope="world"] [data-scope-count="world"] {
 
 /* The last era's axis ends at its last visible event, not at a hidden one. */
 html[data-scope="house"] .timeline--ends .event:nth-last-child(1 of .event--house)::before,
-html[data-scope="area"] .timeline--ends .event:nth-last-child(1 of .event--house, .event--area)::before,
-html[data-scope="hungary"] .timeline--ends .event:nth-last-child(1 of .event--house, .event--area, .event--hungary)::before {
+html[data-scope="area"] .timeline--ends .event:nth-last-child(1 of .event--house, .event--area, .event--music)::before,
+html[data-scope="hungary"] .timeline--ends .event:nth-last-child(1 of .event--house, .event--area, .event--hungary, .event--music)::before {
   bottom: auto;
   height: calc(1.1rem + var(--axis-col) / 2);
 }
@@ -640,7 +1137,8 @@ html[data-scope="hungary"] .timeline--ends .event:nth-last-child(1 of .event--ho
 html[data-scope] .scope-toggle {
   position: fixed;
   right: var(--gutter);
-  bottom: var(--gutter);
+  /* Stays above the music player while it is open. */
+  bottom: calc(var(--gutter) + var(--music-player-pad, 0px));
   z-index: 9;
   display: grid;
   place-items: center;
@@ -691,6 +1189,9 @@ html:has(#fomenu:popover-open, .pswp--open, #statisztika:not([hidden])) .scope-t
     inset: calc(var(--header-height) + 1rem) max(var(--gutter), (100vw - var(--reading-width) - var(--scope-panel) - var(--scope-gap)) / 2) auto auto;
     z-index: 9;
     width: var(--scope-panel);
+    /* Ends above the music player while it is open. */
+    max-height: calc(100dvh - var(--header-height) - 2rem - var(--music-player-pad, 0px));
+    overflow-y: auto;
   }
 
   html[data-scope] .scope-toggle {

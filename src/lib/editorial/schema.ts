@@ -38,6 +38,79 @@ const eraEditorialSchema = z.strictObject({
   backgroundYear: z.string().regex(/^\d{4}$/).optional(),
 });
 
+const musicSourceSchema = z.strictObject({
+  title: z.string(),
+  url: httpsUrl,
+  /** What the source proves; kept for editors, not shown on the page. */
+  purpose: z.string().optional(),
+});
+
+/** One archive image for a song: a file in src/assets/music/, toned down by the shared card treatment. */
+export const musicMediaSchema = z.strictObject({
+  src: z.string().regex(/^[a-z0-9][a-z0-9._-]*\.(jpe?g|png|webp)$/, 'must be a file name in src/assets/music/'),
+  alt: z.string().default(''),
+  /** An image that adds nothing to the text gets alt="" and skips the alt checks. */
+  decorative: z.boolean().default(false),
+  caption: z.string().default(''),
+  credit: z.string().default(''),
+  license: z.string().default(''),
+  license_url: httpsUrl.optional(),
+  /** How the file differs from the source, e.g. downscaling; licences such as CC BY-SA ask for it. */
+  modifications: z.string().optional(),
+  source_title: z.string().optional(),
+  source_url: httpsUrl.optional(),
+  /** The crop's focus point, as CSS object-position, e.g. "50% 35%". */
+  position: z.string().regex(/^\d{1,3}% \d{1,3}%$/, 'must look like "50% 35%"').optional(),
+});
+
+/**
+ * One song of the „Mit hallgatott Budapest?” layer. Strict, so any image field other than media is rejected.
+ * slug, anchor_id, youtube_id and youtube_embed_url are optional and checked against the values
+ * derived from year, title and youtube_url.
+ */
+export const musicEditorialItemSchema = z.strictObject({
+  type: z.literal('music').default('music'),
+  year: z.number().int().min(1873).max(1968),
+  slug: z.string().optional(),
+  anchor_id: z.string().optional(),
+  title: z.string().trim().min(1),
+  /** The line under the title: performer, or composer and work. */
+  credit: z.string().trim().min(1),
+  composer: z.string().optional(),
+  lyricist: z.string().optional(),
+  work: z.string().optional(),
+  description: z.string().default(''),
+  /** Set on AI-drafted notes; the owner removes it after checking the note. */
+  descriptionNeedsReview: z.boolean().optional(),
+  playback_source: z.literal('youtube').default('youtube'),
+  youtube_url: z.union([z.literal(''), httpsUrl]).default(''),
+  youtube_id: z.string().optional(),
+  youtube_embed_url: httpsUrl.optional(),
+  /** Who is heard in the linked recording, which may be later than the song's year. */
+  recording_artist: z.string().trim().min(1),
+  /** How the recording relates to the song's year, e.g. period_recording, later_recording, hungaroton_reissue. */
+  recording_relation: z.string().regex(/^[a-z]+(_[a-z]+)*$/, 'must be a snake_case word, e.g. later_recording'),
+  recording_note: z.string().default(''),
+  // Recording details; the card's short recording line is built from them.
+  recording_year: z.number().int().optional(),
+  recording_release_year: z.number().int().optional(),
+  recording_label: z.string().optional(),
+  recording_catalog_number: z.string().optional(),
+  recording_source: z.string().optional(),
+  sources: z.array(musicSourceSchema).default([]),
+  media: musicMediaSchema.optional(),
+});
+
+/** editorial/music.yaml. The label and button text are fixed by the spec, so the file can only confirm them. */
+export const musicEditorialSchema = z.strictObject({
+  music_timeline: z.strictObject({
+    schema_version: z.literal(1),
+    label: z.literal('Mit hallgatott Budapest?'),
+    cta_label: z.literal('Meghallgatom'),
+    items: z.array(musicEditorialItemSchema),
+  }),
+});
+
 export const siteEditorialSchema = z.strictObject({
   building: z.strictObject({
     name: z.string(),
@@ -94,3 +167,5 @@ export type DocumentHighlight = z.infer<typeof documentHighlightSchema>;
 export type EventEditorial = z.infer<typeof eventEditorialSchema>;
 export type EventsEditorial = z.infer<typeof eventsEditorialSchema>;
 export type SiteEditorial = z.infer<typeof siteEditorialSchema>;
+export type MusicEditorialItem = z.infer<typeof musicEditorialItemSchema>;
+export type MusicEditorial = z.infer<typeof musicEditorialSchema>;

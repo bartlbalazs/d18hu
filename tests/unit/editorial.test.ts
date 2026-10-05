@@ -6,7 +6,8 @@ import {
   OrphanedEditorialEntryError,
 } from '../../src/lib/editorial/assemble.ts';
 import { auditEditorial, isMissingValue } from '../../src/lib/editorial/audit.ts';
-import { siteEditorialSchema, type EventsEditorial } from '../../src/lib/editorial/schema.ts';
+import { musicEditorialItemSchema, siteEditorialSchema, type EventsEditorial } from '../../src/lib/editorial/schema.ts';
+import { buildMusicEntries } from '../../src/lib/timeline/music.ts';
 import type { ArchiveManifest } from '../../src/lib/images/manifest.ts';
 import { parseTimeline } from '../../src/lib/timeline/parse.ts';
 
@@ -128,6 +129,58 @@ describe('auditEditorial', () => {
       `${imageEventId}:image.credit`,
       'site:impresszum.contactEmail',
       'site:building.postalCode',
+    ]);
+  });
+
+  it('lists music without a reviewed note or a recording', () => {
+    const events = assembleEvents(timeline, completeEditorial(), manifest);
+    const song = { credit: 'A', recording_artist: 'A', recording_relation: 'period_recording' };
+    const music = buildMusicEntries(
+      [
+        { ...song, year: 1901, title: 'Kész', description: 'Jegyzet.', youtube_url: 'https://youtu.be/dQw4w9WgXcQ' },
+        { ...song, year: 1904, title: 'Üres' },
+        { ...song, year: 1916, title: 'Vázlat', description: 'Jegyzet.', descriptionNeedsReview: true },
+      ].map((entry) => musicEditorialItemSchema.parse(entry)),
+    );
+    const items = auditEditorial(events, completeSite, music);
+    expect(items.map((item) => `${item.scope} ${item.id}:${item.field} ${item.message}`)).toEqual([
+      'music zene-1904-ures:description no note',
+      'music zene-1904-ures:youtube_url no recording',
+      'music zene-1916-vazlat:description AI-drafted note not yet reviewed',
+      'music zene-1916-vazlat:youtube_url no recording',
+    ]);
+  });
+
+  it('lists music images without alt text, credit or licence', () => {
+    const events = assembleEvents(timeline, completeEditorial(), manifest);
+    const song = {
+      credit: 'A',
+      recording_artist: 'A',
+      recording_relation: 'period_recording',
+      description: 'Jegyzet.',
+      youtube_url: '',
+    };
+    const complete = { src: 'a.jpg', alt: 'Fráter Lóránd portréja', credit: 'Fortepan', license: 'CC BY-SA 3.0' };
+    const music = buildMusicEntries(
+      [
+        { ...song, year: 1901, title: 'Kész', youtube_url: 'https://youtu.be/dQw4w9WgXcQ', media: complete },
+        { ...song, year: 1904, title: 'Hiányos', youtube_url: 'https://youtu.be/aaaaaaaaaaa', media: { src: 'b.jpg' } },
+        { ...song, year: 1916, title: 'Általános', youtube_url: 'https://youtu.be/bbbbbbbbbbb', media: { ...complete, alt: 'Kép' } },
+        {
+          ...song,
+          year: 1926,
+          title: 'Díszítés',
+          youtube_url: 'https://youtu.be/ccccccccccc',
+          media: { ...complete, alt: '', decorative: true },
+        },
+      ].map((entry) => musicEditorialItemSchema.parse(entry)),
+    );
+    const items = auditEditorial(events, completeSite, music);
+    expect(items.map((item) => `${item.id}:${item.field} ${item.message}`)).toEqual([
+      'zene-1904-hianyos:media.alt image alt missing',
+      'zene-1904-hianyos:media.credit image credit missing',
+      'zene-1904-hianyos:media.license image license missing',
+      'zene-1916-altalanos:media.alt image alt is generic',
     ]);
   });
 

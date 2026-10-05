@@ -1,5 +1,6 @@
 import {
   ArrowDown,
+  ArrowUp,
   CircleCheck,
   CircleDot,
   CircleHelp,
@@ -8,6 +9,10 @@ import {
   Flag,
   House,
   MapPin,
+  Music,
+  Pause,
+  Play,
+  X,
   ZoomIn,
 } from 'lucide-static';
 import type { Category, Confidence } from './timeline/types.ts';
@@ -23,7 +28,12 @@ function decorative(svg: string): string {
 
 export const icons = {
   arrowDown: decorative(ArrowDown),
+  arrowUp: decorative(ArrowUp),
+  close: decorative(X),
   externalLink: decorative(ExternalLink),
+  music: decorative(Music),
+  pause: decorative(Pause),
+  play: decorative(Play),
   zoomIn: decorative(ZoomIn),
 };
 

@@ -1,0 +1,58 @@
+---
+import { icons } from '../lib/icons.ts';
+
+// One shell for the whole page, filled and shown by music-player.ts on the first „Meghallgatom” press.
+// The YouTube iframe is created only then; until that press the page makes no request to YouTube.
+---
+
+<section class="music-player" data-music-player hidden aria-label="Zenelejátszó">
+  <div class="music-player__inner">
+    <div class="music-player__info">
+      <p class="music-player__meta">
+        <span class="music-player__icon" set:html={icons.music} />
+        <span class="music-player__year" data-music-player-year></span>
+        <span class="music-player__category"><span aria-hidden="true">· </span>Mit hallgatott Budapest?</span>
+      </p>
+      <p class="music-player__title" data-music-player-title></p>
+      <p class="music-player__credit" data-music-player-credit></p>
+      <p class="music-player__artist" data-music-player-artist></p>
+    </div>
+    <div class="music-player__video" data-music-player-video></div>
+    <p class="music-player__error" data-music-player-error hidden>Ez a felvétel jelenleg nem játszható le itt.</p>
+    <div class="music-player__controls">
+      <button type="button" class="music-player__button music-player__toggle" data-music-toggle>
+        <span class="music-player__play-icon" set:html={icons.play} />
+        <span class="music-player__pause-icon" set:html={icons.pause} />
+      </button>
+      <button type="button" class="music-player__button music-player__jump" data-music-jump>
+        <Fragment set:html={icons.arrowUp} />
+        <span class="music-player__jump-long">Ugrás a dalhoz</span>
+        <span class="music-player__jump-short">Idővonal</span>
+        <span class="visually-hidden" data-music-jump-target></span>
+      </button>
+      {/* The song's own address is set when it loads; the player is hidden until then. */}
+      <a
+        class="music-player__button music-player__external"
+        href="https://www.youtube.com/"
+        data-music-external
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        YouTube <span aria-hidden="true">↗</span>
+      </a>
+      <button
+        type="button"
+        class="music-player__button music-player__close"
+        data-music-close
+        aria-label="Zenelejátszó bezárása"
+      >
+        <Fragment set:html={icons.close} />
+      </button>
+    </div>
+  </div>
+  <p class="visually-hidden" aria-live="polite" data-music-status></p>
+</section>
+
+<script>
+  import '../scripts/music-player.ts';
+</script>

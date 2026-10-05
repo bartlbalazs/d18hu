@@ -1,10 +1,12 @@
+import type { MusicEntry } from '../timeline/music.ts';
 import type { TimelineEvent } from './assemble.ts';
 import type { SiteEditorial } from './schema.ts';
 
-export type MissingItem = { scope: 'event' | 'site'; id?: string; field: string; message: string };
+export type MissingItem = { scope: 'event' | 'music' | 'site'; id?: string; field: string; message: string };
 
 const PLACEHOLDER = /^(todo|tbd|tba|xxx|\.\.\.|…|-|—)$/i;
 const EXAMPLE_DOMAIN = /\bexample\.(com|org|net)\b/i;
+const GENERIC_ALT = new Set(['kép', 'fotó', 'image', 'music image', 'portré']);
 
 export function isMissingValue(value: string | null | undefined): boolean {
   const text = value?.trim() ?? '';
@@ -12,7 +14,11 @@ export function isMissingValue(value: string | null | undefined): boolean {
 }
 
 /** Lists editorial data that must exist before a release build; empty result = releasable. */
-export function auditEditorial(events: TimelineEvent[], site: SiteEditorial): MissingItem[] {
+export function auditEditorial(
+  events: TimelineEvent[],
+  site: SiteEditorial,
+  music: MusicEntry[] = [],
+): MissingItem[] {
   const missing: MissingItem[] = [];
   const add = (item: MissingItem) => missing.push(item);
 
@@ -26,6 +32,30 @@ export function auditEditorial(events: TimelineEvent[], site: SiteEditorial): Mi
       for (const field of ['alt', 'caption', 'credit', 'license'] as const) {
         if (isMissingValue(event.image[field])) {
           add({ scope: 'event', id: event.id, field: `image.${field}`, message: `image ${field} missing` });
+        }
+      }
+    }
+  }
+
+  for (const entry of music) {
+    if (isMissingValue(entry.description)) {
+      add({ scope: 'music', id: entry.anchor, field: 'description', message: 'no note' });
+    } else if (entry.descriptionNeedsReview) {
+      add({ scope: 'music', id: entry.anchor, field: 'description', message: 'AI-drafted note not yet reviewed' });
+    }
+    if (isMissingValue(entry.youtubeUrl)) {
+      add({ scope: 'music', id: entry.anchor, field: 'youtube_url', message: 'no recording' });
+    }
+    const media = entry.media;
+    if (media) {
+      if (!media.decorative && isMissingValue(media.alt)) {
+        add({ scope: 'music', id: entry.anchor, field: 'media.alt', message: 'image alt missing' });
+      } else if (!media.decorative && GENERIC_ALT.has(media.alt.trim().toLowerCase())) {
+        add({ scope: 'music', id: entry.anchor, field: 'media.alt', message: 'image alt is generic' });
+      }
+      for (const field of ['credit', 'license'] as const) {
+        if (isMissingValue(media[field])) {
+          add({ scope: 'music', id: entry.anchor, field: `media.${field}`, message: `image ${field} missing` });
         }
       }
     }
@@ -56,7 +86,7 @@ export function auditEditorial(events: TimelineEvent[], site: SiteEditorial): Mi
 
 export function formatMissingItems(items: MissingItem[]): string {
   const lines = items.map((item) => {
-    const subject = item.scope === 'event' ? `event ${item.id}` : 'site';
+    const subject = item.scope === 'site' ? 'site' : `${item.scope} ${item.id}`;
     return `  ${subject.padEnd(60)} ${item.field.padEnd(26)} ${item.message}`;
   });
   return `Missing editorial items (${items.length}):\n${lines.join('\n')}`;

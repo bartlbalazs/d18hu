@@ -24,6 +24,9 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   overflow-wrap: break-word;
+  /* Room for the fixed bottom panels, so they never cover the end of the page: the consent notice
+     (statistics.ts) and the home page's music player (music-player.ts) set these heights. */
+  padding-bottom: calc(var(--consent-notice-height, 0px) + var(--music-player-pad, 0px));
 }
 
 img,

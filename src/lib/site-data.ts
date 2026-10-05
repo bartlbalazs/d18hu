@@ -8,22 +8,35 @@ import {
   MissingEditorialItemsError,
   type MissingItem,
 } from './editorial/audit.ts';
-import { eventsEditorialSchema, siteEditorialSchema, type SiteEditorial } from './editorial/schema.ts';
+import {
+  eventsEditorialSchema,
+  musicEditorialSchema,
+  siteEditorialSchema,
+  type SiteEditorial,
+} from './editorial/schema.ts';
 import { readManifest } from './images/manifest.ts';
+import { buildMusicEntries, mergeIntoEra, type MusicEntry } from './timeline/music.ts';
 import { parseTimeline } from './timeline/parse.ts';
 import type { ParsedEra } from './timeline/types.ts';
 
 export const TIMELINE_PATH = 'input/timeline.md';
 export const EVENTS_EDITORIAL_PATH = 'editorial/events.yaml';
 export const SITE_EDITORIAL_PATH = 'editorial/site.yaml';
+export const MUSIC_EDITORIAL_PATH = 'editorial/music.yaml';
 
-export type Era = ParsedEra & SiteEditorial['eras'][ParsedEra['id']] & { events: TimelineEvent[] };
+export type Era = ParsedEra &
+  SiteEditorial['eras'][ParsedEra['id']] & {
+    events: TimelineEvent[];
+    /** What the era's timeline shows: its events with the music entries placed among them. */
+    items: (TimelineEvent | MusicEntry)[];
+  };
 
 export type SiteData = {
   mode: BuildMode;
   isDraft: boolean;
   eras: Era[];
   events: TimelineEvent[];
+  music: MusicEntry[];
   site: SiteEditorial;
   missingItems: MissingItem[];
   analytics: Analytics;
@@ -43,18 +56,23 @@ export function loadSiteData(): SiteData {
   const eventsEditorial = eventsEditorialSchema.parse(readYamlFile(EVENTS_EDITORIAL_PATH) ?? {});
   const site = siteEditorialSchema.parse(readYamlFile(SITE_EDITORIAL_PATH));
   const events = assembleEvents(timeline, eventsEditorial, readManifest());
+  const music = buildMusicEntries(musicEditorialSchema.parse(readYamlFile(MUSIC_EDITORIAL_PATH)).music_timeline.items);
 
-  const missingItems = auditEditorial(events, site);
+  const missingItems = auditEditorial(events, site, music);
   if (missingItems.length > 0) {
     if (mode === 'release') throw new MissingEditorialItemsError(missingItems);
     console.warn(`\n[d18] Draft build.\n${formatMissingItems(missingItems)}\n`);
   }
 
-  const eras = timeline.eras.map((era) => ({
-    ...era,
-    ...site.eras[era.id],
-    events: events.filter((event) => event.era === era.id),
-  }));
+  const eras = timeline.eras.map((era) => {
+    const eraEvents = events.filter((event) => event.era === era.id);
+    return {
+      ...era,
+      ...site.eras[era.id],
+      events: eraEvents,
+      items: mergeIntoEra(eraEvents, music.filter((entry) => entry.era === era.id)),
+    };
+  });
 
   const { measurementId } = site.analytics;
   const analytics = {
@@ -63,7 +81,7 @@ export function loadSiteData(): SiteData {
     siteHost: new URL(resolveSiteUrl()).hostname,
   };
 
-  cached = { mode, isDraft: mode === 'draft', eras, events, site, missingItems, analytics };
+  cached = { mode, isDraft: mode === 'draft', eras, events, music, site, missingItems, analytics };
   return cached;
 }
 

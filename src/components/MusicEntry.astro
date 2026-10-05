@@ -1,0 +1,129 @@
+---
+import { Picture } from 'astro:assets';
+import { icons } from '../lib/icons.ts';
+import { musicImageMetadata } from '../lib/images/music-images.ts';
+import type { MusicEntry } from '../lib/timeline/music.ts';
+
+interface Props {
+  entry: MusicEntry;
+}
+
+// Every song uses this one card; only the content differs. It is a timeline row but not an event: no
+// data-event-id, so counts, statistics and JSON-LD stay events only. data-category puts it in the Környék step.
+// The year sits in the date column like every event's date.
+const { entry } = Astro.props;
+const titleId = `${entry.anchor}-cim`;
+const media = entry.media;
+const mediaCredit = media ? [media.caption, media.credit].filter(Boolean).join(' · ') : '';
+const hasSourcesPanel = entry.sources.length > 0 || entry.recordingNote !== '' || media !== undefined;
+---
+
+<li class="event event--music" id={entry.anchor} data-music-id={entry.anchor} data-category="area">
+  <p class="event__date"><time datetime={String(entry.year)}>{entry.year}</time></p>
+  <span class="event__node" set:html={icons.music} />
+  <article class:list={['event__body', 'music', { 'music--with-media': media }]} aria-labelledby={titleId}>
+    {/* The article is the size container; this wrapper takes the layout that depends on the card's width. */}
+    <div class="music__layout">
+      <p class="music__kicker kicker">
+        <span class="music__kicker-icon" set:html={icons.music} />Mit hallgatott Budapest?
+      </p>
+      <h4 class="music__title" id={titleId}>{entry.title}</h4>
+      <p class="music__credit">{entry.credit}</p>
+      {
+        media && (
+          <div class="music__media" style={`--music-image-position: ${media.position}`}>
+            <Picture
+              src={musicImageMetadata(media.file)}
+              alt={media.decorative ? '' : media.alt}
+              formats={['avif', 'webp']}
+              fallbackFormat="jpg"
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 1000px) 420px, 92vw"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        )
+      }
+      <p class="music__text">{entry.description}</p>
+      {
+        entry.recording && (
+          <p class="music__recording">
+            {entry.recording.primary}
+            {entry.recording.secondary && ' '}
+            {entry.recording.secondary && <span class="music__recording-detail">{entry.recording.secondary}</span>}
+          </p>
+        )
+      }
+      <div class="music__footer">
+        {
+          entry.youtubeId && (
+            <p class="music__actions">
+              <button
+                type="button"
+                class="music__play"
+                data-music-year={entry.year}
+                data-music-title={entry.title}
+                data-music-credit={entry.credit}
+                data-music-artist={entry.recordingArtist}
+                data-music-youtube-id={entry.youtubeId}
+                data-music-youtube-url={entry.youtubeUrl}
+              >
+                <span class="music__play-symbol" aria-hidden="true">▷</span>
+                <span class="music__play-label">Meghallgatom</span>
+                <span class="visually-hidden">– {entry.title}</span>
+              </button>
+              <a class="music__external" href={entry.youtubeUrl} rel="noopener noreferrer">
+                YouTube <span aria-hidden="true">↗</span>
+              </a>
+            </p>
+          )
+        }
+        {
+          hasSourcesPanel && (
+            <details class="music__sources">
+              <summary class="music__sources-toggle">
+                Források{entry.sources.length > 0 && ` · ${entry.sources.length}`}
+              </summary>
+              {entry.sources.length > 0 && (
+                <p class="event__sources">
+                  <span class="visually-hidden">Forrás:</span>
+                  {entry.sources.map((source) => (
+                    <a href={source.url} rel="noopener noreferrer">
+                      {source.label}
+                      <Fragment set:html={icons.externalLink} />
+                    </a>
+                  ))}
+                </p>
+              )}
+              {entry.recordingNote && <p class="music__recording-note">{entry.recordingNote}</p>}
+              {media && (
+                <p class="music__media-credit">
+                  {mediaCredit}
+                  {mediaCredit && media.license && ' · '}
+                  {media.licenseUrl ? (
+                    <a href={media.licenseUrl} rel="noopener noreferrer license">
+                      {media.license}
+                    </a>
+                  ) : (
+                    media.license
+                  )}
+                  {media.modifications && ` · ${media.modifications}`}
+                  {media.sourceUrl && (
+                    <>
+                      {' · '}
+                      <a href={media.sourceUrl} rel="noopener noreferrer">
+                        {media.sourceTitle ?? 'Képforrás'}
+                        <Fragment set:html={icons.externalLink} />
+                      </a>
+                    </>
+                  )}
+                </p>
+              )}
+            </details>
+          )
+        }
+      </div>
+    </div>
+  </article>
+</li>

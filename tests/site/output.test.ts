@@ -2,6 +2,8 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { parse as parseYaml } from 'yaml';
+import { musicEditorialSchema } from '../../src/lib/editorial/schema.ts';
+import { buildMusicEntries, RECORDING_RELATIONS } from '../../src/lib/timeline/music.ts';
 import { parseTimeline } from '../../src/lib/timeline/parse.ts';
 import { scopeCounts } from '../../src/lib/timeline/scope.ts';
 
@@ -27,7 +29,8 @@ describe('built timeline page', () => {
     expect(renderedIds).toEqual(events.map((event) => event.id));
     for (const category of ['house', 'area', 'hungary', 'world']) {
       const expected = events.filter((event) => event.category === category).length;
-      expect(count(html, new RegExp(`data-category="${category}"`, 'g'))).toBe(expected);
+      // Events only: music cards also carry data-category="area" for the scope slider, but no data-era.
+      expect(count(html, new RegExp(`data-era="[^"]+"\\s+data-category="${category}"`, 'g'))).toBe(expected);
     }
     expect(count(html, /class="confidence"/g)).toBe(events.filter((event) => event.confidence).length);
   });
@@ -550,6 +553,7 @@ describe('timeline scope', () => {
     expect([...legend.matchAll(/<h3>([^<]+)<\/h3>/g)].map((match) => match[1])).toEqual([
       'A történet léptékei',
       'Bizonyosság',
+      'Mit hallgatott Budapest?',
       'Milyen messzire nézzünk a háztól?',
     ]);
   });
@@ -576,3 +580,199 @@ describe('timeline scope', () => {
     }
   });
 });
+
+describe('music layer', () => {
+  const html = read('index.html');
+  const music = buildMusicEntries(
+    musicEditorialSchema.parse(parseYaml(readFileSync('editorial/music.yaml', 'utf8'))).music_timeline.items,
+  );
+  const { events } = parseTimeline(readFileSync('input/timeline.md', 'utf8'));
+  const cards = [...html.matchAll(/<li class="event event--music"[\s\S]*?<\/li>/g)].map((match) => match[0]);
+  const player = /<section class="music-player"[\s\S]*?<\/section>/.exec(html)?.[0] ?? '';
+  const unescape = (text: string) =>
+    text.replaceAll('&#39;', "'").replaceAll('&quot;', '"').replaceAll('&amp;', '&');
+  const panelOf = (card: string) => /<details class="music__sources">[\s\S]*?<\/details>/.exec(card)?.[0] ?? '';
+  const outsidePanel = (card: string) => card.replace(panelOf(card), '');
+  // Markup with text and attribute values removed, and without the parts only some songs have.
+  const skeleton = (card: string) =>
+    card
+      .replace(/<p class="(music__recording|music__actions)">[\s\S]*?<\/p>(?=\s*(<p|<div|<details|<\/div))/g, '')
+      .replace(/<div class="music__media"[\s\S]*?<\/div>/g, '')
+      .replace(/<p class="(event__sources|music__recording-note|music__media-credit)">[\s\S]*?<\/p>/g, '')
+      .replace(/ music--with-media/g, '')
+      .replace(/="[^"]*"/g, '=""')
+      .replace(/>[^<]*</g, '><');
+
+  it('renders one card per song, with its own anchor, in its era', () => {
+    expect(cards).toHaveLength(music.length);
+    for (const entry of music) {
+      const section = new RegExp(`<section[^>]*id="esemenyek-${entry.era}"[\\s\\S]*?</section>`).exec(html)?.[0] ?? '';
+      expect(section, entry.anchor).toContain(`id="${entry.anchor}" data-music-id="${entry.anchor}" data-category="area"`);
+    }
+    expect(new Set(music.map((entry) => entry.anchor)).size).toBe(music.length);
+  });
+
+  it('places each card after the events of the same or an earlier year', () => {
+    const rows = [...html.matchAll(/<li class="event[^"]*"[^>]*?(?:data-event-id|data-music-id)="([^"]+)"/g)].map((m) => m[1]);
+    expect(rows.filter((id) => !id.startsWith('zene-'))).toEqual(events.map((event) => event.id));
+    for (const entry of music) {
+      const index = rows.indexOf(entry.anchor);
+      const next = events.find((event) => event.id === rows[index + 1]);
+      if (next?.era === entry.era && next.sortStart) expect(Number(next.sortStart.slice(0, 4))).toBeGreaterThan(entry.year);
+    }
+  });
+
+  it('puts the year in the date column and the text in order, with the shared icon', () => {
+    for (const [index, card] of cards.entries()) {
+      const entry = music[index];
+      expect(card, entry.anchor).toMatch(
+        new RegExp(
+          `data-category="area"><p class="event__date"><time datetime="${entry.year}">${entry.year}</time></p>` +
+            '<span class="event__node">',
+        ),
+      );
+      const order = [
+        'class="event__node"',
+        'class="music__kicker',
+        'class="music__title"',
+        'class="music__credit"',
+        'class="music__text"',
+        'class="music__recording"',
+        'class="music__actions"',
+        '<details class="music__sources">',
+      ];
+      const positions = order.map((marker) => card.indexOf(marker));
+      expect(positions.every((position, i) => position >= 0 && (i === 0 || position > positions[i - 1])), entry.anchor).toBe(true);
+      const kicker = /<p class="music__kicker kicker">([\s\S]*?)<\/p>/.exec(card)?.[1] ?? '';
+      expect(kicker.replace(/<svg[\s\S]*?<\/svg>/g, '').replace(/<[^>]+>/g, '').trim()).toBe('Mit hallgatott Budapest?');
+      expect(card).not.toMatch(/<iframe|<video|ytimg|data-event-id/);
+    }
+    expect(new Set(cards.map((card) => /class="event__node">(<svg[\s\S]*?<\/svg>)/.exec(card)?.[1])).size).toBe(1);
+  });
+
+  it('uses one card design for every song', () => {
+    expect(new Set(cards.map(skeleton)).size).toBe(1);
+  });
+
+  it('shows a short recording line and keeps the long note in the sources panel', () => {
+    for (const [index, card] of cards.entries()) {
+      const entry = music[index];
+      const line = /<p class="music__recording">([^<]*)(?:<span class="music__recording-detail">([^<]*)<\/span>)?<\/p>/.exec(card);
+      expect(line, entry.anchor).not.toBeNull();
+      expect(unescape(line![1]).trim()).toBe(entry.recording!.primary);
+      expect(line![2] && unescape(line![2])).toBe(entry.recording!.secondary);
+      const body = outsidePanel(card);
+      for (const relation of Object.keys(RECORDING_RELATIONS)) expect(body).not.toContain(relation);
+      expect(unescape(body)).not.toContain(entry.recordingNote);
+      expect(body.replace(/<a class="music__external"[\s\S]*?<\/a>/, '')).not.toContain('YouTube');
+      if (entry.recordingNote) {
+        const note = /<p class="music__recording-note">([^<]*)<\/p>/.exec(panelOf(card))?.[1] ?? '';
+        expect(unescape(note)).toBe(entry.recordingNote);
+      }
+    }
+  });
+
+  it('folds the sources into a closed Források panel', () => {
+    for (const [index, card] of cards.entries()) {
+      const entry = music[index];
+      expect(count(card, /<details/g), entry.anchor).toBe(1);
+      const panel = panelOf(card);
+      expect(panel).not.toMatch(/<details[^>]*\bopen\b/);
+      const summary = /<summary class="music__sources-toggle">([^<]*)<\/summary>/.exec(panel)?.[1].trim();
+      expect(summary).toBe(entry.sources.length > 0 ? `Források · ${entry.sources.length}` : 'Források');
+      for (const source of entry.sources) {
+        expect(panel).toContain(`href="${source.url}"`);
+        expect(outsidePanel(card)).not.toContain(`href="${source.url}"`);
+      }
+    }
+  });
+
+  it('shows an archive image only for songs with media, lazily and with its credit in the panel', () => {
+    const graph = jsonLdGraph(html);
+    for (const [index, card] of cards.entries()) {
+      const entry = music[index];
+      const article = /<article class="([^"]*)"/.exec(card)?.[1] ?? '';
+      if (!entry.media) {
+        expect(article, entry.anchor).not.toContain('music--with-media');
+        expect(card).not.toMatch(/<img|<picture|srcset/);
+        continue;
+      }
+      expect(article, entry.anchor).toContain('music--with-media');
+      const box = /<div class="music__media" style="--music-image-position: ([^"]+)">([\s\S]*?)<\/div>/.exec(card);
+      expect(box?.[1]).toBe(entry.media.position);
+      const picture = box?.[2] ?? '';
+      expect(picture).toMatch(/<source[^>]*type="image\/avif"[^>]*srcset=|<source[^>]*srcset=[^>]*type="image\/avif"/);
+      expect(picture).toMatch(/<source[^>]*type="image\/webp"[^>]*srcset=|<source[^>]*srcset=[^>]*type="image\/webp"/);
+      const img = /<img[^>]*>/.exec(picture)?.[0] ?? '';
+      for (const attribute of ['loading="lazy"', 'decoding="async"', `alt="${entry.media.decorative ? '' : entry.media.alt}"`]) {
+        expect(img).toContain(attribute);
+      }
+      expect(img).toMatch(/width="\d+"/);
+      expect(img).toMatch(/height="\d+"/);
+      expect(card).not.toMatch(/<a[^>]*>\s*<picture/);
+      const credit = unescape(/<p class="music__media-credit">([\s\S]*?)<\/p>/.exec(panelOf(card))?.[1] ?? '');
+      expect(credit).toContain(entry.media.credit);
+      expect(credit).toContain(entry.media.license);
+      expect(graph.some((node) => node['@type'] === 'ImageObject' && String(node.url).endsWith(`/#${entry.anchor}`))).toBe(true);
+    }
+  });
+
+  it('offers Meghallgatom, and a YouTube link only as the no-JS fallback', () => {
+    for (const [index, card] of cards.entries()) {
+      const entry = music[index];
+      if (!entry.youtubeId) {
+        expect(card).not.toContain('music__actions');
+        continue;
+      }
+      const button = /<button[^>]*class="music__play"[\s\S]*?<\/button>/.exec(card)?.[0] ?? '';
+      expect(button).toContain('type="button"');
+      expect(button).toContain(`data-music-youtube-id="${entry.youtubeId}"`);
+      expect(unescape(button)).toContain(`data-music-credit="${entry.credit}"`);
+      // The player names who is heard; the card's credit line may name the composer instead.
+      expect(button).toContain(`data-music-artist="${entry.recordingArtist}"`);
+      // The accessible name starts with the visible label and adds the title, so speech input matches the screen.
+      const name = button
+        .replace(/<span[^>]*aria-hidden="true"[^>]*>[^<]*<\/span>/g, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      expect(name).toBe(`Meghallgatom – ${entry.title}`);
+      expect(button).toContain('<span class="music__play-symbol" aria-hidden="true">▷</span>');
+      expect(button).not.toContain('YouTube');
+      expect(card).toContain(`<a class="music__external" href="${entry.youtubeUrl}"`);
+    }
+  });
+
+  it('keeps music out of the event counts and the structured data', () => {
+    expect(count(html, /data-event-id="/g)).toBe(events.length);
+    const graph = JSON.stringify(jsonLdGraph(html).filter((node) => node['@type'] !== 'ImageObject'));
+    for (const entry of music) expect(graph).not.toContain(entry.title);
+  });
+
+  it('has one hidden player shell and loads nothing from YouTube', () => {
+    expect(count(html, /<section class="music-player"/g)).toBe(1);
+    expect(player).toMatch(/<section class="music-player" data-music-player hidden aria-label="Zenelejátszó">/);
+    for (const marker of ['data-music-toggle', 'data-music-jump', 'data-music-external', 'aria-label="Zenelejátszó bezárása"', 'aria-live="polite"']) {
+      expect(player).toContain(marker);
+    }
+    expect(player).toContain('Ez a felvétel jelenleg nem játszható le itt.');
+    expect(player).toContain('<span class="music-player__jump-short">Idővonal</span>');
+    expect(player).toMatch(/data-music-player-title[\s\S]*data-music-player-credit[\s\S]*data-music-player-artist/);
+    expect(player).toMatch(/<a[^>]*data-music-external[^>]*target="_blank"[^>]*rel="noopener noreferrer"/);
+    expect(html).not.toContain('<iframe');
+    expect(html).not.toMatch(/<script[^>]*src="[^"]*(youtube|ytimg)/);
+  });
+
+  it('explains the music entries in the Jelmagyarázat', () => {
+    const group = /<div class="legend__group legend__group--music">[\s\S]*?<\/div>/.exec(html)?.[0] ?? '';
+    expect(group).toContain('<h3>Mit hallgatott Budapest?</h3>');
+    expect(group).toContain('Nem azt jelenti, hogy a 18-as ház');
+  });
+
+  it('discloses the embed in the Impresszum', () => {
+    const section = /<section aria-labelledby="zenei-felvetelek">[\s\S]*?<\/section>/.exec(read('impresszum/index.html'))?.[0] ?? '';
+    expect(section).toContain('youtube-nocookie.com');
+    expect(section).toContain('„Meghallgatom” gomb megnyomása után');
+  });
+});
+

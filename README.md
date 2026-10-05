@@ -12,12 +12,14 @@ street's namesake), and `/impresszum/` (legal notice).
 The site is plain HTML generated at build time with [Astro](https://astro.build/). It works
 without JavaScript. Optional scripts add a zoomable image viewer
 ([PhotoSwipe](https://photoswipe.com/)), a small menu script that closes the Menü panel and
-marks the era being read, a timeline scope slider, and consent-gated visitor statistics (see
+marks the era being read, a timeline scope slider, an in-page music player for the
+„Mit hallgatott Budapest?” songs, and consent-gated visitor statistics (see
 [Statistics](#statistics-google-analytics)). It was specified and built with
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
 `specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
 `specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/`,
-`specs/009-lakok-source-images/` and `specs/010-timeline-scope-slider/`.
+`specs/009-lakok-source-images/`, `specs/010-timeline-scope-slider/` and
+`specs/011-timeline-music-layer/`.
 
 ## Requirements
 
@@ -56,7 +58,7 @@ pnpm dev                 # http://localhost:4321, draft mode
 | `pnpm build:draft` | Builds `dist/` even if editorial data is missing; prints the missing items, shows a draft banner and marks every page `noindex` |
 | `pnpm build:release` | Builds the publishable site; **fails** while any editorial item is missing |
 | `pnpm preview` | Serves the built `dist/` locally |
-| `pnpm test` | Unit tests (timeline parser, ids, dates, timeline scope, editorial checks) |
+| `pnpm test` | Unit tests (timeline parser, ids, dates, timeline scope, music entries, editorial checks, statistics) |
 | `pnpm test:site` | Run after a build: checks the output (event counts, local images, metadata), validates the HTML and checks internal links |
 | `pnpm check` | Type check |
 | `pnpm lighthouse` | Lighthouse mobile audit against the constitution's budgets (reports stay local in `.lighthouseci/`) |
@@ -78,6 +80,7 @@ The three story pages are the exception (see [Story pages](#story-pages)).
 | `input/timeline.md` | The research timeline: four era tables, one row per event. Dates and descriptions are published word for word. |
 | `editorial/events.yaml` | Per-event extras, keyed by event id: title, image caption/alt/credit/licence, document highlight |
 | `editorial/site.yaml` | Opening texts, era intros and headings, building address, Impresszum, Google Analytics measurement ID |
+| `editorial/music.yaml` | The „Mit hallgatott Budapest?” songs shown among the events: year, title, credit, note, recording |
 | `assets/facade4.png` | Present-day facade photo at the top of the page |
 
 Workflow: run `scripts/start-local.sh`, edit a file, reload the browser (restart the script if a
@@ -147,6 +150,79 @@ have checked it against the original and set `verified: true`:
     verified: true
 ```
 
+### Add or change a song
+
+The timeline's music layer, „Mit hallgatott Budapest?”, lists songs that Budapest could hear at
+the time, one card per song. `editorial/music.yaml` has one `music_timeline` block (`schema_version: 1`,
+`label: Mit hallgatott Budapest?`, `cta_label: Meghallgatom`: the build only accepts these values) and a
+list of `items`:
+
+```yaml
+  - type: music
+    year: 1935                          # the year the note is about (e.g. the Budapest premiere)
+    slug: 1935-szomoru-vasarnap         # optional; checked against year and title
+    anchor_id: zene-1935-szomoru-vasarnap  # optional; checked the same way
+    title: Szomorú vasárnap
+    credit: Kalmár Pál · Seress Rezső   # the line under the title on the card
+    composer: Seress Rezső              # optional, as are lyricist and work
+    lyricist: Jávor László
+    description: Two to four sentences: why this song, what it shows about its time.
+    playback_source: youtube
+    youtube_url: https://www.youtube.com/watch?v=XXXXXXXXXXX
+    youtube_id: XXXXXXXXXXX             # optional; checked against the URL
+    youtube_embed_url: https://www.youtube-nocookie.com/embed/XXXXXXXXXXX  # optional; checked
+    recording_artist: Kalmár Pál        # who is heard; shown in the player
+    recording_relation: period_recording_reissue  # a snake_case word: period_recording, later_recording,
+                                                  # author_period_recording, hungaroton_reissue, …
+    recording_note: How the recording relates to the year; shown in the card's „Források” panel.
+    recording_year: 1935                # optional; these build the card's short recording line
+    recording_release_year: 1993
+    recording_label: Columbia
+    recording_catalog_number: E 972
+    recording_source: János vitéz (1938), hangosfilm  # for editors, not shown
+    sources:
+      - title: Forrás neve
+        url: https://…
+        purpose: what it proves (for editors, not shown)
+    media:                              # optional: one archive image for the card
+      src: kalmar-pal.jpg               # a file name in src/assets/music/ (jpg, png or webp)
+      alt: Kalmár Pál portréja          # what the image shows; required for release unless decorative: true
+      caption: Kalmár Pál az 1930-as években  # optional; shown in the „Források” panel
+      credit: Fortepan / Ismeretlen     # required for release
+      license: CC BY-SA 3.0             # required for release
+      license_url: https://creativecommons.org/licenses/by-sa/3.0/  # optional; links the licence
+      modifications: "módosítás: kicsinyítve"  # optional; what was changed (CC BY-SA asks for it)
+      source_title: Fortepan 12345      # optional link in the panel
+      source_url: https://fortepan.hu/…
+      position: 50% 30%                 # optional focus point of the crop (default 50% 50%)
+```
+
+- The card is placed in the era containing `year`, after that era's events of the same or an
+  earlier year. Its anchor is `#zene-<year>-<title>`, e.g. `/#zene-1935-szomoru-vasarnap`.
+- `youtube_url` may be a `watch?v=`, `youtu.be/`, `/embed/`, `/shorts/` or `/live/` address. The
+  build reads the video id from it and stops if it can't, if `youtube_id`, `youtube_embed_url`,
+  `slug` or `anchor_id` disagree, or if two songs share an anchor or a video.
+- Under the note the card shows a short recording line built from these fields, e.g.
+  „Felvétel: Fráter Lóránd, 1914” and „Columbia E 972 · gramofonfelvétel a szerző előadásában”.
+  Without `recording_year`, a period recording shows the song's year and any other shows none.
+  Each `recording_relation` appears as a Hungarian phrase from `RECORDING_RELATIONS` in
+  `src/lib/timeline/music.ts` (`period_recording` „korabeli felvétel”, `period_recording_reissue`,
+  `author_period_recording`, `archival_film_recording`, `later_recording`, `hungaroton_reissue`); a
+  new relation needs a row there, or the build stops naming the song.
+- The sources, the `recording_note` and the image credit sit in a closed „Források · N” panel.
+- `media` is the only image field (`image_url`, `thumbnail`, `cover`, … are rejected, as is any
+  unknown field). Put the file in `src/assets/music/`; the build stops if it is missing, and a
+  release build also needs `alt` (not a generic word such as „kép”), `credit` and `license`. Every
+  card image gets the same muted treatment and fade in CSS: wide cards show it on the right, narrow
+  ones as a low band under the credit. Cards never show a YouTube image.
+- Test a new recording in the player: many label uploads play on YouTube but refuse embedding
+  (YouTube error 150), and the player then shows „Ez a felvétel jelenleg nem játszható le itt.”
+  with a „YouTube ↗” link.
+- A note should give this song's own reason for being there, and must not claim that the residents
+  of no. 18 listened to it. A note can carry `descriptionNeedsReview: true` until it is checked. A
+  missing note or recording, or an unreviewed note, is listed by `pnpm build:draft` and blocks
+  `pnpm build:release`.
+
 ### Site texts
 
 `editorial/site.yaml` holds the opening section (`hero`), the text on each era opener (`eras`:
@@ -196,6 +272,20 @@ accepts the statistics notice, and it is deleted when they withdraw. The logic i
 `src/lib/timeline/scope.ts`, the markup and the no-flash inline script in
 `src/components/ScopeSlider.astro`, and the behaviour in `src/scripts/timeline-scope.ts`. The
 Jelmagyarázat ends with a description of it, edited in `src/components/Legend.astro`.
+
+Music cards (`src/components/MusicEntry.astro`) are timeline rows but not events: they have no
+`data-event-id`, don't count in the era totals or the structured data, and show from the Környék
+step up. Like an event, each card has its year in the date column and its note icon on the axis.
+„▷ Meghallgatom” plays the song in one shared player fixed to the bottom of the screen
+(`src/components/MusicPlayer.astro`, behaviour in `src/scripts/music-player.ts`, data logic in
+`src/lib/timeline/music.ts`). The YouTube player (`youtube-nocookie.com`) is created only on the
+first press, which counts as consent to that embed (constitution IV); before it the page makes no
+request to YouTube, and there is never more than one player. It is driven through the embed's
+postMessage commands, without YouTube's API script. YouTube's embed rules ask for a player at
+least 200 × 200 px with nothing over it, so the video area never gets smaller. Without JavaScript
+each card shows a plain „YouTube ↗” link instead. The fixed consent notice and the player share
+the page's bottom space through `--consent-notice-height` and `--music-player-pad` (`body` in
+`src/styles/base.css`).
 
 After the last event, the timeline's axis stops and a short centred line and „A történet
 folytatódik” close the page, inviting residents to write. Its text is edited in
@@ -248,7 +338,10 @@ the timeline slider setting in the browser; withdrawing deletes it.
 
 Page views are counted, plus three events: `archive_source_click` (any external link in the page
 content), `image_zoom` (a photo opened in the viewer) and `era_select` (an era chosen in the
-menu). The code is `src/scripts/statistics.ts`, with the pure logic in `src/lib/statistics/`.
+menu). On the home page, `src/scripts/music-player.ts` also reports `music_play`,
+`music_pause`, `music_change`, `music_close`, `music_jump_to_timeline` and `music_open_youtube`
+(with `year`, `title`, `artist`, the recording's performer, and `youtube_id`). The code is
+`src/scripts/statistics.ts`, with the pure logic in `src/lib/statistics/`.
 
 **Turning it on or off.** Set `analytics.measurementId` in `editorial/site.yaml` to the
 property's measurement ID (`G-…`), or leave it empty to build without any analytics. The ID is
@@ -261,13 +354,14 @@ previews.
 
 1. At <https://analytics.google.com/>, create a property (time zone Hungary) with a Web data
    stream for `https://www.dembinszky18.hu`, and copy its measurement ID.
-2. In the data stream, turn **Enhanced measurement** off, so only page views and the three
-   events above are collected.
+2. In the data stream, turn **Enhanced measurement** off, so only page views and the events
+   above are collected.
 3. Admin → Data collection and modification → **Data retention**: 2 months. **Data collection**:
    Google signals off, granular location and device data off.
 4. Admin → Account settings: turn all **data sharing** settings off.
 5. Admin → Custom definitions: add event-scoped dimensions `source_url`, `timeline_event`,
-   `image_name` and `era`, to see the event details in reports (Real-time shows them anyway).
+   `image_name` and `era` (and `year`, `title`, `artist`, `youtube_id` for the music events), to see
+   the event details in reports (Real-time shows them anyway).
 6. Put the ID in `editorial/site.yaml`, commit, and run `pnpm site:publish`. Accept the notice on
    the live site and check that the visit shows up under Reports → Real-time.
 
@@ -276,15 +370,16 @@ previews.
 ```text
 input/timeline.md        research source (read-only for the build)
 input/epitok.md, lakok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
-editorial/               owner-maintained YAML (titles, captions, credits, site texts)
+editorial/               owner-maintained YAML (titles, captions, credits, site texts, songs)
 assets/facade4.png       hero photo
 scripts/                 image download/check, font subsetting, local start, publishing
-src/lib/                 pure logic: parser, ids, dates, timeline scope, editorial checks, SEO helpers, statistics
+src/lib/                 pure logic: parser, ids, dates, timeline scope, music entries, editorial checks, SEO helpers, statistics
 src/lib/lakok/figures.ts captions, credits and sizes of the Lakók source images
-src/scripts/             browser scripts: image viewer, menu, timeline scope slider, consent and statistics, print helper
-src/components/          Astro components (header, hero, legend, scope slider, era opener, event, figure)
+src/scripts/             browser scripts: image viewer, menu, timeline scope slider, music player, consent and statistics, print helper
+src/components/          Astro components (header, hero, legend, scope slider, era opener, event, music card and player, figure)
 src/pages/               /, /epitok/, /lakok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
+src/assets/music/        archive images for the music cards, added by hand, with sources.yaml provenance (committed)
 src/assets/pages/        story page images (committed); lakok/ holds the Lakók source images
 src/fonts/               subset WOFF2 fonts + licences (committed)
 tests/unit/, tests/site/ Vitest suites
