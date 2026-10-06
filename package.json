@@ -23,7 +23,7 @@
     "fonts:subset": "bash scripts/subset-fonts.sh"
   },
   "dependencies": {
-    "astro": "7.3.3",
+    "astro": "7.3.5",
     "lucide-static": "1.47.0",
     "photoswipe": "5.4.4",
     "remark-gfm": "4.0.1",
