@@ -52,8 +52,8 @@ importers:
         specifier: 22.19.1
         version: 22.19.1
       firebase-tools:
-        specifier: 15.30.2
-        version: 15.30.2(@types/node@22.19.1)(supports-color@7.2.0)
+        specifier: 15.32.0
+        version: 15.32.0(@types/node@22.19.1)(supports-color@7.2.0)
       html-validate:
         specifier: 11.16.0
         version: 11.16.0(vitest@5.0.1(@opentelemetry/api@1.9.1)(@types/node@22.19.1)(vite@8.3.0(@types/node@22.19.1)(esbuild@0.28.2)(yaml@2.9.1)))
@@ -1872,8 +1872,8 @@ packages:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
 
-  csv-parse@5.6.0:
-    resolution: {integrity: sha512-l3nz3euub2QMg5ouu5U09Ew9Wf6/wQ8I++ch1loQ0ljmzhmfZYrH9fflS22i/PQEvsPvxCwxgz5q7UB8K1JO4Q==}
+  csv-parse@7.0.3:
+    resolution: {integrity: sha512-YFd3QM/yo17vH91L1IOZuvl09zM0zEEtdfTcOCKWcMdM++MNaQSyp09slXyFCLaPXvHstQFx/xC8myiFHSMUvw==}
 
   data-uri-to-buffer@4.0.1:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
@@ -2290,8 +2290,8 @@ packages:
     resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==}
     engines: {node: '>=8'}
 
-  firebase-tools@15.30.2:
-    resolution: {integrity: sha512-9Y6fsgUh5CsL/hzB565iyIYdu3pgbKcONi7vRlSbZuB3d3RpZy4u49lMesKmQSGd1AqKvFyVw5ls8GCZNYy0MQ==}
+  firebase-tools@15.32.0:
+    resolution: {integrity: sha512-yp0SOQFALo3q2K2/pBmWTrAM4C0503zK3UJ5IDQzr4o7i+5RKh3ZPX4RTkumCFt3STtI7EuR61M8tDJjNZmTYg==}
     engines: {node: '>=20.0.0 || >=22.0.0 || >=24.0.0'}
     hasBin: true
 
@@ -4095,14 +4095,14 @@ packages:
   std-env@4.2.0:
     resolution: {integrity: sha512-oCUKSupKTHX53EyjDtuZQ64pjLJ6yYCtpmEw0goYxtjG9KpbRe8KAsl2tBUGU9DyMcJ0RwJ8GqJAFzMXcXW1Rw==}
 
-  stream-chain@2.2.5:
-    resolution: {integrity: sha512-1TJmBx6aSWqZ4tx7aTpBDXK0/e2hhcNSTV8+CbFJtDjbb+I1mZ8lHit0Grw9GRT+6JbIrrDd8esncgBi8aBXGA==}
+  stream-chain@4.2.6:
+    resolution: {integrity: sha512-1zeJ8CrtJfmiba26ui8jXkq/xLRFvhzkdH02D5QLO9Cnovgeb28IJxg88DdraWnjnkbOol/++uIAybJbJhk7ig==}
 
   stream-events@1.0.5:
     resolution: {integrity: sha512-E1GUzBSgvct8Jsb3v2X15pjzN1tYebtbLaMg+eBOUOAxgbLoSbT2NS91ckc5lJD1KfLjId+jXJRgo0qnV5Nerg==}
 
-  stream-json@1.9.1:
-    resolution: {integrity: sha512-uWkjJ+2Nt/LO9Z/JyKZbMusL8Dkh97uUBTv3AJQ74y07lVahLY4eEFsPsE97pxYBwr8nnjMAIch5eqI0gPShyw==}
+  stream-json@3.7.0:
+    resolution: {integrity: sha512-rCSBdcBP/bPk6T8QFcxAj1MSzAuc5i49cYW6IE7sYObNEPccBJIUiL6fU9c9BWt40aJK0siVynLX7lWaW8alXw==}
 
   stream-shift@1.0.3:
     resolution: {integrity: sha512-76ORR0DO1o1hlKwTbi/DM3EXWGf3ZJYO8cXX5RJwnul2DEg2oyoZyjLNoQM8WsvZiFKCRfC1O0J7iCvie3RZmQ==}
@@ -6717,7 +6717,7 @@ snapshots:
     dependencies:
       css-tree: 2.2.1
 
-  csv-parse@5.6.0: {}
+  csv-parse@7.0.3: {}
 
   data-uri-to-buffer@4.0.1: {}
 
@@ -7207,7 +7207,7 @@ snapshots:
       locate-path: 5.0.0
       path-exists: 4.0.0
 
-  firebase-tools@15.30.2(@types/node@22.19.1)(supports-color@7.2.0):
+  firebase-tools@15.32.0(@types/node@22.19.1)(supports-color@7.2.0):
     dependencies:
       '@apphosting/common': 0.0.8
       '@electric-sql/pglite': 0.3.16
@@ -7231,7 +7231,7 @@ snapshots:
       cors: 2.8.6
       cross-env: 7.0.3
       cross-spawn: 7.0.6
-      csv-parse: 5.6.0
+      csv-parse: 7.0.3
       exegesis: 4.3.0(supports-color@7.2.0)
       exegesis-express: 4.0.0(supports-color@7.2.0)
       express: 4.22.3(supports-color@7.2.0)
@@ -7264,8 +7264,8 @@ snapshots:
       retry: 0.13.1
       semver: 7.8.5
       sql-formatter: 15.8.2
-      stream-chain: 2.2.5
-      stream-json: 1.9.1
+      stream-chain: 4.2.6
+      stream-json: 3.7.0
       superstatic: 10.0.0(supports-color@7.2.0)
       tar: 7.5.22
       tcp-port-used: 1.0.3(supports-color@7.2.0)
@@ -9431,15 +9431,15 @@ snapshots:
 
   std-env@4.2.0: {}
 
-  stream-chain@2.2.5: {}
+  stream-chain@4.2.6: {}
 
   stream-events@1.0.5:
     dependencies:
       stubs: 3.0.0
 
-  stream-json@1.9.1:
+  stream-json@3.7.0:
     dependencies:
-      stream-chain: 2.2.5
+      stream-chain: 4.2.6
 
   stream-shift@1.0.3: {}
 
