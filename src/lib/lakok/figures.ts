@@ -1,4 +1,3 @@
-import type { ImageMetadata } from 'astro';
 import armandolaConcertImage from '../../assets/pages/lakok/18-armandola-hangverseny-1902.png';
 import almasiPortraitImage from '../../assets/pages/lakok/16-almasi-iza-portre-1900.png';
 import almasiCakeWalkImage from '../../assets/pages/lakok/17-iza-cake-walk-1903.png';
@@ -13,18 +12,7 @@ import yellowStarListImage from '../../assets/pages/lakok/12-csillagos-hazak-194
 import machinists1954Image from '../../assets/pages/lakok/13-gepeszek-1954.jpg';
 import projectionist1954Image from '../../assets/pages/lakok/14-mozigepesz-1954.jpg';
 import timeStudyGradingImage from '../../assets/pages/lakok/15-idoelemzes-1949.png';
-
-export type LakokFigure = {
-  image: ImageMetadata;
-  alt: string;
-  caption: string;
-  credit: string;
-  source: { label: 'eredeti forrás'; url: string };
-  kind: 'photo' | 'document';
-  size: 'narrow' | 'medium' | 'wide' | 'column';
-  /** Shown above the caption, e.g. to tell apart the two pages of a split article. */
-  label?: string;
-};
+import type { StoryFigure } from '../images/story-figures.ts';
 
 export const lakokFigures = {
   armandolaConcert: {
@@ -155,25 +143,4 @@ export const lakokFigures = {
     kind: 'document',
     size: 'column',
   },
-} satisfies Record<string, LakokFigure>;
-
-/** Largest display width of each size class in CSS px; must match the lakok-figure--* rules in story.css. */
-const displayWidths: Record<LakokFigure['size'], number> = { narrow: 400, medium: 480, wide: 620, column: 704 };
-
-/** EvidenceFigure props for a Lakók figure: never wider than the source, never cropped. */
-export function figureProps(figure: LakokFigure) {
-  const { size, ...props } = figure;
-  const displayWidth = displayWidths[size];
-  const sourceWidth = figure.image.width;
-  const candidateWidths = [360, displayWidth, 2 * displayWidth].map((width) => Math.min(sourceWidth, width));
-  const widths = [...new Set(candidateWidths)].sort((a, b) => a - b);
-  // On a phone a strip is only about 50px tall, so the zoom button would hide its text.
-  const isStrip = figure.image.width / figure.image.height > 3.5;
-  const classes = [size === 'column' ? undefined : `lakok-figure--${size}`, isStrip ? 'lakok-figure--strip' : undefined];
-  return {
-    ...props,
-    widths,
-    sizes: `(min-width: ${displayWidth + 80}px) ${displayWidth}px, 100vw`,
-    class: classes.filter(Boolean).join(' ') || undefined,
-  };
-}
+} satisfies Record<string, StoryFigure>;

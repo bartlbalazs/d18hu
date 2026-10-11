@@ -94,8 +94,12 @@
     sourceLabel: Országos Hírlap
     depictsHouse: false
     kind: document
-1899-egy-helytorteneti-feldolgozas-szerint:
-  title: Márkus Géza meg nem valósult terve
+1899-apr-15-markus-geza-epitesz-megveszi:
+  title: Márkus Géza megveszi a telket
+1899-maj-18-jovahagyjak-markus-geza-epitkezesenek:
+  title: Márkus Géza 1899-es terve
+1899-jul-a-pesti-magyar-kereskedelmi:
+  title: Bankhitel, majd végrehajtás
 1900-korul-a-rottenbiller-utca-es:
   title: Klösz György felvétele az utcatorkolatról
   image:
@@ -118,8 +122,10 @@
     sourceLabel: "Budapesti Napló, 1900. július 22. (EPA)"
     depictsHouse: false
     kind: "document"
-1901-apr-20-kozolt-datum-a-heted7-szerint-ezen:
-  title: A közölt átadási nap
+1900-szept-29-az-arveresen-spitz-janos:
+  title: "Árverés: Spitzék visszatérnek"
+1901-apr-20-a-vii-keruleti-eloljarosag:
+  title: A ház használhatási engedélye
   image:
     alt: "Korabeli színes várostérkép: Budapest székes főváros térképe, rajzolta Homolka József, 1903"
     caption: Homolka József Budapest-térképe, 1903; nem az átadás évéből származik.
@@ -128,7 +134,7 @@
     depictsHouse: false
     kind: document
 1901-korul-a-megvalosult-haz-tervlapja:
-  title: Mellinger Artúr, a valószínű tervező
+  title: Mellinger Artúr, a ház tervezője
 1901-1902-onallo-cegjegyzesi-joggal-rendelkezo:
   title: A Spitz szabócég társai
   image:
@@ -140,6 +146,8 @@
     sourceLabel: Budapesti Czim- és Lakásjegyzék
     depictsHouse: false
     kind: document
+1901-jul-2-terv-keszul-spitz-janos:
+  title: Erkély a kapu fölé
 1901-jan-23-gy-b-jobb-helyen:
   title: "Budapesti házakat keresnek bérbevételre"
   image:
@@ -582,6 +590,8 @@
     sourceLabel: "Baross Szövetség, 1941. július 4. (EPA)"
     depictsHouse: false
     kind: "document"
+1942-az-ingatlancimtar-ozv-spitz:
+  title: Spitz János Ferenc özvegye a tulajdonos
 1942-1943-telen-tomeges-emberveszteseget-okoz-a:
   title: A doni katasztrófa
 1943-febr-a-nemet-hadero-sztalingradi:
@@ -634,6 +644,8 @@
   title: Újra jár az 5-ös busz
 1948-megindul-az-allamszocialista-berendezkedes:
   title: A kommunista hatalomátvétel
+1948-helyreallitasi-terv-keszul-az:
+  title: Helyreállítás az első emeleten
 1949-aug-20-uj-alkotmany-teremti-meg:
   title: Létrejön a Magyar Népköztársaság
 1949-a-hideghaboru-intezmenyes-keretet:
@@ -659,6 +671,8 @@
   title: Az 5A busz a Szent János kórházig
 1955-magyarorszag-is-tagja-a:
   title: Megalakul a Varsói Szerződés
+1956-aug-22-jovahagyjak-a-haz-lakasmegosztasi:
+  title: Lakásmegosztás
 1956-okt-23-a-haz-kornyezetet-is:
   title: Kitör a forradalom
 1956-okt-23-egy-gyermekkori-visszaemlekezes-teherautokon:
@@ -680,7 +694,7 @@
     sourceLabel: Fortepan 18543
     depictsHouse: false
     kind: photo
-1960-jan-25-a-haz-valoszinu-tervezojekent:
+1960-jan-25-ezen-a-napon-hal:
   title: Meghal Mellinger Artúr
 1961-a-ketteosztott-europa-lathato:
   title: Felépül a berlini fal

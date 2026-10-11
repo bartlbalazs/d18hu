@@ -193,7 +193,7 @@ a:hover {
 }
 
 /* Narrow screens: brand and a Menü button in one row; the button opens the menu as a popover
-   panel under the header. From 900px the same panel is shown inline as a single row. */
+   panel under the header. From 940px the same panel is shown inline as a single row. */
 .site-header__inner {
   flex-wrap: nowrap;
 }
@@ -343,7 +343,7 @@ a:hover {
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 940px) {
   .menu-button {
     display: none;
   }

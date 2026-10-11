@@ -4,6 +4,7 @@
       "staticDistDir": "./dist",
       "url": [
         "http://localhost/",
+        "http://localhost/epulet/",
         "http://localhost/epitok/",
         "http://localhost/lakok/",
         "http://localhost/nevado/",

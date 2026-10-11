@@ -4,7 +4,7 @@ import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 import { deriveDates } from './dates.ts';
 import { deriveEventId } from './ids.ts';
-import { assertHttpsUrl, InlineRenderError, renderInlineHtml, toPlainText } from './inline-html.ts';
+import { assertHttpsUrl, assertSourceUrl, InlineRenderError, renderInlineHtml, toPlainText } from './inline-html.ts';
 import {
   ERA_IDS,
   SOURCE_LANES,
@@ -203,7 +203,7 @@ function parseSources(cell: TableCell): SourceLink[] {
   const sources: SourceLink[] = [];
   for (const node of cell.children) {
     if (node.type === 'link') {
-      assertHttpsUrl(node.url);
+      assertSourceUrl(node.url);
       sources.push({ label: toPlainText(node.children).trim(), url: node.url });
     } else if (node.type !== 'text' || !/^[\s;,/]*$/.test(node.value)) {
       throw new TimelineParseError(

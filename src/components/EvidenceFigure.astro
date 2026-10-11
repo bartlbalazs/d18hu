@@ -20,9 +20,11 @@ interface Props {
   /** A short heading shown above the caption, such as which page of a source the image shows. */
   label?: string;
   class?: string;
+  /** Anchor for links to the figure, e.g. from a source list. */
+  id?: string;
 }
 
-const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality, crop, label } =
+const { image, alt, caption, credit, source, kind = 'photo', widths, sizes, eager = false, quality, crop, label, id } =
   Astro.props;
 const cropProps = crop
   ? { width: image.width, height: Math.round(image.width / crop.aspectRatio), fit: 'cover' as const, position: crop.position }
@@ -32,7 +34,7 @@ const full = await fullSizeImage(image);
 const imageName = image.src.split('?')[0].split('/').pop()!.split('.')[0];
 ---
 
-<figure class:list={['evidence', `evidence--${kind}`, Astro.props.class]}>
+<figure id={id} class:list={['evidence', `evidence--${kind}`, Astro.props.class]}>
   <a
     class="evidence__link"
     href={full.src}

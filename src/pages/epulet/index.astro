@@ -1,0 +1,229 @@
+---
+import facade from '../../../assets/facade4.png';
+import EvidenceFigure from '../../components/EvidenceFigure.astro';
+import Base from '../../layouts/Base.astro';
+import { epuletFigures } from '../../lib/epulet/figures.ts';
+import { fullSizeImage } from '../../lib/images/archive-images.ts';
+import { figureProps } from '../../lib/images/story-figures.ts';
+import { articleNode, breadcrumbNode, imageNode, websiteNode } from '../../lib/seo/jsonld.ts';
+import { loadSiteData } from '../../lib/site-data.ts';
+import '../../styles/story.css';
+
+const { site } = loadSiteData();
+const siteUrl = Astro.site!;
+const path = '/epulet/';
+const title = 'Épület – Dembinszky utca 18.';
+const description =
+  'Telekvásár, árverés, újratervezés: a Dembinszky utca 18. építéstörténete a tervlapokon, 1899-től a gangok 1969-es cseréjéig.';
+const facadePhoto = site.hero.photo;
+const openingImage = await fullSizeImage(facade);
+const figureImages = await Promise.all(
+  Object.values(epuletFigures).map(async (figure) => ({ figure, full: await fullSizeImage(figure.image) })),
+);
+const jsonLd = [
+  websiteNode(siteUrl, site),
+  breadcrumbNode(siteUrl, [
+    { name: site.building.name, path: '/' },
+    { name: 'Épület', path },
+  ]),
+  articleNode(siteUrl, { headline: 'Épület', description, path, imageUrl: new URL(openingImage.src, siteUrl).href }),
+  imageNode(siteUrl, {
+    contentUrl: openingImage.src,
+    caption: facadePhoto.caption,
+    credit: facadePhoto.credit,
+    sourceUrl: facadePhoto.source?.url,
+    path,
+  }),
+  ...figureImages.map(({ figure, full }) =>
+    imageNode(siteUrl, { contentUrl: full.src, caption: figure.caption, credit: figure.credit, path }),
+  ),
+];
+---
+
+<Base title={title} description={description} path={path} jsonLd={jsonLd} ogType="article">
+  <article class="epulet">
+    <header class="container story">
+      <p class="kicker">Dembinszky utca 18.</p>
+      <h1>Épület</h1>
+      <p class="story__lead">Egy háromszögű oromzat, amelyet ma hiába keresnénk. Egy árverés, amely visszahozta a korábbi tulajdonosokat. Lakásalaprajzok, amelyek a századforduló mindennapjaiba engednek bepillantást. A Dembinszky utca 18. története a tervlapokon közelről látszik: hogyan lett a századfordulós vállalkozásból lakóház, és hogyan alakították tovább azok, akik később használták.</p>
+      <p>Az utcáról a ház arcai vonják magukra a figyelmet. Az ablakok körül kanyargó díszek közül emberfejek néznek ki, fölöttük szokatlan vonalú homlokzat zárja le az épületet. A kapun belül már ismerősebb pesti világ fogad: udvar, lépcsőház, egymás fölött futó gangok.</p>
+      <EvidenceFigure
+        class="story__opening"
+        image={facade}
+        alt="A Dembinszky utca 18. felső emeletei alulról: hullámvonalas homlokzatlezárás, indás díszítésű ablakkeretek, köztük emberfejes maszkaronok"
+        caption="A ház mai homlokzata: a hullámvonalas lezárás és az ablakkeretek emberfejes díszei"
+        credit={facadePhoto.credit}
+        source={facadePhoto.source}
+        widths={[400, 600, 784]}
+        sizes="(min-width: 760px) 704px, 100vw"
+        crop={{ aspectRatio: 4 / 3, position: 'top' }}
+        eager
+        quality={40}
+      />
+      <p>A korabeli rajzokon mindez másképp is megjelenik. Az első homlokzati terven még kagylódíszek és hangsúlyos háromszögű oromzat látható. A módosított alaprajzon a lakások eredeti beosztása és a helyiségek egykori rendeltetése is kirajzolódik. Egy későbbi irat pedig már azt írja elő, hogyan kell elbontani és újraépíteni a függőfolyosók lemezeit úgy, hogy közben a lakások megközelíthetők maradjanak.</p>
+      <p>A ház történetének ezek a kevésbé feltűnő részletei éppúgy hozzátartoznak az épülethez, mint az utcai díszítés. <sup>[<a href="#forras-1">1</a>–<a href="#forras-2">2</a>]</sup></p>
+    </header>
+
+    <section class="story-band story-band--1" aria-labelledby="telek">
+      <div class="container story">
+        <h2 id="telek">A telek gazdát cserél</h2>
+        <p>A mai 33401-es helyrajzi szám elődje a 4261/d volt. A telekkönyv a korai lapokon még telekként, a későbbi átvezetésben már házként és udvarként tartja nyilván az ingatlant. A számok összekötik a régi bejegyzéseket a mai Dembinszky utca 18-cal. <sup>[<a href="#forras-1">1</a>]</sup></p>
+        <p>1899 elején négy ember osztozott a tulajdonon: Schuller Miksa, Kürzweil Hermina, Spitz János Ferenc és Schuller Laura. A két házaspár tagjait külön-külön, egyenlő hányaddal jegyezték be. Spitz és felesége tehát már a ma álló ház építéstörténetének legelején jelen volt.</p>
+        <p>Tőlük vásárolta meg az ingatlant Márkus Géza építész. Az adásvételi szerződés 1899. április 15-én kelt, tulajdonjogát másnap jegyezték be. A vételár 36 625 forint 50 krajcár volt. Ennek túlnyomó része, 32 625 forint 50 krajcár vételárhátralékként továbbra is az ingatlant terhelte a négy eladó javára. A vételár és a bejegyzett hátralék között mindössze 4000 forint volt a különbség. <sup>[<a href="#forras-1">1</a>]</sup></p>
+        <p>Márkus így saját tulajdonú telken kezdhette meg a vállalkozást, de az ingatlan megszerzése és kifizetése két külön történet maradt. A következő hónapokban a telekkönyv teherlapjai gyorsan teltek.</p>
+      </div>
+    </section>
+
+    <section class="story-band story-band--1" aria-labelledby="rajzasztal">
+      <div class="container story">
+        <h2 id="rajzasztal">Márkus háza a rajzasztalon</h2>
+        <p>Az 1899-es tervlapok felirata Márkus Géza építkezéseként nevezi meg a munkát. Az engedélyezési záradékokon május 18-i dátum olvasható; az iratok között Márkus aláírása is fennmaradt. A homlokzati rajzot és a metszetet Horváth Pál építőmester írta alá. A rajzok tehát a beruházó mellett az építőmester nevét is megőrizték. <sup>[<a href="#forras-2">2</a>]</sup></p>
+        <EvidenceFigure {...figureProps(epuletFigures.approvalSignature1899)} />
+        <EvidenceFigure {...figureProps(epuletFigures.elevationClause1899)} />
+        <p>A ház földszintből és három emeletből állt volna, alatta pincével, fölötte magastetővel. A metszet a lakószintek egymásra helyezését, a tető faszerkezetét és a pince mélységét is megmutatja. A homlokzat középen nyíló kapuja fölött szabályosan sorakoztak az ablakok; a vízszintes párkányok világosan elválasztották az emeleteket.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.section1899)} />
+        <p>A legfeltűnőbb eltérés a mai házhoz képest a homlokzat tetején van. A középső három ablaktengely fölé háromszögű oromzat emelkedett volna, díszes timpanonmezővel. Az első emeleti ablakok fölött kagylómotívumok, körülöttük gazdag, csigavonalas keretek jelentek meg. A gazdag ablakkeretek és a kagylós, csigavonalas ornamentika historizáló, neobarokk formavilágot adnak a tervnek.</p>
+        <p>A terven a díszítés még szabályos rendbe foglalta a homlokzatot. Az utcáról ismert ház jóval szabadabban bánik ugyanezekkel a felületekkel.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.elevation1899)} />
+      </div>
+    </section>
+
+    <section class="story-band story-band--1" aria-labelledby="arveres">
+      <div class="container story">
+        <h2 id="arveres">Árverés az építkezés idején</h2>
+        <p>1899 júliusában a Pesti Magyar Kereskedelmi Bank 80 000 forintos jelzáloghitelét jegyezték be az ingatlanra. A bank követelése elsőbbséget kapott a korábbi vételárhátralékkal és egy másik magánköveteléssel szemben. A szerződés száz féléves részletet irányzott elő: papíron ötven év állt rendelkezésre a törlesztésre. <sup>[<a href="#forras-1">1</a>]</sup></p>
+        <p>A tényleges történet sokkal gyorsabban fordult rosszra. Ősszel már a bankkövetelés végrehajtása is megjelent a telekkönyvben, 1900 tavaszán pedig feljegyezték az árverés elrendelését. Közben építési és engedélyezési díjak, vállalati követelések, előjegyzések és törlések követték egymást. Egy cementgyáros és egy téglagyár neve is felbukkan az ügyek között. A bejegyzésekből az építkezés pénzügyi nehézségei jól látszanak, a teljes építési költséget azonban nem lehet egyszerű összeadással kiszámolni.</p>
+        <p>Az 1900. szeptember 29-i árverési jegyzőkönyv alapján Spitz János Ferenc és Schuller Laura szerezte meg az ingatlant 137 005 koronáért, fele-fele arányban. Tulajdonjogukat 1901. április 16-án jegyezték be. <sup>[<a href="#forras-1">1</a>]</sup></p>
+        <p>Itt a pénznem is megváltozik. Az 1892-ben bevezetett korona a régi forint felét érte: egy forint két koronának felelt meg. A korábbi 80 000 forintos bankhitel tehát 160 000 korona volt. A telekkönyv számait csak ezzel az átszámítással lehet egymás mellé tenni. <sup>[<a href="#forras-9">9</a>]</sup></p>
+        <p>Spitzék tehát visszatértek egy olyan ingatlanhoz, amelynek alig másfél évvel korábban még az eladói között szerepeltek. Schuller Laura ebben önálló tulajdonostárs volt: ugyanakkora részt szerzett, mint a férje.</p>
+        <p>Az árverés fordította meg a szerepeket: Márkus elveszítette az ingatlant, két korábbi eladója pedig ismét tulajdonossá vált. A visszaszerzett ingatlanon azonban ott maradt a bank nagy jelzáloga; ezt csak 1903-ban, egy újabb hitel bejegyzése után törölték. Hogy Spitzék végül mennyit nyertek vagy veszítettek az ügyleteken, azt a régi telekár és az árverési vételár különbsége nem árulja el. <sup>[<a href="#forras-1">1</a>]</sup></p>
+        <p>Mire a ház használatát engedélyezték, már újra a Spitz házaspár állt a tulajdonosi oldalon.</p>
+      </div>
+    </section>
+
+    <section class="story-band story-band--1" aria-labelledby="mellinger">
+      <div class="container story">
+        <h2 id="mellinger">Mellinger a tervlapon</h2>
+        <p>A módosított emeleti alaprajz bal alsó sarkában jól olvasható a bélyegző: „Mellinger Arthur építész, Budapest”. Mellette az aláírása is szerepel, a lap jobb oldalán pedig Horváth Pál építőmester neve. Mellinger kapcsolata a házzal így a korabeli tervlappal igazolható. <sup>[<a href="#forras-2">2</a>]</sup></p>
+        <p>Az <a href="/epitok/">Építők</a> cikk a ház létrehozóinak pályáját és kapcsolatait mutatja be. Mellinger szerepéhez ez a tervlap ad közvetlen bizonyítékot: bélyegzője és aláírása ugyanazon a dokumentumon szerepel, mint a ház alaprajza.</p>
+        <p>Ez az Építők cikkben bemutatott szerzőségi vitában is döntő fordulat. A Kalix Ödönhöz és Hübner Jenőhöz kapcsolt, 1910–1911-es építéstörténettel szemben most egymás mellé tehető a Spitz házaspár tulajdonszerzését rögzítő telekkönyv, a Mellinger által aláírt módosított alaprajz és az 1901. április 20-i használhatási engedély. Ezek együtt egy korábbi, összefüggő építéstörténetet támasztanak alá: Márkus Géza vállalkozását a Spitz házaspár vitte tovább, a módosított terveken pedig Mellinger Artúr neve szerepel. <sup>[<a href="#forras-1">1</a>–<a href="#forras-3">3</a>]</sup></p>
+        <p>A fellelt iratok alapján ezért nagy valószínűséggel lezárható a szerzőségi vita Mellinger Artúr javára. A Kalix–Hübner-attribúció eredete továbbra is tisztázásra vár, de a ház felépítésének magyarázataként már aligha tartható. A jelenlegi homlokzat rajzának hiánya még nyitva hagy részletkérdéseket; Mellinger dokumentált tervezői szerepét azonban ez nem teszi bizonytalanná.</p>
+        <p>Horváth Pál neve közben összeköti a két tervváltozatot. Az 1899-es homlokzati rajzon és metszeten éppúgy ő szerepel építőmesterként, mint a Mellinger által aláírt módosított alaprajzon. A tulajdonosi fordulat és a tervek változása mellett ez személyi folytonosságot jelez. A két aláírásból a kivitelezés teljes munkamenetét még nem ismerjük, de az építőmester visszatérő neve biztos pont a történetben.</p>
+        <p>A hosszú udvart körülfogó lakásszárnyak és a függőfolyosós közlekedés adják az alaprajz rendjét. A gang az udvar sarkainál ferde szakaszokkal fordul. A lecsapott, sokszögű sarkok oldják az udvar hosszú, egyenes oldalainak szigorú rendjét.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.mellingerStamp)} />
+
+        <h3 id="alaprajz">Lakások az eredeti alaprajzon</h3>
+        <p>A századfordulós alaprajz többféle lakáselrendezést őriz. Az udvari szárnyakban kisebb, szobából és konyhából álló otthonok sorakoznak, az utcai traktus nagyobb lakásaiban pedig előszoba, fürdőszoba és cselédszoba is helyet kapott. A hátsó traktusban szintén különböző méretű lakások kerültek egymás mellé.</p>
+        <p>A cselédszoba a háztartásban dolgozó alkalmazott lakóhelye volt; a terven a főszobáknál kisebb helyiségként, a kiszolgálóhelyiségek közelében jelenik meg. Elhelyezése a korabeli háztartások működéséről is mesél.</p>
+        <p>Az alaprajzon ábrázolt kisebb, szoba-konyhás lakásokban eredetileg nem volt saját WC: hozzájuk a melléklépcső mellett, az udvari folyosóról megközelíthető közös illemhelyek tartoztak, amelyeket a rajz „Closettek” felirattal jelöl. A nagyobb lakások egy részében már ekkor lakáson belüli fürdő és illemhely szerepel. A terv így a ház induláskori kialakítását dokumentálja, amelyet a későbbi lakásmegosztások és korszerűsítések tovább alakítottak. <sup>[<a href="#forras-2">2</a>]</sup></p>
+        <EvidenceFigure {...figureProps(epuletFigures.sharedToilets)} />
+        <p>Az alaprajz ettől válik a <a href="/lakok/">Lakók</a> névsorainak társává. A nevek mellé odarajzolja az egykori otthonokat: a szobákat, konyhákat és a mindennapi élet közlekedőit.</p>
+
+        <h3 id="homlokzat">A homlokzat másik arca</h3>
+        <p>Az 1899-es homlokzati rajz és a ma látható ház között látványos a különbség. A középső háromszögű oromzat helyét hullámvonalas homlokzati lezárás veszi át. Megváltozik az a körvonal, amely az utcáról felnézve az épületet az égbolt előtt kirajzolja.</p>
+        <p>A kagylódíszek helyett a mai homlokzat legemlékezetesebb pontjain emberfejes díszek, úgynevezett maszkaronok vonják magukra a figyelmet. Körülöttük az ablakkeretek indaszerű vonalai szinte összefonódnak. A korai terv neobarokk rendjéhez képest erősebb a szecessziós formálás, miközben történeti motívumok is megmaradnak.</p>
+        <p>Az átnézett építési iratanyagban nem szerepelt a jelenlegi homlokzat rajza. Mellinger alaprajzi aláírása a részvételét bizonyítja; a homlokzat valamennyi részletének szerzőségét ez az egy lap nem dönti el. Az 1899-es rajz és a mai épület összevetése viszont megmutatja, mennyit változott az eredeti elképzelés.</p>
+      </div>
+    </section>
+
+    <section class="story-band story-band--1" aria-labelledby="hasznalatba-vetel">
+      <div class="container story">
+        <h2 id="hasznalatba-vetel">Használatba vétel 1901 tavaszán</h2>
+        <p>1901. április 20-án a VII. kerületi elöljáróság kiadta a ház „Használhatási engedélyét”. Az irat Spitz János Ferencet nevezi meg háztulajdonosként, és újonnan épült háromemeletes bérházról beszél. A jóváhagyott tervek szerinti helyiségek használatát azonnal megengedte. <sup>[<a href="#forras-3">3</a>]</sup></p>
+        <p>Ez a dátum a használat engedélyezésének napja. Ünnepélyes átadásról vagy valamennyi lakó egyszerre történő beköltözéséről az okirat nem számol be. A ház születésének mégis ez az egyik legbiztosabb időpontja: ekkorra az új bérház eljutott az engedélyezett használatig.</p>
+        <p>Egy kézzel beírt feltétel a pincére vonatkozik: „a pinczehelyiségeket műhelyül vagy lakásul használni nem szabad”. A hatóság tehát a föld alatti tereket kifejezetten kizárta ebből a két használatból. A későbbi címtárakban szereplő műhelyeket és vállalkozásokat ezért sem lehet pusztán a cím alapján automatikusan a pincébe helyezni.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.occupancyPermit1901)} />
+        <p>Az okirat négy nappal követi a Spitz házaspár tulajdonjogának telekkönyvi bejegyzését. A két dátum külön eljáráshoz tartozik, együtt mégis pontos képet ad 1901 áprilisáról: a tulajdoni rendezést közvetlenül követte a ház használatának engedélyezése.</p>
+      </div>
+    </section>
+
+    <section class="story-band story-band--1" aria-labelledby="erkely">
+      <div class="container story">
+        <h2 id="erkely">Erkély a kapu fölött</h2>
+        <p>A használati engedély után néhány hónappal újabb terv készült. Az 1901. július 2-i keltezésű rajz Spitz János Ferenc és felesége házán létesítendő nyitott erkélyt ábrázol. A kapu fölött, az első emelet középső nyílásánál jelenik meg az új kiülés. <sup>[<a href="#forras-4">4</a>]</sup></p>
+        <p>A terv több nézetből mutatja be az erkélyt: homlokzaton, metszetben és alaprajzon is. A rajzra ráírták a szerkezeti megoldást: „Mátrai féle szab. vasbeton”. A díszes korlát és a konzolok mögött tehát név szerint megjelölt, szabadalmazott vasbeton-rendszer állt.</p>
+        <p>A Mátrai-rendszer az 1890-es években elterjedő korai megoldások közé tartozott: födémváltozatában acélgerendákhoz rögzített huzalok és beton alkották a szerkezetet. A kapu fölötti díszes erkély terve így a korszak szerkezeti kísérleteihez is kapcsolódik. A födémrendszer általános leírásából azonban az itteni erkély minden részletére nem következtethetünk. <sup>[<a href="#forras-10">10</a>]</sup></p>
+        <p>Az utcai homlokzat már az épület használatba vétele körüli időszakban tovább alakult. A terv keltezése biztos; az erkély elkészültének pontos napját nem ismerjük. A rajz mindenesetre azt mutatja, hogy a kapu fölötti erkélyt külön munkaként tervezték meg.</p>
+        <p>Az új erkély az első emeleti lakásnak közvetlen kapcsolatot adott az utcával, a ház középtengelyének pedig új hangsúlyt. A döntés mögötti üzleti vagy személyes megfontolásokat a terv nem árulja el.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.balconyPlan1901)} />
+      </div>
+    </section>
+
+    <section class="story-band story-band--2" aria-labelledby="spitz-nev">
+      <div class="container story">
+        <h2 id="spitz-nev">A Spitz név megmarad</h2>
+        <p>Az építkezés és az árverés gyors fordulatai után hosszabb tulajdonosi folytonosság következett. Az 1931-es házjegyzék még Spitz János Ferencet sorolja a Dembinszky utca 18-hoz. Az 1933–1934-es ingatlancímtárban már özvegyi névalak áll, 1942-ben pedig özv. Spitz János Ferencné szerepel tulajdonosként. A 33401-es helyrajzi szám továbbra is ugyanazt a házat azonosítja. <sup>[<a href="#forras-5">5</a>]</sup></p>
+        <p>A név mögött Schuller Laura áll, aki már az 1899-es telekügyletben és az 1900-as árverési vételben is saját tulajdoni hányaddal vett részt. Az özvegyi megjelölés így egy több évtizedes kapcsolat késői állomása.</p>
+        <p>Az 1942-es címtár 26 448 pengő évi adóköteles bérjövedelmet tüntet fel az ingatlannál. Ez nem az épület értéke és nem is a tulajdonos tiszta nyeresége, hanem a nyilvántartás jövedelmi adata. A ház ekkor még a bérbe adott lakásokból jövedelmet hozó ingatlanként jelenik meg a nyilvántartásban.</p>
+        <p>A következő években a ház történetébe üldöztetés és ostrom íródott. Az 1944-es csillagos házzá kijelölést és a pincéből elhurcolt Erdős Ferenc történetét a Lakók cikk tárgyalja. A háború után fennmaradt tervlapok már a lakások helyreállításáról beszélnek.</p>
+      </div>
+    </section>
+
+    <section class="story-band story-band--4" aria-labelledby="helyreallitas">
+      <div class="container story">
+        <h2 id="helyreallitas">Helyreállítás egy első emeleti lakásban</h2>
+        <p>Az 1948-as helyreállítási terv az első emelet 1. számú lakásához készült. Címe egyszerűen „Lakás helyreállítási munkálatok terve”. Tervezőként Rajna Ernő okleveles építészmérnök, építtetőként Jacobi Dénesné szerepel rajta. A háztulajdonos rovatban pedig már dr. Miletits Györgyné neve olvasható. <sup>[<a href="#forras-6">6</a>]</sup></p>
+        <p>Egyetlen tervlap három különböző szerepet választ szét. A lakás munkáit kezdeményező építtető, a háztulajdonos és a műszaki tervező más-más ember volt. Ez segít elkerülni azt is, hogy a rajzon szereplő valamennyi nevet egymást követő tulajdonosnak tekintsük.</p>
+        <p>Az 1942-es címtár és az 1948-as terv között a ház tulajdonosi megjelölése megváltozott. A két adat közötti hat évbe a vészkorszak és az ostrom is beleesik; a névváltás mögötti személyes történetet ezek az iratok nem mondják el. Az átruházás pontos idejét és jogcímét sem ismerjük belőlük. A helyreállítási terv viszont már egy konkrét lakáshoz vezet: ott kellett ismét használható tereket kialakítani. A sérülések okát és mértékét a lefényképezett címlap nem részletezi.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.restorationTitle1948)} />
+      </div>
+    </section>
+
+    <section class="story-band story-band--4" aria-labelledby="lakasmegosztas">
+      <div class="container story">
+        <h2 id="lakasmegosztas">Több lakás a régi falak között</h2>
+        <p>A háború utáni átalakítások a lakások határait is érintették. Az 1956-os lakásmegosztási tervanyag a nagyobb otthonok kisebb egységekre bontásának időszakát jelzi; a fennmaradt jóváhagyási záradék 1956. augusztus 22-i. Ez még a forradalom előtti dátum, tehát nem az őszi harcokat követő helyreállítás irata. <sup>[<a href="#forras-7">7</a>]</sup></p>
+        <p>Az ötvenes évek tanácsi lakásgazdálkodása az új lakások építése mellett a meglévők intenzívebb használatával, lakásmegosztással és társbérletek kialakításával próbálta enyhíteni a lakáshiányt. <sup>[<a href="#forras-11">11</a>]</sup> A két megoldás különbözött: a műszaki megosztás önálló lakásokat hozhatott létre, a társbérletben viszont több háztartás osztozott egy lakás egyes helyiségein. A Dembinszky utcai jóváhagyási záradék önmagában nem mondja meg, milyen lakáskiutalási döntések kapcsolódtak az átalakításhoz.</p>
+        <p>Egy lakás megosztása az épület külső tömegén alig hagy nyomot. Belül viszont új határokat hoz létre: más lesz, melyik ajtó hová vezet, mely helyiségek tartoznak össze, és hogyan lehet megközelíteni őket. A régi lakásszámok és a későbbi ajtószámok ezért nem feltétlenül ugyanazt a lakásegységet jelölik.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.approval1956)} />
+        <p>A későbbi komfortosítások újabb helyiségeket kívántak. A saját fürdő és illemhely kialakításához helyet kellett találni a meglévő falak között, és oda kellett vezetni a vizet, valamint a szennyvízelvezetést. Ez sokkal kevésbé látványos építéstörténeti változás, mint egy erkély, a mindennapi használatot azonban alapvetően alakítja át.</p>
+        <p>A korai alaprajz szerint a nagyobb lakások egy részében már 1901 körül is volt fürdőszoba. A későbbi korszerűsítés ezért az eltérő felszereltségű otthonokat érintette. Arra egyelőre nincs teljes lakásonkénti adatunk, hogy mikorra vált valamennyi lakás saját fürdővel és illemhellyel ellátottá; ezt nem lehet egyetlen hatvanas évekbeli beavatkozáshoz kötni.</p>
+      </div>
+    </section>
+
+    <section class="story-band story-band--4" aria-labelledby="gang">
+      <div class="container story">
+        <h2 id="gang">A gang új lemezeket kap</h2>
+        <p>1969 márciusában Kecse Nagy Sándor építésztervező műszaki leírást készített a ház függőfolyosóinak cseréjéről. A szöveg szerint a meglévő salakbeton folyosólemezeket vasbeton lemezekkel kellett felváltani. Az alaprajzi felirat az első, második és harmadik emeleten teljes függőfolyosócserét jelöl. <sup>[<a href="#forras-8">8</a>]</sup></p>
+        <p>Az anyag megnevezése a korszak egyik ismert műszaki problémájára is ráirányítja a figyelmet. Bizonyos korai salakbetonokban a kéntartalmú kazánsalak nedvesség hatására elősegítette a beágyazott acél korrózióját; a rozsdásodás a beton leválásához és a szerkezet gyengüléséhez vezethetett. <sup>[<a href="#forras-10">10</a>]</sup> A Dembinszky utcai leírás azonban nem közöl állapotvizsgálatot, ezért ebből nem állapítható meg, hogy itt is ez indokolta-e a cserét.</p>
+        <p>Ez szerkezeti beavatkozás volt. A leírás a burkolat és a korlát elbontásával is számolt, de a korlátot javítás és a hiányzó részek pótlása után vissza kellett helyezni. A gang régi megjelenéséből így maradhatott valami, miközben a járófelületet hordó lemez megújult.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.galleryDescription1969)} />
+        <p>Az új járófelületre mozaiklapot, a korláthoz acélkitámasztásokat és friss festést írtak elő. A leírás utolsó mondata azonban egy jóval hétköznapibb kérdéshez vezet: hogyan jutnak haza a lakók, ha elbontják az ajtajuk előtti folyosót?</p>
+        <p>A tervező erre is adott választ. A bontáshoz és építéshez állványzatot, a közlekedéshez pallóterítést és átjáróhidakat irányzott elő. A lakásokhoz vezető utat akkor is biztosítani kellett, amikor éppen azt a szerkezetet cserélték, amelyen máskor hazamentek. A műszaki leírás itt egy lakott ház mindennapjairól is beszél.</p>
+        <EvidenceFigure {...figureProps(epuletFigures.galleryPlan1969)} />
+        <p>A biztosan keltezett irat a munka 1969-es előkészítését dokumentálja. A kivitelezés pontos idejét és lezárását külön iratokkal lehetne rögzíteni. A tervből így is világos, mekkora részt érintett a beavatkozás abból az épületből, amelyet az utcáról nézve változatlannak gondolhatnánk.</p>
+      </div>
+    </section>
+
+    <section class="story-band" aria-labelledby="osszegzes">
+      <div class="container story">
+        <h2 id="osszegzes">Az első tervtől a mai házig</h2>
+        <p>A Dembinszky utca 18. más háznak indult, mint amilyennek ma ismerjük. Az 1899-es rajzon még háromszögű oromzat és kagylódíszes ablakok szerepeltek, a telek pedig Márkus Gézáé volt. Mire 1901 áprilisában engedélyezték a használatát, a tulajdon már a Spitz házaspárhoz került, a módosított alaprajzon pedig Mellinger Artúr aláírása állt. A ház születéséhez az árverés és az újratervezés éppúgy hozzátartozott, mint a falak felhúzása.</p>
+        <p>Mellinger tervezői szerepe dokumentált, és a fellelt iratok alapján nagy valószínűséggel a Kalix–Hübner-attribúció körüli vita is lezárható. A mai homlokzat rajza továbbra is hiányzik, de az építkezés főszereplői és az 1901-es használatba vétel már biztos pontok. A különös homlokzat mögött így egy konkrét történet is látszik: Márkus Géza ingatlanvállalkozása, a Spitz házaspár visszatérése és Mellinger Artúr tervezői munkája.</p>
+      </div>
+    </section>
+
+    <section class="story-band" aria-labelledby="forrasok">
+      <div class="container story sources">
+        <h2 id="forrasok">Források és továbbolvasás</h2>
+        <ol>
+          <li id="forras-1"><strong>Telekkönyv:</strong> 16504. számú pesti telekkönyvi betét, 4261/d, később 33401 hrsz. A tulajdoni sorhoz különösen a 2–4. és 30–31. lap; a finanszírozáshoz és az árveréshez az 5–7., 10., 19., 27. és 32–34. lap. <a href="https://archives.hungaricana.hu/hu/lear/Telekkonyv/31064/view/?image=0&amp;pg=0" rel="noopener noreferrer">Digitalizált telekkönyv</a>.</li>
+          <li id="forras-2"><strong>Az 1899-es és módosított tervanyag:</strong> Dembinszky utca 18. Az 1899-es jóváhagyási záradékok, metszet és homlokzati terv; a Mellinger Artúr bélyegzőjével és aláírásával ellátott módosított emeleti alaprajz. A cikkben közölt felvételek: <a href="#kep-1">1. kép</a>, <a href="#kep-2">2. kép</a>, <a href="#kep-3">3. kép</a>, <a href="#kep-4">4. kép</a>, <a href="#kep-5a">5a. kép</a>, <a href="#kep-5b">5b. kép</a>. A jelenlegi homlokzat rajza az átnézett iratanyagban nem szerepelt; az összevetés az 1899-es tervre és a mai épületre vonatkozik.</li>
+          <li id="forras-3"><strong>Használhatási engedély:</strong> a VII. kerületi elöljáróság 1901. április 20-i irata. A közölt felvétel: <a href="#kep-6">6. kép</a>.</li>
+          <li id="forras-4"><strong>Erkélyterv:</strong> Spitz János Ferenc és neje házán létesítendő nyitott erkély terve, 1901. július 2. A közölt felvétel: <a href="#kep-7">7. kép</a>.</li>
+          <li id="forras-5"><strong>Későbbi tulajdonosi adatok:</strong> <a href="https://library.hungaricana.hu/hu/view/FszekCimNevTarak_17_021/?pg=146" rel="noopener noreferrer">1931-es házjegyzék</a>; <a href="https://library.hungaricana.hu/hu/view/FszekCimNevTarak_18_016_01/?pg=557" rel="noopener noreferrer">1933-as ingatlancímtár</a>; <a href="https://library.hungaricana.hu/hu/view/FszekCimNevTarak_18_016_02/?pg=709" rel="noopener noreferrer">1934-es ingatlancímtár</a>; <a href="https://library.hungaricana.hu/hu/view/FszekCimNevTarak_18_016_03/?pg=271" rel="noopener noreferrer">1942-es ingatlancímtár</a>.</li>
+          <li id="forras-6"><strong>Lakáshelyreállítás:</strong> az I. emelet 1. számú lakásának 1948-as helyreállítási terve, Rajna Ernő tervező, Jacobi Dénesné építtető, dr. Miletits Györgyné háztulajdonos. A közölt címmezőrészlet: <a href="#kep-8">8. kép</a>.</li>
+          <li id="forras-7"><strong>1956-os átalakítás:</strong> az 1956-os lakásmegosztási anyaghoz kapcsolt, augusztus 22-i jóváhagyási záradék. A közölt felvétel (<a href="#kep-9">9. kép</a>) a jóváhagyást mutatja; a megosztással létrejött lakások számát és elrendezését nem részletezi.</li>
+          <li id="forras-8"><strong>Függőfolyosócsere:</strong> Kecse Nagy Sándor építésztervező műszaki leírása, Budapest, 1969. március. A műszaki leírás felvétele: <a href="#kep-10">10. kép</a>. A kapcsolódó alaprajzi részlet az I–III. emeleti teljes cserét jelöli: <a href="#kep-11">11. kép</a>.</li>
+          <li id="forras-9"><strong>Forint és korona:</strong> az <a href="https://net.jogtar.hu/ezer-ev-torveny?docid=89200017.TV" rel="noopener noreferrer">1892. évi XVII. törvénycikk</a> a koronaérték megállapításáról, különösen az 1. és 10. §. A régi forint és a korona aránya 1:2.</li>
+          <li id="forras-10"><strong>A Mátrai-rendszer és a salakbeton szerkezetek műszaki háttere:</strong> Dulácska Endre: <a href="https://real.mtak.hu/163523/1/vb2022_4_3.pdf" rel="noopener noreferrer">Mátrai födém és a káresetek</a>. Vasbetonépítés, 2022/4, 105–108. A rendszer és a korróziós károsodások általános ismertetése; a Dembinszky utcai erkély konkrét kialakításának forrása a 4. pontban hivatkozott tervlap. A tanulmány nem a Dembinszky utca 18. szerkezeteinek vizsgálata.</li>
+          <li id="forras-11"><strong>Az ötvenes évek lakáspolitikai háttere:</strong> Kocsis János Balázs: <a href="https://real.mtak.hu/139520/1/kocsisjb09-3.pdf" rel="noopener noreferrer">Lakáspolitika Budapesten, 1950–1959</a>. Múltunk, 2009/3, 83–122. A lakásmegosztások és a társbérletek városi hátteréhez; a ház konkrét lakáskiutalási történetét nem tárgyalja.</li>
+        </ol>
+      </div>
+    </section>
+  </article>
+</Base>
+
+<script>
+  import '../../scripts/lightbox.ts';
+</script>

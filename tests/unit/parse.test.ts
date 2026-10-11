@@ -79,6 +79,18 @@ describe('parseTimeline errors', () => {
     );
   });
 
+  it('accepts a site path as a source, but only in the sources column', () => {
+    const withSource = (url: string) => fixture.replace('https://example.org/a', url);
+    expect(parseTimeline(withSource('/epulet/#erkely')).events[0].sources).toEqual([
+      { label: 'Forrás A', url: '/epulet/#erkely' },
+    ]);
+    for (const url of ['//example.org/a', 'http://example.org/a', 'epulet/']) {
+      expect(() => parseTimeline(withSource(url)), url).toThrow(/https/);
+    }
+    const inDescription = fixture.replace('Pest, Buda és Óbuda egyesül.', 'Pest, Buda és [Óbuda](/epulet/) egyesül.');
+    expect(() => parseTimeline(inDescription)).toThrow(/https/);
+  });
+
   it('rejects duplicate derived ids', () => {
     const duplicated = fixture.replace(
       '| 1914 | Világ |',

@@ -12,8 +12,8 @@ if (menu && 'showPopover' in HTMLElement.prototype) {
     if (event.target instanceof Element && event.target.closest('a') && isOpen()) menu.hidePopover();
   });
 
-  // From 900px the panel is the inline row; don't leave it stuck open in the top layer.
-  window.matchMedia('(min-width: 900px)').addEventListener('change', () => {
+  // From 940px the panel is the inline row; don't leave it stuck open in the top layer.
+  window.matchMedia('(min-width: 940px)').addEventListener('change', () => {
     if (isOpen()) menu.hidePopover();
   });
 }

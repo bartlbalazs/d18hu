@@ -3,8 +3,8 @@
 A static, Hungarian-language website telling the history of the condominium building at
 Dembinszky utca 18., Budapest, from 1873 to 1968. It is one long narrative timeline: an opening
 section, a legend, four full-height era openers and every event from the research file, plus
-three story pages, `/epitok/` (the builders), `/lakok/` (the residents) and `/nevado/` (the
-street's namesake), and `/impresszum/` (legal notice).
+four story pages, `/epulet/` (the building), `/epitok/` (the builders), `/lakok/` (the
+residents) and `/nevado/` (the street's namesake), and `/impresszum/` (legal notice).
 
 **Live site: <https://www.dembinszky18.hu/>**, deployed on
 [Firebase Hosting](https://firebase.google.com/docs/hosting) (see [Publishing](#publishing)).
@@ -18,8 +18,8 @@ marks the era being read, a timeline scope slider, an in-page music player for t
 [GitHub Spec Kit](https://github.com/github/spec-kit): see `specs/001-d18-history-timeline/`,
 `specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
 `specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/`,
-`specs/009-lakok-source-images/`, `specs/010-timeline-scope-slider/` and
-`specs/011-timeline-music-layer/`.
+`specs/009-lakok-source-images/`, `specs/010-timeline-scope-slider/`,
+`specs/011-timeline-music-layer/` and `specs/013-epulet-page/`.
 
 ## Requirements
 
@@ -73,7 +73,7 @@ Regular builds never touch the network: archive images and fonts are committed.
 ## Editing the content
 
 The timeline content lives in four places, and you never need to touch the code to change it.
-The three story pages are the exception (see [Story pages](#story-pages)).
+The four story pages are the exception (see [Story pages](#story-pages)).
 
 | File | What it holds |
 |---|---|
@@ -100,6 +100,8 @@ The build stops with a clear message if something is malformed, and prints the m
    - **Sáv** (lane): `D18`, `D18 • személy`, `Környék`, `Magyarország` or `Világ`
    - **Bizonyosság** (certainty): `Igazolt`, `Valószínű`, `Feltételezés`, or `—` for background events
    - Descriptions may use `**bold**`, `*italic*`, `[links](https://…)` and `<br>` to start a new line
+   - **Külső forrás** (sources) takes Markdown links: `https://…`, or a page of this site such as
+     `[Épület](/epulet/#erkely)`, which is shown without the external-link icon
    - Everything after the fourth era (e.g. "Nyitott kérdések…") is never published
 2. Run `pnpm build:draft`. The new event appears in the missing-items list with its id (the date
    plus the first four words, e.g. `1912-maj-3-mi-tortent-es-miert`).
@@ -233,21 +235,28 @@ fill the Impresszum with placeholder data. To replace the facade photo, overwrit
 `assets/facade4.png` and update `hero.photo` (alt, caption, credit, source link). The Építők
 opening photo (`assets/facade5.png`) shows the same credit. The Lakók opening photo
 (`assets/facade6.png`, another Globetrotter19 photo) has its caption and credit in
-`src/pages/lakok/index.astro`.
+`src/pages/lakok/index.astro`. The Épület page opens with `assets/facade4.png` and takes its
+credit from `hero.photo`.
 
 ### Story pages
 
-`/epitok/`, `/lakok/` and `/nevado/` are written by hand in `src/pages/epitok/index.astro`,
-`src/pages/lakok/index.astro` and `src/pages/nevado/index.astro`, so each can have its own layout
-(opening image, pull quotes, record excerpts, numbered sources). Their first versions were
-transcribed from the drafts in `input/epitok.md`, `input/lakok.md` and `input/nevado.md`; the
-build never reads those drafts, so edit the `.astro` files to change a story page. Story page
-images are committed in `src/assets/pages/`: the Névadó portrait, and the Lakók source images in
-`src/assets/pages/lakok/`. The Lakók images' captions, alt texts, credits, source links and
-display widths are in `src/lib/lakok/figures.ts`.
+`/epulet/`, `/epitok/`, `/lakok/` and `/nevado/` are written by hand in
+`src/pages/<page>/index.astro`, so each can have its own layout (opening image, pull quotes,
+record excerpts, numbered sources). Their first versions were transcribed from the drafts in
+`input/epulet.md`, `input/epitok.md`, `input/lakok.md` and `input/nevado.md`; the build never reads
+those drafts, so edit the `.astro` files to change a story page. Story page images are committed
+in `src/assets/pages/`: the Névadó portrait, the Lakók source images in `src/assets/pages/lakok/`
+and the Épület document photos in `src/assets/pages/epulet/`. Their captions, alt texts, credits,
+source links and display widths are in `src/lib/lakok/figures.ts` and `src/lib/epulet/figures.ts`;
+the shared type and sizing helper is `src/lib/images/story-figures.ts`. Strip camera and location
+metadata from a phone photo before committing it.
 
-Lakók sets each period in a band with its home-timeline era colour, and the 1944–1945 section
-in the dark era tone. Its three name lists are collapsible `<details>` blocks, closed on load;
+Lakók and Épület set each period in a band with its home-timeline era colour (`story-band--1`
+to `--4` in `src/styles/story.css`); Lakók shows the 1944–1945 section in the dark era tone.
+Épület's figures carry anchors (`kep-1` …) that its source list links to. The Építők article ends
+with a postscript pointing to the Épület findings on the authorship question.
+
+Lakók's three name lists are collapsible `<details>` blocks, closed on load;
 `src/scripts/print-details.ts` opens them while the page is printed. It ends with a note
 offering correction or removal, linked to the impresszum contact address.
 
@@ -256,7 +265,7 @@ offering correction or removal, linked to the impresszum contact address.
 The look is code, not content: components in `src/components/`, styles in `src/styles/`
 (colours and fonts in `tokens.css`).
 
-The top menu (`src/components/SiteHeader.astro`) is one row from 900 px wide. On narrower
+The top menu (`src/components/SiteHeader.astro`) is one row from 940 px wide. On narrower
 screens the header shows a **Menü** button that opens the same links as a panel, grouped as
 "Korszakok" and "Oldalak". It is a native HTML popover, so it works without JavaScript.
 `src/scripts/site-menu.ts` closes the panel after a link is chosen and, on the home page,
@@ -369,18 +378,18 @@ previews.
 
 ```text
 input/timeline.md        research source (read-only for the build)
-input/epitok.md, lakok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
+input/epulet.md, epitok.md, lakok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
 editorial/               owner-maintained YAML (titles, captions, credits, site texts, songs)
 assets/facade4.png       hero photo
 scripts/                 image download/check, font subsetting, local start, publishing
 src/lib/                 pure logic: parser, ids, dates, timeline scope, music entries, editorial checks, SEO helpers, statistics
-src/lib/lakok/figures.ts captions, credits and sizes of the Lakók source images
+src/lib/lakok/figures.ts, src/lib/epulet/figures.ts  captions, credits and sizes of the story page images
 src/scripts/             browser scripts: image viewer, menu, timeline scope slider, music player, consent and statistics, print helper
 src/components/          Astro components (header, hero, legend, scope slider, era opener, event, music card and player, figure)
-src/pages/               /, /epitok/, /lakok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
+src/pages/               /, /epulet/, /epitok/, /lakok/, /nevado/, /impresszum/, 404, sitemap, robots, manifest, icons
 src/assets/archive/      downloaded archive images + manifest.json (committed)
 src/assets/music/        archive images for the music cards, added by hand, with sources.yaml provenance (committed)
-src/assets/pages/        story page images (committed); lakok/ holds the Lakók source images
+src/assets/pages/        story page images (committed); lakok/ and epulet/ hold the page's source images
 src/fonts/               subset WOFF2 fonts + licences (committed)
 tests/unit/, tests/site/ Vitest suites
 specs/                   Spec Kit feature spec, plan, research, data model, contracts

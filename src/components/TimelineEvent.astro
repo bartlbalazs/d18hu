@@ -2,6 +2,7 @@
 import type { TimelineEvent } from '../lib/editorial/assemble.ts';
 import { CATEGORY_DISPLAY, CONFIDENCE_DISPLAY, icons } from '../lib/icons.ts';
 import { archiveImageMetadata } from '../lib/images/archive-images.ts';
+import { isSitePath } from '../lib/timeline/inline-html.ts';
 import EvidenceFigure from './EvidenceFigure.astro';
 
 interface Props {
@@ -80,12 +81,16 @@ const imageSource =
       event.sources.length > 0 && (
         <p class="event__sources">
           <span class="visually-hidden">Forrás:</span>
-          {event.sources.map((source) => (
-            <a href={source.url} rel="noopener noreferrer">
-              {source.label}
-              <Fragment set:html={icons.externalLink} />
-            </a>
-          ))}
+          {event.sources.map((source) =>
+            isSitePath(source.url) ? (
+              <a href={source.url}>{source.label}</a>
+            ) : (
+              <a href={source.url} rel="noopener noreferrer">
+                {source.label}
+                <Fragment set:html={icons.externalLink} />
+              </a>
+            ),
+          )}
         </p>
       )
     }

@@ -58,3 +58,16 @@ export function assertHttpsUrl(url: string): void {
     throw new InlineRenderError(`link must be an https:// URL, got "${url}"`);
   }
 }
+
+/** A site path such as "/epulet/#erkely": one leading slash, so never a protocol-relative "//host". */
+export function isSitePath(url: string): boolean {
+  return /^\/(?!\/)[^\s]*$/.test(url);
+}
+
+/** Sources may also point to the site's own pages, where the link checker verifies them. */
+export function assertSourceUrl(url: string): void {
+  if (isSitePath(url)) return;
+  if (!/^https:\/\/[^\s]+$/.test(url)) {
+    throw new InlineRenderError(`source link must be an https:// URL or a site path starting with "/", got "${url}"`);
+  }
+}

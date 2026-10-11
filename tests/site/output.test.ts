@@ -1,6 +1,7 @@
 // Assertions over the built site in dist/ (run after a build: pnpm build:draft && pnpm test:site).
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import sharp from 'sharp';
 import { parse as parseYaml } from 'yaml';
 import { musicEditorialSchema } from '../../src/lib/editorial/schema.ts';
 import { buildMusicEntries, RECORDING_RELATIONS } from '../../src/lib/timeline/music.ts';
@@ -18,7 +19,7 @@ const navLinks = (html: string, label: string) => {
   const nav = new RegExp(`<nav aria-label="${label}">([\\s\\S]*?)</nav>`).exec(html)?.[1] ?? '';
   return [...nav.matchAll(/href="([^"#]+)"/g)].map((match) => match[1]);
 };
-const PAGES = ['index.html', 'epitok/index.html', 'lakok/index.html', 'nevado/index.html', 'impresszum/index.html'];
+const PAGES = ['index.html', 'epulet/index.html', 'epitok/index.html', 'lakok/index.html', 'nevado/index.html', 'impresszum/index.html'];
 
 describe('built timeline page', () => {
   const html = read('index.html');
@@ -121,9 +122,9 @@ describe('every page', () => {
       expect(html).toMatch(/\.site-header\{[^}]*position:sticky/);
     });
 
-    it(`${page} lists the pages in the menu as Építők, Lakók, Névadó, Impresszum`, () => {
+    it(`${page} lists the pages in the menu as Épület, Építők, Lakók, Névadó, Impresszum`, () => {
       const html = read(page);
-      const expected = ['/epitok/', '/lakok/', '/nevado/', '/impresszum/'];
+      const expected = ['/epulet/', '/epitok/', '/lakok/', '/nevado/', '/impresszum/'];
       expect(navLinks(html, 'Fő navigáció').filter((href) => href !== '/')).toEqual(expected);
       expect(navLinks(html, 'Lábléc')).toEqual(expected);
     });
@@ -134,10 +135,22 @@ describe('every page', () => {
     const htmlFiles = readdirSync('dist', { recursive: true, encoding: 'utf8' }).filter((file) => file.endsWith('.html'));
     for (const file of htmlFiles) expect(read(file)).not.toContain('href="/irasok/"');
     const sitemap = read('sitemap.xml');
+    expect(sitemap).toMatch(/\/epulet\/<\/loc>/);
     expect(sitemap).toMatch(/\/epitok\/<\/loc>/);
     expect(sitemap).toMatch(/\/lakok\/<\/loc>/);
     expect(sitemap).toMatch(/\/nevado\/<\/loc>/);
     expect(sitemap).not.toContain('/irasok/');
+  });
+
+  // linkinator --check-fragments only checks fragments on the page itself, not on the page a link leads to.
+  it('resolves every fragment of a link to another page', () => {
+    const htmlFiles = readdirSync('dist', { recursive: true, encoding: 'utf8' }).filter((file) => file.endsWith('.html'));
+    for (const file of htmlFiles) {
+      for (const [, path, fragment] of read(file).matchAll(/href="(\/[^"#]*)#([\w-]+)"/g)) {
+        const target = path.endsWith('/') ? `${path.slice(1)}index.html` : path.slice(1);
+        expect(read(target).includes(`id="${fragment}"`), `${file} → ${path}#${fragment}`).toBe(true);
+      }
+    }
   });
 
   it('publishes sitemap, robots and manifest', () => {
@@ -180,7 +193,7 @@ describe('Lakók page', () => {
     expect(html).toContain('Globetrotter19');
     const lead = html.indexOf('class="story__lead"');
     const figure = html.indexOf('<figure class="evidence');
-    const firstBand = html.indexOf('class="lakok-band');
+    const firstBand = html.indexOf('class="story-band');
     expect(lead).toBeLessThan(figure);
     expect(figure).toBeLessThan(firstBand);
   });
@@ -193,7 +206,7 @@ describe('Lakók page', () => {
     expect(at(stem), `${stem}: position`).toBeGreaterThan(after);
     expect(at(stem), `${stem}: position`).toBeLessThan(before);
   };
-  const pairs = () => [...html.matchAll(/<div class="lakok-figure-pair">([\s\S]*?)<\/div>/g)].map((match) => match[1]);
+  const pairs = () => [...html.matchAll(/<div class="story-figure-pair">([\s\S]*?)<\/div>/g)].map((match) => match[1]);
 
   const portraits = {
     armandola: heading('Armandola Aranka: zongoralecke és hangverseny'),
@@ -352,6 +365,139 @@ describe('404 page', () => {
   });
 });
 
+describe('Épület page', () => {
+  const html = read('epulet/index.html');
+  const article = /<article[\s\S]*<\/article>/.exec(html)?.[0] ?? '';
+  const h2Ids = [...html.matchAll(/<h2 id="([^"]+)"/g)].map((match) => match[1]);
+  const sourcesSection = html.slice(html.indexOf('<h2 id="forrasok"'));
+  const FIGURE_IDS = ['kep-1', 'kep-2', 'kep-3', 'kep-4', 'kep-5a', 'kep-5b', 'kep-6', 'kep-7', 'kep-8', 'kep-9', 'kep-10', 'kep-11'];
+
+  it('is an article with the twelve sections of the draft and two sub-sections under Mellinger', () => {
+    expect(html).toContain('<meta property="og:type" content="article"');
+    expect(jsonLdTypes(html)).toEqual(expect.arrayContaining(['WebSite', 'BreadcrumbList', 'Article', 'ImageObject']));
+    const articleNode = jsonLdGraph(html).find((node) => node['@type'] === 'Article');
+    expect(String(articleNode?.['@id'])).toMatch(/\/epulet\/#article$/);
+    expect(h2Ids).toEqual([
+      'telek', 'rajzasztal', 'arveres', 'mellinger', 'hasznalatba-vetel', 'erkely',
+      'spitz-nev', 'helyreallitas', 'lakasmegosztas', 'gang', 'osszegzes', 'forrasok',
+    ]);
+    const h3Ids = [...html.matchAll(/<h3 id="([^"]+)"/g)].map((match) => match[1]);
+    expect(h3Ids).toEqual(['alaprajz', 'homlokzat']);
+    for (const id of h3Ids) {
+      expect(html.indexOf(`<h3 id="${id}"`)).toBeGreaterThan(html.indexOf('<h2 id="mellinger"'));
+      expect(html.indexOf(`<h3 id="${id}"`)).toBeLessThan(html.indexOf('<h2 id="hasznalatba-vetel"'));
+    }
+  });
+
+  it('links every source marker to one of its 11 numbered sources, and links other pages relatively', () => {
+    const ids = [...html.matchAll(/id="forras-(\d+)"/g)].map((match) => Number(match[1]));
+    expect(ids).toEqual(Array.from({ length: 11 }, (_, index) => index + 1));
+    const markers = [...html.matchAll(/href="#forras-(\d+)"/g)].map((match) => Number(match[1]));
+    expect(new Set(markers)).toEqual(new Set(ids));
+    expect(article).toContain('href="/epitok/"');
+    expect(article).toContain('href="/lakok/"');
+    expect(article).not.toContain('dembinszky18.hu');
+    expect(article).not.toContain('utm_');
+  });
+
+  it('shows the opening photo after the lead and the twelve document photos, all linked from the sources', () => {
+    expect(count(html, /<figure[^>]*class="evidence/g)).toBe(13);
+    const lead = html.indexOf('class="story__lead"');
+    const opening = html.search(/<figure[^>]*class="evidence/);
+    expect(lead).toBeLessThan(opening);
+    expect(html.slice(opening, html.indexOf('</figure>', opening))).toContain('loading="eager"');
+    expect(count(html, /loading="lazy"/g)).toBe(12);
+    const figureIds = [...html.matchAll(/<figure id="([^"]+)"/g)].map((match) => match[1]);
+    expect(figureIds).toEqual(FIGURE_IDS);
+    expect(count(html, /Fotó: a szerző/g)).toBeGreaterThanOrEqual(12);
+    expect(jsonLdTypes(html).filter((type) => type === 'ImageObject')).toHaveLength(13);
+    const imageLinks = [...sourcesSection.matchAll(/href="#(kep-[^"]+)"/g)].map((match) => match[1]);
+    expect(new Set(imageLinks)).toEqual(new Set(FIGURE_IDS));
+  });
+
+  it('sets the periods in the timeline era tones, leaving the lead, closing and sources plain', () => {
+    const tones = h2Ids.map((id) => {
+      const start = html.lastIndexOf('<section', html.indexOf(`<h2 id="${id}"`));
+      const classes = /class="([^"]*)"/.exec(html.slice(start, html.indexOf('>', start)))?.[1] ?? '';
+      expect(classes, id).toContain('story-band');
+      return Number(/story-band--(\d)/.exec(classes)?.[1] ?? 0);
+    });
+    expect(tones).toEqual([1, 1, 1, 1, 1, 1, 2, 4, 4, 4, 0, 0]);
+    expect(html.search(/<figure[^>]*class="evidence/)).toBeLessThan(html.indexOf('class="story-band'));
+  });
+});
+
+describe('Épület source images', () => {
+  it('carry no camera or location metadata and need no rotation', async () => {
+    const directory = 'src/assets/pages/epulet';
+    const files = readdirSync(directory);
+    expect(files).toHaveLength(12);
+    for (const file of files) {
+      const metadata = await sharp(`${directory}/${file}`).metadata();
+      expect(metadata.exif, file).toBeUndefined();
+      expect(metadata.orientation ?? 1, file).toBe(1);
+    }
+  });
+});
+
+describe('one authorship story', () => {
+  it('ends the Építők article with a postscript pointing to the Épület findings', () => {
+    const html = read('epitok/index.html');
+    const article = /<article[\s\S]*<\/article>/.exec(html)?.[0] ?? '';
+    const paragraphs = [...article.matchAll(/<p[\s>][\s\S]*?<\/p>/g)].map((match) => match[0]);
+    const last = paragraphs.at(-1) ?? '';
+    expect(last).toMatch(/^<p class="story__postscript"/);
+    expect(last).toContain('href="/epulet/"');
+    expect(article.indexOf('class="story__closing"')).toBeLessThan(article.indexOf('class="story__postscript"'));
+  });
+
+  it('leaves no timeline text saying the signed plan or the original permit is missing', () => {
+    const html = read('index.html');
+    for (const phrase of [
+      'tervlapja nem került elő',
+      'aláírt tervlap nem került elő',
+      'valószínű tervező',
+      'csak egy későbbi közlésben szerepel',
+    ]) {
+      expect(html, phrase).not.toContain(phrase);
+    }
+    for (const id of [
+      '1899-maj-18-jovahagyjak-markus-geza-epitkezesenek',
+      '1901-apr-20-a-vii-keruleti-eloljarosag',
+      '1901-korul-a-megvalosult-haz-tervlapja',
+      '1960-jan-25-ezen-a-napon-hal',
+    ]) {
+      expect(html, id).toContain(`id="${id}"`);
+    }
+    expect(html).toContain('href="/epulet/#hasznalatba-vetel"');
+  });
+});
+
+describe('building milestones on the timeline', () => {
+  const html = read('index.html');
+  const LAND_REGISTER = 'https://archives.hungaricana.hu/hu/lear/Telekkonyv/31064/view/?image=0&amp;pg=0';
+  const milestones = [
+    { id: '1899-apr-15-markus-geza-epitesz-megveszi', landRegister: true },
+    { id: '1899-jul-a-pesti-magyar-kereskedelmi', landRegister: true },
+    { id: '1900-szept-29-az-arveresen-spitz-janos', landRegister: true },
+    { id: '1901-jul-2-terv-keszul-spitz-janos', landRegister: false },
+    { id: '1942-az-ingatlancimtar-ozv-spitz', landRegister: false },
+    { id: '1948-helyreallitasi-terv-keszul-az', landRegister: false },
+    { id: '1956-aug-22-jovahagyjak-a-haz-lakasmegosztasi', landRegister: false },
+  ];
+
+  for (const { id, landRegister } of milestones) {
+    it(`shows ${id} as a house event that links the Épület page`, () => {
+      const start = html.indexOf(`id="${id}"`);
+      expect(start, id).toBeGreaterThan(0);
+      const card = html.slice(start, html.indexOf('</li>', start));
+      expect(html.slice(html.lastIndexOf('<li', start), start + 200)).toContain('data-category="house"');
+      expect(card).toMatch(/href="\/epulet\/#[a-z-]+"/);
+      if (landRegister) expect(card).toContain(LAND_REGISTER);
+    });
+  }
+});
+
 describe('site menu', () => {
   for (const page of [...PAGES, '404.html']) {
     it(`${page} has the Menü popover with the eras and pages in two labelled groups`, () => {
@@ -364,9 +510,9 @@ describe('site menu', () => {
       expect(html).toContain('aria-labelledby="menu-oldalak"');
       const menu = /<div[^>]*id="fomenu"[^>]*>([\s\S]*?)<\/div>/.exec(html)?.[1] ?? '';
       const links = [...menu.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
-      expect(links).toHaveLength(8);
+      expect(links).toHaveLength(9);
       expect(links.slice(0, 4).every((href) => href.startsWith('/#korszak-'))).toBe(true);
-      expect(links.slice(4)).toEqual(['/epitok/', '/lakok/', '/nevado/', '/impresszum/']);
+      expect(links.slice(4)).toEqual(['/epulet/', '/epitok/', '/lakok/', '/nevado/', '/impresszum/']);
       expect(html).not.toContain('aria-current="location"');
     });
   }
@@ -374,6 +520,7 @@ describe('site menu', () => {
   it('marks the current page in the menu', () => {
     expect(read('nevado/index.html')).toMatch(/<a href="\/nevado\/" aria-current="page"/);
     expect(read('lakok/index.html')).toMatch(/<a href="\/lakok\/" aria-current="page"/);
+    expect(read('epulet/index.html')).toMatch(/<a href="\/epulet\/" aria-current="page"/);
   });
 });
 

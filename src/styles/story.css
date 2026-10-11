@@ -97,6 +97,13 @@
   line-height: 1.35;
 }
 
+/* A later addition after the closing line, set apart so it doesn't read as a second ending. */
+.story__postscript {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--d18-rule);
+}
+
 .story sup {
   line-height: 0;
   font-size: 0.72em;
@@ -134,92 +141,93 @@
   outline-offset: 4px;
 }
 
-/* ---------- Lakók: period bands in the home timeline's era tones ---------- */
-.lakok-band {
+/* ---------- Story pages: period bands in the home timeline's era tones ---------- */
+.story-band {
   padding-block: clamp(2.5rem, 7vw, 4.5rem);
 }
 
-.lakok-band--1 { background: var(--era-1); }
-.lakok-band--2 { background: var(--era-2); }
-.lakok-band--4 { background: var(--era-4); }
+.story-band--1 { background: var(--era-1); }
+.story-band--2 { background: var(--era-2); }
+.story-band--4 { background: var(--era-4); }
 
-.lakok-band--3 {
+.story-band--3 {
   background: var(--era-3);
   color: var(--era-3-ink);
 }
 
-.lakok-band .story {
+.story-band .story {
   padding-block: 0;
 }
 
 /* The band edge already separates the periods, so the first heading needs no rule. */
-.lakok-band .story > h2:first-child {
+.story-band .story > h2:first-child {
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
 }
 
 /* --d18-muted falls below AA on the darker light tones; --era-muted keeps it. */
-.lakok-band--1,
-.lakok-band--2,
-.lakok-band--4 {
+.story-band--1,
+.story-band--2,
+.story-band--4 {
   --d18-muted: var(--era-muted);
 }
 
 /* Figure captions use --d18-muted, which is too dark to read on the era 3 band. */
-.lakok-band--3 {
+.story-band--3 {
   --d18-muted: var(--era-3-ink);
 }
 
-.lakok-band--3 a,
-.lakok-band--3 a:hover {
+.story-band--3 a,
+.story-band--3 a:hover {
   color: var(--era-3-ink);
 }
 
-.lakok-band--3 :focus-visible {
+.story-band--3 :focus-visible {
   outline-color: var(--era-3-ink);
 }
 
-.lakok-band .sources {
+.story-band .sources {
   margin-top: 0;
 }
 
-/* Source images keep their own shape; these cap their width (see src/lib/lakok/figures.ts). */
-.lakok-band .evidence {
+/* Source images keep their own shape; these cap their width (see src/lib/images/story-figures.ts). */
+.story-band .evidence {
   margin-block: 1.75rem;
 }
 
-.story .lakok-figure--narrow {
+.story .story-figure--narrow {
   max-width: 25rem;
 }
 
-.story .lakok-figure--medium {
+.story .story-figure--medium {
   max-width: 30rem;
 }
 
-.story .lakok-figure--wide {
+.story .story-figure--wide {
   max-width: 38.75rem;
 }
 
 /* Directory lines and text strips are too low for the overlaid zoom button; it sits below them instead. */
-.lakok-figure--strip .evidence__zoom {
+.story-figure--strip .evidence__zoom {
   position: static;
   margin: 0.25rem 0 0 auto;
 }
 
 /* Two clips shown together, with a visible gap so they don't read as one continuous source. */
-.lakok-figure-pair {
+.story-figure-pair {
   display: grid;
   gap: 1.375rem;
   margin-block: 1.75rem;
 }
 
-.lakok-figure-pair .evidence {
+.story-figure-pair .evidence {
   margin-block: 0;
 }
 
 /* Keep a range marker such as [1–2] on one line. */
-.lakok sup {
+.lakok sup,
+.epulet sup {
   white-space: nowrap;
 }
 
@@ -325,7 +333,7 @@
 }
 
 @media print {
-  .lakok-band {
+  .story-band {
     background: none;
     color: inherit;
   }
@@ -335,16 +343,19 @@
   }
 
   /* Keep each source image under half a page and with its caption. */
-  .lakok .evidence {
+  .lakok .evidence,
+  .epulet .evidence {
     break-inside: avoid;
   }
 
-  .lakok .evidence img {
+  .lakok .evidence img,
+  .epulet .evidence img {
     max-height: 12cm;
     width: auto;
   }
 
-  .lakok .evidence__zoom {
+  .lakok .evidence__zoom,
+  .epulet .evidence__zoom {
     display: none;
   }
 }
