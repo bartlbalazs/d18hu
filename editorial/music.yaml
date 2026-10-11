@@ -25,7 +25,7 @@ music_timeline:
     youtube_embed_url: https://www.youtube-nocookie.com/embed/k9DhNQVzFnI
     recording_artist: Fráter Lóránd
     recording_relation: author_period_recording
-    recording_note: 1914-es gramofonfelvétel maga Fráter Lóránd előadásában, Columbia E 972. A timeline éve a dal
+    recording_note: 1914-es gramofonfelvétel maga Fráter Lóránd előadásában, Columbia E 972. A krónikában szereplő év a dal
       1901-es megjelenését jelöli; a meghallgatható felvétel 1914-es.
     sources:
     - title: Magyar Könyvkereskedők Évkönyve, 1901 – zeneműjegyzék
@@ -66,7 +66,7 @@ music_timeline:
     recording_artist: Palló Imre, Kiss Ferenc
     recording_relation: archival_film_recording
     recording_note: Archív részlet Gaál Béla János vitéz-filmjéből, Palló Imre és Kiss Ferenc közreműködésével.
-      A timeline éve az 1904-es Király Színház-i ősbemutatót jelöli.
+      A krónikában szereplő év az 1904-es Király Színház-i ősbemutatót jelöli.
     sources:
     - title: Egy rózsaszál szebben beszél – a János vitéz születésének története
       url: https://pnsz.jegy.hu/program/egy-rozsaszal-szebben-beszel-168262
@@ -101,7 +101,7 @@ music_timeline:
     youtube_embed_url: https://www.youtube-nocookie.com/embed/xahdLvks9kk
     recording_artist: Honthy Hanna, Feleki Kamill és Homm Pál
     recording_relation: later_recording
-    recording_note: 'Későbbi klasszikus operettfelvétel. A timeline éve a budapesti bemutató éve: 1916.'
+    recording_note: 'Későbbi klasszikus operettfelvétel. A krónikában szereplő év a budapesti bemutató éve: 1916.'
     sources:
     - title: Nemzeti Archívum – Csárdáskirálynő, az operettek operettje
       url: https://nemzetiarchivum.hu/stories/Csardaskiralyno
@@ -134,7 +134,7 @@ music_timeline:
     youtube_embed_url: https://www.youtube-nocookie.com/embed/CKUargsxlaw
     recording_artist: Udvardy Tibor és Petress Zsuzsa
     recording_relation: later_recording
-    recording_note: Későbbi operettfelvétel. A timeline éve a Csókos asszony 1926-os sikeréhez kapcsolódik.
+    recording_note: Későbbi operettfelvétel. A krónikában szereplő év a Csókos asszony 1926-os sikeréhez kapcsolódik.
     sources:
     - title: Debreczeni Újság, 1926. május 12.
       url: https://epa.oszk.hu/05500/05567/08808/pdf/EPA05567_debreczeni_ujsag_1926_106.pdf
@@ -233,7 +233,7 @@ music_timeline:
     recording_artist: Kovács Eszti
     recording_relation: hungaroton_reissue
     recording_note: YouTube Music/Topic-feltöltés a Hungaroton 1993-as 'Legendák – A hatvanas évek gyermekdalai'
-      kiadásából. A timeline éve továbbra is az eredeti dal és Kovács Eszti 1959-es stúdiófelvételéhez kapcsolódik.
+      kiadásából. A krónikában szereplő év továbbra is az eredeti dal és Kovács Eszti 1959-es stúdiófelvételéhez kapcsolódik.
     sources:
     - title: Nemzeti Archívum – Kovács Eszti a Pancsoló kislány felvételekor
       url: https://nemzetiarchivum.hu/photobank/item/FOTO-eb5dd4b7f9254f91a3347a69d5109caa
