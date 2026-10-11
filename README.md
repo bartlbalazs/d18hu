@@ -19,7 +19,8 @@ marks the era being read, a timeline scope slider, an in-page music player for t
 `specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
 `specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/`,
 `specs/009-lakok-source-images/`, `specs/010-timeline-scope-slider/`,
-`specs/011-timeline-music-layer/` and `specs/013-epulet-page/`.
+`specs/011-timeline-music-layer/`, `specs/013-epulet-page/` and
+`specs/014-timeline-research-update/`.
 
 ## Requirements
 

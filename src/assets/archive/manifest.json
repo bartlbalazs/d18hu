@@ -136,6 +136,15 @@
       "fetchedAt": "2026-10-01T17:43:36.930Z"
     },
     {
+      "originalUrl": "assets/events/1901-04-20-hasznalhatasi-engedely.png",
+      "file": "local-1901-04-20-hasznalhatasi-engedely-5ec782a2.png",
+      "sha256": "5ec782a2404ca443daa999b9e5cfc6d7f0c3a64cdbf38eac36a778d7f1904a4e",
+      "width": 1086,
+      "height": 1448,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:35:39.148Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1901-08-17_D06_Takaritas_GB.png",
       "file": "local-1901-08-17-d06-takaritas-gb-31b83c6f.png",
       "sha256": "31b83c6f8360bea7ff31a864e41a44ca23d15b3d454859aa1b0a36fa61f23713",
@@ -271,6 +280,15 @@
       "fetchedAt": "2026-10-01T19:06:54.437Z"
     },
     {
+      "originalUrl": "assets/events/forrasok/1916-04-23_N01_pogany-olaj.png",
+      "file": "local-1916-04-23-n01-pogany-olaj-b7e1f61c.png",
+      "sha256": "b7e1f61c29c3543ceeabd6b2f32b8cf261ee7f98cfa65507f04af8844481fb7e",
+      "width": 875,
+      "height": 638,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.801Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1916-12-15_D18_Bradovka_potkave.png",
       "file": "local-1916-12-15-d18-bradovka-potkave-fbeae1e4.png",
       "sha256": "fbeae1e4c4018f612c26ae6df8d09ef5cffe06d2c0d697c1150347ed284a26f9",
@@ -278,6 +296,33 @@
       "height": 1128,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T17:43:36.953Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1920-05_N02_pogany-kalman.png",
+      "file": "local-1920-05-n02-pogany-kalman-edc49e45.png",
+      "sha256": "edc49e45ac5286b56f340ab5d90a50ca415483a8a85950430366636e07acd656",
+      "width": 735,
+      "height": 69,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.218Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1920_N03_takats-beszedits.png",
+      "file": "local-1920-n03-takats-beszedits-b65a8ec5.png",
+      "sha256": "b65a8ec5c49018fe5bda88423fdfde1aece537fc7340c209bf3276542ff07c77",
+      "width": 735,
+      "height": 105,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.219Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1923-01-10_N04_kalix.png",
+      "file": "local-1923-01-10-n04-kalix-57afe1e1.png",
+      "sha256": "57afe1e112f278c9a9506ad76507418f7c393bc8f35a389bdcfcc3b1eb2db431",
+      "width": 827,
+      "height": 228,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.219Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1924-11-01_D19_Reisz_rezmuves.png",
@@ -296,6 +341,15 @@
       "height": 456,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T17:43:36.957Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1926_N07_hitel-teherlap.png",
+      "file": "local-1926-n07-hitel-teherlap-765b986b.png",
+      "sha256": "765b986b4a55bb0b5aa239ac5d9dae43946cddd0a9690133cba74bd1571ad60f",
+      "width": 681,
+      "height": 781,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.221Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1927-09-01_D21_Haztartasvezeto.png",
@@ -334,6 +388,24 @@
       "fetchedAt": "2026-10-01T17:43:36.961Z"
     },
     {
+      "originalUrl": "assets/events/forrasok/1929-02_N08_diamant-hirdetes.png",
+      "file": "local-1929-02-n08-diamant-hirdetes-bad81c03.png",
+      "sha256": "bad81c03cff2f6a42d44dda531c82d4c29e44dad7abccc2460829cb973720e50",
+      "width": 1113,
+      "height": 1483,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.808Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1929-12-15_N10_szabadalmi-bejelentes.png",
+      "file": "local-1929-12-15-n10-szabadalmi-bejelentes-137e8001.png",
+      "sha256": "137e8001afc567b37baaef2cc0d2941a05ab51c668fa1f1b56e731269aa61dde",
+      "width": 730,
+      "height": 179,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.224Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1931-05-06_D27_Gombos_es_Tamas.png",
       "file": "local-1931-05-06-d27-gombos-es-tamas-bd36a329.png",
       "sha256": "bd36a3295b3772002548bad756e685258d1661ad125041870798e0fccf8714f9",
@@ -343,6 +415,42 @@
       "fetchedAt": "2026-10-01T17:43:36.963Z"
     },
     {
+      "originalUrl": "assets/events/forrasok/1931-08_N13_segelykerelem.png",
+      "file": "local-1931-08-n13-segelykerelem-e51a0f03.png",
+      "sha256": "e51a0f03076546c12cb73d1165c6ba2c55a1e2bab0f9a472d7eba89c603e716c",
+      "width": 902,
+      "height": 232,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.225Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1931-10_N29_foldes-szerena.png",
+      "file": "local-1931-10-n29-foldes-szerena-06f7cf7c.png",
+      "sha256": "06f7cf7c49968f2a2a21b404b4909c1bf2d617fd49b9a1d622908759f49f76b8",
+      "width": 1340,
+      "height": 82,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.226Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1932-01-11_N12_uhereczky-garazs.png",
+      "file": "local-1932-01-11-n12-uhereczky-garazs-3d5b5fee.png",
+      "sha256": "3d5b5fee3ccdd3740f8310233dc9cb07c35c9df5cbc7db14d8eb7ab8d6419ac6",
+      "width": 1600,
+      "height": 575,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.810Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1932-11-30_N14_bankper.png",
+      "file": "local-1932-11-30-n14-bankper-c8550efd.png",
+      "sha256": "c8550efd1cab30a3acdd542218eaff43f3d1616280f9387dfe98ea4f631ce505",
+      "width": 938,
+      "height": 505,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.229Z"
+    },
+    {
       "originalUrl": "assets/events/spitz/1933-06-06-spitz-imre.png",
       "file": "local-1933-06-06-spitz-imre-c3df8497.png",
       "sha256": "c3df8497006cc0b3b9dd9080be16dd3cff9adf103df5e1c6f71d450a18d84b46",
@@ -350,6 +458,15 @@
       "height": 1508,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T19:06:54.442Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1933_N27_wagner-elozmenyek.png",
+      "file": "local-1933-n27-wagner-elozmenyek-87181b5c.png",
+      "sha256": "87181b5c9b841c15e8cfb609f16807df632dd783566647768011c36dc0b9babd",
+      "width": 1225,
+      "height": 432,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.207Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1936-03-01_D28_Pint_uveges.png",
@@ -370,6 +487,69 @@
       "fetchedAt": "2026-10-01T17:43:36.964Z"
     },
     {
+      "originalUrl": "assets/events/forrasok/1937-09-11_N30_rothmuller.png",
+      "file": "local-1937-09-11-n30-rothmuller-7d3ff451.png",
+      "sha256": "7d3ff4514f1cfc83c1b04a71f3636ff6e7d4e088aaacb3fac70b94aab9d2b2de",
+      "width": 1035,
+      "height": 729,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.227Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1937-10_N16_wagner-III-3.png",
+      "file": "local-1937-10-n16-wagner-iii-3-3d645308.png",
+      "sha256": "3d645308c2fe8e816e6777455e5dd7a1d18c695d83b3be16c164f692dfdd798b",
+      "width": 1283,
+      "height": 64,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.230Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1937-11-14_N31_markus-baranyok.png",
+      "file": "local-1937-11-14-n31-markus-baranyok-cb6ace8f.png",
+      "sha256": "cb6ace8faccecc73ded79a9db650b1fa05bba6587f941002d6780af9a540b169",
+      "width": 1278,
+      "height": 936,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.812Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1938-12-03_N17_istvan-ut-11.png",
+      "file": "local-1938-12-03-n17-istvan-ut-11-c0bf9a70.png",
+      "sha256": "c0bf9a70ec061fb4132eb354c336603f12c10643a7b1858730d6bd0cf007c48b",
+      "width": 841,
+      "height": 42,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.231Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1939-11-26_N32_markus-vitaminator.png",
+      "file": "local-1939-11-26-n32-markus-vitaminator-82018385.png",
+      "sha256": "8201838515791e297490336464ae08bbf7bac75ec52493cbdd89cb1e43e86a9e",
+      "width": 1094,
+      "height": 667,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.813Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1939_N18_markus-cim.png",
+      "file": "local-1939-n18-markus-cim-a711d7bb.png",
+      "sha256": "a711d7bbf71b3dbb76bf1aa8747de28bce800349c1088336d58fe274f7be29ae",
+      "width": 963,
+      "height": 68,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.231Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1940_N33_winiczai.png",
+      "file": "local-1940-n33-winiczai-8be5d6e5.png",
+      "sha256": "8be5d6e52e9005d3330a7b3890a95f951eaddd18adc7b8a9fd0866d66cce6cb6",
+      "width": 970,
+      "height": 69,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.232Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1941-07-04_D30_Prima_egeszsegugy.png",
       "file": "local-1941-07-04-d30-prima-egeszsegugy-fa2781df.png",
       "sha256": "fa2781df7c75e1debd39519a8f515863edcf50954fad906d0d8d6f57f3a5682e",
@@ -379,6 +559,78 @@
       "fetchedAt": "2026-10-01T17:43:36.964Z"
     },
     {
+      "originalUrl": "assets/events/forrasok/1941-07-10_N20_villamosmegallo.png",
+      "file": "local-1941-07-10-n20-villamosmegallo-2eebd052.png",
+      "sha256": "2eebd05232fbb39002125ae1c3ad91e20306306e6414cd29c4032427c72dd70e",
+      "width": 546,
+      "height": 1538,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.815Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1941_N19_rothmuller-I-8.png",
+      "file": "local-1941-n19-rothmuller-i-8-e72a2a32.png",
+      "sha256": "e72a2a329cd95b65426081ea1a81c143cf31919a20e68319095588dd2f70a872",
+      "width": 1207,
+      "height": 64,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.232Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1943_N21_novum.png",
+      "file": "local-1943-n21-novum-7dec3321.png",
+      "sha256": "7dec3321a67c240840799d3795c32476b476c92800c16c904f0968ad29b4a914",
+      "width": 450,
+      "height": 190,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.233Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1944-06_M06_flam-jakab.png",
+      "file": "local-1944-06-m06-flam-jakab-762c00dd.png",
+      "sha256": "762c00dd89caa63b2ae25d57a661cc0b11e704c0b643098ff9bf3d63fb0031e0",
+      "width": 2028,
+      "height": 590,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.816Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1944-11-16_N22_wilde-naplo.png",
+      "file": "local-1944-11-16-n22-wilde-naplo-b95b9dbf.png",
+      "sha256": "b95b9dbfd7f3a26d2a8ebda839ac687260aa1a8b74803e44531b824a8543825a",
+      "width": 1400,
+      "height": 967,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T21:42:26.817Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1947-06-30_N25_hadifogoly-uzenet.png",
+      "file": "local-1947-06-30-n25-hadifogoly-uzenet-c878ed46.png",
+      "sha256": "c878ed464eb3774332a2110732ef27ef4db687a299ea57a0fb24a442197dd2d3",
+      "width": 887,
+      "height": 33,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.235Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1947-12-17_N34_iteletek.png",
+      "file": "local-1947-12-17-n34-iteletek-530f91fc.png",
+      "sha256": "530f91fce595a03fefbf5a14fe544299fc3c571f8e362dfe7a917e7c40d6c8e5",
+      "width": 830,
+      "height": 44,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.236Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1949_N23_szoghy.png",
+      "file": "local-1949-n23-szoghy-617ba6b5.png",
+      "sha256": "617ba6b5d107f838506f0c0064cd3a9367ba57f2e008333fe04932086efa3703",
+      "width": 930,
+      "height": 70,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.235Z"
+    },
+    {
       "originalUrl": "assets/events/hirdetesek/1950-09-10_D32_Hamori_harmonika.png",
       "file": "local-1950-09-10-d32-hamori-harmonika-55aa727f.png",
       "sha256": "55aa727f909a98225023bba51b04c896c8077d479a0b1f113aed5d95174d98cf",
@@ -386,6 +638,15 @@
       "height": 392,
       "contentType": "image/png",
       "fetchedAt": "2026-10-01T17:43:36.965Z"
+    },
+    {
+      "originalUrl": "assets/events/forrasok/1954_N26_valasztoi-nevjegyzek.png",
+      "file": "local-1954-n26-valasztoi-nevjegyzek-f4a63e6e.png",
+      "sha256": "f4a63e6ea24935ee087d48ccf87666334e67c19a6feae0089e81239146ea0214",
+      "width": 847,
+      "height": 578,
+      "contentType": "image/png",
+      "fetchedAt": "2026-10-11T22:52:03.238Z"
     },
     {
       "originalUrl": "assets/events/hirdetesek/1966-05-12_D33_Temetkezesi_ladak.png",
