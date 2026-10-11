@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { deriveDates } from '../../src/lib/timeline/dates.ts';
 import { deriveEventId, slugify } from '../../src/lib/timeline/ids.ts';
 import type { PhrasingContent } from 'mdast';
-import { escapeHtml, renderInlineHtml, toPlainText } from '../../src/lib/timeline/inline-html.ts';
+import { escapeHtml, renderInlineHtml, renderInlineMarkdown, toPlainText } from '../../src/lib/timeline/inline-html.ts';
 
 describe('deriveDates', () => {
   it.each([
@@ -73,5 +73,35 @@ describe('renderInlineHtml', () => {
 
   it('escapes quotes', () => {
     expect(escapeHtml(`"'`)).toBe('&quot;&#39;');
+  });
+});
+
+describe('renderInlineMarkdown', () => {
+  it('renders one paragraph of inline Markdown', () => {
+    expect(renderInlineMarkdown('**a** *b* [c](https://example.org/) d<br>e')).toBe(
+      '<strong>a</strong> <em>b</em> <a href="https://example.org/" rel="noopener noreferrer">c</a> d<br>e',
+    );
+  });
+
+  it('links to site paths only when allowed', () => {
+    expect(renderInlineMarkdown('[Épület](/epulet/#erkely)', { allowSitePaths: true })).toBe(
+      '<a href="/epulet/#erkely">Épület</a>',
+    );
+    expect(() => renderInlineMarkdown('[Épület](/epulet/)')).toThrow(/https/);
+  });
+
+  it.each([
+    ['two paragraphs', 'a\n\nb'],
+    ['a list', '- a'],
+    ['a heading', '# a'],
+  ])('rejects %s', (_label, text) => {
+    expect(() => renderInlineMarkdown(text)).toThrow(/single paragraph/);
+  });
+
+  it.each([
+    ['raw HTML', 'a <span>b</span>'],
+    ['an http link', '[a](http://example.org/)'],
+  ])('rejects %s', (_label, text) => {
+    expect(() => renderInlineMarkdown(text, { allowSitePaths: true })).toThrow();
   });
 });

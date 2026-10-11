@@ -1,4 +1,5 @@
 import type { ArchiveImage, ArchiveManifest } from '../images/manifest.ts';
+import { renderInlineMarkdown } from '../timeline/inline-html.ts';
 import type { ParsedEvent, ParsedTimeline } from '../timeline/types.ts';
 import type { DocumentHighlight, EventImageEditorial, EventsEditorial } from './schema.ts';
 
@@ -9,6 +10,7 @@ export type TimelineEvent = ParsedEvent & {
   titleNeedsReview: boolean;
   image?: TimelineEventImage;
   highlight?: DocumentHighlight;
+  sourceCriticismHtml?: string[];
   variant: 'compact' | 'image' | 'document';
 };
 
@@ -19,6 +21,13 @@ export class OrphanedEditorialEntryError extends Error {
         `(re-key them to the current event ids):\n  ${problems.join('\n  ')}`,
     );
     this.name = 'OrphanedEditorialEntryError';
+  }
+}
+
+export class SourceCriticismError extends Error {
+  constructor(id: string, index: number, message: string) {
+    super(`editorial/events.yaml ${id}: sourceCriticism[${index + 1}]: ${message}`);
+    this.name = 'SourceCriticismError';
   }
 }
 
@@ -67,6 +76,13 @@ export function assembleEvents(
       titleNeedsReview: entry.titleNeedsReview ?? false,
       image,
       highlight,
+      sourceCriticismHtml: entry.sourceCriticism?.map((paragraph, index) => {
+        try {
+          return renderInlineMarkdown(paragraph, { allowSitePaths: true });
+        } catch (error) {
+          throw new SourceCriticismError(event.id, index, (error as Error).message);
+        }
+      }),
       variant: highlight ? 'document' : image ? 'image' : 'compact',
     };
   });

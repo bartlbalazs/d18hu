@@ -9,6 +9,8 @@ interface Props {
   event: TimelineEvent;
 }
 
+// Source criticism sits in a closed native disclosure, after the figure and before the sources, which stay
+// visible (specs/015-source-criticism-disclosure/contracts/card-disclosure.md).
 const { event } = Astro.props;
 const category = CATEGORY_DISPLAY[event.category];
 const confidence = event.confidence ? CONFIDENCE_DISPLAY[event.confidence] : undefined;
@@ -75,6 +77,21 @@ const imageSource =
           widths={[480, 800, 1200]}
           sizes="(min-width: 1060px) 736px, (min-width: 760px) 70vw, 90vw"
         />
+      )
+    }
+    {
+      event.sourceCriticismHtml && (
+        <details class="event__criticism">
+          <summary class="event__criticism-toggle">
+            Forráskritika és pontosítások
+            <span class="visually-hidden"> – {event.title ?? event.dateLabel}</span>
+          </summary>
+          <div class="event__criticism-body">
+            {event.sourceCriticismHtml.map((paragraph) => (
+              <p set:html={paragraph} />
+            ))}
+          </div>
+        </details>
       )
     }
     {

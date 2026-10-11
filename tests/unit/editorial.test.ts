@@ -4,9 +4,15 @@ import {
   assembleEvents,
   MissingArchiveImageError,
   OrphanedEditorialEntryError,
+  SourceCriticismError,
 } from '../../src/lib/editorial/assemble.ts';
 import { auditEditorial, isMissingValue } from '../../src/lib/editorial/audit.ts';
-import { musicEditorialItemSchema, siteEditorialSchema, type EventsEditorial } from '../../src/lib/editorial/schema.ts';
+import {
+  eventEditorialSchema,
+  musicEditorialItemSchema,
+  siteEditorialSchema,
+  type EventsEditorial,
+} from '../../src/lib/editorial/schema.ts';
 import { buildMusicEntries } from '../../src/lib/timeline/music.ts';
 import type { ArchiveManifest } from '../../src/lib/images/manifest.ts';
 import { parseTimeline } from '../../src/lib/timeline/parse.ts';
@@ -105,6 +111,35 @@ describe('assembleEvents', () => {
 
   it('fails when a Kép URL has not been downloaded', () => {
     expect(() => assembleEvents(timeline, completeEditorial(), { images: [] })).toThrow(MissingArchiveImageError);
+  });
+
+  it('renders source criticism only for events that have it', () => {
+    const editorial = completeEditorial();
+    editorial[firstId].sourceCriticism = ['A *közlöny* nem igazolja.', 'Lásd az [Épület](/epulet/) oldalt.'];
+    const events = assembleEvents(timeline, editorial, manifest);
+    expect(events[0].sourceCriticismHtml).toEqual([
+      'A <em>közlöny</em> nem igazolja.',
+      'Lásd az <a href="/epulet/">Épület</a> oldalt.',
+    ]);
+    expect(events.slice(1).every((event) => event.sourceCriticismHtml === undefined)).toBe(true);
+  });
+
+  it('names the event and the paragraph of malformed source criticism', () => {
+    const editorial = completeEditorial();
+    editorial[firstId].sourceCriticism = ['Rendben.', 'Első bekezdés.\n\nMásodik bekezdés.'];
+    expect(() => assembleEvents(timeline, editorial, manifest)).toThrow(SourceCriticismError);
+    expect(() => assembleEvents(timeline, editorial, manifest)).toThrow(`${firstId}: sourceCriticism[2]: must be a single paragraph`);
+  });
+});
+
+describe('eventEditorialSchema sourceCriticism', () => {
+  it('is optional and takes one or more non-empty paragraphs', () => {
+    expect(eventEditorialSchema.parse({}).sourceCriticism).toBeUndefined();
+    expect(eventEditorialSchema.parse({ sourceCriticism: [' Egy. ', 'Kettő.'] }).sourceCriticism).toEqual(['Egy.', 'Kettő.']);
+  });
+
+  it.each([[[]], [['']], [['  ']]])('rejects %j', (sourceCriticism) => {
+    expect(eventEditorialSchema.safeParse({ sourceCriticism }).success).toBe(false);
   });
 });
 

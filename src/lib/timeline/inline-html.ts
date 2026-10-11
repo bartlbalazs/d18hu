@@ -1,4 +1,7 @@
-import type { PhrasingContent } from 'mdast';
+import type { PhrasingContent, Root } from 'mdast';
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import { unified } from 'unified';
 
 export class InlineRenderError extends Error {}
 
@@ -11,24 +14,42 @@ export function escapeHtml(text: string): string {
     .replaceAll("'", '&#39;');
 }
 
+export type InlineRenderOptions = {
+  /** Also allow links to the site's own pages ("/epulet/#…"); the link checker verifies them. */
+  allowSitePaths?: boolean;
+};
+
 /** Renders the small set of inline Markdown the timeline uses; anything else is a source error. */
-export function renderInlineHtml(nodes: PhrasingContent[]): string {
-  return nodes.map(renderNode).join('');
+export function renderInlineHtml(nodes: PhrasingContent[], options: InlineRenderOptions = {}): string {
+  return nodes.map((node) => renderNode(node, options)).join('');
 }
 
-function renderNode(node: PhrasingContent): string {
+/** Renders text that must be exactly one paragraph of inline Markdown, e.g. one source-criticism paragraph. */
+export function renderInlineMarkdown(text: string, options: InlineRenderOptions = {}): string {
+  const tree = unified().use(remarkParse).use(remarkGfm).parse(text) as Root;
+  const [paragraph] = tree.children;
+  if (tree.children.length !== 1 || paragraph.type !== 'paragraph') {
+    throw new InlineRenderError('must be a single paragraph of inline Markdown');
+  }
+  return renderInlineHtml(paragraph.children, options);
+}
+
+function renderNode(node: PhrasingContent, options: InlineRenderOptions): string {
   switch (node.type) {
     case 'text':
       return escapeHtml(node.value);
     case 'strong':
-      return `<strong>${renderInlineHtml(node.children)}</strong>`;
+      return `<strong>${renderInlineHtml(node.children, options)}</strong>`;
     case 'emphasis':
-      return `<em>${renderInlineHtml(node.children)}</em>`;
+      return `<em>${renderInlineHtml(node.children, options)}</em>`;
     case 'inlineCode':
       return `<code>${escapeHtml(node.value)}</code>`;
     case 'link':
+      if (options.allowSitePaths && isSitePath(node.url)) {
+        return `<a href="${escapeHtml(node.url)}">${renderInlineHtml(node.children, options)}</a>`;
+      }
       assertHttpsUrl(node.url);
-      return `<a href="${escapeHtml(node.url)}" rel="noopener noreferrer">${renderInlineHtml(node.children)}</a>`;
+      return `<a href="${escapeHtml(node.url)}" rel="noopener noreferrer">${renderInlineHtml(node.children, options)}</a>`;
     case 'html':
       // Table cells cannot hold Markdown line breaks, so a bare <br> is the one raw HTML allowed.
       if (isLineBreak(node.value)) return '<br>';

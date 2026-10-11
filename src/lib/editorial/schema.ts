@@ -27,6 +27,8 @@ export const eventEditorialSchema = z.strictObject({
   titleNeedsReview: z.boolean().optional(),
   image: eventImageEditorialSchema.optional(),
   highlight: documentHighlightSchema.optional(),
+  /** One paragraph of inline Markdown per item, shown in the card's „Forráskritika és pontosítások” disclosure. */
+  sourceCriticism: z.array(z.string().trim().min(1)).min(1).optional(),
 });
 
 export const eventsEditorialSchema = z.record(z.string(), eventEditorialSchema);

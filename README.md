@@ -19,8 +19,8 @@ marks the era being read, a timeline scope slider, an in-page music player for t
 `specs/002-epitok-nevado-pages/`, `specs/003-firebase-publishing/`, `specs/004-mobile-navigation/`,
 `specs/005-google-analytics/`, `specs/006-timeline-closing/`, `specs/007-lakok-page/`,
 `specs/009-lakok-source-images/`, `specs/010-timeline-scope-slider/`,
-`specs/011-timeline-music-layer/`, `specs/013-epulet-page/` and
-`specs/014-timeline-research-update/`.
+`specs/011-timeline-music-layer/`, `specs/013-epulet-page/`,
+`specs/014-timeline-research-update/` and `specs/015-source-criticism-disclosure/`.
 
 ## Requirements
 
@@ -68,6 +68,7 @@ pnpm dev                 # http://localhost:4321, draft mode
 | `pnpm images:fetch` | Downloads new or changed `Kép URL` images (or copies local ones from `assets/`) into `src/assets/archive/` (commit the result) |
 | `pnpm images:check` | Reports whether the original archive image URLs still respond |
 | `pnpm fonts:subset` | Regenerates the subset web fonts in `src/fonts/` (commit the result) |
+| `node scripts/timeline-snapshot.ts write\|check <file>` | Saves, or compares against, a snapshot of every event's metadata (ids, dates, scope, certainty, titles, images, sources and counts). Use it around editorial passes that should only change wording |
 
 Regular builds never touch the network: archive images and fonts are committed.
 
@@ -152,6 +153,24 @@ have checked it against the original and set `verified: true`:
     text: Budapest, VII., Dembinszky-utca 18.
     verified: true
 ```
+
+### Add source criticism to an event
+
+When a card's description mixes the story with the evidence behind it, keep the story and any
+caution a reader needs in the description. Move the detailed reasoning into `sourceCriticism`:
+conflicting readings, identification arguments, the limits of a document type, court-case
+stages and negative results. The card shows it in a closed „Forráskritika és pontosítások”
+section above the source links:
+
+```yaml
+  sourceCriticism:
+    - "One paragraph per item. Inline Markdown only: **bold**, *italics* and https:// or site links."
+    - "A second paragraph."
+```
+
+- Keep the description's first four words: they are part of the event id.
+- Don't move story content or source links into the notes. Leave short, clear cards without notes.
+- Rules and examples: `specs/015-source-criticism-disclosure/contracts/source-criticism-field.md`.
 
 ### Add or change a song
 
@@ -382,7 +401,7 @@ input/timeline.md        research source (read-only for the build)
 input/epulet.md, epitok.md, lakok.md, nevado.md  drafts the story pages were transcribed from (not read by the build)
 editorial/               owner-maintained YAML (titles, captions, credits, site texts, songs)
 assets/facade4.png       hero photo
-scripts/                 image download/check, font subsetting, local start, publishing
+scripts/                 image download/check, font subsetting, timeline snapshot, local start, publishing
 src/lib/                 pure logic: parser, ids, dates, timeline scope, music entries, editorial checks, SEO helpers, statistics
 src/lib/lakok/figures.ts, src/lib/epulet/figures.ts  captions, credits and sizes of the story page images
 src/scripts/             browser scripts: image viewer, menu, timeline scope slider, music player, consent and statistics, print helper

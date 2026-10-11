@@ -14,6 +14,9 @@ SiteConfig, EditorialAudit). This contract fixes the author-facing rules.
 - `image` block allowed only for events with a `Kép URL`.
 - `highlight.verified: true` is the author's statement that the text is a checked excerpt or
   transcription; unverified highlights are not rendered.
+- `sourceCriticism` (optional): a list of one or more paragraphs of inline Markdown. The card shows
+  them in a closed „Forráskritika és pontosítások” section. Rules:
+  [015 source-criticism field](../../015-source-criticism-disclosure/contracts/source-criticism-field.md).
 - Never put internal research PDF names or paths here; `sourceUrl` must be a public
   `https://` archive record.
 

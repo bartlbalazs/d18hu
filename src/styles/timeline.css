@@ -513,6 +513,58 @@
   margin-top: 1rem;
 }
 
+/* Source criticism: a quiet, closed research note in the music toggle's style, never an alert. */
+.event__criticism {
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--d18-rule);
+}
+
+.event__criticism-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  list-style: none;
+  color: var(--d18-walnut);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.event__criticism-toggle::-webkit-details-marker {
+  display: none;
+}
+
+/* The same chevron as the music sources: down while closed, up while open. */
+.event__criticism-toggle::after {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: -0.2rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  rotate: 45deg;
+}
+
+.event__criticism[open] .event__criticism-toggle::after {
+  margin-top: 0.25rem;
+  rotate: -135deg;
+}
+
+.event__criticism-toggle:hover {
+  color: var(--d18-ink);
+}
+
+.event__criticism-body {
+  max-width: 62ch;
+  padding-bottom: 0.25rem;
+  color: var(--d18-muted);
+}
+
+.event__criticism-body p + p {
+  margin-top: 0.4rem;
+}
+
 .document-highlight {
   margin: 1rem 0 0;
   padding: 1rem 1.25rem;
@@ -814,7 +866,9 @@ html[data-scope] .music__external {
 @media (prefers-reduced-motion: no-preference) {
   .music__play,
   .music__sources-toggle,
-  .music__sources-toggle::after {
+  .music__sources-toggle::after,
+  .event__criticism-toggle,
+  .event__criticism-toggle::after {
     transition:
       background-color 120ms ease,
       border-color 120ms ease,
@@ -1048,9 +1102,14 @@ body.music-player-visible {
     display: none !important;
   }
 
-  .music__sources::details-content {
+  .music__sources::details-content,
+  .event__criticism::details-content {
     display: block;
     content-visibility: visible;
+  }
+
+  .event__criticism-toggle::after {
+    display: none !important;
   }
 
   .music__media {

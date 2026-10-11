@@ -923,3 +923,44 @@ describe('music layer', () => {
   });
 });
 
+
+describe('source-criticism disclosure', () => {
+  const html = read('index.html');
+  const editorial: Record<string, { sourceCriticism?: string[] }> = parseYaml(readFileSync('editorial/events.yaml', 'utf8'));
+  const cards = new Map(
+    [...html.matchAll(/<li class="event[^"]*"[^>]*data-event-id="([^"]+)"[\s\S]*?<\/li>/g)].map((match) => [match[1], match[0]]),
+  );
+  const withNotes = Object.entries(editorial).filter(([, entry]) => entry.sourceCriticism);
+
+  it('appears once on each event with notes and nowhere else', () => {
+    expect(withNotes.length).toBeGreaterThan(0);
+    expect(count(html, /<details class="event__criticism"/g)).toBe(withNotes.length);
+    for (const [id, card] of cards) {
+      expect(count(card, /<details class="event__criticism"/g), id).toBe(editorial[id]?.sourceCriticism ? 1 : 0);
+    }
+  });
+
+  it('starts closed, opens independently and keeps the fixed label', () => {
+    for (const [id, entry] of withNotes) {
+      const details = /<details class="event__criticism"[^>]*>([\s\S]*?)<\/details>/.exec(cards.get(id) ?? '');
+      expect(details, id).not.toBeNull();
+      const [element, inner] = details!;
+      // "open" would start it expanded; "name" would make the disclosures close each other.
+      expect(element.slice(0, element.indexOf('>')), id).not.toMatch(/\s(open|name)\b/);
+      const summary = /<summary[^>]*>([\s\S]*?)<\/summary>/.exec(inner)?.[1] ?? '';
+      expect(summary.replace(/<span class="visually-hidden">[\s\S]*?<\/span>/, '').trim(), id).toBe(
+        'Forráskritika és pontosítások',
+      );
+      expect(count(inner, /<p>/g), id).toBe(entry.sourceCriticism!.length);
+    }
+  });
+
+  it('keeps the source links outside and after the disclosure', () => {
+    for (const [id] of withNotes) {
+      const card = cards.get(id) ?? '';
+      const sourcesAt = card.indexOf('<p class="event__sources">');
+      if (sourcesAt === -1) continue;
+      expect(sourcesAt, id).toBeGreaterThan(card.indexOf('</details>'));
+    }
+  });
+});
