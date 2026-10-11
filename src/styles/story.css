@@ -143,6 +143,7 @@
 
 /* ---------- Story pages: period bands in the home timeline's era tones ---------- */
 .story-band {
+  display: flow-root; /* keeps the first and last child's margins inside the tone */
   padding-block: clamp(2.5rem, 7vw, 4.5rem);
 }
 
@@ -164,6 +165,30 @@
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
+}
+
+/* Consecutive sections in the same tone read as one band: the usual heading rule separates them,
+   instead of the bottom and top padding of two bands adding up. */
+.story-band--1:has(+ .story-band--1),
+.story-band--2:has(+ .story-band--2),
+.story-band--4:has(+ .story-band--4),
+.story-band:not([class*='story-band--']):has(+ .story-band:not([class*='story-band--'])) {
+  padding-bottom: 0;
+}
+
+.story-band--1 + .story-band--1,
+.story-band--2 + .story-band--2,
+.story-band--4 + .story-band--4,
+.story-band:not([class*='story-band--']) + .story-band:not([class*='story-band--']) {
+  padding-top: 3rem;
+}
+
+.story-band--1 + .story-band--1 .story > h2:first-child,
+.story-band--2 + .story-band--2 .story > h2:first-child,
+.story-band--4 + .story-band--4 .story > h2:first-child,
+.story-band:not([class*='story-band--']) + .story-band:not([class*='story-band--']) .story > h2:first-child {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--d18-rule);
 }
 
 /* --d18-muted falls below AA on the darker light tones; --era-muted keeps it. */
